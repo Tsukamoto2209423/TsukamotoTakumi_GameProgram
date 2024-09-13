@@ -57,9 +57,21 @@ class MyMath
 {
 public:
 	template<class T>
-	static inline T Abs(const T num)
+	static constexpr inline T Abs(const T num)
 	{
 		return num >= (T)0 ? num : -num;
+	}
+
+	template<class T>
+	static constexpr inline T Max(const T num1, const T num2)
+	{
+		return num1 >= num2 ? num1 : num2;
+	}
+
+	template<class T>
+	static constexpr inline T Min(const T num1, const T num2)
+	{
+		return num1 <= num2 ? num1 : num2;
 	}
 
 	//距離計算
@@ -69,13 +81,8 @@ public:
 	static float RadianNormalize(float rad);
 
 	//ディグリーからラジアンにする
-	static constexpr float DegreesToRadian(float degrees)
-	{
-		return degrees * MY_MATH::RADIAN_CONVERT_COEFFICIENT;
-	}
-
-	//ディグリーからラジアンにする
-	static constexpr float DegreesToRadian(int degrees)
+	template<class T>
+	static constexpr float DegreesToRadian(const T degrees)
 	{
 		return static_cast<float>(degrees * MY_MATH::RADIAN_CONVERT_COEFFICIENT);
 	}

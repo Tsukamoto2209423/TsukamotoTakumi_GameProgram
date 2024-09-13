@@ -9,7 +9,7 @@ private:
 public:
 	Model(void);
 	explicit constexpr Model(int handle) : handle_(handle) {}
-	constexpr Model(const Model& model) noexcept : handle_(model()) {}
+	constexpr Model(const Model& model) noexcept : handle_(model.handle_) {}
 
 	~Model(void);
 

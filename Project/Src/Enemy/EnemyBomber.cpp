@@ -80,8 +80,8 @@ void EnemyBomber::Step(const Vector3D& playerPos)
 
 		rot_.x += MY_MATH::INVERSE_TWO_PI;
 
+		//ノックバックの時間計測
 		++knockBackTimeCount_;
-
 
 		//位置・角度設定
 		MV1SetPosition(handle_, pos_);
@@ -166,6 +166,7 @@ void EnemyBomber::Step(const Vector3D& playerPos)
 	//プレイヤー発見状態
 	if (state_ == ENEMY::STATE::FIND_OUT)
 	{
+		//プレイヤーの方向を向かせる
 		dir_ = playerPos - pos_;
 
 		rot_.y = atan2f(-dir_.x, -dir_.z);

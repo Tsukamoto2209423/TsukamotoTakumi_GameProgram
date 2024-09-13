@@ -145,7 +145,7 @@ void EnemyManager::Draw(void)
 		//プレイヤー発見状態なら「！」の画像を表示する
 		if (enemy->GetState() == ENEMY::STATE::FIND_OUT)
 		{
-			DrawBillboard3D(enemy->GetPos() + ENEMY_MANAGER::ADD_EXCLAMATION_POS, 0.5f, 0.0f, 128.0f, 0.0f, exclamationMarkHandle_, true);
+			DrawBillboard3D(enemy->GetPos() + ENEMY_MANAGER::ADD_EXCLAMATION_DISTANCE, 0.5f, 0.0f, 128.0f, 0.0f, exclamationMarkHandle_, true);
 		}
 	}
 }

@@ -9,7 +9,7 @@ private:
 public:
 	Image(void);
 	explicit constexpr Image(int handle) : handle_(handle) {}
-	constexpr Image(const Image& image) noexcept : handle_(image()) {}
+	constexpr Image(const Image& image) noexcept : handle_(image.handle_) {}
 	
 	~Image(void);
 

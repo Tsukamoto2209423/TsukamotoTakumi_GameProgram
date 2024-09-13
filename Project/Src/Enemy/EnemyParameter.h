@@ -195,13 +195,13 @@ namespace ENEMY_MANAGER
 	constexpr int INIT_APPEAR_NUM = 15;
 
 	//敵は〇Fごとに出現する
-	constexpr int MAX_APPEAR_TIME = 15;
+	constexpr int MAX_APPEAR_TIME = 20;
 
 	//敵の上に出現する「！」の画像のパス
 	constexpr char EXCLAMATION_PATH[] = { "Data/Image/Exclamation_Mark.PNG" };
 
 	//敵の上に出現する「！」の距離(X軸,Y軸,Z軸)
-	constexpr Vector3D ADD_EXCLAMATION_POS = { 0.0f, 75.0f, 0.0f };
+	constexpr Vector3D ADD_EXCLAMATION_DISTANCE = { 0.0f, 75.0f, 0.0f };
 
 
 	//敵一覧
