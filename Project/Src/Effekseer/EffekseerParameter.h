@@ -1,0 +1,11 @@
+#pragma once
+
+enum EFFECT
+{
+	HIT_EFFECT,
+	ENEMY_SPAWN,
+	PLAYER_DEATH,
+	ACCELERATOR,
+
+	ALL_NUM
+};

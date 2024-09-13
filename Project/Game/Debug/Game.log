@@ -1,0 +1,64 @@
+﻿  Collision.cpp
+  CollisionManager.cpp
+  CSVFileLoader.cpp
+  FrameRate.cpp
+  GamePad.cpp
+  Input.cpp
+  InputKeyBoard.cpp
+  Mouse.cpp
+  MyMath.cpp
+  Matrix2D.cpp
+  Matrix3D.cpp
+  Number.cpp
+  Vector2D.cpp
+  Vector3D.cpp
+  BigBullet.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  Bullet.cpp
+  BulletBase.cpp
+  BulletManager.cpp
+  Camera.cpp
+  CameraManager.cpp
+  DebugCamera.cpp
+  Combo.cpp
+  Effekseer.cpp
+  Enemy.cpp
+  EnemyBase.cpp
+  EnemyBomber.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  EnemyManager.cpp
+  EnemyMonster.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  Fade.cpp
+  Field.cpp
+  System.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  Bomb.cpp
+  ItemManager.cpp
+  Main.cpp
+  Object.cpp
+  Player.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  PlayerEffect.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  SceneBase.cpp
+  SceneClear.cpp
+  SceneGameOver.cpp
+  SceneManager.cpp
+  ScenePlay.cpp
+  SceneTitle.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  Score.cpp
+  SkyBox.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  Sound.cpp
+  StateMachine.cpp
+  State.cpp
+  BigSubstance.cpp
+  Substance.cpp
+  SubstanceBase.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\Src\Effekseer\Effekseer.h(19,10): error C1083: include ファイルを開けません。'Effekseer.h':No such file or directory
+  SubstanceManager.cpp
+  TimeLimit.cpp
+C:\Users\Neutr\OneDrive\デスクトップ\Project\src\Sound\Sound.cpp(60,17): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+C:\Users\Neutr\OneDrive\デスクトップ\Project\src\Sound\Sound.cpp(77,17): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
