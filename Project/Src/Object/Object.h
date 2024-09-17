@@ -99,13 +99,13 @@ public:
 	inline void SetIsActive(bool authenticity) { isAlive_ = authenticity; }
 
 
-	//XYZ座標取得
+	//現在の位置(XYZ座標)取得
 	inline Vector3D GetPos(void) const noexcept { return pos_; }
 
-	//XYZ座標設定
+	//位置(XYZ座標)設定
 	inline void SetPos(const Vector3D& pos) { pos_ = pos; }
 
-	//XYZ座標設定
+	//位置(XYZ座標)設定
 	inline void SetPos(float x, float y, float z) { pos_.x = x; pos_.y = y; pos_.z = z; }
 
 

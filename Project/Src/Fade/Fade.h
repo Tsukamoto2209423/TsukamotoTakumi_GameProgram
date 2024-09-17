@@ -54,5 +54,5 @@ public:
 	void Change(void);
 
 	//フェードインかフェードアウトが終わったか判定
-	bool IsEnd(void) const;
+	bool IsEnd(void) const noexcept;
 };

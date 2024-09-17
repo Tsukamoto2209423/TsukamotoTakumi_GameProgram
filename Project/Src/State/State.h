@@ -16,7 +16,7 @@ private:
 
 public:
     State() = default;
-    State(const std::shared_ptr<StateBase> state, const std::string nextStateName) :
+    State(const std::shared_ptr<StateBase> state, const std::string& nextStateName) :
         state_(state), nextStateName_(nextStateName) {}
 
     ~State() = default;

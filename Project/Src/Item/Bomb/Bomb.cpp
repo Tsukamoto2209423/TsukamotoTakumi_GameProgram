@@ -42,7 +42,7 @@ void Bomb::EffectExecute(const std::shared_ptr<Object>& subjectObject)
 	subjectObject->SubHP(BOMB::ATTACK_POWER);
 }
 
-//
+//当たったときの処理
 void Bomb::HitCalculation(void)
 {
 	state_ = BOMB::STATE::EXPLOSION;
@@ -57,11 +57,13 @@ void Bomb::MoveNormal(void)
 		return;
 	}
 
-	//爆破するまでの時間計測
+	//爆発するまでの時間計測
 	--countExplodeTimeLimit_;
 
+	//爆発までのカウントダウンが0になったら
 	if (countExplodeTimeLimit_ <= 0)
 	{
+		//その場で爆発状態に遷移
 		state_ = BOMB::STATE::EXPLOSION;
 		isAlive_ = false;
 
@@ -72,7 +74,7 @@ void Bomb::MoveNormal(void)
 		return;
 	}
 
-	//
+	//誰かが自分自身を取得したときの処理
 	if (!owner_.expired())
 	{
 		const auto& owner = owner_.lock();
@@ -95,9 +97,10 @@ void Bomb::MoveNormal(void)
 	MV1SetRotationXYZ(handle_, rot_);
 }
 
+//投げられたときの処理
 void Bomb::MoveThrow(void)
 {
-	//
+	//爆発するまでの時間計測
 	--countExplodeTimeLimit_;
 
 	//dir_.x = -sinf(rot_.y) * BOMB::THROW_SPEED;
@@ -125,13 +128,17 @@ void Bomb::MoveThrow(void)
 
 }
 
+//爆発しているときの処理
 void Bomb::MoveExplosion(void)
 {
+	//爆発中の時間計測
 	++explosionTime_;
 	
+	//爆発時間が最大まで行ったら
 	if (explosionTime_ >= BOMB::MAX_EXPLOSION_TIME)
 	{
 		state_ = BOMB::STATE::NORMAL;
 		explosionTime_ = 0;
+		radius_ = BOMB::RADIUS;
 	}
 }

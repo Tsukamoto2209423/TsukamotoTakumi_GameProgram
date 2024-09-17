@@ -17,7 +17,7 @@ public:
 	virtual ~ItemBase() = default;
 
 	//“Ç‚İ‚İˆ—ŠÖ”
-	virtual void Load(int originalHandle)
+	virtual void Load(const int originalHandle)
 	{
 		if (handle_ == -1)
 		{

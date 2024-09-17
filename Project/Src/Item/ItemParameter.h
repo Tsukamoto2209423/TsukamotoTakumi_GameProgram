@@ -2,7 +2,7 @@
 
 #include "Vector/Vector3D.h"
 
-#define BOMB_STATE (int)BOMB::STATE
+#define BOMB_STATE BOMB::STATE
 
 namespace BOMB
 {

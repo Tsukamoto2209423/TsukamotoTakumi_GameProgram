@@ -7,7 +7,6 @@
 void Heal::Init(void)
 {
 	healValue_ = 5;
-
 }
 
 void Heal::Step(void)
@@ -18,6 +17,7 @@ void Heal::Step(void)
 		return;
 	}
 
+	//アイテムが床に落ちている場合
 	if (owner_.expired())
 	{
 		pos_.y - HEAL::GRAVITY > HEAL::GROUND_POS ? pos_.y -= HEAL::GRAVITY : pos_.y = HEAL::GROUND_POS;
@@ -43,6 +43,7 @@ void Heal::AppearanceRequest(void)
 	}
 }
 
+//アイテムを使用した時の効果実行関数
 void Heal::EffectExecute(const std::shared_ptr<Object>& subjectObject)
 {
 	//HP回復
