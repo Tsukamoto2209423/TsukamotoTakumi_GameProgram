@@ -2,8 +2,6 @@
 
 #include "Vector/Vector3D.h"
 
-#define BOMB_STATE BOMB::STATE
-
 namespace BOMB
 {
 	//‰æ‘œƒpƒX
@@ -57,6 +55,8 @@ namespace BOMB
 		NUM
 	};
 }
+
+using BOMB_STATE = BOMB::STATE;
 
 namespace HEAL
 {

@@ -8,7 +8,7 @@
 
 Fade::Fade()
 {
-
+	//状態初期化
 	state_ = FADE::NONE;
 
 	//α値
@@ -18,7 +18,7 @@ Fade::Fade()
 
 	handleIndex_ = 0;
 
-	rotAngle = 0.0f;
+	rotAngle_ = 0.0f;
 
 	isEnd_ = false;
 };
@@ -41,7 +41,7 @@ void Fade::Init(void)
 
 	handleIndex_ = 0;
 
-	rotAngle = 0.0f;
+	rotAngle_ = 0.0f;
 
 	isEnd_ = true;
 }
@@ -69,7 +69,7 @@ void Fade::Step(void)
 			alphaValue_ += FADE::ALPHA_SPEED;
 
 			posX_ -= FADE::MOVE_SPEED;
-			rotAngle -= MY_MATH::PI_OVER_TWENTY;
+			rotAngle_ -= MY_MATH::PI_OVER_TWENTY;
 
 			return;
 		}
@@ -87,7 +87,7 @@ void Fade::Step(void)
 			alphaValue_ -= FADE::ALPHA_SPEED;
 
 			posX_ -= FADE::MOVE_SPEED;
-			rotAngle -= MY_MATH::PI_OVER_TWENTY;
+			rotAngle_ -= MY_MATH::PI_OVER_TWENTY;
 
 			return;
 		}
@@ -113,7 +113,7 @@ void Fade::Draw(void)
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alphaValue_);
 	DrawBox(0, 0, Common::WINDOW_WIDTH, Common::WINDOW_HEIGHT, GetColor(255, 255, 255), true);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	DrawRotaGraph(posX_, Common::WINDOW_HEIGHT_HALF, 1.0f, rotAngle, syobonHandles_[handleIndex_], true);
+	DrawRotaGraph(posX_, Common::WINDOW_HEIGHT_HALF, 1.0f, rotAngle_, syobonHandles_[handleIndex_], true);
 }
 
 //破棄処理関数
@@ -182,7 +182,7 @@ void Fade::Change(void)
 }
 
 //フェードインかフェードアウトが終わったか判定
-bool Fade::IsEnd(void) const
+bool Fade::IsEnd(void) const noexcept
 {
 	return isEnd_;
 }

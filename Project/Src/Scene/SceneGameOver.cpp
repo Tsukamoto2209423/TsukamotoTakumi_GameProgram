@@ -87,7 +87,7 @@ bool SceneGameOver::CanGoToNextScene(const SCENE_STATE state) const
 }
 
 //Ÿê–Ê‘ã“ü—pŠÖ”
-SCENE SceneGameOver::GetNextSceneNum(void) const
+SCENE SceneGameOver::GetNextSceneNum(void) const noexcept
 {
 	return SCENE::TITLE;
 }

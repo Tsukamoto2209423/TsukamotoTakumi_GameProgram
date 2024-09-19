@@ -50,8 +50,6 @@ void SceneClear::Draw(void)
 		Score::DrawScore(SCORE::CLEAR_GAMEOVER::INIT_POS_X, SCORE::CLEAR_GAMEOVER::INIT_POS_Y);
 		Score::DrawEndlessBestScore();
 	}
-
-
 }
 
 //‰Šú‰»ˆ—ŠÖ”
@@ -108,7 +106,7 @@ bool SceneClear::CanGoToNextScene(const SCENE_STATE state) const
 }
 
 //Ÿê–Ê‘ã“ü—pŠÖ”
-SCENE SceneClear::GetNextSceneNum(void) const
+SCENE SceneClear::GetNextSceneNum(void) const noexcept
 {
 	return SCENE::TITLE;
 }

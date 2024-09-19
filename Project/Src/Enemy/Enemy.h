@@ -2,7 +2,6 @@
 
 #include "EnemyBase.h"
 
-
 //“GƒNƒ‰ƒX
 class Enemy : public EnemyBase
 {

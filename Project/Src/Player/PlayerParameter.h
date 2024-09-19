@@ -10,6 +10,9 @@ namespace PLAYER
 	//プレイヤーの最大HP
 	constexpr int MAX_HP = 50;
 
+	//プレイヤーが死んだときのエフェクト表示時間
+	constexpr int DEATH_EFFECT_TIME = 140;
+
 	//プレイヤー初期位置
 	constexpr Vector3D INIT_POS = { 0.0f,100.0f,0.0f };
 

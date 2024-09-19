@@ -36,9 +36,13 @@ public:
 	inline Vector2D operator-=(const Vector2D& vec) { return *this = *this - vec; }
 
 	//Vector2Dのスカラー倍の定義
+	inline Vector2D operator*(float scale) const { return Vector2D(this->x * scale, this->y * scale); }
+
 	inline Vector2D operator*(const Vector2D& vec) const { this->x* vec.x, this->y* vec.y; return *this; }
 
 	//Vector2Dのスカラー倍代入の定義
+	inline Vector2D operator*=(float scale) { return *this = *this * scale; }
+
 	inline Vector2D operator*=(const Vector2D& vec) { return *this = *this * vec; }
 
 	//Vector2Dの除算の定義

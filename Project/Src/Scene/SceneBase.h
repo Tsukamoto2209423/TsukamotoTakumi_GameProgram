@@ -41,12 +41,18 @@ public:
 	/// 次のシーンに進むか判定する関数
 	/// </summary>
 	/// <param name="state">現在のシーンの状態</param>
-	/// <returns>true:次のシーンに移行 false:現在のシーンのまま</returns>
+	/// <returns>
+	/// true:次のシーンに移行
+	/// false:現在のシーンのまま
+	/// </returns>
 	virtual bool CanGoToNextScene(const SCENE_STATE state) const = 0;
 
 	/// <summary>
 	/// 次のシーン代入用関数
 	/// </summary>
-	/// <returns>次のシーン</returns>
-	virtual inline SCENE GetNextSceneNum(void) const = 0;
+	/// 
+	/// <returns>
+	/// 次のシーン
+	/// </returns>
+	virtual inline SCENE GetNextSceneNum(void) const noexcept = 0;
 };

@@ -5,6 +5,7 @@
 
 namespace PLAYER_EFFECT
 {
+	//プレイヤー情報をまとめたCSVファイル
 	constexpr char PATH[] = "Data/Image/Player/ImageList.csv";
 		
 	//画像用

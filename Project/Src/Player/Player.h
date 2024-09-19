@@ -20,9 +20,11 @@ private:
 	//コンボ計測用変数
 	Combo combo_;
 
-	int deathTimeCount;
+	//死んだときに時間計測するときに使う変数
+	int deathTimeCount_;
 
-	bool isShadowDraw;
+	//影を描画したか?
+	bool isShadowDraw_;
 
 public:
 	//コンストラクタ

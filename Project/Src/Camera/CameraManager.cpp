@@ -20,7 +20,6 @@ void CameraManager::Init(void)
 	//ゲームプレイ・デバッグカメラの初期化処理	
 	cameras_[CAMERA_STATE::PLAY]->Init();
 
-
 #ifdef _DEBUG
 	cameras_[CAMERA_STATE::DEBUG]->Init();
 #endif // DEBUG

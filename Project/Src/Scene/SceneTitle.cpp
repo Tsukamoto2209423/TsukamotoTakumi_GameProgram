@@ -367,7 +367,7 @@ bool SceneTitle::CanGoToNextScene(const SCENE_STATE state) const
 }
 
 //Ÿê–Ê‘ã“ü—pŠÖ”
-SCENE SceneTitle::GetNextSceneNum(void) const
+SCENE SceneTitle::GetNextSceneNum(void) const noexcept
 {
 	return returnDifficulty_;
 }

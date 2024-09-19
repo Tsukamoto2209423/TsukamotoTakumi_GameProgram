@@ -7,15 +7,15 @@ namespace BULLET
 	//ƒ‚ƒfƒ‹ƒpƒX
 	constexpr char PATH[] = "Data/Model/Bullet/Beta_Bullet.x";
 
-	//’e‘¬
-	constexpr float SPEED = 70.5f;
-
 	//Å‘å”
 	constexpr int MAX_NUM = 20;
 
 	//õ–½
 	constexpr int MAX_LIFE_SPAN = 5;
 	
+	//’e‘¬
+	constexpr float SPEED = 70.5f;
+
 	//”¼Œa
 	constexpr float RADIUS = 60.0f;
 

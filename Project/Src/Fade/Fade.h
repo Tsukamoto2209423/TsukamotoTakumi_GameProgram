@@ -23,7 +23,7 @@ private:
 	std::vector<int> syobonHandles_;
 
 	//回転角度
-	float rotAngle;
+	float rotAngle_;
 
 	//フェードイン・フェードアウト処理が終わったか
 	bool isEnd_;

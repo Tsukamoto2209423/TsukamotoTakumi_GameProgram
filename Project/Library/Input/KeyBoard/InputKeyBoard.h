@@ -19,6 +19,7 @@ public:
 
 	//‰Šú‰»
 	static void Init(void);
+
 	//s“®ˆ—ŠÖ”
 	static void Step(void);
 

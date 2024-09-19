@@ -166,7 +166,7 @@ void DebugCamera::UpDate(void)
 
 	pos_ = RetCameraMat * target_;
 
-	//
+	//方向ベクトル設定
 	dir_ = Matrix3D::GetYawMatrix(rot_.y) * dir_;
 
 	//カメラ位置設定

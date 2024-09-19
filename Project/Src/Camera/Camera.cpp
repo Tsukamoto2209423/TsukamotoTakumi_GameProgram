@@ -151,31 +151,38 @@ void Camera::Step(const Vector3D& playerPos)
 	if (MyMath::Abs(GamePadRStick.x) > Common::KINDA_SMALL_NUMBER || MyMath::Abs(GamePadRStick.y) > Common::KINDA_SMALL_NUMBER)
 	{
 		rot_ += GamePadRStick * CAMERA::GAMEPAD_ROT_COEFFICIENT;
+	}
 
-		//rot_.x < (-ƒÎ/2) + (ƒÎ/100)
-		if (rot_.x < -MY_MATH::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED)
-		{
-			rot_.x = -MY_MATH::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED;
-		}
+	const Vector3D MouseMoveValue(InputMouse::GetMoveValueX(), InputMouse::GetMoveValueY(), 0.0f);
 
-		//rot_.x > (ƒÎ/2) - (ƒÎ/100)
-		if (rot_.x > MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED)
-		{
-			rot_.x = MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED;
-		}
+	if (MyMath::Abs(MouseMoveValue.x) > Common::KINDA_SMALL_NUMBER || MyMath::Abs(MouseMoveValue.y) > Common::KINDA_SMALL_NUMBER)
+	{
+		rot_ += MouseMoveValue * 0.01f;
+	}
 
 
-		//rot_.y < -ƒÎ/2
-		if (rot_.y < -MY_MATH::PI)
-		{
-			rot_.y = MY_MATH::PI;
-		}
+	//rot_.x < (-ƒÎ/2) + (ƒÎ/100)
+	if (rot_.x < -MY_MATH::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED)
+	{
+		rot_.x = -MY_MATH::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED;
+	}
 
-		//rot_.y > ƒÎ/2
-		if (rot_.y > MY_MATH::PI)
-		{
-			rot_.y = -MY_MATH::PI;
-		}
+	//rot_.x > (ƒÎ/2) - (ƒÎ/100)
+	if (rot_.x > MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED)
+	{
+		rot_.x = MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED;
+	}
+
+	//rot_.y < -ƒÎ/2
+	if (rot_.y < -MY_MATH::PI)
+	{
+		rot_.y = MY_MATH::PI;
+	}
+
+	//rot_.y > ƒÎ/2
+	if (rot_.y > MY_MATH::PI)
+	{
+		rot_.y = -MY_MATH::PI;
 	}
 }
 

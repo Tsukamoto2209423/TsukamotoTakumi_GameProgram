@@ -243,7 +243,7 @@ bool ScenePlay::CanGoToNextScene(const SCENE_STATE state) const
 }
 
 //次場面代入用関数
-SCENE ScenePlay::GetNextSceneNum(void) const
+SCENE ScenePlay::GetNextSceneNum(void) const noexcept
 {
 	//エンドレスモードなら結果表示画面に遷移
 	if (SCENE::ENDLESS_PLAY == playDifficulty_)

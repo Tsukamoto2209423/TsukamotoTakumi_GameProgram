@@ -56,6 +56,6 @@
   TimeLimit.cpp
   コード生成しています。
   Previous IPDB not found, fall back to full compilation.
-  All 1899 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 1901 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   コード生成が終了しました。
-  Game.vcxproj -> C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Program\Project\x64\Release\Game.exe
+  Game.vcxproj -> C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\x64\Release\Game.exe

@@ -22,8 +22,8 @@ Player::Player(void)
 	hp_ = 0;
 	isAlive_ = true;
 	pos_ = PLAYER::INIT_POS;
-	deathTimeCount = 0;
-	isShadowDraw = false;
+	deathTimeCount_ = 0;
+	isShadowDraw_ = false;
 }
 
 //デストラクタ
@@ -44,8 +44,8 @@ void Player::Init(void)
 	dir_ = { 0.0f,0.0f,-1.0f };
 	rot_ = { 0.0f,0.0f,0.0f };
 	velocity_ = MY_MATH::ZERO_VECTOR_3D;
-	deathTimeCount = 0;
-	isShadowDraw = false;
+	deathTimeCount_ = 0;
+	isShadowDraw_ = false;
 
 	playerUI_.Init();
 	combo_.Init();
@@ -103,9 +103,9 @@ void Player::Draw(void)
 	//生存している場合は描画
 	MV1DrawModel(handle_);
 
-	if (!isShadowDraw)
+	if (!isShadowDraw_)
 	{
-		isShadowDraw = !isShadowDraw;
+		isShadowDraw_ = !isShadowDraw_;
 
 		return;
 	}
@@ -227,7 +227,7 @@ void Player::MoveCalculation(void)
 		//速度が一定以下なら実行する
 		if (MyMath::Abs(velocity_.x) < PLAYER::MAX_SPEED && MyMath::Abs(velocity_.z) < PLAYER::MAX_SPEED)
 		{
-			//カメラの角度に合わせて方向ベクトルをY軸の周りに回転
+			//カメラの角度に合わせて方向ベクトルをY軸周りに回転
 			dir_ = dir_ * Matrix3D::GetYawMatrix(CameraManager::GetPlayCamera()->GetRotY());
 
 			//入力した値を単位ベクトルにしてプレイヤーの速さでスカラー倍し加算
@@ -332,9 +332,9 @@ void Player::DeathEvent(void)
 
 bool Player::IsEndDeathEvent(void)
 {
-	++deathTimeCount;
+	++deathTimeCount_;
 
-	return deathTimeCount > 140;
+	return deathTimeCount_ > PLAYER::DEATH_EFFECT_TIME;
 }
 
 //無敵かどうか

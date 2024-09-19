@@ -82,5 +82,5 @@ private:
 	/// 次のシーン代入用関数
 	/// </summary>
 	/// <returns>次のシーン</returns>
-	inline SCENE GetNextSceneNum(void) const override;
+	inline SCENE GetNextSceneNum(void) const noexcept override;
 };
