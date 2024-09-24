@@ -11,7 +11,7 @@ private:
 public:
 	Heal() { healValue_ = 0; }
 
-	~Heal(){}
+	~Heal() {}
 
 	void Init(void) override;
 

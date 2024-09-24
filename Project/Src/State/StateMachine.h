@@ -35,9 +35,12 @@ public:
     //Å‰‚©‚çŽn‚ß‚éó‘Ô‚ðÝ’è
     void SetStartState(const std::string& registerName)
     {
-        auto it = stateMap_.find(registerName);
-        if (it == stateMap_.end()) return;
+        const auto& it = stateMap_.find(registerName);
 
+        if (it == stateMap_.end())
+        {
+            return;
+        }
 
         nowState_ = it->second;
         nowState_->Init();

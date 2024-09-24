@@ -6,7 +6,7 @@
 
 void Heal::Init(void)
 {
-	healValue_ = 5;
+	healValue_ = HEAL::HEAL_VALUE;
 }
 
 void Heal::Step(void)

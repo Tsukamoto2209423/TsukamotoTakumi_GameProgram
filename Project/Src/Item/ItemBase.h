@@ -35,6 +35,6 @@ public:
 	inline std::weak_ptr<Object> GetOwner(void) const { return owner_; }
 
 	//Š—LÒİ’è
-	inline void SetOwner(const std::shared_ptr<Object> &owner) { owner_ = owner; }
+	inline void SetOwner(const std::shared_ptr<Object>& owner) { owner_ = owner; }
 
 };

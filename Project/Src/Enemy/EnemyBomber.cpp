@@ -89,7 +89,6 @@ void EnemyBomber::Step(const Vector3D& playerPos)
 
 
 		return;
-
 	}
 
 
@@ -276,7 +275,7 @@ void EnemyBomber::Draw(void)
 void EnemyBomber::AppearanceRequest(void)
 {
 	//‰ŠúˆÊ’uİ’è
-	pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359)))) *
+	pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))) *
 		Matrix3D::GetTranslateMatrix(ENEMY_BOMBER::INIT_POS) * MY_MATH::ZERO_VECTOR_3D;
 
 	//Šp“x‰Šú‰»

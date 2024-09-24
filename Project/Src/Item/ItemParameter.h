@@ -58,9 +58,14 @@ namespace BOMB
 
 using BOMB_STATE = BOMB::STATE;
 
+
 namespace HEAL
 {
+	//Å‘å”
 	constexpr int MAX_NUM = 3;
+
+	//‰ñ•œ‚³‚¹‚é’l
+	constexpr int HEAL_VALUE = 5;
 
 	//’n–Ê‚ÌˆÊ’u
 	constexpr float GROUND_POS = 20.5f;
