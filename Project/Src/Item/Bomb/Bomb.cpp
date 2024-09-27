@@ -121,11 +121,9 @@ void Bomb::MoveThrow(void)
 		dir_ = MY_MATH::ZERO_VECTOR_3D;
 	}
 
-
 	//ˆÊ’uEŠp“xİ’è
 	MV1SetPosition(handle_, pos_);
 	MV1SetRotationXYZ(handle_, rot_);
-
 }
 
 //”š”­‚µ‚Ä‚¢‚é‚Æ‚«‚Ìˆ—

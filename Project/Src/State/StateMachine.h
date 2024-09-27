@@ -9,11 +9,7 @@
 class StateMachine
 {
 public:
-    StateMachine() :
-        nowState_()
-    {
-
-    }
+    StateMachine() : nowState_() { }
 
     void Step(void)
     {
@@ -21,7 +17,6 @@ public:
 
         if (nowState_->CanGoToNextState())
         {
-           
             nowState_->Init();
         }
     }
@@ -63,7 +58,8 @@ public:
     //“o˜^‚µ‚½‚à‚Ì‚ğíœ‚·‚é
     void Deregistration(const std::string& registerName)
     {
-        auto it = stateMap_.find(registerName);
+        const auto& it = stateMap_.find(registerName);
+
         if (it == stateMap_.end())
         {
             return;

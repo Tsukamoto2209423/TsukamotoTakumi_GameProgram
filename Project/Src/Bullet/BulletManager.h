@@ -7,6 +7,10 @@
 //弾情報管理用クラス
 class BulletManager
 {
+private:
+	//弾のベクター
+	std::vector<BulletBase*> bullets_;
+
 public:
 	//コンストラクタ
 	BulletManager();
@@ -31,17 +35,7 @@ public:
 	//弾発射処理関数
 	void RequestBullet(const Vector3D& firePos, const Vector3D& rot, int playerType, Object* player);
 
-	//弾発射処理関数
-	//void RequestEnemyBullet(const Vector3D& enemyVec);
-	
 	//弾取得
-	inline std::vector<BulletBase*> &GetBullet() { return bullets_; }
-
-	//敵弾取得
-	//inline std::vector<Object*> GetEnemyBullet() { return m_enemyBullet; }
-
-private:
-	//弾のベクター
-	std::vector<BulletBase*> bullets_;
+	inline std::vector<BulletBase*>& GetBullet() { return bullets_; }
 
 };

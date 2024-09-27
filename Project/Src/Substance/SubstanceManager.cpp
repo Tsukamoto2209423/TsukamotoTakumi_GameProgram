@@ -114,6 +114,7 @@ void SubstanceManager::Fin(void)
 //引数の場所から飛び散りながら出現する処理
 void SubstanceManager::FlyAppearCalculation(const Vector3D& appearPos)
 {
+	//まだ出現していないものだけ選ぶ
 	for (int appearNum = 0; const auto& substance : substances_)
 	{
 		if (substance->GetIsActive())
@@ -125,7 +126,7 @@ void SubstanceManager::FlyAppearCalculation(const Vector3D& appearPos)
 
 		++appearNum;
 
-		//4個出現したら戻る
+		//MAX_APPEAR_NUM個出現したら戻る
 		if (appearNum >= ALL_SUBSTANCE::MAX_APPEAR_NUM)
 		{
 			return;
@@ -140,7 +141,7 @@ void SubstanceManager::RandomFlyAppearCalculation(const Vector3D& appearPos)
 
 	std::vector<int> randomNums;
 
-	//まだ出現していないものだけ抽出する
+	//まだ出現していないものだけ選ぶ
 	for (int num = 0; const auto& substance : substances_)
 	{
 		if (substance->GetIsActive())
@@ -149,7 +150,7 @@ void SubstanceManager::RandomFlyAppearCalculation(const Vector3D& appearPos)
 		}
 
 		appearSubstances.emplace_back(substance);
-
+		//添え字保存
 		randomNums.emplace_back(num);
 
 		++num;
