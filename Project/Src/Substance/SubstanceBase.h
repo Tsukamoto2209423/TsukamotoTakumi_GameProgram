@@ -62,7 +62,7 @@ public:
 	/// </returns>
 	inline bool IsOwnerExpired(void) const noexcept { return owner_.expired(); }
 
-	//くっつけている人(所有者)取得
+	//くっついている人(所有者)取得
 	inline std::shared_ptr<Object> GetOwner(void) const noexcept { return owner_.lock(); }
 
 	//所有者設定

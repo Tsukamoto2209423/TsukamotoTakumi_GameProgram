@@ -26,7 +26,6 @@ void Input::Init(void)
 	button_.emplace_back(XINPUT_BUTTON_DPAD_UP);
 	button_.emplace_back(XINPUT_BUTTON_DPAD_DOWN);
 	button_.emplace_back(XINPUT_BUTTON_B);
-
 }
 
 //“ü—Íˆ—ŠÖ”

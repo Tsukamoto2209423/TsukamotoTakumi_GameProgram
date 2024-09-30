@@ -6,7 +6,7 @@
 #define PADNUM (int)GAME_PAD::CONNECT_NUM
 #define KEY (int)KEYBOARD::KEY_CODE
 
-//
+//ゲーム内で使う入力一覧
 enum GAME_INPUT
 {
 	//ゲーム緊急終了キー
@@ -34,10 +34,13 @@ enum GAME_INPUT
 //ゲームパッド用名前空間
 namespace GAME_PAD
 {
+	//スティックの傾き係数
 	constexpr float STICK_PERCENT = 1.0f / 32767.5f;
 
+	//この値以下のスティックの入力は無視する
 	constexpr float STICK_ERROR_NUM = 0.062f;
 
+	//ボタンの最大数
 	constexpr unsigned char BUTTON_MAX_NUM = 16Ui8;
 
 	//入力
@@ -195,3 +198,4 @@ namespace MOUSE
 {
 	constexpr int RADIUS = 10;
 };
+
