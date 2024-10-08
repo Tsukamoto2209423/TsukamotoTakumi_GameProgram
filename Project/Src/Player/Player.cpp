@@ -285,7 +285,6 @@ void Player::MoveCalculation(void)
 	//位置・角度設定
 	MV1SetPosition(handle_, pos_);
 	MV1SetRotationXYZ(handle_, rot_);
-
 }
 
 //回転計算処理

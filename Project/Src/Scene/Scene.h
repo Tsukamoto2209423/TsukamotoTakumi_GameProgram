@@ -34,5 +34,5 @@ constexpr SCENE_STATE operator*(SCENE_STATE dir) { return dir; }
 
 constexpr SCENE_STATE operator++(SCENE_STATE& dir)
 {
-	return dir = SCENE_STATE(std::underlying_type<SCENE_STATE>::type(dir) + 1);
+	return dir = SCENE_STATE(std::underlying_type_t<SCENE_STATE>(dir) + 1);
 }

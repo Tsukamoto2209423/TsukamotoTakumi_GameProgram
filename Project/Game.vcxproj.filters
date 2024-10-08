@@ -167,6 +167,12 @@
     <ClCompile Include="Library\Handle\Model.cpp">
       <Filter>Library\Handle</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Player\Player2DEffect.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Player\Player3DEffect.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -482,6 +488,12 @@
     </ClInclude>
     <ClInclude Include="Library\Handle\Model.h">
       <Filter>Library\Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Player\Player2DEffect.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Player\Player3DEffect.h">
+      <Filter>Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
