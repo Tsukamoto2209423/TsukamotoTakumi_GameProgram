@@ -1,13 +1,14 @@
 #include "Player/Player3DEffect.h"
+#include "Player.h"
 #include "Effekseer/Effekseer.h"
 #include "Effekseer/EffekseerParameter.h"
 
 //初期化処理関数
 void Player3DEffect::Init(void)
 {
-	for (int index = 0; const auto& effectCallNum : EFFECT_CALL())
+	for (int effectCallNum : EFFECT_CALL)
 	{
-		effectCallNum_[index] = static_cast<int>(effectCallNum);
+		effectHandle_.push_back(-1);
 	}
 }
 
@@ -36,9 +37,9 @@ void Player3DEffect::Fin(void)
 }
 
 //エフェクト表示
-void Player3DEffect::EffectRequest(EFFECT_3D effectNum)
+void Player3DEffect::EffectRequest(EFFECT_HANDLE effectNum, const Vector3D& appearPos, float rotY)
 {
-	effectHandle_[effectNum] = CEffekseerCtrl::Request(effectCallNum_[effectNum], playerPointer_->GetPos(), false);
-	CEffekseerCtrl::SetRot(effectHandle_[effectNum], VECTOR(0.0f, playerPointer_->GetRotY(), 0.0f));
-	CEffekseerCtrl::SetPosition(effectHandle_[effectNum], playerPointer_->GetPos());
+	effectHandle_[effectNum] = CEffekseerCtrl::Request(EFFECT_CALL[effectNum], appearPos, false);
+	CEffekseerCtrl::SetRot(effectHandle_[effectNum], VECTOR(0.0f, rotY, 0.0f));
+	CEffekseerCtrl::SetPosition(effectHandle_[effectNum], appearPos);
 }

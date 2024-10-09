@@ -60,7 +60,6 @@
     <ClCompile Include="src\Player\Player.cpp" />
     <ClCompile Include="Src\Player\Player2DEffect.cpp" />
     <ClCompile Include="Src\Player\Player3DEffect.cpp" />
-    <ClCompile Include="Src\Player\PlayerEffect.cpp" />
     <ClCompile Include="src\Scene\SceneBase.cpp" />
     <ClCompile Include="src\Scene\SceneClear.cpp" />
     <ClCompile Include="src\Scene\SceneGameOver.cpp" />
@@ -128,7 +127,6 @@
     <ClInclude Include="Src\Player\Player2DEffect.h" />
     <ClInclude Include="Src\Player\Player3DEffect.h" />
     <ClInclude Include="Src\Player\PlayerParameter.h" />
-    <ClInclude Include="Src\Player\PlayerEffect.h" />
     <ClInclude Include="src\Scene\Scene.h" />
     <ClInclude Include="src\Scene\SceneBase.h" />
     <ClInclude Include="src\Scene\SceneClear.h" />

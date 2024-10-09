@@ -2,10 +2,11 @@
 
 #include <memory>
 #include "Object/Object.h"
-#include "PlayerEffect.h"
 #include "Bullet/BulletManager.h"
 #include <Substance/SubstanceBase.h>
 #include "Combo/Combo.h"
+#include "Player2DEffect.h"
+#include "Player3DEffect.h"
 
 //プレイヤークラス
 class Player : public Object
@@ -15,7 +16,10 @@ private:
 	std::vector<std::weak_ptr<SubstanceBase>> attachedSubstances_;
 
 	//プレイヤーに関する画像を描画する
-	PlayerEffect playerUI_;
+	Player2DEffect player2dEffect_;
+
+	//プレイヤーに関する3Dエフェクトを描画する
+	Player3DEffect player3dEffect_;
 
 	//コンボ計測用変数
 	Combo combo_;

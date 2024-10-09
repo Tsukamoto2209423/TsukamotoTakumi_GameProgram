@@ -2,7 +2,6 @@
 
 #include <vector>
 #include "Vector/Vector3D.h"
-#include "Player.h"
 
 namespace PLAYER_EFFECT
 {
@@ -43,13 +42,12 @@ namespace PLAYER_EFFECT
 	constexpr int HP_CHARA_POS_Y = 32;
 }
 
+class Player;
+
 //プレイヤーに関する画像を描画するクラス
 class Player2DEffect
 {
 private:
-	//参照するプレイヤーのポインタ
-	Player* playerPointer_;
-
 	//画像一覧表
 	std::vector<int> handles_;
 
@@ -61,7 +59,7 @@ private:
 
 public:
 	//コンストラクタ
-	Player2DEffect(Player* const player) : playerPointer_(player),concentrationLineIndex_(0),damageEffectAlpha_(0) {};
+	Player2DEffect() : concentrationLineIndex_(0),damageEffectAlpha_(0) {};
 
 	//デストラクタ	
 	~Player2DEffect() {} ;
@@ -76,7 +74,7 @@ public:
 	void Step(void);
 
 	//描画処理関数
-	void Draw(void);
+	void Draw(int playerHP,const Vector3D& velocity);
 
 	//破棄処理関数
 	void Fin(void);

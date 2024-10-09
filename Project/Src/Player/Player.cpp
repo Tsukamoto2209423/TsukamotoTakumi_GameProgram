@@ -47,7 +47,9 @@ void Player::Init(void)
 	deathTimeCount_ = 0;
 	isShadowDraw_ = false;
 
-	playerUI_.Init();
+	player2dEffect_.Init();
+	player3dEffect_.Init();
+
 	combo_.Init();
 }
 
@@ -58,7 +60,8 @@ void Player::Load(void)
 	if (handle_ == -1)
 	{
 		handle_ = MV1LoadModel(PLAYER::PATH);
-		playerUI_.Load();
+		player2dEffect_.Load();
+		player3dEffect_.Load();
 		combo_.Load();
 	}
 }
@@ -86,7 +89,8 @@ void Player::Step(void)
 		MoveCalculation();
 
 
-	playerUI_.Step();
+	player2dEffect_.Step();
+	player3dEffect_.Step();
 	combo_.Step();
 
 }
@@ -110,17 +114,8 @@ void Player::Draw(void)
 		return;
 	}
 
-	//HP描画
-	playerUI_.HPDraw(hp_);
-
-	//集中線描画
-	if (velocity_.SquareL2Norm() > PLAYER::KILL_SPEED)
-	{
-		playerUI_.LineDraw();
-	}
-
-	//ダメージエフェクト描画
-	playerUI_.DamageDraw();
+	player2dEffect_.Draw(hp_, velocity_);
+	player3dEffect_.Draw();
 
 	//コンボ表示する
 	combo_.Draw();
@@ -137,7 +132,8 @@ void Player::Fin(void)
 		handle_ = -1;
 	}
 
-	playerUI_.Fin();
+	player2dEffect_.Fin();
+	player3dEffect_.Fin();
 
 	combo_.Fin();
 
@@ -166,7 +162,7 @@ void Player::HitCalculation(void)
 	//HP減算
 	--hp_;
 
-	playerUI_.DamageEffectRequest();
+	player3dEffect_.EffectRequest(EFFECT_HANDLE::DAMAGE_INDEX, pos_, rot_.y);
 
 	//死亡処理
 	if (hp_ <= 0)
@@ -308,8 +304,8 @@ void Player::TurboCharge(void)
 
 	//転がっている時の角度計算
 	RotateCalculation();
-	
-	playerUI_.ChargeEffectRequest(pos_,rot_.y);
+
+	player3dEffect_.EffectRequest(EFFECT_HANDLE::CHARGE_INDEX, pos_, rot_.y);
 
 	//位置・角度設定
 	MV1SetPosition(handle_, pos_);
@@ -323,7 +319,7 @@ void Player::DeathEvent(void)
 
 	CEffekseerCtrl::StopAll();
 
-	CEffekseerCtrl::Request(2, pos_, false);
+	CEffekseerCtrl::Request(EFFECT_CALL[EFFECT_HANDLE::DEATH_INDEX], pos_, false);
 
 	SoundManager::GetInstance()->PlaySoundData(SOUND::SE::PLAYER_DEATH, DX_PLAYTYPE_BACK);
 }
