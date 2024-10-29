@@ -5,7 +5,7 @@
 #include "StateBase.h"
 
 //ステートマシンで使う状態切り替え用クラス
-class State
+class State final
 {
 private:
     //状態実行用変数
@@ -34,5 +34,5 @@ public:
     void ChangeState(void);
 
     //次の状態取得
-    std::string GetNextState(void) const;
+    std::string GetNextState(void) const noexcept;
 };

@@ -1,11 +1,11 @@
 #include "DxLib.h"
 #include "Camera.h"
-#include "Input/KeyBoard/InputKeyBoard.h"
+#include "Player/Player.h"
 #include "Math/MyMath.h"
 #include "Matrix/Matrix3D.h"
-#include "Player/Player.h"
 #include <math.h>
 #include <Effekseer/Effekseer.h>
+#include "Input/KeyBoard/InputKeyBoard.h"
 #include <Input/GamePad/GamePad.h>
 #include <Input/Mouse/Mouse.h>
 #include <Input/Input.h>

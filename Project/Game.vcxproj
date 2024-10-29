@@ -69,6 +69,7 @@
     <ClCompile Include="Src\Score\Score.cpp" />
     <ClCompile Include="Src\SkyBox\SkyBox.cpp" />
     <ClCompile Include="src\Sound\Sound.cpp" />
+    <ClCompile Include="Src\State\Idle\Idle.cpp" />
     <ClCompile Include="Src\State\StateMachine.cpp" />
     <ClCompile Include="Src\State\State.cpp" />
     <ClCompile Include="Src\Substance\BigSubstance.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Src\SkyBox\SkyBoxParameter.h" />
     <ClInclude Include="src\Sound\Sound.h" />
     <ClInclude Include="Src\Sound\SoundParameter.h" />
+    <ClInclude Include="Src\State\Idle\Idle.h" />
     <ClInclude Include="Src\State\StateBase.h" />
     <ClInclude Include="Src\State\StateMachine.h" />
     <ClInclude Include="Src\State\State.h" />

@@ -8,6 +8,11 @@
 //状態管理用クラス
 class StateMachine
 {
+private:
+    //状態一覧のハッシュマップ
+    std::unordered_map<std::string, std::shared_ptr<State>> stateMap_;
+    std::shared_ptr<State> nowState_;
+
 public:
     StateMachine() : nowState_() { }
 
@@ -74,7 +79,4 @@ public:
         stateMap_.clear();
     }
 
-private:
-    std::unordered_map<std::string, std::shared_ptr<State>> stateMap_;
-    std::shared_ptr<State> nowState_;
 };

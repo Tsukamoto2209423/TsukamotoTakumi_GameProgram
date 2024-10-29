@@ -19,6 +19,9 @@ namespace PLAYER
 	//プレイヤーのエフェクトを出す位置
 	constexpr Vector3D EFFECT_POS = { 20.0f,50.0f,-10.0f };
 
+	//半径
+	constexpr float RADIUS = 25.0f;
+
 	//プレイヤーが行ける最大のX軸とZ軸の位置
 	constexpr float MAX_POS_X_Z = 7000.0f;
 

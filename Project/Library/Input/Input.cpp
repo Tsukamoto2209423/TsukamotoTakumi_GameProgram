@@ -17,6 +17,8 @@ void Input::Init(void)
 	key_.emplace_back(KEY_INPUT_BACK);
 	key_.emplace_back(KEY_INPUT_UP);
 	key_.emplace_back(KEY_INPUT_DOWN);
+	key_.emplace_back(KEY_INPUT_LEFT);
+	key_.emplace_back(KEY_INPUT_RIGHT);
 	key_.emplace_back(KEY_INPUT_SPACE);
 
 	
@@ -25,6 +27,8 @@ void Input::Init(void)
 	button_.emplace_back(XINPUT_BUTTON_A);
 	button_.emplace_back(XINPUT_BUTTON_DPAD_UP);
 	button_.emplace_back(XINPUT_BUTTON_DPAD_DOWN);
+	button_.emplace_back(XINPUT_BUTTON_DPAD_LEFT);
+	button_.emplace_back(XINPUT_BUTTON_DPAD_RIGHT);
 	button_.emplace_back(XINPUT_BUTTON_B);
 }
 

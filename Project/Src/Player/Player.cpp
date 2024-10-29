@@ -38,7 +38,7 @@ void Player::Init(void)
 	//初期化
 	handle_ = -1;
 	isAlive_ = true;
-	radius_ = 25.0f;
+	radius_ = PLAYER::RADIUS;
 	hp_ = PLAYER::MAX_HP;
 	pos_ = PLAYER::INIT_POS;
 	dir_ = { 0.0f,0.0f,-1.0f };
@@ -81,7 +81,7 @@ void Player::Step(void)
 		velocity_ = MY_MATH::ZERO_VECTOR_3D;
 	}
 
-	//
+	//ターボキーが押されているなら
 	Input::IsKeyKeep(GAME_INPUT::TURBO) ?
 		//ターボチャージ
 		TurboCharge() :

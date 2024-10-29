@@ -2,7 +2,7 @@
 
 #include "CameraBase.h"
 #include "Vector/Vector3D.h"
-#include <vector>
+#include "Math/MyMath.h"
 
 namespace CAMERA
 {
@@ -28,10 +28,10 @@ namespace CAMERA
 	constexpr float FAST_SPEED = 14.5f;
 
 	//カメラ左右回転速度
-	constexpr float ROT_RIGHT_LEFT_SPEED = DX_PI_F / 30.0f;
+	constexpr float ROT_RIGHT_LEFT_SPEED = MY_MATH::PI / 30.0f;
 
 	//カメラ上下回転速度
-	constexpr float ROT_UP_DOWN_SPEED = DX_PI_F * 0.01f;
+	constexpr float ROT_UP_DOWN_SPEED = MY_MATH::PI * 0.01f;
 
 	//カメラ注視点左右速度
 	constexpr float TARGET_POS_LEFT_RIGHT_SPEED = 2.5f;

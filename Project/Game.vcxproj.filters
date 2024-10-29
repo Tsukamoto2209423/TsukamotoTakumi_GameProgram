@@ -170,6 +170,9 @@
     <ClCompile Include="Src\Player\Player3DEffect.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="Src\State\Idle\Idle.cpp">
+      <Filter>State\Idle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -273,6 +276,9 @@
     </Filter>
     <Filter Include="Library\Handle">
       <UniqueIdentifier>{288b2e58-bd05-4b51-b3d0-3ef54f3b550b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="State\Idle">
+      <UniqueIdentifier>{7cd9c100-cbd6-4382-bdbd-2035e824e380}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -488,6 +494,9 @@
     </ClInclude>
     <ClInclude Include="Src\Player\Player3DEffect.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\State\Idle\Idle.h">
+      <Filter>State\Idle</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

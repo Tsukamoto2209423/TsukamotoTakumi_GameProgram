@@ -24,6 +24,12 @@ enum GAME_INPUT
 	//↓キー
 	DOWN,
 
+	//←キー
+	LEFT,
+
+	//→キー
+	RIGHT,
+
 	//ターボ状態キー
 	TURBO,
 
@@ -189,7 +195,7 @@ namespace KEYBOARD
 		_8 = KEY_INPUT_8,				// 8
 		_9 = KEY_INPUT_9,				// 9
 
-	};// enum class KEY
+	};// enum class KEY_CODE
 
 }
 

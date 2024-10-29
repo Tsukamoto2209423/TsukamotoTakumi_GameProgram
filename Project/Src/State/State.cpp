@@ -25,7 +25,7 @@ void State::ChangeState(void)
 }
 
 //Ÿ‚Ìó‘Ôæ“¾
-std::string State::GetNextState(void) const
+std::string State::GetNextState(void) const noexcept
 {
 	return nextStateName_;
 }

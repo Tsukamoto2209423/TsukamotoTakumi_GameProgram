@@ -164,6 +164,6 @@ void SubstanceBase::ChasePosCalculation(const Vector3D& chasePos)
 //Š—LŽÒ‚Í–³“G‚Å‚Í‚È‚¢ó‘Ô‚©
 bool SubstanceBase::IsOwnerNotInvincible(void) const
 {
-	return GetOwner()->GetVelocity().SquareL2Norm() < PLAYER::KILL_SPEED ||
-		Input::IsKeyKeep(GAME_INPUT::TURBO);
+	return Input::IsKeyKeep(GAME_INPUT::TURBO) || GetOwner()->GetVelocity().SquareL2Norm() < PLAYER::KILL_SPEED;
+		
 }

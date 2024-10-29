@@ -30,7 +30,7 @@ EnemyManager::~EnemyManager()
 //“Gî•ñ‰Šú‰»
 void EnemyManager::Init(const SCENE difficulty)
 {
-	for (int& countTime : appearCountTime_)
+	for (auto& countTime : appearCountTime_)
 	{
 		countTime = 0;
 	}

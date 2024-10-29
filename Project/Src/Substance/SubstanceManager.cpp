@@ -127,7 +127,7 @@ void SubstanceManager::FlyAppearCalculation(const Vector3D& appearPos)
 		++appearNum;
 
 		//MAX_APPEAR_NUM個出現したら戻る
-		if (appearNum >= ALL_SUBSTANCE::MAX_APPEAR_NUM)
+		if (ALL_SUBSTANCE::MAX_APPEAR_NUM <= appearNum)
 		{
 			return;
 		}
@@ -137,7 +137,7 @@ void SubstanceManager::FlyAppearCalculation(const Vector3D& appearPos)
 //ランダムに物質を抽選して引数の場所から飛び散りながら出現する処理
 void SubstanceManager::RandomFlyAppearCalculation(const Vector3D& appearPos)
 {
-	std::vector<std::shared_ptr<SubstanceBase>> appearSubstances;
+	std::vector<std::weak_ptr<SubstanceBase>> appearSubstances;
 
 	std::vector<int> randomNums;
 
@@ -149,13 +149,15 @@ void SubstanceManager::RandomFlyAppearCalculation(const Vector3D& appearPos)
 			continue;
 		}
 
+		//要素追加
 		appearSubstances.emplace_back(substance);
+
 		//添え字保存
 		randomNums.emplace_back(num);
 
 		++num;
 	}
-
+	
 	/*
 	*	出現させる数を決める
 	*	出現できる数が、敵を倒したときに湧かせる数以上なら、敵を倒したときに湧かせる数を代入
@@ -163,17 +165,17 @@ void SubstanceManager::RandomFlyAppearCalculation(const Vector3D& appearPos)
 	*/
 	unsigned int maxAppearNum = (ALL_SUBSTANCE::MAX_APPEAR_NUM <= randomNums.back() + 1 ? ALL_SUBSTANCE::MAX_APPEAR_NUM : randomNums.back() + 1);
 
-	//後ろから範囲を縮小していくフィッシャー?イェーツのシャッフルを使う
+	//後ろから範囲を縮小していくフィッシャー・イェーツのシャッフルを使う
 	for (unsigned int appearCount = 0; appearCount < maxAppearNum; ++appearCount)
 	{
 		//出現させる添え字をランダムで決める
 		int appearIndex = GetRand((maxAppearNum - 1) - appearCount);
 
 		//出現処理
-		appearSubstances[appearIndex]->FlyAppearCalculation(appearPos);
+		appearSubstances[appearIndex].lock()->FlyAppearCalculation(appearPos);
 
 		//値交換処理
-		int tempNum = randomNums[appearIndex];
+		const int tempNum = randomNums[appearIndex];
 		randomNums[appearIndex] = *(randomNums.end() - appearCount);
 		*(randomNums.end() - appearCount) = tempNum;
 	}
