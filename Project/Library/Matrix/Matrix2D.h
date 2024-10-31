@@ -2,6 +2,7 @@
 
 #include <math.h>
 #include "Vector/Vector2D.h"
+#include "Vector/Vector3D.h"
 
 
 //Matrix2D‚Ìs‚ÌÅ‘å”
@@ -13,12 +14,6 @@ constexpr int COLUMN_MAX_NUM_2D = 4;
 //Matrix2D‚Ìs‚Æ—ñ‚ÌÅ‘å”
 constexpr int ROW_COLUMN_MAX_NUM_2D = 4;
 
-//‰¼‚Ìİ’u
-class Vector3D
-{
-public:
-	float x, y, z;
-};
 
 class Matrix2D
 {

@@ -4,48 +4,51 @@
 
 #include <Item/ItemParameter.h>
 
-void Heal::Init(void)
+namespace BOUDAMA
 {
-	healValue_ = HEAL::HEAL_VALUE;
-}
-
-void Heal::Step(void)
-{
-	//生存していなければ実行しない
-	if (!isAlive_)
+	void Heal::Init(void)
 	{
-		return;
+		healValue_ = HEAL::HEAL_VALUE;
 	}
 
-	//アイテムが床に落ちている場合
-	if (owner_.expired())
+	void Heal::Step(void)
 	{
-		pos_.y - HEAL::GRAVITY > HEAL::GROUND_POS ? pos_.y -= HEAL::GRAVITY : pos_.y = HEAL::GROUND_POS;
+		//生存していなければ実行しない
+		if (!isAlive_)
+		{
+			return;
+		}
 
-		return;
+		//アイテムが床に落ちている場合
+		if (owner_.expired())
+		{
+			pos_.y - HEAL::GRAVITY > HEAL::GROUND_POS ? pos_.y -= HEAL::GRAVITY : pos_.y = HEAL::GROUND_POS;
+
+			return;
+		}
+
+		const std::shared_ptr<Object>& owner = owner_.lock();
+
+		pos_ = owner->GetPos() + HEAL::UP_DISTANCE;
 	}
 
-	const std::shared_ptr<Object>& owner = owner_.lock();
-
-	pos_ = owner->GetPos() + HEAL::UP_DISTANCE;
-}
-
-//出現処理関数
-void Heal::AppearanceRequest(void)
-{
-	isAlive_ = true;
-
-	if (owner_.expired())
+	//出現処理関数
+	void Heal::AppearanceRequest(void)
 	{
-		pos_ = { HEAL::INIT_POS_X_Z + GetRand(BOMB::INIT_POS_XZ_RAND_MAX_NUM),
-			0.0f,
-			HEAL::INIT_POS_X_Z + GetRand(BOMB::INIT_POS_XZ_RAND_MAX_NUM) };
-	}
-}
+		isAlive_ = true;
 
-//アイテムを使用した時の効果実行関数
-void Heal::EffectExecute(const std::shared_ptr<Object>& subjectObject)
-{
-	//HP回復
-	subjectObject->AddHP(healValue_);
+		if (owner_.expired())
+		{
+			pos_ = { HEAL::INIT_POS_X_Z + GetRand(BOMB::INIT_POS_XZ_RAND_MAX_NUM),
+				0.0f,
+				HEAL::INIT_POS_X_Z + GetRand(BOMB::INIT_POS_XZ_RAND_MAX_NUM) };
+		}
+	}
+
+	//アイテムを使用した時の効果実行関数
+	void Heal::EffectExecute(const std::shared_ptr<Object>& subjectObject)
+	{
+		//HP回復
+		subjectObject->AddHP(healValue_);
+	}
 }

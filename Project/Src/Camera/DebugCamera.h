@@ -2,23 +2,26 @@
 
 #include "CameraBase.h"
 
-class DebugCamera : public CameraBase
+namespace BOUDAMA
 {
-private:
+	class DebugCamera final : public CameraBase
+	{
+	private:
 
-public:
-	//コンストラクタ
-	DebugCamera() {}
+	public:
+		//コンストラクタ
+		DebugCamera() {}
 
-	//デストラクタ
-	~DebugCamera() {}
+		//デストラクタ
+		~DebugCamera() {}
 
-	//初期化処理関数
-	void Init(void) override;
+		//初期化処理関数
+		void Init(void) override;
 
-	//移動処理関数
-	void Step(const Vector3D& playerPos) override;
+		//移動処理関数
+		void Step(const Vector3D& playerPos) override;
 
-	//更新関数
-	void UpDate(void) override;
-};
+		//更新関数
+		void UpDate(void) override;
+	};
+}

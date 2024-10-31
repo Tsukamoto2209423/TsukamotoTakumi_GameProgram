@@ -8,77 +8,80 @@
 #include "Player2DEffect.h"
 #include "Player3DEffect.h"
 
-//プレイヤークラス
-class Player : public Object
+namespace BOUDAMA
 {
-private:
-	//くっついた物質を保存する変数
-	std::vector<std::weak_ptr<SubstanceBase>> attachedSubstances_;
+	//プレイヤークラス
+	class Player final : public Object
+	{
+	private:
+		//くっついた物質を保存する変数
+		std::vector<std::weak_ptr<SubstanceBase>> attachedSubstances_;
 
-	//プレイヤーに関する画像を描画する
-	Player2DEffect player2dEffect_;
+		//プレイヤーに関する画像を描画する
+		Player2DEffect player2dEffect_;
 
-	//プレイヤーに関する3Dエフェクトを描画する
-	Player3DEffect player3dEffect_;
+		//プレイヤーに関する3Dエフェクトを描画する
+		Player3DEffect player3dEffect_;
 
-	//コンボ計測用変数
-	Combo combo_;
+		//コンボ計測用変数
+		Combo combo_;
 
-	//死んだときに時間計測するときに使う変数
-	int deathTimeCount_;
+		//死んだときに時間計測するときに使う変数
+		int deathTimeCount_;
 
-	//影を描画したか?
-	bool isShadowDraw_;
+		//影を描画したか?
+		bool isShadowDraw_;
 
-public:
-	//コンストラクタ
-	Player();
+	public:
+		//コンストラクタ
+		Player();
 
-	//デストラクタ
-	~Player();
+		//デストラクタ
+		~Player();
 
-	//初期化処理関数
-	void Init(void) override;
+		//初期化処理関数
+		void Init(void) override;
 
-	//読み込み処理関数
-	void Load(void) override;
+		//読み込み処理関数
+		void Load(void) override;
 
-	//行動処理関数
-	void Step(void) override;
+		//行動処理関数
+		void Step(void) override;
 
-	//描画処理関数
-	void Draw(void) override;
+		//描画処理関数
+		void Draw(void) override;
 
-	//破棄処理関数
-	void Fin(void) override;
+		//破棄処理関数
+		void Fin(void) override;
 
-	//当たり判定処理
-	void HitCalculation(void) override;
+		//当たり判定処理
+		void HitCalculation(void) override;
 
-	//移動計算処理
-	void MoveCalculation(void);
+		//移動計算処理
+		void MoveCalculation(void);
 
-	//回転計算処理
-	void RotateCalculation(void);
+		//回転計算処理
+		void RotateCalculation(void);
 
-	//ターボを溜める
-	void TurboCharge(void);
+		//ターボを溜める
+		void TurboCharge(void);
 
-	//死亡イベント
-	void DeathEvent(void);
+		//死亡イベント
+		void DeathEvent(void);
 
-	//死亡イベントが終わったか
-	bool IsEndDeathEvent(void);
+		//死亡イベントが終わったか
+		bool IsEndDeathEvent(void);
 
-	//無敵かどうか
-	bool IsInvincible(void);
+		//無敵かどうか
+		bool IsInvincible(void);
 
-	//くっついた物質取得
-	inline std::vector<std::weak_ptr<SubstanceBase>> &GetAttachedSubstance(void) { return attachedSubstances_; }
+		//くっついた物質取得
+		inline std::vector<std::weak_ptr<SubstanceBase>>& GetAttachedSubstance(void) { return attachedSubstances_; }
 
-	//くっついた物質追加
-	inline void AddAttachedSubstance(const std::shared_ptr<SubstanceBase>& substance) { attachedSubstances_.emplace_back(substance); }
+		//くっついた物質追加
+		inline void AddAttachedSubstance(const std::shared_ptr<SubstanceBase>& substance) { attachedSubstances_.emplace_back(substance); }
 
-	//コンボ追加
-	inline void AddComboNum(void) { combo_.AddComboNum(); }
-};
+		//コンボ追加
+		inline void AddComboNum(void) { combo_.AddComboNum(); }
+	};
+}

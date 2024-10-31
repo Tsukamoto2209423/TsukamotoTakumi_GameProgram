@@ -1,12 +1,15 @@
 #pragma once
 
-enum EFFECT
+namespace BOUDAMA
 {
-	HIT_EFFECT,
-	ENEMY_SPAWN,
-	PLAYER_DEATH,
-	CHARGE,
-	ACCELERATOR,
+	enum EFFECT
+	{
+		HIT_EFFECT,
+		ENEMY_SPAWN,
+		PLAYER_DEATH,
+		CHARGE,
+		ACCELERATOR,
 
-	ALL_NUM
-};
+		ALL_NUM
+	};
+}

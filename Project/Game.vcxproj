@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Library\Collision\Collision.cpp" />
-    <ClCompile Include="Library\Collision\CollisionManager.cpp" />
     <ClCompile Include="Library\FileLoader\CSVFileLoader.cpp" />
     <ClCompile Include="Library\FrameRate\FrameRate.cpp" />
     <ClCompile Include="Library\Handle\Image.cpp" />
@@ -29,19 +27,15 @@
     <ClCompile Include="Library\Input\Input.cpp" />
     <ClCompile Include="Library\Input\KeyBoard\InputKeyBoard.cpp" />
     <ClCompile Include="Library\Input\Mouse\Mouse.cpp" />
-    <ClCompile Include="Library\Math\MyMath.cpp" />
-    <ClCompile Include="Library\Matrix\Matrix2D.cpp" />
-    <ClCompile Include="Library\Matrix\Matrix3D.cpp" />
     <ClCompile Include="Library\NumberGraph\Number.cpp" />
-    <ClCompile Include="Library\Vector\Vector2D.cpp" />
-    <ClCompile Include="Library\Vector\Vector3D.cpp" />
     <ClCompile Include="Src\Bullet\BigBullet.cpp" />
     <ClCompile Include="src\Bullet\Bullet.cpp" />
-    <ClCompile Include="Src\Bullet\BulletBase.cpp" />
     <ClCompile Include="src\Bullet\BulletManager.cpp" />
     <ClCompile Include="Src\Camera\Camera.cpp" />
     <ClCompile Include="Src\Camera\CameraManager.cpp" />
     <ClCompile Include="Src\Camera\DebugCamera.cpp" />
+    <ClCompile Include="Src\Collision\Collision.cpp" />
+    <ClCompile Include="Src\Collision\CollisionManager.cpp" />
     <ClCompile Include="Src\Combo\Combo.cpp" />
     <ClCompile Include="Src\Effekseer\Effekseer.cpp" />
     <ClCompile Include="src\Enemy\Enemy.cpp" />
@@ -49,9 +43,10 @@
     <ClCompile Include="Src\Enemy\EnemyBomber.cpp" />
     <ClCompile Include="src\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Src\Enemy\EnemyMonster.cpp" />
+    <ClCompile Include="Src\Enemy\State\Idle\Idle.cpp" />
     <ClCompile Include="Src\Fade\Fade.cpp" />
     <ClCompile Include="Src\Field\Field.cpp" />
-    <ClCompile Include="src\Game\System.cpp" />
+    <ClCompile Include="src\Game\GameSystem.cpp" />
     <ClCompile Include="Src\Item\Bomb\Bomb.cpp" />
     <ClCompile Include="Src\Item\Heal\Heal.cpp" />
     <ClCompile Include="Src\Item\ItemManager.cpp" />
@@ -69,9 +64,6 @@
     <ClCompile Include="Src\Score\Score.cpp" />
     <ClCompile Include="Src\SkyBox\SkyBox.cpp" />
     <ClCompile Include="src\Sound\Sound.cpp" />
-    <ClCompile Include="Src\State\Idle\Idle.cpp" />
-    <ClCompile Include="Src\State\StateMachine.cpp" />
-    <ClCompile Include="Src\State\State.cpp" />
     <ClCompile Include="Src\Substance\BigSubstance.cpp" />
     <ClCompile Include="Src\Substance\Substance.cpp" />
     <ClCompile Include="Src\Substance\SubstanceBase.cpp" />
@@ -79,8 +71,6 @@
     <ClCompile Include="Src\TimeLimit\TimeLimit.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Library\Collision\Collision.h" />
-    <ClInclude Include="Library\Collision\CollisionManager.h" />
     <ClInclude Include="Library\FileLoader\CSVFileLoader.h" />
     <ClInclude Include="Library\FrameRate\FrameRate.h" />
     <ClInclude Include="Library\Handle\Image.h" />
@@ -104,6 +94,8 @@
     <ClInclude Include="Src\Camera\CameraBase.h" />
     <ClInclude Include="Src\Camera\CameraManager.h" />
     <ClInclude Include="Src\Camera\DebugCamera.h" />
+    <ClInclude Include="Src\Collision\Collision.h" />
+    <ClInclude Include="Src\Collision\CollisionManager.h" />
     <ClInclude Include="Src\Combo\Combo.h" />
     <ClInclude Include="src\Common\Common.h" />
     <ClInclude Include="Src\Effekseer\Effekseer.h" />
@@ -114,10 +106,12 @@
     <ClInclude Include="src\Enemy\EnemyManager.h" />
     <ClInclude Include="Src\Enemy\EnemyMonster.h" />
     <ClInclude Include="Src\Enemy\EnemyParameter.h" />
+    <ClInclude Include="Src\Enemy\State\Idle\Idle.h" />
+    <ClInclude Include="Src\Enemy\State\StateParameter.h" />
     <ClInclude Include="Src\Fade\Fade.h" />
     <ClInclude Include="Src\Fade\FadeParameter.h" />
     <ClInclude Include="Src\Field\Field.h" />
-    <ClInclude Include="src\Game\System.h" />
+    <ClInclude Include="src\Game\GameSystem.h" />
     <ClInclude Include="Src\Item\Bomb\Bomb.h" />
     <ClInclude Include="Src\Item\Heal\Heal.h" />
     <ClInclude Include="Src\Item\ItemBase.h" />
@@ -140,10 +134,8 @@
     <ClInclude Include="Src\SkyBox\SkyBoxParameter.h" />
     <ClInclude Include="src\Sound\Sound.h" />
     <ClInclude Include="Src\Sound\SoundParameter.h" />
-    <ClInclude Include="Src\State\Idle\Idle.h" />
-    <ClInclude Include="Src\State\StateBase.h" />
-    <ClInclude Include="Src\State\StateMachine.h" />
-    <ClInclude Include="Src\State\State.h" />
+    <ClInclude Include="Src\StateMachine\StateBase.h" />
+    <ClInclude Include="Src\StateMachine\StateMachine.h" />
     <ClInclude Include="Src\Substance\BigSubstance.h" />
     <ClInclude Include="Src\Substance\Substance.h" />
     <ClInclude Include="Src\Substance\SubstanceBase.h" />
@@ -151,6 +143,7 @@
     <ClInclude Include="Src\Substance\SubstanceParameter.h" />
     <ClInclude Include="Src\TimeLimit\TimeLimit.h" />
     <ClInclude Include="Src\TimeLimit\TimeLimitParameter.h" />
+    <ClInclude Include="Src\Transform\Transform.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C9B38400-D907-441F-BAE2-93DD4F372C69}</ProjectGuid>

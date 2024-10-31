@@ -2,35 +2,38 @@
 
 #include "Object/Object.h"
 
-//弾用基底クラス
-class BulletBase : public Object
+namespace BOUDAMA
 {
-protected:
-	int type_;
-	int lifeSpan_;
-	Object* owner_;
-
-public:
-	//コンストラクタ
-	BulletBase() 
+	//弾用基底クラス
+	class BulletBase : public Object
 	{
-		owner_ = nullptr; type_ = -1; lifeSpan_ = 0;
-	}
+	protected:
+		int type_;
+		int lifeSpan_;
+		Object* owner_;
 
-	//デストラクタ
-	~BulletBase() {}
-
-	//読み込み処理関数
-	virtual void Load(int originalHandle)
-	{
-		if (handle_ == -1)
+	public:
+		//コンストラクタ
+		BulletBase()
 		{
-			handle_ = MV1DuplicateModel(originalHandle);
+			owner_ = nullptr; type_ = -1; lifeSpan_ = 0;
 		}
-	}
 
-	inline int GetType(void) const { return type_; }
+		//デストラクタ
+		~BulletBase() {}
 
-	inline Object* GetOwner() const { return owner_; }
-	inline void SetOwner(Object* const owner) { owner_ = owner; }
-};
+		//読み込み処理関数
+		virtual void Load(int originalHandle)
+		{
+			if (handle_ == -1)
+			{
+				handle_ = MV1DuplicateModel(originalHandle);
+			}
+		}
+
+		inline int GetType(void) const { return type_; }
+
+		inline Object* GetOwner() const { return owner_; }
+		inline void SetOwner(Object* const owner) { owner_ = owner; }
+	};
+}

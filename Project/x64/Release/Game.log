@@ -1,6 +1,4 @@
-﻿  Collision.cpp
-  CollisionManager.cpp
-  CSVFileLoader.cpp
+﻿  CSVFileLoader.cpp
   FrameRate.cpp
   Image.cpp
   Model.cpp
@@ -8,19 +6,15 @@
   Input.cpp
   InputKeyBoard.cpp
   Mouse.cpp
-  MyMath.cpp
-  Matrix2D.cpp
-  Matrix3D.cpp
   Number.cpp
-  Vector2D.cpp
-  Vector3D.cpp
   BigBullet.cpp
   Bullet.cpp
-  BulletBase.cpp
   BulletManager.cpp
   Camera.cpp
   CameraManager.cpp
   DebugCamera.cpp
+  Collision.cpp
+  CollisionManager.cpp
   Combo.cpp
   Effekseer.cpp
   Enemy.cpp
@@ -28,71 +22,21 @@
   EnemyBomber.cpp
   EnemyManager.cpp
   EnemyMonster.cpp
+  Idle.cpp
   Fade.cpp
   Field.cpp
-  System.cpp
+  GameSystem.cpp
   Bomb.cpp
   Heal.cpp
   ItemManager.cpp
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,41): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'Src/Camera/Camera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,50): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'Src/Camera/Camera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,18): error C2737: 'CAMERA::ROT_RIGHT_LEFT_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'Src/Camera/Camera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,38): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'Src/Camera/Camera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,47): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'Src/Camera/Camera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,18): error C2737: 'CAMERA::ROT_UP_DOWN_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'Src/Camera/Camera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,41): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'Src/Camera/DebugCamera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,50): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'Src/Camera/DebugCamera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,18): error C2737: 'CAMERA::ROT_RIGHT_LEFT_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'Src/Camera/DebugCamera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,38): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'Src/Camera/DebugCamera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,47): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'Src/Camera/DebugCamera.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,18): error C2737: 'CAMERA::ROT_UP_DOWN_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'Src/Camera/DebugCamera.cpp' をコンパイルしています)
-  
   Main.cpp
   Object.cpp
   Player.cpp
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,41): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'Src/Camera/CameraManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,50): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'Src/Camera/CameraManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,18): error C2737: 'CAMERA::ROT_RIGHT_LEFT_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'Src/Camera/CameraManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,38): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'Src/Camera/CameraManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,47): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'Src/Camera/CameraManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,18): error C2737: 'CAMERA::ROT_UP_DOWN_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'Src/Camera/CameraManager.cpp' をコンパイルしています)
-  
   Player2DEffect.cpp
   Player3DEffect.cpp
+C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Enemy\State\Idle\Idle.h(29,16): error C3668: 'BOUDAMA::Idle::CanTransitionToNextState': オーバーライド指定子 'override' を伴うメソッドは、基底クラス メソッドをオーバーライドしませんでした
+  (ソース ファイル 'Src/Enemy/State/Idle/Idle.cpp' をコンパイルしています)
+  
   SceneBase.cpp
   SceneClear.cpp
   SceneGameOver.cpp
@@ -102,64 +46,8 @@ C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Came
   Score.cpp
   SkyBox.cpp
   Sound.cpp
-  StateMachine.cpp
-  State.cpp
   BigSubstance.cpp
   Substance.cpp
   SubstanceBase.cpp
   SubstanceManager.cpp
   TimeLimit.cpp
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,41): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'src/Scene/ScenePlay.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,50): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'src/Scene/ScenePlay.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,18): error C2737: 'CAMERA::ROT_RIGHT_LEFT_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'src/Scene/ScenePlay.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,38): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'src/Scene/ScenePlay.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,47): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'src/Scene/ScenePlay.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,18): error C2737: 'CAMERA::ROT_UP_DOWN_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'src/Scene/ScenePlay.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,41): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,50): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,18): error C2737: 'CAMERA::ROT_RIGHT_LEFT_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,38): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,47): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,18): error C2737: 'CAMERA::ROT_UP_DOWN_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'src/Scene/SceneManager.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,41): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'src/Scene/SceneTitle.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,50): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'src/Scene/SceneTitle.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(31,18): error C2737: 'CAMERA::ROT_RIGHT_LEFT_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'src/Scene/SceneTitle.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,38): error C2653: 'MY_MATH': 識別子がクラス名でも名前空間名でもありません。
-  (ソース ファイル 'src/Scene/SceneTitle.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,47): error C2065: 'PI': 定義されていない識別子です。
-  (ソース ファイル 'src/Scene/SceneTitle.cpp' をコンパイルしています)
-  
-C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\Camera\Camera.h(34,18): error C2737: 'CAMERA::ROT_UP_DOWN_SPEED': constexpr オブジェクトを初期化する必要があります
-  (ソース ファイル 'src/Scene/SceneTitle.cpp' をコンパイルしています)
-  

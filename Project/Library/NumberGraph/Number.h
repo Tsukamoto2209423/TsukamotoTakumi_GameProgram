@@ -18,7 +18,7 @@ namespace NUMBER_GRAPH
 }
 
 //0～9の数字の画像を保存するクラス
-class NumberGraph
+class NumberGraph final
 {
 private:
 	//0～9の数字の画像を保存するハンドル

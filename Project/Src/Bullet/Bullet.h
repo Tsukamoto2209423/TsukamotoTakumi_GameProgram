@@ -2,36 +2,39 @@
 
 #include "BulletBase.h"
 
-namespace BULLET
+namespace BOUDAMA
 {
-	//モデルパス
-	constexpr char PATH[] = "Data/Model/Bullet/Beta_Bullet.x";
+	namespace BULLET
+	{
+		//モデルパス
+		constexpr char PATH[] = "Data/Model/Bullet/Beta_Bullet.x";
 
-	//最大数
-	constexpr int MAX_NUM = 20;
+		//最大数
+		constexpr int MAX_NUM = 20;
 
-	//寿命
-	constexpr int MAX_LIFE_SPAN = 5;
-	
-	//弾速
-	constexpr float SPEED = 70.5f;
+		//寿命
+		constexpr int MAX_LIFE_SPAN = 5;
 
-	//半径
-	constexpr float RADIUS = 60.0f;
+		//弾速
+		constexpr float SPEED = 70.5f;
 
-	//X軸とZ軸で行ける最大の位置
-	constexpr float MAX_POS_X_Z = 7000.0f;
+		//半径
+		constexpr float RADIUS = 60.0f;
+
+		//X軸とZ軸で行ける最大の位置
+		constexpr float MAX_POS_X_Z = 7000.0f;
+	}
+
+	//弾クラス
+	class Bullet : public BulletBase
+	{
+	public:
+		//コンストラクタ
+		Bullet();
+		//デストラクタ
+		~Bullet();
+
+		//行動処理関数
+		void Step(void) override;
+	};
 }
-
-//弾クラス
-class Bullet : public BulletBase
-{
-public:
-	//コンストラクタ
-	Bullet();
-	//デストラクタ
-	~Bullet();
-
-	//行動処理関数
-	void Step(void) override;
-};

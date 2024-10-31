@@ -5,19 +5,19 @@
 	プログラマー
 */
 
-#include "Game/System.h"
+#include "Game/GameSystem.h"
 
 //メイン関数
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	//ゲームの起動
-	GameSystem::Start();
+	BOUDAMA::GameSystem::Start();
 
 	//ゲームのループ
-	GameSystem::MainLoop();
+	BOUDAMA::GameSystem::MainLoop();
 
 	//ゲームの終了
-	GameSystem::Fin();
+	BOUDAMA::GameSystem::Fin();
 
 	//プログラムの終了
 	return 0;

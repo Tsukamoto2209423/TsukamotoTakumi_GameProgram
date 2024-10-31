@@ -25,7 +25,7 @@
     <ClCompile Include="src\Object\Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\System.cpp">
+    <ClCompile Include="src\Game\GameSystem.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="src\Main.cpp" />
@@ -44,12 +44,6 @@
     <ClCompile Include="src\Sound\Sound.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Collision\Collision.cpp">
-      <Filter>Library\Collision</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Collision\CollisionManager.cpp">
-      <Filter>Library\Collision</Filter>
-    </ClCompile>
     <ClCompile Include="Library\FrameRate\FrameRate.cpp">
       <Filter>Library\FrameRate</Filter>
     </ClCompile>
@@ -59,21 +53,6 @@
     <ClCompile Include="Library\Input\KeyBoard\InputKeyBoard.cpp">
       <Filter>Library\Input\KeyBoard</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Math\MyMath.cpp">
-      <Filter>Library\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Vector\Vector2D.cpp">
-      <Filter>Library\Vector</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Vector\Vector3D.cpp">
-      <Filter>Library\Vector</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Matrix\Matrix3D.cpp">
-      <Filter>Library\Matrix</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Matrix\Matrix2D.cpp">
-      <Filter>Library\Matrix</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Field\Field.cpp">
       <Filter>Field</Filter>
     </ClCompile>
@@ -82,9 +61,6 @@
     </ClCompile>
     <ClCompile Include="Src\SkyBox\SkyBox.cpp">
       <Filter>SkyBox</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Bullet\BulletBase.cpp">
-      <Filter>Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Src\Enemy\EnemyBase.cpp">
       <Filter>Enemy</Filter>
@@ -140,12 +116,6 @@
     <ClCompile Include="Src\TimeLimit\TimeLimit.cpp">
       <Filter>TimeLimit</Filter>
     </ClCompile>
-    <ClCompile Include="Src\State\StateMachine.cpp">
-      <Filter>State</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\State\State.cpp">
-      <Filter>State</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Fade\Fade.cpp">
       <Filter>Fade</Filter>
     </ClCompile>
@@ -170,8 +140,14 @@
     <ClCompile Include="Src\Player\Player3DEffect.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="Src\State\Idle\Idle.cpp">
-      <Filter>State\Idle</Filter>
+    <ClCompile Include="Src\Collision\Collision.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Collision\CollisionManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Enemy\State\Idle\Idle.cpp">
+      <Filter>Enemy\State\Idle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +177,6 @@
     </Filter>
     <Filter Include="Library">
       <UniqueIdentifier>{931ec2e7-645b-42c6-b27d-a9a009ea4fdb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Library\Collision">
-      <UniqueIdentifier>{077581fc-40b4-4565-8c2e-b8c9b76b4249}</UniqueIdentifier>
     </Filter>
     <Filter Include="Library\FrameRate">
       <UniqueIdentifier>{34bbb3b0-73e9-4e2e-9ed2-517f7f763487}</UniqueIdentifier>
@@ -259,9 +232,6 @@
     <Filter Include="TimeLimit">
       <UniqueIdentifier>{5360baf5-b37e-47bd-9546-ac9a6825a97c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="State">
-      <UniqueIdentifier>{a5bc8326-eeda-41cc-82a1-b1de9e99d35f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fade">
       <UniqueIdentifier>{aee3817d-0ffb-4454-9857-c9f0dbc82728}</UniqueIdentifier>
     </Filter>
@@ -277,8 +247,20 @@
     <Filter Include="Library\Handle">
       <UniqueIdentifier>{288b2e58-bd05-4b51-b3d0-3ef54f3b550b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="State\Idle">
+    <Filter Include="StateMachine">
+      <UniqueIdentifier>{a5bc8326-eeda-41cc-82a1-b1de9e99d35f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State">
+      <UniqueIdentifier>{7e3c9752-f920-430a-acfa-c4e02167b44b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\Idle">
       <UniqueIdentifier>{7cd9c100-cbd6-4382-bdbd-2035e824e380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{d2f32076-8d24-43ca-bed2-84331daef10a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transform">
+      <UniqueIdentifier>{415e11a4-7770-4914-8ab6-2b5067531c7a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -309,7 +291,7 @@
     <ClInclude Include="src\Common\Common.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="src\Game\System.h">
+    <ClInclude Include="src\Game\GameSystem.h">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="src\Enemy\Enemy.h">
@@ -329,12 +311,6 @@
     </ClInclude>
     <ClInclude Include="src\Sound\Sound.h">
       <Filter>Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Collision\Collision.h">
-      <Filter>Library\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Collision\CollisionManager.h">
-      <Filter>Library\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Library\FrameRate\FrameRate.h">
       <Filter>Library\FrameRate</Filter>
@@ -453,15 +429,6 @@
     <ClInclude Include="Src\SkyBox\SkyBoxParameter.h">
       <Filter>SkyBox</Filter>
     </ClInclude>
-    <ClInclude Include="Src\State\StateBase.h">
-      <Filter>State</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\State\StateMachine.h">
-      <Filter>State</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\State\State.h">
-      <Filter>State</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Fade\Fade.h">
       <Filter>Fade</Filter>
     </ClInclude>
@@ -495,8 +462,26 @@
     <ClInclude Include="Src\Player\Player3DEffect.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="Src\State\Idle\Idle.h">
-      <Filter>State\Idle</Filter>
+    <ClInclude Include="Src\StateMachine\StateBase.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\StateMachine\StateMachine.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Collision\Collision.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Collision\CollisionManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Transform\Transform.h">
+      <Filter>Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\Idle\Idle.h">
+      <Filter>Enemy\State\Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\StateParameter.h">
+      <Filter>Enemy\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

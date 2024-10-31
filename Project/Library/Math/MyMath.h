@@ -52,37 +52,30 @@ namespace MY_MATH
 	constexpr float RADIAN_CONVERT_COEFFICIENT = PI / 180.0f;
 }
 
-//数学クラス
-class MyMath
+//数学関数
+namespace MyMath
 {
-public:
 	template<class T>
-	static constexpr inline T Abs(const T num)
+	constexpr inline T Abs(const T num)
 	{
 		return num >= (T)0 ? num : -num;
 	}
 
 	template<class T>
-	static constexpr inline T Max(const T num1, const T num2)
+	constexpr inline T Max(const T num1, const T num2)
 	{
 		return num1 >= num2 ? num1 : num2;
 	}
 
 	template<class T>
-	static constexpr inline T Min(const T num1, const T num2)
+	constexpr inline T Min(const T num1, const T num2)
 	{
 		return num1 <= num2 ? num1 : num2;
 	}
 
-	//距離計算
-	static float GetDistance(float x1, float y1, float x2, float y2);
-
-	//ラジアン角化
-	static float RadianNormalize(float rad);
-
-	//ディグリーからラジアンにする
+	//ディグリー角からラジアン角にする
 	template<class T>
-	static constexpr float DegreesToRadian(const T degrees)
+	constexpr inline float DegreesToRadian(const T degrees)
 	{
 		return static_cast<float>(degrees * MY_MATH::RADIAN_CONVERT_COEFFICIENT);
 	}

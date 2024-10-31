@@ -2,18 +2,21 @@
 
 #include "SubstanceBase.h"
 
-//物質クラス
-class Substance : public SubstanceBase
+namespace BOUDAMA
 {
-private:
+	//物質クラス
+	class Substance : public SubstanceBase
+	{
+	private:
 
-public:
-	//コンストラクタ
-	Substance() {}
+	public:
+		//コンストラクタ
+		Substance() {}
 
-	//デストラクタ
-	~Substance() {}
+		//デストラクタ
+		~Substance() {}
 
-	//初期化処理関数
-	void Init();
-};
+		//初期化処理関数
+		void Init();
+	};
+}

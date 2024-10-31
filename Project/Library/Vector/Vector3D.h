@@ -17,11 +17,11 @@ public:
 	constexpr Vector3D(const VECTOR& vec) noexcept : x(vec.x), y(vec.y), z(vec.z) {}
 
 	//引数に入力した値を取得する関数(x = value_x, y = value_y, z = value_z)
-	inline constexpr Vector3D VGet(float value_x, float value_y, float value_z) {  return Vector3D(this->x = value_x, this->y = value_y,this->z = value_z); }
+	constexpr Vector3D VGet(float value_x, float value_y, float value_z) {  return Vector3D(this->x = value_x, this->y = value_y,this->z = value_z); }
 	//引数に入力した値を取得する関数(x = y = z = value)
-	inline constexpr Vector3D VGet(float value) { return Vector3D(this->x = value, this->y = value, this->z = value); }
+	constexpr Vector3D VGet(float value) { return Vector3D(this->x = value, this->y = value, this->z = value); }
 	//引数に入力した値を取得する関数(x = vec.x, y = vec.y, z = vec.z)
-	inline constexpr Vector3D VGet(const Vector3D& vec) { return Vector3D(this->x = vec.x, this->y = vec.y, this->z = vec.z); }
+	constexpr Vector3D VGet(const Vector3D& vec) { return Vector3D(this->x = vec.x, this->y = vec.y, this->z = vec.z); }
 
 	//Vector3Dの加算の定義
 	inline Vector3D operator+(const Vector3D& vec) const { return Vector3D(this->x + vec.x, this->y + vec.y, this->z + vec.z); }
@@ -47,12 +47,6 @@ public:
 	//Vector3Dのスカラー倍代入の定義(float)
 	inline Vector3D operator*=(float scale) { return *this = *this * scale; }
 
-	//Vector3Dの除算の定義
-	inline Vector3D operator/(const Vector3D& vec) const { this->x / vec.x, this->y / vec.y, this->z / vec.z; return *this; }
-
-	//Vector3Dの除算代入の定義
-	inline Vector3D operator/=(const Vector3D& vec) { return *this = *this / vec; }
-
 	//Vector3Dの代入の定義
 	inline Vector3D operator=(const Vector3D& vec) { return Vector3D(this->x = vec.x, this->y = vec.y, this->z = vec.z); }
 	inline Vector3D operator=(float scale) { return Vector3D(this->x = scale, this->y = scale, this->z = scale); }
@@ -68,7 +62,7 @@ public:
 	inline bool operator<(float scale) const { return (this->x < scale && this->y < scale && this->z < scale); }
 
 	//DXライブラリのベクトル構造体へのキャスト演算子
-	inline operator VECTOR() const { return VECTOR{ (float)x,(float)y,(float)z }; }
+	constexpr operator VECTOR() const { return VECTOR{ x,y,z }; }
 
 public:
 
