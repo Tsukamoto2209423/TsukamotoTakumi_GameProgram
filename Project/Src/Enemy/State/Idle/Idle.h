@@ -2,6 +2,7 @@
 
 #include "StateMachine/StateBase.h"
 #include "Enemy/State/StateParameter.h"
+#include <Enemy/EnemyBase.h>
 
 namespace BOUDAMA
 {
@@ -26,6 +27,6 @@ namespace BOUDAMA
 		/// true : Ÿ‚Ìó‘Ô‚É‘JˆÚ‚·‚é
 		/// false : Œ»İ‚Ìó‘Ô‚ğˆÛ‚·‚é
 		/// </returns>
-		virtual bool CanTransitionToNextState(void) const override;
+		bool CanTransitionToNextState(void) const override;
 	};
 }

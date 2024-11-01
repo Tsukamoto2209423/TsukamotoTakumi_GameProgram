@@ -10,94 +10,102 @@ namespace BOUDAMA
 	template<class T>
 	class StateMachine final
 	{
+	public:
+		using StateType = StateBase<T>;
+
 	private:
 		//ó‘Ôˆê——‚ÌƒŠƒXƒg
-		std::unordered_map<T, const std::shared_ptr<StateBase<T>>&> stateMap_;
+		std::vector<std::unique_ptr<StateType>> stateVector_;
 
 		//Œ»İ‚Ìó‘Ô
-		std::weak_ptr<StateBase<T>> currentState_;
+		int currentState_;
+
+
 
 	public:
 		StateMachine() = default;
 		~StateMachine() = default;
 
-		void Step(void)
-		{
-			if (!currentState_)
-			{
-				return;
-			}
+		//void Step(void)
+		//{
+		//	if (!currentState_)
+		//	{
+		//		return;
+		//	}
 
-			//Œ»İ‚Ìó‘Ô‚Ìˆ—
-			currentState_->Step();
+		//	//Œ»İ‚Ìó‘Ô‚Ìˆ—
+		//	currentState_->Step();
 
-			if (currentState_->CanTransitionToNextState())
-			{
-				ChangeState();
+		//	if (currentState_->CanTransitionToNextState())
+		//	{
+		//		ChangeState();
 
-				if (currentState_)
-				{
+		//		if (currentState_)
+		//		{
+		//			//‘JˆÚŒã‚Ìó‘Ô‚Ì‰Šú‰»
+		//			currentState_->Init();
 
-					//‘JˆÚŒã‚Ìó‘Ô‚Ì‰Šú‰»
-					currentState_->Init();
+		//			return;
+		//		}
+		//	}
+		//}
 
-					return;
-				}
-			}
-		}
+		////ó‘Ô‚ğV‚µ‚­“o˜^‚·‚é
+		//void Register(T name, const std::shared_ptr<StateBase<T>>& state)
+		//{
+		//	//stateMap_.insert(std::make_pair(name, state));
 
-		//ó‘Ô‚ğV‚µ‚­“o˜^‚·‚é
-		void Register(T name, const std::shared_ptr<StateBase<T>>& state)
-		{
-			stateMap_.insert(std::make_pair(name, state));
-		}
+		//	stateVector_.emplace_back(std::make_unique<StateBase<T>>());
+		//	stateVector_[0];
 
-		//Å‰‚©‚çn‚ß‚éó‘Ô‚ğİ’è
-		void SetStartState(T startStateName)
-		{
-			const auto& it = stateMap_.find(registerName);
+		//}
 
-			if (it == stateMap_.end())
-			{
-				return;
-			}
+		////Å‰‚©‚çn‚ß‚éó‘Ô‚ğİ’è
+		//void SetStartState(T startStateName)
+		//{
+		//	const auto& it = stateMap_.find(registerName);
 
-			currentState_ = it->second.lock();
+		//	if (it == stateMap_.end())
+		//	{
+		//		return;
+		//	}
 
-			currentState_->Init();
-		}
+		//	currentState_ = it->second.lock();
 
-		//ó‘Ô‚ğ•ÏX‚·‚é
-		void ChangeState(void)
-		{
-			const auto& it = stateMap_.find(currentState_->GetNextState());
+		//	currentState_->Init();
+		//}
 
-			if (it == stateMap_.end())
-			{
-				return;
-			}
+		////ó‘Ô‚ğ•ÏX‚·‚é
+		//void ChangeState(void)
+		//{
+		//	const auto& it = stateMap_.find(currentState_->GetNextState());
 
-			currentState_ = it->second.lock();
-		}
+		//	if (it == stateMap_.end())
+		//	{
+		//		return;
+		//	}
 
-		//“o˜^‚µ‚½‚à‚Ì‚ğíœ‚·‚é
-		void Deregistration(T eraseStateName)
-		{
-			const auto& it = stateMap_.find(eraseStateName);
+		//	currentState_ = it->second.lock();
+		//}
 
-			if (it == stateMap_.end())
-			{
-				return;
-			}
+		////“o˜^‚µ‚½‚à‚Ì‚ğíœ‚·‚é
+		//void Deregistration(T eraseStateName)
+		//{
+		//	const auto& it = stateMap_.find(eraseStateName);
 
-			stateMap_.erase(it);
-		}
+		//	if (it == stateMap_.end())
+		//	{
+		//		return;
+		//	}
 
-		//‚·‚×‚Ä‚Ì“o˜^‚ğíœ‚·‚é
-		void AllDeregistration(void)
-		{
-			stateMap_.clear();
-		}
+		//	stateMap_.erase(it);
+		//}
+
+		////‚·‚×‚Ä‚Ì“o˜^‚ğíœ‚·‚é
+		//void AllDeregistration(void)
+		//{
+		//	stateMap_.clear();
+		//}
 
 	};
 }

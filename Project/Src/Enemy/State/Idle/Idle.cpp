@@ -15,7 +15,7 @@ namespace BOUDAMA
 	}
 
 	//Ÿ‚Ìó‘Ô‚É‘JˆÚ‚Å‚«‚é‚©H
-	bool Idle::CanTransitionToNextState(void)
+	bool Idle::CanTransitionToNextState(void) const
 	{
 
 	}

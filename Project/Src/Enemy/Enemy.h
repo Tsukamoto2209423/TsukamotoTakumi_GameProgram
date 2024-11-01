@@ -1,6 +1,8 @@
 #pragma once
 
 #include "EnemyBase.h"
+#include "StateMachine/StateMachine.h"
+#include "State/StateParameter.h"
 
 namespace BOUDAMA
 {
@@ -8,6 +10,7 @@ namespace BOUDAMA
 	class Enemy : public EnemyBase
 	{
 	private:
+		StateMachine<ENEMY_STATE> stateMachine_;
 
 	public:
 		//コンストラクタ

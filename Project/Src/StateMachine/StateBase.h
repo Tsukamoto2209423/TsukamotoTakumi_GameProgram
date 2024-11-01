@@ -10,14 +10,20 @@ namespace BOUDAMA
 	template<class T>
 	class StateBase
 	{
+	public:
+		using Type = T;
+
 	protected:
 		//状態の所有者
 		std::weak_ptr<Object> owner_;
 
-		//次に行く状態の名前
-		T nextStateName_;
+		//自分自身の状態の名前
+		Type myStateName_;
 
-	public:
+		//次に行く状態の名前
+		Type nextStateName_;
+
+
 		StateBase() = default;
 
 		StateBase(const std::shared_ptr<Object>& owner) : owner_(owner) {};
@@ -39,8 +45,11 @@ namespace BOUDAMA
 		/// </returns>
 		virtual bool CanTransitionToNextState(void) const = 0 ;
 
+		//自分自身のの状態を取得
+		virtual Type GetMyState(void) const = 0;
+
 		//遷移先の状態を取得
-		virtual T GetNextState(void) const = 0 ;
+		virtual Type GetNextState(void) const = 0 ;
 
 	};
 }
