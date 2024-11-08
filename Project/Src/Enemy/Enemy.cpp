@@ -5,6 +5,7 @@
 #include "Player/Player.h"
 #include <Player/PlayerParameter.h>
 #include <Matrix/Matrix3D.h>
+#include "State/Idle/Idle.h"
 
 namespace BOUDAMA
 {
@@ -37,11 +38,14 @@ namespace BOUDAMA
 		hp_ = 3;
 		knockBackTimeCount_ = 0;
 		scoreNum_ = ENEMY::ADD_SCORE_NUM;
-		radius_ = 50.0f;
+		radius_ = ENEMY::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
 		pos_ = ENEMY::INIT_POS;
 		velocity_ = MY_MATH::ZERO_VECTOR_3D;
 		rot_ = MY_MATH::ZERO_VECTOR_3D;
+
+		stateMachine_.MakeState<Idle>(ENEMY_STATE::IDLE);
+		
 	}
 
 	//çsìÆèàóùä÷êî

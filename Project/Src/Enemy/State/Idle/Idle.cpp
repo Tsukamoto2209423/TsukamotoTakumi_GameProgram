@@ -3,19 +3,13 @@
 namespace BOUDAMA
 {
 	//‰Šú‰»ˆ—ŠÖ”
-	void Idle::Init(void)
+	void Idle::Enter(void)
 	{
 
 	}
 
 	//s“®ˆ—ŠÖ”
-	void Idle::Step(void)
-	{
-
-	}
-
-	//Ÿ‚Ìó‘Ô‚É‘JˆÚ‚Å‚«‚é‚©H
-	bool Idle::CanTransitionToNextState(void) const
+	void Idle::Execute(void)
 	{
 
 	}

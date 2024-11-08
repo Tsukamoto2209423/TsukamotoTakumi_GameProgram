@@ -29,6 +29,10 @@ public:
 	//位置(XYZ座標)設定
 	inline void SetPos(float x, float y, float z) noexcept { pos_.x = x; pos_.y = y; pos_.z = z; }
 
+	//位置(XYZ座標)を動かす
+	inline void MovePos(const Vector3D direction) noexcept { pos_ += direction; }
+	inline void MovePos(float x, float y, float z) noexcept { pos_.x += x; pos_.y += y; pos_.z += z; }
+
 
 	//X軸取得
 	inline float GetPosX(void) const noexcept { return pos_.x; }
@@ -57,9 +61,9 @@ public:
 	//方向ベクトル設定
 	inline void SetDir(const Vector3D& dir) { dir_ = dir; }
 
+
 	//回転軸取得
 	inline Vector3D GetRot(void) const noexcept { return rot_; }
-
 
 	//回転軸設定
 	inline void SetRot(const Vector3D& rot) { rot_ = rot; }

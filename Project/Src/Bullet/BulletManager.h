@@ -38,7 +38,7 @@ namespace BOUDAMA
 		void RequestBullet(const Vector3D& firePos, const Vector3D& rot, int playerType, Object* player);
 
 		//’eŽæ“¾
-		inline std::vector<BulletBase*>& GetBullet() { return bullets_; }
+		inline const std::vector<BulletBase*>& GetBullet() { return bullets_; }
 
 	};
 }

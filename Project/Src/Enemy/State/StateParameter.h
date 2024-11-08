@@ -1,7 +1,11 @@
 #pragma once
 
-
-enum class ENEMY_STATE
+namespace BOUDAMA
 {
-	IDLE
-};
+	enum class ENEMY_STATE
+	{
+		IDLE,
+		CHASE
+	};
+
+}

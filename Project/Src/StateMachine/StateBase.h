@@ -7,11 +7,17 @@
 namespace BOUDAMA
 {
 	//固有の状態に継承させる抽象クラス
-	template<class T>
+	template<class Ty>
 	class StateBase
 	{
 	public:
-		using Type = T;
+		using Type = Ty;
+
+		constexpr StateBase(void) noexcept : myStateName_(), nextStateName_(),isTransitionToNextState(false) {};
+		explicit constexpr StateBase(const Type initState) noexcept : myStateName_(initState), nextStateName_(initState) {};
+		explicit constexpr StateBase(const std::shared_ptr<Object>& owner) noexcept : owner_(owner) {};
+
+		virtual ~StateBase() noexcept = default;
 
 	protected:
 		//状態の所有者
@@ -23,33 +29,38 @@ namespace BOUDAMA
 		//次に行く状態の名前
 		Type nextStateName_;
 
+		//次の状態に遷移するか？
+		bool isTransitionToNextState;
 
-		StateBase() = default;
-
-		StateBase(const std::shared_ptr<Object>& owner) : owner_(owner) {};
-
-		virtual ~StateBase() = default;
-
-		//初期化処理関数
-		virtual void Init(void) = 0;
+		//その状態に入った瞬間にだけ実行する関数
+		virtual void Enter(void) = 0;
 
 		//行動処理関数
-		virtual void Step(void) = 0;
+		virtual void Execute(void) = 0;
 	
 		/// <summary>
-		/// 次の状態遷移できるか?
+		/// 次の状態遷移するか?
 		/// </summary>
 		/// <returns>
 		/// true : 次の状態に遷移する
 		/// false : 現在の状態を維持する
 		/// </returns>
-		virtual bool CanTransitionToNextState(void) const = 0 ;
+		inline bool IsTransitionToNextState(void) const noexcept
+		{
+			return isTransitionToNextState;
+		}
 
 		//自分自身のの状態を取得
-		virtual Type GetMyState(void) const = 0;
+		inline Type GetMyState(void) const noexcept
+		{
+			return myStateName_;
+		}
 
 		//遷移先の状態を取得
-		virtual Type GetNextState(void) const = 0 ;
+		inline Type GetNextState(void) const noexcept
+		{
+			return nextStateName_;
+		}
 
 	};
 }

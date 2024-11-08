@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <unordered_map>
 #include "StateBase.h"
 
 namespace BOUDAMA
@@ -10,102 +9,85 @@ namespace BOUDAMA
 	template<class T>
 	class StateMachine final
 	{
-	public:
-		using StateType = StateBase<T>;
-
 	private:
-		//ó‘Ôˆê——‚ÌƒŠƒXƒg
-		std::vector<std::unique_ptr<StateType>> stateVector_;
+		using State = StateBase<T>;
 
-		//Œ»İ‚Ìó‘Ô
-		int currentState_;
+		//ó‘Ôˆê——
+		std::vector<std::unique_ptr<State>> stateVector_;
 
-
+		//Œ»İ‚Ìó‘Ô‚Ì”z—ñ‚Ì“Y‚¦š
+		int currentStateIndex_;
 
 	public:
-		StateMachine() = default;
-		~StateMachine() = default;
+		constexpr StateMachine(void) noexcept : currentStateIndex_(0) {};
 
-		//void Step(void)
-		//{
-		//	if (!currentState_)
-		//	{
-		//		return;
-		//	}
+		StateMachine(const StateMachine&) = delete;
+		StateMachine& operator=(const StateMachine&) = delete;
 
-		//	//Œ»İ‚Ìó‘Ô‚Ìˆ—
-		//	currentState_->Step();
+		~StateMachine() noexcept = default;
 
-		//	if (currentState_->CanTransitionToNextState())
-		//	{
-		//		ChangeState();
+		void Step(void)
+		{
+			//Œ»İ‚Ìó‘Ô‚Ìˆ—
+			stateVector_[currentStateIndex_]->Execute();
 
-		//		if (currentState_)
-		//		{
-		//			//‘JˆÚŒã‚Ìó‘Ô‚Ì‰Šú‰»
-		//			currentState_->Init();
+			if (stateVector_[currentStateIndex_]->CanTransitionToNextState())
+			{
+				ChangeState();
 
-		//			return;
-		//		}
-		//	}
-		//}
+				//‘JˆÚŒã‚Ìó‘Ô‚Ì‰Šú‰»
+				stateVector_[currentStateIndex_]->Enter();
 
-		////ó‘Ô‚ğV‚µ‚­“o˜^‚·‚é
-		//void Register(T name, const std::shared_ptr<StateBase<T>>& state)
-		//{
-		//	//stateMap_.insert(std::make_pair(name, state));
+				return;
+			}
+		}
 
-		//	stateVector_.emplace_back(std::make_unique<StateBase<T>>());
-		//	stateVector_[0];
+		//ó‘Ô‚ğV‚µ‚­ì¬‚·‚é
+		template<class Ty>
+		void MakeState(const T stateName)
+		{
+			stateVector_.emplace_back(std::make_unique<Ty>(stateName));
+		}
 
-		//}
+		//Å‰‚©‚çn‚ß‚éó‘Ô‚ğİ’è
+		void SetStartState(const T startStateName)
+		{
+			for (int index = 0; const auto & state : stateVector_)
+			{
+				if (state->GetMyState() == startStateName)
+				{
+					currentStateIndex_ = index;
+					break;
+				}
 
-		////Å‰‚©‚çn‚ß‚éó‘Ô‚ğİ’è
-		//void SetStartState(T startStateName)
-		//{
-		//	const auto& it = stateMap_.find(registerName);
+				++index;
+			}
 
-		//	if (it == stateMap_.end())
-		//	{
-		//		return;
-		//	}
+			stateVector_[currentStateIndex_]->Enter();
+		}
 
-		//	currentState_ = it->second.lock();
+		//ó‘Ô‚ğ•ÏX‚·‚é
+		void ChangeState(void)
+		{
+			const auto nextState = stateVector_[currentStateIndex_]->GetNextState();
 
-		//	currentState_->Init();
-		//}
+			for (int index = 0; const auto & state : stateVector_)
+			{
+				if (state->GetMyState() == nextState)
+				{
+					currentStateIndex_ = index;
+					return;
+				}
 
-		////ó‘Ô‚ğ•ÏX‚·‚é
-		//void ChangeState(void)
-		//{
-		//	const auto& it = stateMap_.find(currentState_->GetNextState());
+				++index;
+			}
+		}
 
-		//	if (it == stateMap_.end())
-		//	{
-		//		return;
-		//	}
-
-		//	currentState_ = it->second.lock();
-		//}
-
-		////“o˜^‚µ‚½‚à‚Ì‚ğíœ‚·‚é
-		//void Deregistration(T eraseStateName)
-		//{
-		//	const auto& it = stateMap_.find(eraseStateName);
-
-		//	if (it == stateMap_.end())
-		//	{
-		//		return;
-		//	}
-
-		//	stateMap_.erase(it);
-		//}
-
-		////‚·‚×‚Ä‚Ì“o˜^‚ğíœ‚·‚é
-		//void AllDeregistration(void)
-		//{
-		//	stateMap_.clear();
-		//}
+		//‚·‚×‚Ä‚Ìó‘Ô‚ğíœ‚·‚é
+		void AllClear(void)
+		{
+			stateVector_.clear();
+		}
 
 	};
 }

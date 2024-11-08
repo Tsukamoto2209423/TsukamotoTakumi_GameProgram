@@ -46,7 +46,7 @@ namespace BOUDAMA
 		SceneClear(void);
 
 		//コンストラクタ
-		SceneClear(const SCENE state) : clearState_(state) {}
+		explicit SceneClear(const SCENE state) noexcept : clearState_(state) {}
 
 		//デストラクタ
 		~SceneClear(void);

@@ -22,6 +22,7 @@
   EnemyBomber.cpp
   EnemyManager.cpp
   EnemyMonster.cpp
+  Chase.cpp
   Idle.cpp
   Fade.cpp
   Field.cpp
@@ -33,84 +34,6 @@
   Object.cpp
   Player.cpp
   Player2DEffect.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3170,9): error C2248: 'BOUDAMA::StateBase<T>::~StateBase': protected メンバー (クラス 'BOUDAMA::StateBase<T>' で宣言されている) にアクセスできません。
-C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3170,9): error C2248:         with
-C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3170,9): error C2248:         [
-C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3170,9): error C2248:             T=ENEMY_STATE
-C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3170,9): error C2248:         ]
-  (ソース ファイル 'src/Enemy/Enemy.cpp' をコンパイルしています)
-  C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\StateMachine\StateBase.h(54,1):
-  コンパイラが 'BOUDAMA::StateBase<T>::~StateBase' をここに生成しました。
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\StateMachine\StateMachine.h(14,21):
-  'BOUDAMA::StateBase<T>' の宣言を確認してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3170,9):
-  テンプレートインスタンス化コンテキスト (最初に最も古いもの) は
-  	C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\src\Enemy\Enemy.h(13,29):
-  	コンパイル対象の クラス テンプレート インスタンス化 'BOUDAMA::StateMachine<ENEMY_STATE>' のリファレンスを確認してください
-  	C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\StateMachine\StateMachine.h(18,43):
-  	コンパイル対象の クラス テンプレート インスタンス化 'std::vector<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>,std::allocator<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>>>' のリファレンスを確認してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  	C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\vector(2043,23):
-  	クラス テンプレート メンバー関数 'void std::vector<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>,std::allocator<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>>>::_Tidy(void) noexcept' のコンパイル中
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  		C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\vector(765,14):
-  		'std::vector<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>,std::allocator<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>>>::~vector' の 'std::vector<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>,std::allocator<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>>>::_Tidy' への最初の参照を参照してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  		C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\Src\StateMachine\StateMachine.h(26,3):
-  		'BOUDAMA::StateMachine<ENEMY_STATE>::StateMachine' の 'std::vector<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>,std::allocator<std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>>>::~vector' への最初の参照を参照してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  	C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\vector(2053,13):
-  	コンパイル対象の クラス テンプレート インスタンス化 'std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>' のリファレンスを確認してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  	C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3205,66):
-  	コンパイル対象の クラス テンプレート インスタンス化 'std::default_delete<BOUDAMA::StateBase<T>>' のリファレンスを確認してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  	C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3168,23):
-  	クラス テンプレート メンバー関数 'void std::default_delete<BOUDAMA::StateBase<T>>::operator ()(_Ty *) noexcept const' のコンパイル中
-          with
-          [
-              T=ENEMY_STATE,
-              _Ty=BOUDAMA::StateBase<ENEMY_STATE>
-          ]
-  		C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3280,33):
-  		'std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>::~unique_ptr' の 'std::default_delete<BOUDAMA::StateBase<T>>::operator ()' への最初の参照を参照してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  		C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.33130\include\memory(3327,1):
-  		'std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>::~unique_ptr' の 'std::unique_ptr<BOUDAMA::StateBase<T>,std::default_delete<BOUDAMA::StateBase<T>>>::~unique_ptr' への最初の参照を参照してください
-          with
-          [
-              T=ENEMY_STATE
-          ]
-  
   Player3DEffect.cpp
   SceneBase.cpp
   SceneClear.cpp
@@ -126,3 +49,8 @@ C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.38.3
   SubstanceBase.cpp
   SubstanceManager.cpp
   TimeLimit.cpp
+  コード生成しています。
+  Previous IPDB not found, fall back to full compilation.
+  All 1986 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  コード生成が終了しました。
+  Game.vcxproj -> C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\x64\Release\Game.exe

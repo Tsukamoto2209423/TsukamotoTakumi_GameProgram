@@ -57,7 +57,7 @@ namespace BOUDAMA
 		};
 
 		//それぞれの敵の最大数分、領域確保する
-		for (auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
+		for (const auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
 		{
 			//ノーマルモードなら通常の数、それ以外なら多くする
 			int maxEnemyNum =
@@ -96,7 +96,7 @@ namespace BOUDAMA
 		auto&& enemy = enemies_.begin();
 
 		//それぞれの敵の最大数分、モデル読み込み
-		for (auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
+		for (const auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
 		{
 			//元モデル読み込み処理
 			const int origineHandle = MV1LoadModel(ENEMY_MANAGER::PATH_LIST[static_cast<int>(enemyKindNum)]);
@@ -180,7 +180,7 @@ namespace BOUDAMA
 		int enemyArrayIndex = 0;
 
 		//敵の出現処理
-		for (auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
+		for (const auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
 		{
 			//それぞれの敵の次に出現するまでの時間を計測する
 			++appearCountTime_[static_cast<int>(enemyKindNum)];
@@ -203,7 +203,7 @@ namespace BOUDAMA
 			const int lastEnemyArrayIndex = enemyArrayIndex + ENEMY_MANAGER::MAX_NUM_LIST[static_cast<int>(enemyKindNum)];
 
 			//出現処理処理
-			for (auto&& enemyIndex = enemyArrayIndex; enemyIndex < lastEnemyArrayIndex; ++enemyIndex)
+			for (int enemyIndex = enemyArrayIndex; enemyIndex < lastEnemyArrayIndex; ++enemyIndex)
 			{
 				//すでに出現している場合は次に移る
 				if (enemies_[enemyIndex]->GetIsActive())

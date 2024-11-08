@@ -2,7 +2,6 @@
 
 #include "StateMachine/StateBase.h"
 #include "Enemy/State/StateParameter.h"
-#include <Enemy/EnemyBase.h>
 
 namespace BOUDAMA
 {
@@ -10,23 +9,14 @@ namespace BOUDAMA
 	class Idle final : public StateBase<ENEMY_STATE>
 	{
 	public:
-		Idle() = default;
-		~Idle() override = default;
+		constexpr Idle() = default;
+		explicit constexpr Idle(const ENEMY_STATE stateName) : StateBase<ENEMY_STATE>(stateName) {}
+		~Idle() noexcept override = default;
 
-	private:
 		//‰Šú‰»ˆ—ŠÖ”
-		void Init(void) override;
+		void Enter(void) override;
 
 		//s“®ˆ—ŠÖ”
-		void Step(void) override;
-
-		/// <summary>
-		/// Ÿ‚Ìó‘Ô‚É‘JˆÚ‚Å‚«‚é‚©H
-		/// </summary>
-		/// <returns>
-		/// true : Ÿ‚Ìó‘Ô‚É‘JˆÚ‚·‚é
-		/// false : Œ»İ‚Ìó‘Ô‚ğˆÛ‚·‚é
-		/// </returns>
-		bool CanTransitionToNextState(void) const override;
+		void Execute(void) override;
 	};
 }

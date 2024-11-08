@@ -55,7 +55,7 @@ namespace BOUDAMA
 		void Fin(void);
 
 		//“Gî•ñæ“¾
-		inline std::vector<std::shared_ptr<EnemyBase>>& GetEnemy(void) { return enemies_; }
+		inline const std::vector<std::shared_ptr<EnemyBase>>& GetEnemy(void) { return enemies_; }
 
 		inline int GetEnemyDeathCount(void) const { return deathCount_; }
 

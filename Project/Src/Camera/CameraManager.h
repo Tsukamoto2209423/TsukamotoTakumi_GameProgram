@@ -51,10 +51,10 @@ namespace BOUDAMA
 		std::vector<std::shared_ptr<CameraBase>>& GetCamera(void) { return cameras_; }
 
 		//通常のカメラ情報取得
-		static std::shared_ptr<CameraBase>& GetPlayCamera(void) { return GetInstance()->GetCamera()[CAMERA_STATE::PLAY]; }
+		static const std::shared_ptr<CameraBase>& GetPlayCamera(void) { return GetInstance()->GetCamera()[CAMERA_STATE::PLAY]; }
 
 		//デバッグのカメラ情報取得
-		static std::shared_ptr<CameraBase>& GetDebugCamera(void) { return GetInstance()->GetCamera()[CAMERA_STATE::DEBUG]; }
+		static const std::shared_ptr<CameraBase>& GetDebugCamera(void) { return GetInstance()->GetCamera()[CAMERA_STATE::DEBUG]; }
 
 		//カメラの状態取得
 		inline CAMERA_STATE GetState(void) const { return state_; }

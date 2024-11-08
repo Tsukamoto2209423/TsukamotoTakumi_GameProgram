@@ -21,9 +21,9 @@ namespace BOUDAMA
 		~SoundManager() {}
 
 		//コピーコンストラクタ
-		SoundManager(const SoundManager& other) = delete;
+		SoundManager(const SoundManager&) = delete;
 		//代入演算子定義
-		SoundManager& operator=(const SoundManager& other) = delete;
+		SoundManager& operator=(const SoundManager&) = delete;
 
 	public:
 		//インスタンス生成

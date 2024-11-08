@@ -149,6 +149,9 @@
     <ClCompile Include="Src\Enemy\State\Idle\Idle.cpp">
       <Filter>Enemy\State\Idle</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Enemy\State\Chase\Chase.cpp">
+      <Filter>Enemy\State\Chase</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -250,17 +253,23 @@
     <Filter Include="StateMachine">
       <UniqueIdentifier>{a5bc8326-eeda-41cc-82a1-b1de9e99d35f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Enemy\State">
-      <UniqueIdentifier>{7e3c9752-f920-430a-acfa-c4e02167b44b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enemy\State\Idle">
-      <UniqueIdentifier>{7cd9c100-cbd6-4382-bdbd-2035e824e380}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Collision">
       <UniqueIdentifier>{d2f32076-8d24-43ca-bed2-84331daef10a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Transform">
       <UniqueIdentifier>{415e11a4-7770-4914-8ab6-2b5067531c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State">
+      <UniqueIdentifier>{7ad9e750-a1b9-4036-9d86-49d1d1da8164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\Idle">
+      <UniqueIdentifier>{e16bcb51-f25e-48a7-a187-9c086ab56a59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\Chase">
+      <UniqueIdentifier>{94ee3e37-b8fd-4b76-b40c-d5fc5e51c325}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\RandomWalk">
+      <UniqueIdentifier>{98697abd-5ff5-40c2-9693-5278b387749d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -480,8 +489,14 @@
     <ClInclude Include="Src\Enemy\State\Idle\Idle.h">
       <Filter>Enemy\State\Idle</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Enemy\State\Chase\Chase.h">
+      <Filter>Enemy\State\Chase</Filter>
+    </ClInclude>
     <ClInclude Include="Src\Enemy\State\StateParameter.h">
       <Filter>Enemy\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\RandomWalk\RandomWalk.h">
+      <Filter>Enemy\State\RandomWalk</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

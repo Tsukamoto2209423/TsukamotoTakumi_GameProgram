@@ -42,6 +42,6 @@ namespace BOUDAMA
 		//ƒ‰ƒ“ƒ_ƒ€‚É•¨¿‚ğ’Š‘I‚µ‚Äˆø”‚ÌêŠ‚©‚ç”ò‚ÑU‚è‚È‚ª‚çoŒ»‚·‚éˆ—
 		void RandomFlyAppearCalculation(const Vector3D& appearPos);
 
-		inline std::vector<std::shared_ptr<SubstanceBase>>& GetSubstance(void) { return substances_; }
+		inline const std::vector<std::shared_ptr<SubstanceBase>>& GetSubstance(void) const { return substances_; }
 	};
 }

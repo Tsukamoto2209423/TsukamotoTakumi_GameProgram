@@ -21,7 +21,7 @@ namespace BOUDAMA
 	public:
 		//コンストラクタ
 		ScenePlay(void);
-		ScenePlay(const SCENE difficulty) : playDifficulty_(difficulty) { shadowHandle_ = -1; }
+		explicit ScenePlay(const SCENE difficulty) noexcept : playDifficulty_(difficulty), shadowHandle_(-1) {}
 
 		//デストラクタ
 		~ScenePlay(void);

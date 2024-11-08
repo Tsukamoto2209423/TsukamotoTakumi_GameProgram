@@ -76,7 +76,7 @@ namespace BOUDAMA
 		Score::DrawScore(SCORE::PLAY::INIT_POS_X, SCORE::PLAY::INIT_POS_Y);
 
 		//ゲームプレイ用のカメラ情報取得
-		const std::shared_ptr<CameraBase>& camera = CameraManager::GetInstance()->GetCamera()[CameraManager::GetInstance()->GetState()];
+		const auto& camera = CameraManager::GetInstance()->GetCamera()[CameraManager::GetInstance()->GetState()];
 
 		//エフェクト描画計算処理
 		CEffekseerCtrl::SetCameraMtx(camera->GetPos(), camera->GetTarget(), camera->GetUp());
@@ -91,7 +91,6 @@ namespace BOUDAMA
 	{
 		//初期化・読み込み処理
 		player_ = std::make_shared<Player>();
-
 		player_->Init();
 
 		enemyManager_.Init(playDifficulty_);

@@ -38,7 +38,7 @@ namespace BOUDAMA
 
 		void AppearanceRequest(const std::shared_ptr<Object>& owner, const ITEM::ITEM_LIST itemNum);
 
-		inline std::vector<std::shared_ptr<ItemBase>>& GetItemManager() { return items_; }
+		inline const std::vector<std::shared_ptr<ItemBase>>& GetItemManager() { return items_; }
 
 	};
 }
