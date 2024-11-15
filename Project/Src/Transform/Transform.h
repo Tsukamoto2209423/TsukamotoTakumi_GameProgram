@@ -33,6 +33,9 @@ public:
 	inline void MovePos(const Vector3D direction) noexcept { pos_ += direction; }
 	inline void MovePos(float x, float y, float z) noexcept { pos_.x += x; pos_.y += y; pos_.z += z; }
 
+	//‰Šú‰»
+	inline void ResetPos(void) { pos_ = { 0.0f,0.0f,0.0f }; }
+
 
 	//X²æ“¾
 	inline float GetPosX(void) const noexcept { return pos_.x; }
@@ -61,12 +64,23 @@ public:
 	//•ûŒüƒxƒNƒgƒ‹İ’è
 	inline void SetDir(const Vector3D& dir) { dir_ = dir; }
 
+	//‰Šú‰»
+	inline void ResetDir(void) { dir_ = { 0.0f,0.0f,0.0f }; }
+
+
+
+	//‰ñ“]‚³‚¹‚é
+	inline Vector3D Rotate(const Vector3D& angle) noexcept { rot_ += angle; }
+	inline void Rotate(float x, float y, float z) noexcept { rot_.x += x; rot_.y += y; rot_.z += z; }
 
 	//‰ñ“]²æ“¾
 	inline Vector3D GetRot(void) const noexcept { return rot_; }
 
 	//‰ñ“]²İ’è
 	inline void SetRot(const Vector3D& rot) { rot_ = rot; }
+
+	//‰Šú‰»
+	inline void ResetRot(void) { rot_ = { 0.0f,0.0f,0.0f }; }
 
 
 	//X²æ“¾

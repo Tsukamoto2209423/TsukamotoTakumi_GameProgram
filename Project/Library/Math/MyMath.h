@@ -3,8 +3,8 @@
 #include "Vector/Vector2D.h"
 #include "Vector/Vector3D.h"
 
-//数学で使う定数
-namespace MY_MATH
+//数学関数
+namespace MyMath
 {
 	//2π
 	constexpr float TWO_PI = 6.283185307179586476925286766559f;
@@ -50,15 +50,12 @@ namespace MY_MATH
 
 	//ラジアン角に変換するときに使う定数
 	constexpr float RADIAN_CONVERT_COEFFICIENT = PI / 180.0f;
-}
 
-//数学関数
-namespace MyMath
-{
+
 	template<class T>
 	constexpr inline T Abs(const T num)
 	{
-		return num >= (T)0 ? num : -num;
+		return num >= static_cast<T>(0) ? num : -num;
 	}
 
 	template<class T>
@@ -77,6 +74,6 @@ namespace MyMath
 	template<class T>
 	constexpr inline float DegreesToRadian(const T degrees)
 	{
-		return static_cast<float>(degrees * MY_MATH::RADIAN_CONVERT_COEFFICIENT);
+		return static_cast<float>(degrees * MyMath::RADIAN_CONVERT_COEFFICIENT);
 	}
 };

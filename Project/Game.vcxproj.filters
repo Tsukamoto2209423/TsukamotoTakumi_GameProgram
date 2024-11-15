@@ -152,6 +152,12 @@
     <ClCompile Include="Src\Enemy\State\Chase\Chase.cpp">
       <Filter>Enemy\State\Chase</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Enemy\State\KnockBack\KnockBack.cpp">
+      <Filter>Enemy\State\KnockBack</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Enemy\State\RandomWalk\RandomWalk.cpp">
+      <Filter>Enemy\State\RandomWalk</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -270,6 +276,9 @@
     </Filter>
     <Filter Include="Enemy\State\RandomWalk">
       <UniqueIdentifier>{98697abd-5ff5-40c2-9693-5278b387749d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\KnockBack">
+      <UniqueIdentifier>{89de7c01-b0bd-4d1b-9604-50713590ded6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -474,9 +483,6 @@
     <ClInclude Include="Src\StateMachine\StateBase.h">
       <Filter>StateMachine</Filter>
     </ClInclude>
-    <ClInclude Include="Src\StateMachine\StateMachine.h">
-      <Filter>StateMachine</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Collision\Collision.h">
       <Filter>Collision</Filter>
     </ClInclude>
@@ -497,6 +503,15 @@
     </ClInclude>
     <ClInclude Include="Src\Enemy\State\RandomWalk\RandomWalk.h">
       <Filter>Enemy\State\RandomWalk</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\KnockBack\KnockBack.h">
+      <Filter>Enemy\State\KnockBack</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\StateMachine\StateMachine.h">
+      <Filter>StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\EnemyState.h">
+      <Filter>Enemy\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

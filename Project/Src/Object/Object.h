@@ -64,7 +64,7 @@ namespace BOUDAMA
 		inline void AddHP(int addNum) { hp_ += addNum; }
 
 		//HPŒ¸ŽZ
-		inline void SubHP(int subNum) { hp_ += subNum; }
+		inline void SubHP(int subNum) { hp_ -= subNum; }
 
 		//HPŽæ“¾
 		inline int GetHP(void) const noexcept { return hp_; }

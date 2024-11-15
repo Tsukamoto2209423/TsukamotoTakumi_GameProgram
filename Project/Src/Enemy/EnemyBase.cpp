@@ -2,6 +2,7 @@
 #include <Effekseer/Effekseer.h>
 #include <Matrix/Matrix3D.h>
 #include <Math/MyMath.h>
+#include <EffekseerParameter.h>
 
 namespace BOUDAMA
 {
@@ -32,7 +33,7 @@ namespace BOUDAMA
 	{
 		//èâä˙à íuê›íË
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359))))
-			* Matrix3D::GetTranslateMatrix(Vector3D(0.0f, 0.0f, 3750.0f)) * MY_MATH::ZERO_VECTOR_3D;
+			* Matrix3D::GetTranslateMatrix(Vector3D(0.0f, 0.0f, 3750.0f)) * MyMath::ZERO_VECTOR_3D;
 
 		//éÄé“ëhê∂
 		isAlive_ = true;
@@ -51,7 +52,7 @@ namespace BOUDAMA
 		//éÄñSèàóù
 		state_ = ENEMY::STATE::KNOCK_BACK;
 
-		CEffekseerCtrl::Request(0, pos_, false);
+		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
 	}
 
 	void EnemyBase::SetKnockBack(const Vector3D& hitObjectVelocity)
@@ -61,6 +62,7 @@ namespace BOUDAMA
 
 		state_ = ENEMY::STATE::KNOCK_BACK;
 
-		CEffekseerCtrl::Request(0, pos_, false);
+		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
+		
 	}
 }

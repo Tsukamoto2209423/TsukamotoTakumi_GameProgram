@@ -6,6 +6,8 @@
 #include <Player/PlayerParameter.h>
 #include <Matrix/Matrix3D.h>
 #include "State/Idle/Idle.h"
+#include "State/Chase/Chase.h"
+#include "State/KnockBack/KnockBack.h"
 
 namespace BOUDAMA
 {
@@ -18,9 +20,9 @@ namespace BOUDAMA
 		hp_ = 3;
 		radius_ = ENEMY::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 	}
 
 	//デストラクタ
@@ -41,11 +43,14 @@ namespace BOUDAMA
 		radius_ = ENEMY::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
 		pos_ = ENEMY::INIT_POS;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 
 		stateMachine_.MakeState<Idle>(ENEMY_STATE::IDLE);
-		
+		stateMachine_.MakeState<Chase>(ENEMY_STATE::CHASE, 1.0f);
+		stateMachine_.MakeState<KnockBack>(ENEMY_STATE::KNOCK_BACK, 60);
+
+		stateMachine_.SetStartState(ENEMY_STATE::CHASE);
 	}
 
 	//行動処理関数
@@ -67,9 +72,9 @@ namespace BOUDAMA
 				knockBackTimeCount_ = 0;
 				isAlive_ = false;
 				state_ = ENEMY::STATE::SEARCH;
-				pos_ = MY_MATH::ZERO_VECTOR_3D;
-				rot_ = MY_MATH::ZERO_VECTOR_3D;
-				velocity_ = MY_MATH::ZERO_VECTOR_3D;
+				pos_ = MyMath::ZERO_VECTOR_3D;
+				rot_ = MyMath::ZERO_VECTOR_3D;
+				velocity_ = MyMath::ZERO_VECTOR_3D;
 
 				return;
 			}
@@ -79,7 +84,7 @@ namespace BOUDAMA
 			pos_.y += 9.5f;
 
 			//回転させる
-			rot_.x += MY_MATH::INVERSE_TWO_PI;
+			rot_.x += MyMath::INVERSE_TWO_PI;
 
 			//ノックバック状態の時間計測
 			++knockBackTimeCount_;
@@ -131,7 +136,7 @@ namespace BOUDAMA
 	{
 		//初期位置設定
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359)))) *
-			Matrix3D::GetTranslateMatrix(ENEMY::INIT_POS) * MY_MATH::ZERO_VECTOR_3D;
+			Matrix3D::GetTranslateMatrix(ENEMY::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
 		//死者蘇生
 		isAlive_ = true;

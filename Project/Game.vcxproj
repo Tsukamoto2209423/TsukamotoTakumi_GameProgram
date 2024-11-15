@@ -45,6 +45,8 @@
     <ClCompile Include="Src\Enemy\EnemyMonster.cpp" />
     <ClCompile Include="Src\Enemy\State\Chase\Chase.cpp" />
     <ClCompile Include="Src\Enemy\State\Idle\Idle.cpp" />
+    <ClCompile Include="Src\Enemy\State\KnockBack\KnockBack.cpp" />
+    <ClCompile Include="Src\Enemy\State\RandomWalk\RandomWalk.cpp" />
     <ClCompile Include="Src\Fade\Fade.cpp" />
     <ClCompile Include="Src\Field\Field.cpp" />
     <ClCompile Include="src\Game\GameSystem.cpp" />
@@ -108,7 +110,9 @@
     <ClInclude Include="Src\Enemy\EnemyMonster.h" />
     <ClInclude Include="Src\Enemy\EnemyParameter.h" />
     <ClInclude Include="Src\Enemy\State\Chase\Chase.h" />
+    <ClInclude Include="Src\Enemy\State\EnemyState.h" />
     <ClInclude Include="Src\Enemy\State\Idle\Idle.h" />
+    <ClInclude Include="Src\Enemy\State\KnockBack\KnockBack.h" />
     <ClInclude Include="Src\Enemy\State\RandomWalk\RandomWalk.h" />
     <ClInclude Include="Src\Enemy\State\StateParameter.h" />
     <ClInclude Include="Src\Fade\Fade.h" />

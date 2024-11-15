@@ -1,7 +1,10 @@
 #pragma once
 
-#include "Object/Object.h"
 #include <vector>
+
+#include "Object/Object.h"
+#include "StateMachine/StateMachine.h"
+#include "Enemy/State/EnemyState.h"
 
 namespace BOUDAMA
 {
@@ -37,18 +40,24 @@ namespace BOUDAMA
 	}
 
 
-	//敵の抽象クラス
+	//全ての敵の基底クラス
 	class EnemyBase : public Object
 	{
 	protected:
 		//状態
 		ENEMY::STATE state_;
+		//状態遷移用変数
+		StateMachine<EnemyState> stateMachine_;
+
 
 		//吹っ飛ばされて消えるまでの時間計測
 		int knockBackTimeCount_;
 
 		//倒されたときにスコアに加算される点数
 		int scoreNum_;
+
+		//当たっているか判定するフラグ
+		bool isInCollision_;
 
 	public:
 		//コンストラクタ
@@ -75,5 +84,14 @@ namespace BOUDAMA
 
 		//倒された時に加算される点数取得
 		inline int GetScoreNum(void) const { return scoreNum_; }
+
+		inline bool IsInCollision(void) const noexcept { return isInCollision_; }
+		inline bool SetIsInCollision(bool isInCollision) noexcept { isInCollision_ = isInCollision; }
+
+
+		void SetStateMachineOwner(const auto& owner) noexcept
+		{
+			stateMachine_.SetAllStateOwner(owner);
+		}
 	};
 }

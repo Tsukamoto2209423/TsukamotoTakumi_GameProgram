@@ -22,8 +22,8 @@ namespace BOUDAMA
 	{
 		//‰Šú‰»
 		handle_ = -1;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 	}
 
 	//“Ç‚Ýž‚Ýˆ—ŠÖ”

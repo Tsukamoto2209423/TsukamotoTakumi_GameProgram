@@ -1,16 +1,15 @@
 #pragma once
 
-#include "StateMachine/StateBase.h"
-#include "Enemy/State/StateParameter.h"
+#include "Enemy/State/EnemyState.h"
 
 namespace BOUDAMA
 {
 	//‘Ò‹@ó‘Ô
-	class Idle final : public StateBase<ENEMY_STATE>
+	class Idle final : public EnemyState
 	{
 	public:
-		constexpr Idle() = default;
-		explicit constexpr Idle(const ENEMY_STATE stateName) : StateBase<ENEMY_STATE>(stateName) {}
+		explicit constexpr Idle(const auto stateName) : EnemyState(stateName) {}
+
 		~Idle() noexcept override = default;
 
 		//‰Šú‰»ˆ—ŠÖ”

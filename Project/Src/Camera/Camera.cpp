@@ -20,12 +20,12 @@ namespace BOUDAMA
 		// カメラの設定
 		SetCameraNearFar(1.0f, 27000.0f);
 
-		SetupCamera_Perspective(MY_MATH::PI_OVER_THREE);
+		SetupCamera_Perspective(MyMath::PI_OVER_THREE);
 
 		pos_ = { 0.0f, CAMERA::POS_Y_DISTANCE, CAMERA::POS_Z_DISTANCE };	//カメラ位置
 		target_ = { 0.0f, 0.0f, 0.0f };												//注視点
 		up_ = { 0.0f, 1.0f, 0.0f };												//上方向
-		rot_ = { MY_MATH::PI_OVER_SIX, 0.0f, 0.0f };						//カメラ角度
+		rot_ = { MyMath::PI_OVER_SIX, 0.0f, 0.0f };						//カメラ角度
 
 		dir_ = { 0.0f,0.0f,1.0f };
 
@@ -53,9 +53,9 @@ namespace BOUDAMA
 				rot_.y -= CAMERA::ROT_RIGHT_LEFT_SPEED;
 
 				// rot_の左右の角度θの定義域は -π < θ <= π
-				if (rot_.y < -MY_MATH::PI)
+				if (rot_.y < -MyMath::PI)
 				{
-					rot_.y = MY_MATH::PI;
+					rot_.y = MyMath::PI;
 				}
 
 			}
@@ -66,9 +66,9 @@ namespace BOUDAMA
 				rot_.y += CAMERA::ROT_RIGHT_LEFT_SPEED;
 
 				// rot_の左右の角度θの定義域は -π <= θ < π
-				if (rot_.y > MY_MATH::PI)
+				if (rot_.y > MyMath::PI)
 				{
-					rot_.y = -MY_MATH::PI;
+					rot_.y = -MyMath::PI;
 				}
 
 			}
@@ -115,9 +115,9 @@ namespace BOUDAMA
 			rot_.x += CAMERA::ROT_UP_DOWN_SPEED;
 
 			// rot_の上下の角度θの定義域は (-π/2) + π/100 <= θ <= (π/2) - π/100
-			if (rot_.x > MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED)
+			if (rot_.x > MyMath::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED)
 			{
-				rot_.x = MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED;
+				rot_.x = MyMath::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED;
 			}
 		}
 
@@ -127,9 +127,9 @@ namespace BOUDAMA
 			rot_.y -= CAMERA::ROT_RIGHT_LEFT_SPEED;
 
 			// rot_の左右の角度θの定義域は -π < θ <= π
-			if (rot_.y < -MY_MATH::PI)
+			if (rot_.y < -MyMath::PI)
 			{
-				rot_.y = MY_MATH::PI;
+				rot_.y = MyMath::PI;
 			}
 
 		}
@@ -140,9 +140,9 @@ namespace BOUDAMA
 			rot_.y += CAMERA::ROT_RIGHT_LEFT_SPEED;
 
 			// rot_の左右の角度θの定義域は -π <= θ < π
-			if (rot_.y > MY_MATH::PI)
+			if (rot_.y > MyMath::PI)
 			{
-				rot_.y = -MY_MATH::PI;
+				rot_.y = -MyMath::PI;
 			}
 
 		}
@@ -164,27 +164,27 @@ namespace BOUDAMA
 
 
 		//rot_.x < (-π/2) + (π/100)
-		if (rot_.x < -MY_MATH::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED)
+		if (rot_.x < -MyMath::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED)
 		{
-			rot_.x = -MY_MATH::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED;
+			rot_.x = -MyMath::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED;
 		}
 
 		//rot_.x > (π/2) - (π/100)
-		if (rot_.x > MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED)
+		if (rot_.x > MyMath::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED)
 		{
-			rot_.x = MY_MATH::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED;
+			rot_.x = MyMath::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED;
 		}
 
 		//rot_.y < -π/2
-		if (rot_.y < -MY_MATH::PI)
+		if (rot_.y < -MyMath::PI)
 		{
-			rot_.y = MY_MATH::PI;
+			rot_.y = MyMath::PI;
 		}
 
 		//rot_.y > π/2
-		if (rot_.y > MY_MATH::PI)
+		if (rot_.y > MyMath::PI)
 		{
-			rot_.y = -MY_MATH::PI;
+			rot_.y = -MyMath::PI;
 		}
 	}
 

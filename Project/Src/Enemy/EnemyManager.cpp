@@ -44,7 +44,6 @@ namespace BOUDAMA
 		enemies_.clear();
 		enemies_.shrink_to_fit();
 
-
 		//敵一覧と生成方法を増やすだけで全ての敵を作成できるようにする
 		const std::function<std::shared_ptr<EnemyBase>()> enemyList[static_cast<int>(ENEMY_MANAGER::ENEMY_LIST::ALL_NUM)] =
 		{
@@ -76,14 +75,16 @@ namespace BOUDAMA
 		for (const auto& enemy : enemies_)
 		{
 			enemy->Init();
+			enemy->SetStateMachineOwner(enemy);
 		}
 
 		//最初に敵を出現させておく
-		for (int appearNum = 0; const auto & enemy : enemies_)
+		for (int appearNum = 0; const auto& enemy : enemies_)
 		{
 			enemy->AppearanceRequest();
+			++appearNum;
 
-			if (appearNum >= ENEMY_MANAGER::INIT_APPEAR_NUM)
+			if (ENEMY_MANAGER::INIT_APPEAR_NUM <= appearNum)
 			{
 				break;
 			}
@@ -132,7 +133,7 @@ namespace BOUDAMA
 		}
 
 		//出現処理計算
-		AppearanceProcess();
+		AppearanceCountProcess();
 
 	}
 
@@ -174,51 +175,64 @@ namespace BOUDAMA
 	}
 
 	//出現処理を纏めた関数
-	void EnemyManager::AppearanceProcess(void)
+	void EnemyManager::AppearanceCountProcess(void)
 	{
-		//敵の配列の添え字を指すときに使う
+		if (isFeverTime_)
+		{
+			AppearanceRequest();
+
+			return;
+		}
+
+		//敵の配列の添え字を指すときに使う変数
 		int enemyArrayIndex = 0;
 
 		//敵の出現処理
 		for (const auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
 		{
+			int kindNum = static_cast<int>(enemyKindNum);
+
 			//それぞれの敵の次に出現するまでの時間を計測する
-			++appearCountTime_[static_cast<int>(enemyKindNum)];
+			++appearCountTime_[kindNum];
 
 			//経過していないなら実行しない
-			if (appearCountTime_[static_cast<int>(enemyKindNum)] < ENEMY_MANAGER::APPEAR_MAX_TIME_LIST[static_cast<int>(enemyKindNum)])
+			if (appearCountTime_[kindNum] < ENEMY_MANAGER::APPEAR_MAX_TIME_LIST[kindNum])
 			{
 				//次の敵の配列ブロックの先頭位置を取得
-				enemyArrayIndex += ENEMY_MANAGER::MAX_NUM_LIST[static_cast<int>(enemyKindNum)];
+				enemyArrayIndex += ENEMY_MANAGER::MAX_NUM_LIST[kindNum];
 
 				continue;
 			}
 
-			//経過していたら
-
 			//計測初期化
-			appearCountTime_[static_cast<int>(enemyKindNum)] = 0;
+			appearCountTime_[kindNum] = 0;
 
-			//それぞれの敵の最大数分for文を回すために計算
-			const int lastEnemyArrayIndex = enemyArrayIndex + ENEMY_MANAGER::MAX_NUM_LIST[static_cast<int>(enemyKindNum)];
-
-			//出現処理処理
-			for (int enemyIndex = enemyArrayIndex; enemyIndex < lastEnemyArrayIndex; ++enemyIndex)
-			{
-				//すでに出現している場合は次に移る
-				if (enemies_[enemyIndex]->GetIsActive())
-				{
-					continue;
-				}
-
-				//敵を出現させる
-				enemies_[enemyIndex]->AppearanceRequest();
-
-				CEffekseerCtrl::Request(EFFECT::ENEMY_SPAWN, enemies_[enemyIndex]->GetPos(), false);
-
-				break;
-			}
+			//経過していたら
+			AppearanceRequest(kindNum, enemyArrayIndex);
 		}
+	}
 
+	//実際に出現させる関数
+	void EnemyManager::AppearanceRequest(int kindNum, int enemyArrayIndex)
+	{
+		//それぞれの敵の最大数分for文を回すために計算
+		const int lastEnemyArrayIndex = enemyArrayIndex + ENEMY_MANAGER::MAX_NUM_LIST[kindNum];
+
+		//出現処理処理
+		for (int enemyIndex = enemyArrayIndex; enemyIndex < lastEnemyArrayIndex; ++enemyIndex)
+		{
+			//すでに出現している場合は次に移る
+			if (enemies_[enemyIndex]->GetIsActive())
+			{
+				continue;
+			}
+
+			//敵を出現させる
+			enemies_[enemyIndex]->AppearanceRequest();
+
+			CEffekseerCtrl::Request(EFFECT::ENEMY_SPAWN, enemies_[enemyIndex]->GetPos(), false);
+
+			break;
+		}
 	}
 }

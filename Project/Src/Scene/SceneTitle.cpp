@@ -134,7 +134,7 @@ namespace BOUDAMA
 				SoundManager::GetInstance()->PlaySoundData(SOUND::SE::DESIDE, DX_PLAYTYPE_BACK);
 			}
 
-			theta_ = theta_ >= MY_MATH::TWO_PI ? 0.0f : theta_ + (MY_MATH::PI * 0.01f);
+			theta_ = theta_ >= MyMath::TWO_PI ? 0.0f : theta_ + (MyMath::PI * 0.01f);
 
 			return;
 		}

@@ -1,16 +1,18 @@
 #pragma once
 
-#include "StateMachine/StateBase.h"
-#include "Enemy/State/StateParameter.h"
+#include "Enemy/State/EnemyState.h"
 
 namespace BOUDAMA
 {
 	//’Ç”öó‘Ô
-	class Chase final : public StateBase<ENEMY_STATE>
+	class Chase final : public EnemyState
 	{
+	private:
+		//ˆÚ“®‘¬“x
+		float moveSpeed_;
+
 	public:
-		constexpr Chase() = default;
-		explicit constexpr Chase(const ENEMY_STATE stateName) : StateBase<ENEMY_STATE>(stateName) {}
+		explicit constexpr Chase(const auto stateName, float moveSpeed) noexcept : EnemyState(stateName), moveSpeed_(moveSpeed) {}
 		~Chase() noexcept override = default;
 
 		//‰Šú‰»ˆ—ŠÖ”

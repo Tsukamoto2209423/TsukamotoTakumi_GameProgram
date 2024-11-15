@@ -12,9 +12,9 @@ namespace BOUDAMA
 		isAlive_ = false;
 		lifeSpan_ = 0;
 		radius_ = BIG_BULLET::RADIUS;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
-		dir_ = MY_MATH::ZERO_VECTOR_3D;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
+		dir_ = MyMath::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
 	}
 
 	//デストラクタ
@@ -50,7 +50,7 @@ namespace BOUDAMA
 		{
 			isAlive_ = false;
 			lifeSpan_ = 0;
-			dir_ = MY_MATH::ZERO_VECTOR_3D;
+			dir_ = MyMath::ZERO_VECTOR_3D;
 		}
 
 		//座標設定
@@ -62,7 +62,7 @@ namespace BOUDAMA
 	{
 		//死亡処理
 		isAlive_ = false;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
 		radius_ = 50.0f;
 	}
 }

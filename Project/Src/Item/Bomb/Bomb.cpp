@@ -12,9 +12,9 @@ namespace BOUDAMA
 		isAlive_ = true;
 		hp_ = 1;
 		radius_ = BOMB::RADIUS;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 
 		countExplodeTimeLimit_ = BOMB::MAX_EXPLODE_TIME_LIMIT;
 	}
@@ -92,7 +92,7 @@ namespace BOUDAMA
 		}
 
 		//Y軸のぐるぐる回転する処理
-		rot_.y = rot_.y >= MY_MATH::TWO_PI - MY_MATH::PI_OVER_TWENTY ? 0.0f : rot_.y + MY_MATH::PI_OVER_TWENTY;
+		rot_.y = rot_.y >= MyMath::TWO_PI - MyMath::PI_OVER_TWENTY ? 0.0f : rot_.y + MyMath::PI_OVER_TWENTY;
 
 		//座標設定
 		MV1SetPosition(handle_, pos_);
@@ -120,7 +120,7 @@ namespace BOUDAMA
 		if (MyMath::Abs(pos_.x) > BOMB::MAX_POS_X_Z || MyMath::Abs(pos_.z) > BOMB::MAX_POS_X_Z)
 		{
 			isAlive_ = false;
-			dir_ = MY_MATH::ZERO_VECTOR_3D;
+			dir_ = MyMath::ZERO_VECTOR_3D;
 		}
 
 		//位置・角度設定

@@ -9,9 +9,9 @@ namespace BOUDAMA
 		//èâä˙âª
 		handle_ = -1;
 		isAlive_ = true;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 	}
 
 	//ì«Ç›çûÇ›èàóùä÷êî
@@ -46,6 +46,6 @@ namespace BOUDAMA
 	{
 		//éÄñSèàóù
 		isAlive_ = false;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
 	}
 }

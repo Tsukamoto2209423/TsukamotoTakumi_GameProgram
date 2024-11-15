@@ -45,7 +45,7 @@ namespace BOUDAMA
 		pos_ = PLAYER::INIT_POS;
 		dir_ = { 0.0f,0.0f,-1.0f };
 		rot_ = { 0.0f,0.0f,0.0f };
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
 		deathTimeCount_ = 0;
 		isShadowDraw_ = false;
 
@@ -79,8 +79,8 @@ namespace BOUDAMA
 
 		if (Input::IsKeyPush(GAME_INPUT::TURBO))
 		{
-			dir_ = MY_MATH::ZERO_VECTOR_3D;
-			velocity_ = MY_MATH::ZERO_VECTOR_3D;
+			dir_ = MyMath::ZERO_VECTOR_3D;
+			velocity_ = MyMath::ZERO_VECTOR_3D;
 		}
 
 		//ターボキーが押されているなら
@@ -190,7 +190,7 @@ namespace BOUDAMA
 	void Player::MoveCalculation(void)
 	{
 		//初期化
-		dir_ = MY_MATH::ZERO_VECTOR_3D;
+		dir_ = MyMath::ZERO_VECTOR_3D;
 
 		//上移動
 		if (InputKeyBoard::IsKeyKeep(KEY::W))
@@ -289,8 +289,8 @@ namespace BOUDAMA
 	void Player::RotateCalculation(void)
 	{
 		//転がっている時の角度計算
-		MyMath::Abs(rot_.x) < MY_MATH::TWO_PI ?
-			rot_.x -= PLAYER::ROTATION_COEFFICIENT * velocity_.L2Norm() * MY_MATH::INVERSE_TWO_PI :
+		MyMath::Abs(rot_.x) < MyMath::TWO_PI ?
+			rot_.x -= PLAYER::ROTATION_COEFFICIENT * velocity_.L2Norm() * MyMath::INVERSE_TWO_PI :
 			rot_.x = 0.0f;
 	}
 

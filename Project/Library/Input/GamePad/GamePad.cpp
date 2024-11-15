@@ -42,7 +42,7 @@ Vector3D InputGamePad::GetLStickVector(void)
 	//入力値が誤差の範囲内ならゼロベクトルを返す
 	if (GAME_PAD::STICK_ERROR_NUM >= MyMath::Abs(vec.x) && GAME_PAD::STICK_ERROR_NUM >= MyMath::Abs(vec.z))
 	{
-		return MY_MATH::ZERO_VECTOR_3D;
+		return MyMath::ZERO_VECTOR_3D;
 	}
 
 	//入力されたなら、その値を返す
@@ -60,7 +60,7 @@ Vector3D InputGamePad::GetRStickVector(void)
 	//入力値が誤差の範囲内ならゼロベクトルを返す
 	if (GAME_PAD::STICK_ERROR_NUM >= MyMath::Abs(vec.x) && GAME_PAD::STICK_ERROR_NUM >= MyMath::Abs(vec.y))
 	{
-		return MY_MATH::ZERO_VECTOR_3D;
+		return MyMath::ZERO_VECTOR_3D;
 	}
 
 	//入力されたなら、その値を返す

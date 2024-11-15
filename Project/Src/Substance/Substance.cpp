@@ -11,8 +11,8 @@ namespace BOUDAMA
 		handle_ = -1;
 		isAlive_ = false;
 		pos_ = { static_cast<float>(GetRand(600)),10.0f ,static_cast<float>(GetRand(600)) };
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 		radius_ = SUBSTANCE::RADIUS;
 
 		addScoreNum = SUBSTANCE::ADD_SCORE_NUM;

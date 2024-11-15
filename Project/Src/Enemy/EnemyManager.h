@@ -62,7 +62,10 @@ namespace BOUDAMA
 		inline void AddEnemyDeathCount(void) { ++deathCount_; }
 
 	private:
-		//出現処理を纏めた関数
-		void AppearanceProcess(void);
+		//出現処理時間計測関数
+		void AppearanceCountProcess(void);
+
+		//敵を実際にゲーム内に出現させる関数
+		void AppearanceRequest(int kindNum = 0, int enemyArrayIndex = 0);
 	};
 }

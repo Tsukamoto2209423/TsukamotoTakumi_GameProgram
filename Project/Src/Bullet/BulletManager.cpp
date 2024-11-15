@@ -118,7 +118,7 @@ namespace BOUDAMA
 
 				//プレイヤーから見て100.0f前方に位置設定
 				bullet->SetPos(Matrix3D::GetTranslateMatrix(firePos.x, 150.0f, firePos.z) *
-					Matrix3D::GetYawMatrix(rot.y) * Matrix3D::GetTranslateMatrix(0.0f, 0.0f, -(20.0f + bullet->GetRadius())) * MY_MATH::ZERO_VECTOR_3D);
+					Matrix3D::GetYawMatrix(rot.y) * Matrix3D::GetTranslateMatrix(0.0f, 0.0f, -(20.0f + bullet->GetRadius())) * MyMath::ZERO_VECTOR_3D);
 
 				//発射方向設定
 				bullet->SetRot(rot);

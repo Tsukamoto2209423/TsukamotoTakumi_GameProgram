@@ -1,17 +1,20 @@
 #pragma once
 
-#include "Enemy/State/StateParameter.h"
-#include "StateMachine/StateBase.h"
+#include "Enemy/State/EnemyState.h"
 
 namespace BOUDAMA
 {
-	class RandomWalk : public StateBase<ENEMY_STATE>
+	class RandomWalk : public EnemyState
 	{
 	public:
-		RandomWalk() {}
-		~RandomWalk() {}
+		explicit constexpr RandomWalk(const auto stateName) : EnemyState(stateName) {}
 
-	private:
+		~RandomWalk() noexcept override = default;
 
+		//‰Šú‰»ˆ—ŠÖ”
+		void Enter(void) override;
+
+		//s“®ˆ—ŠÖ”
+		void Execute(void) override;
 	};
 }

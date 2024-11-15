@@ -17,9 +17,9 @@ namespace BOUDAMA
 		hp_ = 3;
 		radius_ = ENEMY_BOMBER::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 
 
 		findOutReactionCount_ = 0;
@@ -45,8 +45,8 @@ namespace BOUDAMA
 		knockBackTimeCount_ = 0;
 		state_ = ENEMY::STATE::SEARCH;
 		pos_ = ENEMY_BOMBER::INIT_POS;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 
 
 		findOutReactionCount_ = 0;
@@ -72,15 +72,15 @@ namespace BOUDAMA
 				knockBackTimeCount_ = 0;
 				isAlive_ = false;
 				state_ = ENEMY::STATE::SEARCH;
-				pos_ = MY_MATH::ZERO_VECTOR_3D;
-				rot_ = MY_MATH::ZERO_VECTOR_3D;
-				velocity_ = MY_MATH::ZERO_VECTOR_3D;
+				pos_ = MyMath::ZERO_VECTOR_3D;
+				rot_ = MyMath::ZERO_VECTOR_3D;
+				velocity_ = MyMath::ZERO_VECTOR_3D;
 			}
 
 			pos_ += velocity_;
 			pos_.y += 9.5f;
 
-			rot_.x += MY_MATH::INVERSE_TWO_PI;
+			rot_.x += MyMath::INVERSE_TWO_PI;
 
 			//ノックバックの時間計測
 			++knockBackTimeCount_;
@@ -278,7 +278,7 @@ namespace BOUDAMA
 	{
 		//初期位置設定
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))) *
-			Matrix3D::GetTranslateMatrix(ENEMY_BOMBER::INIT_POS) * MY_MATH::ZERO_VECTOR_3D;
+			Matrix3D::GetTranslateMatrix(ENEMY_BOMBER::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
 		//角度初期化
 		rot_ = { 0.0f,0.0f,0.0f };

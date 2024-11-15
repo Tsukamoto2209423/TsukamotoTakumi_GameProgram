@@ -70,7 +70,7 @@ namespace BOUDAMA
 				alphaValue_ += FADE::ALPHA_SPEED;
 
 				posX_ -= FADE::MOVE_SPEED;
-				rotAngle_ -= MY_MATH::PI_OVER_TWENTY;
+				rotAngle_ -= MyMath::PI_OVER_TWENTY;
 
 				return;
 			}
@@ -88,7 +88,7 @@ namespace BOUDAMA
 				alphaValue_ -= FADE::ALPHA_SPEED;
 
 				posX_ -= FADE::MOVE_SPEED;
-				rotAngle_ -= MY_MATH::PI_OVER_TWENTY;
+				rotAngle_ -= MyMath::PI_OVER_TWENTY;
 
 				return;
 			}

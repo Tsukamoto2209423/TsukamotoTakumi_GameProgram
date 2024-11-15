@@ -13,9 +13,8 @@ namespace BOUDAMA
 	public:
 		using Type = Ty;
 
-		constexpr StateBase(void) noexcept : myStateName_(), nextStateName_(),isTransitionToNextState(false) {};
-		explicit constexpr StateBase(const Type initState) noexcept : myStateName_(initState), nextStateName_(initState) {};
-		explicit constexpr StateBase(const std::shared_ptr<Object>& owner) noexcept : owner_(owner) {};
+		constexpr StateBase(void) noexcept : myStateName_(), nextStateName_(), isTransitionToNextState(false) {};
+		explicit constexpr StateBase(const Type initState) noexcept : myStateName_(initState), nextStateName_(initState), isTransitionToNextState(false) {};
 
 		virtual ~StateBase() noexcept = default;
 
@@ -32,12 +31,13 @@ namespace BOUDAMA
 		//Ÿ‚Ìó‘Ô‚É‘JˆÚ‚·‚é‚©H
 		bool isTransitionToNextState;
 
+	public:
 		//‚»‚Ìó‘Ô‚É“ü‚Á‚½uŠÔ‚É‚¾‚¯Às‚·‚éŠÖ”
 		virtual void Enter(void) = 0;
 
 		//s“®ˆ—ŠÖ”
 		virtual void Execute(void) = 0;
-	
+
 		/// <summary>
 		/// Ÿ‚Ìó‘Ô‘JˆÚ‚·‚é‚©?
 		/// </summary>
@@ -60,6 +60,12 @@ namespace BOUDAMA
 		inline Type GetNextState(void) const noexcept
 		{
 			return nextStateName_;
+		}
+
+		//ó‘Ô‚ÌŠ—LÒ
+		void SetOwner(const auto& owner) noexcept
+		{
+			owner_ = owner;
 		}
 
 	};

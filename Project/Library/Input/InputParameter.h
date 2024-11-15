@@ -3,7 +3,6 @@
 #include "DxLib.h"
 
 #define GAMEPAD (int)GAME_PAD::XINPUT
-#define PADNUM (int)GAME_PAD::CONNECT_NUM
 #define KEY (int)KEYBOARD::KEY_CODE
 
 //ƒQ[ƒ€“à‚Åg‚¤“ü—Íˆê——

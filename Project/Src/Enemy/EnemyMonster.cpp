@@ -18,9 +18,9 @@ namespace BOUDAMA
 		hp_ = 3;
 		radius_ = ENEMY_BOMBER::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
-		pos_ = MY_MATH::ZERO_VECTOR_3D;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		pos_ = MyMath::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 	}
 
 	//デストラクタ
@@ -45,8 +45,8 @@ namespace BOUDAMA
 		hp_ = 3;
 		radius_ = ENEMY_BOMBER::RADIUS;
 		pos_ = ENEMY_MONSTER::INIT_POS;
-		velocity_ = MY_MATH::ZERO_VECTOR_3D;
-		rot_ = MY_MATH::ZERO_VECTOR_3D;
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+		rot_ = MyMath::ZERO_VECTOR_3D;
 		dir_ = { 0.0f,0.0f,1.0f };
 
 		dir_ *= Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)));
@@ -77,9 +77,9 @@ namespace BOUDAMA
 				knockBackTimeCount_ = 0;
 				isAlive_ = false;
 				state_ = ENEMY::STATE::SEARCH;
-				pos_ = MY_MATH::ZERO_VECTOR_3D;
-				rot_ = MY_MATH::ZERO_VECTOR_3D;
-				velocity_ = MY_MATH::ZERO_VECTOR_3D;
+				pos_ = MyMath::ZERO_VECTOR_3D;
+				rot_ = MyMath::ZERO_VECTOR_3D;
+				velocity_ = MyMath::ZERO_VECTOR_3D;
 
 				//位置・角度設定
 				MV1SetPosition(handle_, pos_);
@@ -96,7 +96,7 @@ namespace BOUDAMA
 			pos_ += velocity_;
 			pos_.y += ENEMY_MONSTER::KNOCKBACK_Y_POWER;
 
-			rot_.x += MY_MATH::PI_OVER_TEN;
+			rot_.x += MyMath::PI_OVER_TEN;
 
 			//位置・角度設定
 			MV1SetPosition(handle_, pos_);
@@ -152,7 +152,7 @@ namespace BOUDAMA
 				rot_.y = atan2f(-dir_.x, -dir_.z);
 
 				//速度初期化
-				velocity_ = MY_MATH::ZERO_VECTOR_3D;
+				velocity_ = MyMath::ZERO_VECTOR_3D;
 
 				//移動する角度切り替え時間初期化
 				moveAngleChangeCount_ = 0;
@@ -323,7 +323,7 @@ namespace BOUDAMA
 	{
 		//初期位置設定
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359))))
-			* Matrix3D::GetTranslateMatrix(ENEMY_MONSTER::INIT_POS) * MY_MATH::ZERO_VECTOR_3D;
+			* Matrix3D::GetTranslateMatrix(ENEMY_MONSTER::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
 		//死者蘇生
 		isAlive_ = true;

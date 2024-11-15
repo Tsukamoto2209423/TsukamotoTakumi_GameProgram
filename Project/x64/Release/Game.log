@@ -24,6 +24,8 @@
   EnemyMonster.cpp
   Chase.cpp
   Idle.cpp
+  KnockBack.cpp
+  RandomWalk.cpp
   Fade.cpp
   Field.cpp
   GameSystem.cpp
@@ -51,6 +53,6 @@
   TimeLimit.cpp
   コード生成しています。
   Previous IPDB not found, fall back to full compilation.
-  All 1986 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 2068 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   コード生成が終了しました。
   Game.vcxproj -> C:\Users\2209423\Documents\GitHub\Tsukamoto_Takumi_Game_Program\Project\x64\Release\Game.exe

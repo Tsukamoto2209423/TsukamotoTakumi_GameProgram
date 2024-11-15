@@ -1,19 +1,18 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "StateBase.h"
 
 namespace BOUDAMA
 {
 	//状態管理用クラス
-	template<class T>
+	template<class StateType>
 	class StateMachine final
 	{
 	private:
-		using State = StateBase<T>;
-
 		//状態一覧
-		std::vector<std::unique_ptr<State>> stateVector_;
+		std::vector<std::unique_ptr<StateType>> stateVector_;
 
 		//現在の状態の配列の添え字
 		int currentStateIndex_;
@@ -43,16 +42,25 @@ namespace BOUDAMA
 		}
 
 		//状態を新しく作成する
-		template<class Ty>
-		void MakeState(const T stateName)
+		template<class State, class... Args>
+		void MakeState(Args&&... args)
 		{
-			stateVector_.emplace_back(std::make_unique<Ty>(stateName));
+			stateVector_.emplace_back(std::make_unique<State>(args...));
+		}
+
+		//すべての状態の所有者設定
+		void SetAllStateOwner(const auto& owner)
+		{
+			for (const auto& state : stateVector_)
+			{
+				state->SetOwner(owner);
+			}
 		}
 
 		//最初から始める状態を設定
-		void SetStartState(const T startStateName)
+		void SetStartState(const auto startStateName)
 		{
-			for (int index = 0; const auto & state : stateVector_)
+			for (int index = 0; const auto& state : stateVector_)
 			{
 				if (state->GetMyState() == startStateName)
 				{
@@ -66,14 +74,34 @@ namespace BOUDAMA
 			stateVector_[currentStateIndex_]->Enter();
 		}
 
-		//状態を変更する
+		//次の状態に遷移する
 		void ChangeState(void)
 		{
 			const auto nextState = stateVector_[currentStateIndex_]->GetNextState();
 
-			for (int index = 0; const auto & state : stateVector_)
+			for (int index = 0; const auto& state : stateVector_)
 			{
 				if (state->GetMyState() == nextState)
+				{
+					currentStateIndex_ = index;
+					return;
+				}
+
+				++index;
+			}
+		}
+
+		/// <summary>
+		/// 引数の状態に遷移させる
+		/// </summary>
+		/// <param name="changeStateName">
+		/// 遷移先の状態
+		/// </param>
+		void ChangeState(const auto changeStateName)
+		{
+			for (int index = 0; const auto& state : stateVector_)
+			{
+				if (state->GetMyState() == changeStateName)
 				{
 					currentStateIndex_ = index;
 					return;
@@ -87,6 +115,7 @@ namespace BOUDAMA
 		void AllClear(void)
 		{
 			stateVector_.clear();
+			stateVector_.shrink_to_fit();
 		}
 
 	};
