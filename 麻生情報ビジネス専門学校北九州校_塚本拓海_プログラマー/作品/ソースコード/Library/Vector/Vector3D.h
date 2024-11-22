@@ -17,7 +17,7 @@ public:
 	constexpr Vector3D(const VECTOR& vec) noexcept : x(vec.x), y(vec.y), z(vec.z) {}
 
 	//ˆø”‚É“ü—Í‚µ‚½’l‚ğæ“¾‚·‚éŠÖ”(x = value_x, y = value_y, z = value_z)
-	constexpr Vector3D VGet(float value_x, float value_y, float value_z) {  return Vector3D(this->x = value_x, this->y = value_y,this->z = value_z); }
+	constexpr Vector3D VGet(float value_x, float value_y, float value_z) {  return Vector3D(this->x = value_x, this->y = value_y, this->z = value_z); }
 	//ˆø”‚É“ü—Í‚µ‚½’l‚ğæ“¾‚·‚éŠÖ”(x = y = z = value)
 	constexpr Vector3D VGet(float value) { return Vector3D(this->x = value, this->y = value, this->z = value); }
 	//ˆø”‚É“ü—Í‚µ‚½’l‚ğæ“¾‚·‚éŠÖ”(x = vec.x, y = vec.y, z = vec.z)

@@ -8,7 +8,7 @@ namespace BOUDAMA
 	//敵の定義情報
 
 	//ダルマ
-	namespace ENEMY
+	namespace DARUMA
 	{
 		//敵のパス
 		constexpr char PATH[] = "Data/Model/Enemy/darumaEnemy.x";
@@ -55,7 +55,7 @@ namespace BOUDAMA
 	}
 
 	//怪物
-	namespace ENEMY_MONSTER
+	namespace MONSTER
 	{
 		//敵のパス
 		constexpr char PATH[] = "Data/Model/Enemy/MonsterEnemy.x";
@@ -114,6 +114,8 @@ namespace BOUDAMA
 		//敵を発見できる範囲の二乗
 		constexpr float SQUARE_FIND_OUT_RANGE = FIND_OUT_RANGE * FIND_OUT_RANGE;
 
+		//重力
+		constexpr float GRAVITY = 7.5f;
 
 		//初期基準位置
 		constexpr Vector3D INIT_POS = { 0.0f,5.0f,1450.0f };
@@ -121,7 +123,7 @@ namespace BOUDAMA
 	}
 
 	//爆弾魔
-	namespace ENEMY_BOMBER
+	namespace BOMBER
 	{
 		//敵のパス
 		constexpr char PATH[] = "Data/Model/";
@@ -209,7 +211,7 @@ namespace BOUDAMA
 		//敵一覧
 		enum class ENEMY_LIST
 		{
-			NORMAL,
+			DARUMA,
 			MONSTER,
 			BOMBER,
 
@@ -219,39 +221,39 @@ namespace BOUDAMA
 		//通常の敵の数
 		constexpr int MAX_NUM_LIST[static_cast<int>(ENEMY_LIST::ALL_NUM)] =
 		{
-			ENEMY::MAX_NUM,
-			ENEMY_MONSTER::MAX_NUM,
-			ENEMY_BOMBER::MAX_NUM
+			DARUMA::MAX_NUM,
+			MONSTER::MAX_NUM,
+			BOMBER::MAX_NUM
 		};
 
 		//ハードモードかエンドレスモードの敵の数
 		constexpr int HARD_MAX_NUM_LIST[static_cast<int>(ENEMY_LIST::ALL_NUM)] =
 		{
-			ENEMY::HARD_MAX_NUM,
-			ENEMY_MONSTER::HARD_MAX_NUM,
-			ENEMY_BOMBER::HARD_MAX_NUM
+			DARUMA::HARD_MAX_NUM,
+			MONSTER::HARD_MAX_NUM,
+			BOMBER::HARD_MAX_NUM
 		};
 
 		//敵の出現間隔一覧表
 		constexpr int APPEAR_MAX_TIME_LIST[static_cast<int>(ENEMY_LIST::ALL_NUM)] =
 		{
-			ENEMY::APPEAR_MAX_TIME,
-			ENEMY_MONSTER::APPEAR_MAX_TIME,
-			ENEMY_BOMBER::APPEAR_MAX_TIME
+			DARUMA::APPEAR_MAX_TIME,
+			MONSTER::APPEAR_MAX_TIME,
+			BOMBER::APPEAR_MAX_TIME
 		};
 
 		//敵のパス一覧表
 		constexpr const char* PATH_LIST[static_cast<int>(ENEMY_LIST::ALL_NUM)] =
 		{
-			ENEMY::PATH,
-			ENEMY_MONSTER::PATH,
-			ENEMY_BOMBER::PATH
+			DARUMA::PATH,
+			MONSTER::PATH,
+			BOMBER::PATH
 		};
 
 
 
 		//範囲for文でつかうもの
-		constexpr ENEMY_LIST begin(ENEMY_LIST) { return ENEMY_LIST::NORMAL; }
+		constexpr ENEMY_LIST begin(ENEMY_LIST) { return ENEMY_LIST::DARUMA; }
 
 		constexpr ENEMY_LIST end(ENEMY_LIST) { return ENEMY_LIST::ALL_NUM; }
 
@@ -259,7 +261,7 @@ namespace BOUDAMA
 
 		constexpr ENEMY_LIST operator++(ENEMY_LIST& dir)
 		{
-			return dir = ENEMY_LIST(std::underlying_type<ENEMY_LIST>::type(dir) + 1);
+			return dir = ENEMY_LIST(std::underlying_type_t<ENEMY_LIST>(dir) + 1);
 		}
 
 	}

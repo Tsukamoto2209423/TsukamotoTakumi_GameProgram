@@ -68,8 +68,8 @@
 //---------------------------------
 CEffekseer::CEffekseer()
 {
-	ZeroMemory(&pos_, sizeof(pos_));
-	ZeroMemory(&rot_, sizeof(rot_));
+	pos_ = VGet(0.0f, 0.0f, 0.0f);
+	rot_ = VGet(0.0f, 0.0f, 0.0f);
 	m_scale = VGet(1.0f, 1.0f, 1.0f);
 	m_hndl = -1;
 	m_ID = -1;
@@ -90,8 +90,8 @@ CEffekseer::~CEffekseer()
 //---------------------------------
 void	CEffekseer::Reset(void)
 {
-	ZeroMemory(&pos_, sizeof(pos_));
-	ZeroMemory(&rot_, sizeof(rot_));
+	pos_ = VGet(0.0f, 0.0f, 0.0f);
+	rot_ = VGet(0.0f, 0.0f, 0.0f);
 	m_scale = VGet(1.0f, 1.0f, 1.0f);
 	m_hndl = -1;
 	m_isLoop = false;

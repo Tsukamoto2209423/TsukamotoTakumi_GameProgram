@@ -127,7 +127,7 @@ private:
 //		こちらは基本使わない
 class CEffekseer {
 protected:
-	VECTOR				pos_;			// エフェクトの再生位置
+	VECTOR				 pos_;			// エフェクトの再生位置
 	VECTOR				m_scale;		// エフェクトの倍率
 	VECTOR				rot_;			// エフェクトの回転
 	int					m_hndl;			// エフェクトハンドル

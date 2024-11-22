@@ -48,6 +48,8 @@ namespace BOUDAMA
 			DrawGraph(Common::WINDOW_ORIGIN, Common::WINDOW_ORIGIN, handles_[IMAGE::BACK_GROUND], true);
 			DrawRotaGraphF(Common::WINDOW_WIDTH_HALF_F, Common::WINDOW_HEIGHT_HALF_F + TITLE::AMPLITUDE * sinf(theta_), 1.0f, 0.0f, handles_[IMAGE::MAIN_TITLE], true);
 			DrawRotaGraphF(Common::WINDOW_WIDTH_HALF_F, Common::WINDOW_HEIGHT_HALF_F + TITLE::AMPLITUDE * sinf(theta_), 1.0f, 0.0f, handles_[IMAGE::THE_ENTER], true);
+			int* n = &handles_[IMAGE::THE_ENTER];
+			DrawRotaGraphF(Common::WINDOW_WIDTH_HALF_F, Common::WINDOW_HEIGHT_HALF_F + 50.0f, 1.0f, 0.0f, *n, true);
 
 			return;
 		}

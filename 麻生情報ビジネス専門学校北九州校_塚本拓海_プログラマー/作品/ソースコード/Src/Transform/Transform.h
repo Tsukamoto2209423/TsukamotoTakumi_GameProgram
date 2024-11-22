@@ -30,7 +30,7 @@ public:
 	inline void SetPos(float x, float y, float z) noexcept { pos_.x = x; pos_.y = y; pos_.z = z; }
 
 	//ˆÊ’u(XYZÀ•W)‚ğ“®‚©‚·
-	inline void MovePos(const Vector3D direction) noexcept { pos_ += direction; }
+	inline void MovePos(const Vector3D& direction) noexcept { pos_ += direction; }
 	inline void MovePos(float x, float y, float z) noexcept { pos_.x += x; pos_.y += y; pos_.z += z; }
 
 	//‰Šú‰»
@@ -103,6 +103,4 @@ public:
 
 	//Z²İ’è
 	inline void SetRotZ(float z) { rot_.z = z; }
-
-
 };

@@ -16,7 +16,7 @@ namespace BOUDAMA
 		moveAngleChangeCount_ = 0;
 		isAlive_ = true;
 		hp_ = 3;
-		radius_ = ENEMY_BOMBER::RADIUS;
+		radius_ = BOMBER::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
 		pos_ = MyMath::ZERO_VECTOR_3D;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
@@ -39,12 +39,12 @@ namespace BOUDAMA
 		findOutReactionCount_ = 0;
 		moveAngleChangeCount_ = 0;
 		knockBackTimeCount_ = 0;
-		scoreNum_ = ENEMY_MONSTER::ADD_SCORE_NUM;
+		scoreNum_ = MONSTER::ADD_SCORE_NUM;
 		state_ = ENEMY::STATE::SEARCH;
 		isAlive_ = false;
 		hp_ = 3;
-		radius_ = ENEMY_BOMBER::RADIUS;
-		pos_ = ENEMY_MONSTER::INIT_POS;
+		radius_ = BOMBER::RADIUS;
+		pos_ = MONSTER::INIT_POS;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
 		rot_ = MyMath::ZERO_VECTOR_3D;
 		dir_ = { 0.0f,0.0f,2.0f };
@@ -99,7 +99,7 @@ namespace BOUDAMA
 
 			//自分の速度を位置に加算し、上に上昇させる
 			pos_ += velocity_;
-			pos_.y += ENEMY_MONSTER::KNOCKBACK_Y_POWER;
+			pos_.y += MONSTER::KNOCKBACK_Y_POWER;
 
 			rot_.x += MyMath::PI_OVER_TEN;
 
@@ -111,7 +111,7 @@ namespace BOUDAMA
 		}
 
 		//重力をかけても地面にめり込まなければ重力処理をする
-		pos_.y - ENEMY::GRAVITY >= ENEMY_MONSTER::GROUND_POS_Y ? pos_.y -= ENEMY::GRAVITY : pos_.y = ENEMY_MONSTER::GROUND_POS_Y;
+		pos_.y - MONSTER::GRAVITY >= MONSTER::GROUND_POS_Y ? pos_.y -= MONSTER::GRAVITY : pos_.y = MONSTER::GROUND_POS_Y;
 
 		//プレイヤー探索状態
 		if (state_ == ENEMY::STATE::SEARCH)
@@ -119,23 +119,23 @@ namespace BOUDAMA
 			velocity_ += dir_.Normalize() * 0.125f;
 
 			//一定の速度を超えたら
-			if (velocity_.SquareL2Norm() > ENEMY_MONSTER::MAX_SPEED * ENEMY_MONSTER::MAX_SPEED)
+			if (velocity_.SquareL2Norm() > MONSTER::MAX_SPEED * MONSTER::MAX_SPEED)
 			{
-				velocity_ = velocity_.Normalize() * ENEMY_MONSTER::MAX_SPEED;
+				velocity_ = velocity_.Normalize() * MONSTER::MAX_SPEED;
 			}
 
 			pos_ += velocity_;
 
-			if (MyMath::Abs(pos_.x) > ENEMY_MONSTER::MAX_POS_X_Z)
+			if (MyMath::Abs(pos_.x) > MONSTER::MAX_POS_X_Z)
 			{
-				pos_.x = 0.0f < pos_.x ? ENEMY_MONSTER::MAX_POS_X_Z : -ENEMY_MONSTER::MAX_POS_X_Z;
+				pos_.x = 0.0f < pos_.x ? MONSTER::MAX_POS_X_Z : -MONSTER::MAX_POS_X_Z;
 				dir_ = -dir_;
 				velocity_ = -velocity_;
 			}
 
-			if (MyMath::Abs(pos_.z) > ENEMY_MONSTER::MAX_POS_X_Z)
+			if (MyMath::Abs(pos_.z) > MONSTER::MAX_POS_X_Z)
 			{
-				pos_.z = 0.0f < pos_.z ? ENEMY_MONSTER::MAX_POS_X_Z : -ENEMY_MONSTER::MAX_POS_X_Z;
+				pos_.z = 0.0f < pos_.z ? MONSTER::MAX_POS_X_Z : -MONSTER::MAX_POS_X_Z;
 
 				dir_ = -dir_;
 				velocity_ = -velocity_;
@@ -149,7 +149,7 @@ namespace BOUDAMA
 			//移動する角度切り替え時間計測
 			++moveAngleChangeCount_;
 
-			if (moveAngleChangeCount_ >= ENEMY_MONSTER::MOVEANGLE_CHANGE_MAX_NUM)
+			if (moveAngleChangeCount_ >= MONSTER::MOVEANGLE_CHANGE_MAX_NUM)
 			{
 				dir_ = dir_ * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)));
 
@@ -170,7 +170,7 @@ namespace BOUDAMA
 			}
 
 			//プレイヤーが近くにいたら
-			if ((playerPos - pos_).SquareL2Norm() < ENEMY_MONSTER::SQUARE_FIND_OUT_RANGE)
+			if ((playerPos - pos_).SquareL2Norm() < MONSTER::SQUARE_FIND_OUT_RANGE)
 			{
 				//プレイヤー発見状態に移行
 				state_ = ENEMY::STATE::FIND_OUT;
@@ -197,7 +197,7 @@ namespace BOUDAMA
 			MV1SetRotationXYZ(handle_, rot_);
 
 			//一定時間経ったら追いかけ状態に移行
-			if (findOutReactionCount_ >= ENEMY_MONSTER::REACTION_MAX_TIME)
+			if (findOutReactionCount_ >= MONSTER::REACTION_MAX_TIME)
 			{
 				state_ = ENEMY::STATE::CHASE;
 				findOutReactionCount_ = 0;
@@ -216,7 +216,7 @@ namespace BOUDAMA
 			dir_.y = 0.0f;
 
 			//単位ベクトルにしてスカラー倍し速度に加算
-			velocity_ += dir_.Normalize() * ENEMY_MONSTER::CHASE_SPEED;
+			velocity_ += dir_.Normalize() * MONSTER::CHASE_SPEED;
 
 			//位置に加算
 			pos_ += velocity_;
@@ -224,7 +224,7 @@ namespace BOUDAMA
 			rot_.y = atan2f(-dir_.x, -dir_.z);
 
 			//一定距離まで近づいたら
-			if (dir_.SquareL2Norm() < ENEMY_MONSTER::SQUARE_FIND_OUT_RANGE)
+			if (dir_.SquareL2Norm() < MONSTER::SQUARE_FIND_OUT_RANGE)
 			{
 				//攻撃溜め状態に移行
 				state_ = ENEMY::STATE::CHARGE;
@@ -254,13 +254,13 @@ namespace BOUDAMA
 			//攻撃溜め時間計測
 			++attackChargeCount_;
 
-			if (attackChargeCount_ > ENEMY_MONSTER::ATTACK_CHARGE_MAX_TIME)
+			if (attackChargeCount_ > MONSTER::ATTACK_CHARGE_MAX_TIME)
 			{
 				//攻撃状態に移行
 				state_ = ENEMY::STATE::ATTACK;
 
 				//最高速度に設定
-				velocity_ = dir_.Normalize() * ENEMY_MONSTER::MAX_SPEED * 2.0f;
+				velocity_ = dir_.Normalize() * MONSTER::MAX_SPEED * 2.0f;
 
 				//攻撃溜め時間初期化
 				attackChargeCount_ = 0;
@@ -276,16 +276,16 @@ namespace BOUDAMA
 		{
 			pos_ += velocity_;
 
-			if (MyMath::Abs(pos_.x) > ENEMY_MONSTER::MAX_POS_X_Z)
+			if (MyMath::Abs(pos_.x) > MONSTER::MAX_POS_X_Z)
 			{
-				pos_.x = 0.0f < pos_.x ? ENEMY_MONSTER::MAX_POS_X_Z : -ENEMY_MONSTER::MAX_POS_X_Z;
+				pos_.x = 0.0f < pos_.x ? MONSTER::MAX_POS_X_Z : -MONSTER::MAX_POS_X_Z;
 				dir_ = -dir_;
 				velocity_ = -velocity_;
 			}
 
-			if (MyMath::Abs(pos_.z) > ENEMY_MONSTER::MAX_POS_X_Z)
+			if (MyMath::Abs(pos_.z) > MONSTER::MAX_POS_X_Z)
 			{
-				pos_.z = 0.0f < pos_.z ? ENEMY_MONSTER::MAX_POS_X_Z : -ENEMY_MONSTER::MAX_POS_X_Z;
+				pos_.z = 0.0f < pos_.z ? MONSTER::MAX_POS_X_Z : -MONSTER::MAX_POS_X_Z;
 
 				dir_ = -dir_;
 				velocity_ = -velocity_;
@@ -298,7 +298,7 @@ namespace BOUDAMA
 			//攻撃時間計測
 			++attackTimeCount_;
 
-			if (attackTimeCount_ > ENEMY_MONSTER::ATTACK_MAX_TIME)
+			if (attackTimeCount_ > MONSTER::ATTACK_MAX_TIME)
 			{
 				state_ = ENEMY::STATE::SEARCH;
 
@@ -319,7 +319,7 @@ namespace BOUDAMA
 
 		MV1DrawModel(handle_);
 
-		DrawLine3D(pos_, pos_ + dir_.Normalize() * ENEMY_MONSTER::FIND_OUT_RANGE, GetColor(255, 0, 0));
+		DrawLine3D(pos_, pos_ + dir_.Normalize() * MONSTER::FIND_OUT_RANGE, GetColor(255, 0, 0));
 
 	}
 
@@ -328,7 +328,7 @@ namespace BOUDAMA
 	{
 		//初期位置設定
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359))))
-			* Matrix3D::GetTranslateMatrix(ENEMY_MONSTER::INIT_POS) * MyMath::ZERO_VECTOR_3D;
+			* Matrix3D::GetTranslateMatrix(MONSTER::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
 		//死者蘇生
 		isAlive_ = true;

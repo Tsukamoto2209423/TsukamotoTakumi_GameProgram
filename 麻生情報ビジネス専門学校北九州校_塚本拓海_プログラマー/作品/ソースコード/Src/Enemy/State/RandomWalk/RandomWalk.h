@@ -12,6 +12,12 @@ namespace BOUDAMA
 		//移動速度
 		float moveSpeed_;
 
+		//最大移動速度
+		float maxMoveSpeed_;
+
+		//最大移動速度の二乗
+		float squareMaxMoveSpeed_;
+
 		//移動可能な範囲
 		float maxMovementRange_;
 
@@ -22,13 +28,15 @@ namespace BOUDAMA
 		int directionChangeInterval_;
 
 	public:
-		explicit constexpr RandomWalk(const auto stateName, float moveSpeed, float maxMovementRange, int moveAngleChangeCount_, int directionChangeInterval) :
-			EnemyState(stateName), moveSpeed_(moveSpeed), maxMovementRange_(maxMovementRange),
-			directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
+		explicit constexpr RandomWalk(const auto stateName, float moveSpeed, float maxMoveSpeed,
+			float maxMovementRange, int moveAngleChangeCount_, int directionChangeInterval) :
+			EnemyState(stateName), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed * maxMoveSpeed),
+			maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
 
-		explicit constexpr RandomWalk(const auto myState, const auto nextState, float moveSpeed, float maxMovementRange, int moveAngleChangeCount_, int directionChangeInterval) :
-			EnemyState(myState, nextState), moveSpeed_(moveSpeed), maxMovementRange_(maxMovementRange),
-			directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
+		explicit constexpr RandomWalk(const auto myState, const auto nextState, float moveSpeed, float maxMoveSpeed,
+			float maxMovementRange, int moveAngleChangeCount_, int directionChangeInterval) :
+			EnemyState(myState, nextState), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed * maxMoveSpeed), 
+			maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
 
 
 		~RandomWalk() noexcept override = default;

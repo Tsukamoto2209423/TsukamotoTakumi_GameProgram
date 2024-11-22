@@ -161,6 +161,9 @@
     <ClCompile Include="Src\Enemy\State\Corpse\Corpse.cpp">
       <Filter>Enemy\State\Corpse</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Enemy\State\FindOut\FindOut.cpp">
+      <Filter>Enemy\State\FindOut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -285,6 +288,9 @@
     </Filter>
     <Filter Include="Enemy\State\Corpse">
       <UniqueIdentifier>{f642c82e-cd55-49e7-92d3-acc30a48a40a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\FindOut">
+      <UniqueIdentifier>{f2a000d5-a151-4252-9371-c279b983effc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -521,6 +527,9 @@
     </ClInclude>
     <ClInclude Include="Src\Enemy\State\Corpse\Corpse.h">
       <Filter>Enemy\State\Corpse</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\FindOut\FindOut.h">
+      <Filter>Enemy\State\FindOut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

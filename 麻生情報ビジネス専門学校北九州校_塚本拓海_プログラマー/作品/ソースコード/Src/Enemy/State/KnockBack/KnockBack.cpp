@@ -37,9 +37,6 @@ namespace BOUDAMA
 			velocity.y += KNOCK_BACK::SPEED;
 			owner->MovePos(velocity);
 
-			//X軸回転させる
-			owner->RotatePitch(MyMath::INVERSE_TWO_PI);
-
 			//ノックバック状態の時間計測
 			++timeCount_;
 		}

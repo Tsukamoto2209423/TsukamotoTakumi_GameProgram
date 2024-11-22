@@ -18,7 +18,7 @@ public:
 
 	//ƒnƒ“ƒhƒ‹Žæ“¾
 	inline int GetHandle(void) const noexcept { return handle_; }
+	int operator()(void) const noexcept { return handle_; }
 
-	int operator()() const noexcept { return handle_; }
 	void operator()(const char* name) { Load(name); }
 };

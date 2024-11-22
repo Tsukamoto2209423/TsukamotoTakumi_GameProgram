@@ -20,7 +20,7 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			//ノックバック状態の処理が最大回数されていたら
+			//死体状態の処理が最大回数されていたら
 			if (CORPSE::MAX_CORPSE_TIME_COUNT < timeCount_)
 			{
 				//初期化処理
@@ -31,7 +31,7 @@ namespace BOUDAMA
 				return;
 			}
 
-			//自分の速度を位置に加算し、上に上昇させる
+			//自分の速度を位置に加算し、斜め上に移動させる
 			Vector3D velocity = owner->GetVelocity();
 			velocity.y += CORPSE::SPEED;
 			owner->MovePos(velocity);
@@ -39,7 +39,7 @@ namespace BOUDAMA
 			//X軸回転させる
 			owner->RotatePitch(MyMath::INVERSE_TWO_PI);
 
-			//ノックバック状態の時間計測
+			//死体状態の時間計測
 			++timeCount_;
 		}
 	}

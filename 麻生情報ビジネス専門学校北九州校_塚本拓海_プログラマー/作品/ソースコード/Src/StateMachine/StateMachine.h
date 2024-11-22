@@ -55,8 +55,7 @@ namespace BOUDAMA
 		template<class StateElement, class StateNumber, class... Args>
 		void AddState(const StateNumber num, Args&&... args)
 		{
-			#ifdef _DEBUG
-
+#ifdef _DEBUG
 			//Šù‚É’Ç‰Á‚³‚ê‚Ä‚¢‚é‚È‚ç–ß‚é
 			for (const auto& state : stateVector_)
 			{
@@ -66,7 +65,7 @@ namespace BOUDAMA
 					__debugbreak();
 				}
 			}
-			#endif // !_DEBUG
+#endif // !_DEBUG
 
 			stateVector_.emplace_back(std::make_unique<StateElement>(num, args...));
 		}
@@ -80,21 +79,16 @@ namespace BOUDAMA
 			}
 		}
 
-		//Å‰‚©‚çn‚ß‚éó‘Ô‚ğİ’è
-		void SetStartState(const auto startStateName)
+		//w’è‚Ìó‘Ô‚ÌŠ—LÒİ’è
+		void SetStateOwner(const auto stateName, const auto& owner)
 		{
-			for (int index = 0; const auto & state : stateVector_)
+			for (const auto& state : stateVector_)
 			{
-				if (state->GetMyState() == startStateName)
+				if (state->GetMyState() == stateName)
 				{
-					currentStateIndex_ = index;
-					break;
+					state->SetOwner(owner);
 				}
-
-				++index;
 			}
-
-			stateVector_[currentStateIndex_]->Enter();
 		}
 
 		//Ÿ‚Ìó‘Ô‚É‘JˆÚ‚·‚é
@@ -112,6 +106,8 @@ namespace BOUDAMA
 
 				++index;
 			}
+
+			stateVector_[currentStateIndex_]->Enter();
 		}
 
 		/// <summary>
@@ -122,7 +118,7 @@ namespace BOUDAMA
 		/// </param>
 		void ChangeState(const auto changeStateName)
 		{
-			for (int index = 0; const auto & state : stateVector_)
+			for (int index = 0; const auto& state : stateVector_)
 			{
 				if (state->GetMyState() == changeStateName)
 				{
@@ -132,6 +128,8 @@ namespace BOUDAMA
 
 				++index;
 			}
+
+			stateVector_[currentStateIndex_]->Enter();
 		}
 
 		//‚·‚×‚Ä‚Ìó‘Ô‚ğíœ‚·‚é

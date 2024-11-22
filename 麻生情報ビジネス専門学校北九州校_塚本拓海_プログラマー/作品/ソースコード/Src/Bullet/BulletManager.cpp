@@ -62,7 +62,7 @@ namespace BOUDAMA
 	void BulletManager::Step(void)
 	{
 		//’eˆÚ“®ˆ—
-		for (auto bullet : bullets_)
+		for (auto& bullet : bullets_)
 		{
 			//ˆÚ“®’†‚Ì’e‚¾‚Á‚½ê‡
 			if (bullet->GetIsActive())
@@ -77,7 +77,7 @@ namespace BOUDAMA
 	void BulletManager::Draw(void)
 	{
 		//•`‰æ
-		for (auto bullet : bullets_)
+		for (auto& bullet : bullets_)
 		{
 			bullet->Draw();
 		}
@@ -90,7 +90,7 @@ namespace BOUDAMA
 		//”jŠüˆ—
 
 		//Žw‚µ‚Ä‚¢‚é‚Ì‚Í’e‚ÌŽÀ‘Ì
-		for (auto bullet = bullets_.begin(); bullet != bullets_.end();)
+		for (auto&& bullet = bullets_.begin(); bullet != bullets_.end();)
 		{
 			(*bullet)->Fin();
 

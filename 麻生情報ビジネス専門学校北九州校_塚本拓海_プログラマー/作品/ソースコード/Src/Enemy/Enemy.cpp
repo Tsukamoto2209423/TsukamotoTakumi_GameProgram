@@ -22,10 +22,10 @@ namespace BOUDAMA
 		isAlive_ = false;
 		hp_ = 3;
 		knockBackTimeCount_ = 0;
-		scoreNum_ = ENEMY::ADD_SCORE_NUM;
-		radius_ = ENEMY::RADIUS;
+		scoreNum_ = DARUMA::ADD_SCORE_NUM;
+		radius_ = DARUMA::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
-		pos_ = ENEMY::INIT_POS;
+		pos_ = DARUMA::INIT_POS;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
 		rot_ = MyMath::ZERO_VECTOR_3D;
 
@@ -35,7 +35,7 @@ namespace BOUDAMA
 		stateMachine_->AddState<Chase>(ENEMY_STATE::CHASE, 1.0f);
 		stateMachine_->AddState<KnockBack>(ENEMY_STATE::KNOCK_BACK, 60);
 
-		stateMachine_->SetStartState(ENEMY_STATE::CHASE);
+		stateMachine_->ChangeState(ENEMY_STATE::CHASE);
 	}
 
 	//行動処理関数
@@ -89,10 +89,10 @@ namespace BOUDAMA
 		velocity_ = playerPos - pos_;
 
 		//位置加算
-		pos_ += velocity_.Normalize() * ENEMY::SPEED;
+		pos_ += velocity_.Normalize() * DARUMA::SPEED;
 
 		//重力をかけても地面にめり込まなければ処理をする
-		pos_.y - ENEMY::GRAVITY > 10.0f ? pos_.y -= ENEMY::GRAVITY : pos_.y = 10.0f;
+		pos_.y - DARUMA::GRAVITY > 10.0f ? pos_.y -= DARUMA::GRAVITY : pos_.y = 10.0f;
 
 		//角度θ計算
 		rot_.y = atan2f(velocity_.x, velocity_.z) - DX_PI_F;
@@ -123,7 +123,7 @@ namespace BOUDAMA
 	{
 		//初期位置設定
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359)))) *
-			Matrix3D::GetTranslateMatrix(ENEMY::INIT_POS) * MyMath::ZERO_VECTOR_3D;
+			Matrix3D::GetTranslateMatrix(DARUMA::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
 		//死者蘇生
 		isAlive_ = true;

@@ -1,10 +1,16 @@
 #include "Chase.h"
+#include "Math/MyMath.h"
 
 namespace BOUDAMA
 {
 	//‰Šú‰»ˆ—ŠÖ”
 	void Chase::Enter(void)
 	{
+		if (const auto& owner = owner_.lock())
+		{
+			owner->SetVelocity(MyMath::ZERO_VECTOR_3D);
+		}
+
 		isTransitionToNextState_ = false;
 	}
 
@@ -13,7 +19,13 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			owner->AddVelocity(owner->GetDir());
+			owner->SetDir(owner->GetTargetPosition() - owner->GetPos());
+			owner->SetVelocity(owner->GetDir().Normalize() * moveSpeed_);
+
+			//Šp“xØ‚è‘Ö‚¦Ý’è
+			owner->RotateYaw(owner->GetDir());
+
+			//ˆÚ“®‚³‚¹‚é
 			owner->MovePos(owner->GetVelocity());	
 		}
 	}

@@ -91,7 +91,7 @@ namespace BOUDAMA
 	//“Ç‚İ‚İˆ—ŠÖ”
 	void EnemyManager::Load(const SCENE difficulty)
 	{
-		auto&& enemy = enemies_.begin();
+		int currentEnemyIndex = 0;
 
 		//‚»‚ê‚¼‚ê‚Ì“G‚ÌÅ‘å”•ªAƒ‚ƒfƒ‹“Ç‚İ‚İ
 		for (const auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
@@ -108,9 +108,9 @@ namespace BOUDAMA
 			//•¡»ƒ‚ƒfƒ‹“Ç‚İ‚İˆ—
 			for (int enemyIndex = 0; enemyIndex < maxEnemyNum; ++enemyIndex)
 			{
-				(*enemy)->Load(origineHandle);
+				enemies_[currentEnemyIndex]->Load(origineHandle);
 
-				++enemy;
+				++currentEnemyIndex;
 			}
 
 			MV1DeleteModel(origineHandle);

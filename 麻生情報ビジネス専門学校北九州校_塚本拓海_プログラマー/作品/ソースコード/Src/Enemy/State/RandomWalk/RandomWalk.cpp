@@ -10,7 +10,7 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			owner->GetDir().Normalize();
+			owner->SetDir(owner->GetDir().Normalize() * moveSpeed_);
 			owner->SetVelocity(MyMath::ZERO_VECTOR_3D);
 		}
 
@@ -22,8 +22,17 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
+			owner->AddVelocity(owner->GetDir());
+
+			//ˆê’è‚Ì‘¬“x‚ğ’´‚¦‚½‚ç
+			if (owner->GetVelocity().SquareL2Norm() > squareMaxMoveSpeed_)
+			{
+				owner->SetVelocity(owner->GetVelocity().Normalize() * maxMoveSpeed_);
+			}
+
 			owner->MovePos(owner->GetDir() * moveSpeed_);
 
+			//’[‚És‚Á‚½‚ç”½‘Î‚ğŒü‚­
 			if (maxMovementRange_ < MyMath::Abs(owner->GetPosX()) || maxMovementRange_ < MyMath::Abs(owner->GetPosZ()))
 			{
 				owner->GetDir().Inverse();

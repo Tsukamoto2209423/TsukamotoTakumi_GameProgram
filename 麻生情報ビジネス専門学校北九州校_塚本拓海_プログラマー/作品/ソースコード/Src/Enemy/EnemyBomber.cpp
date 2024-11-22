@@ -15,7 +15,7 @@ namespace BOUDAMA
 		handle_ = -1;
 		isAlive_ = false;
 		hp_ = 3;
-		radius_ = ENEMY_BOMBER::RADIUS;
+		radius_ = BOMBER::RADIUS;
 		state_ = ENEMY::STATE::SEARCH;
 		pos_ = MyMath::ZERO_VECTOR_3D;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
@@ -41,10 +41,10 @@ namespace BOUDAMA
 		handle_ = -1;
 		isAlive_ = false;
 		hp_ = 3;
-		radius_ = ENEMY_BOMBER::RADIUS;
+		radius_ = BOMBER::RADIUS;
 		knockBackTimeCount_ = 0;
 		state_ = ENEMY::STATE::SEARCH;
-		pos_ = ENEMY_BOMBER::INIT_POS;
+		pos_ = BOMBER::INIT_POS;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
 		rot_ = MyMath::ZERO_VECTOR_3D;
 
@@ -100,23 +100,23 @@ namespace BOUDAMA
 			velocity_ += dir_.Normalize() * 0.125f;
 
 			//一定の速度を超えたら
-			if (velocity_.SquareL2Norm() > ENEMY_BOMBER::MAX_SPEED * ENEMY_BOMBER::MAX_SPEED)
+			if (velocity_.SquareL2Norm() > BOMBER::MAX_SPEED * BOMBER::MAX_SPEED)
 			{
-				velocity_ = velocity_.Normalize() * ENEMY_BOMBER::MAX_SPEED;
+				velocity_ = velocity_.Normalize() * BOMBER::MAX_SPEED;
 			}
 
 			pos_ += velocity_;
 
-			if (MyMath::Abs(pos_.x) > ENEMY_BOMBER::MAX_POS_X_Z)
+			if (MyMath::Abs(pos_.x) > BOMBER::MAX_POS_X_Z)
 			{
-				pos_.x = 0.0f < pos_.x ? ENEMY_BOMBER::MAX_POS_X_Z : -ENEMY_BOMBER::MAX_POS_X_Z;
+				pos_.x = 0.0f < pos_.x ? BOMBER::MAX_POS_X_Z : -BOMBER::MAX_POS_X_Z;
 				dir_ = -dir_;
 				velocity_ = -velocity_;
 			}
 
-			if (MyMath::Abs(pos_.z) > ENEMY_BOMBER::MAX_POS_X_Z)
+			if (MyMath::Abs(pos_.z) > BOMBER::MAX_POS_X_Z)
 			{
-				pos_.z = 0.0f < pos_.z ? ENEMY_BOMBER::MAX_POS_X_Z : -ENEMY_BOMBER::MAX_POS_X_Z;
+				pos_.z = 0.0f < pos_.z ? BOMBER::MAX_POS_X_Z : -BOMBER::MAX_POS_X_Z;
 
 				dir_ = -dir_;
 				velocity_ = -velocity_;
@@ -130,7 +130,7 @@ namespace BOUDAMA
 			//移動する角度切り替え時間計測
 			++moveAngleChangeCount_;
 
-			if (moveAngleChangeCount_ >= ENEMY_BOMBER::MOVEANGLE_CHANGE_MAX_NUM)
+			if (moveAngleChangeCount_ >= BOMBER::MOVEANGLE_CHANGE_MAX_NUM)
 			{
 				dir_ = dir_ * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)));
 
@@ -151,7 +151,7 @@ namespace BOUDAMA
 			}
 
 			//プレイヤーが近くにいたら
-			if ((playerPos - pos_).SquareL2Norm() < ENEMY_BOMBER::SQUARE_FIND_OUT_RANGE)
+			if ((playerPos - pos_).SquareL2Norm() < BOMBER::SQUARE_FIND_OUT_RANGE)
 			{
 				//プレイヤー発見状態に移行
 				state_ = ENEMY::STATE::FIND_OUT;
@@ -178,7 +178,7 @@ namespace BOUDAMA
 			++findOutReactionCount_;
 
 			//一定時間経ったら追いかけ状態に移行
-			if (findOutReactionCount_ >= ENEMY_BOMBER::REACTION_MAX_TIME)
+			if (findOutReactionCount_ >= BOMBER::REACTION_MAX_TIME)
 			{
 				state_ = ENEMY::STATE::CHASE;
 				findOutReactionCount_ = 0;
@@ -196,7 +196,7 @@ namespace BOUDAMA
 			dir_ = playerPos - pos_;
 
 			//単位ベクトルにしてスカラー倍し速度に加算
-			velocity_ += dir_.Normalize() * ENEMY_BOMBER::CHASE_SPEED;
+			velocity_ += dir_.Normalize() * BOMBER::CHASE_SPEED;
 
 			//位置に加算
 			pos_ += velocity_;
@@ -204,7 +204,7 @@ namespace BOUDAMA
 			rot_.y = atan2f(-dir_.x, -dir_.z);
 
 			//一定距離まで近づいたら
-			if (dir_.SquareL2Norm() < ENEMY_BOMBER::SQUARE_CHASE_MIN_RANGE)
+			if (dir_.SquareL2Norm() < BOMBER::SQUARE_CHASE_MIN_RANGE)
 			{
 				//攻撃溜め状態に移行
 				state_ = ENEMY::STATE::CHARGE;
@@ -235,13 +235,13 @@ namespace BOUDAMA
 			MV1SetRotationXYZ(handle_, rot_);
 
 			//攻撃溜め時間経過
-			if (attackChargeCount_ > ENEMY_BOMBER::ATTACK_CHARGE_MAX_TIME)
+			if (attackChargeCount_ > BOMBER::ATTACK_CHARGE_MAX_TIME)
 			{
 				//攻撃状態に移行
 				state_ = ENEMY::STATE::ATTACK;
 
 				//最高速度に設定
-				velocity_ = dir_.Normalize() * ENEMY_BOMBER::MAX_SPEED * 2.0f;
+				velocity_ = dir_.Normalize() * BOMBER::MAX_SPEED * 2.0f;
 
 				//攻撃溜め時間初期化
 				attackChargeCount_ = 0;
@@ -278,7 +278,7 @@ namespace BOUDAMA
 	{
 		//初期位置設定
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))) *
-			Matrix3D::GetTranslateMatrix(ENEMY_BOMBER::INIT_POS) * MyMath::ZERO_VECTOR_3D;
+			Matrix3D::GetTranslateMatrix(BOMBER::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
 		//角度初期化
 		rot_ = { 0.0f,0.0f,0.0f };
