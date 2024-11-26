@@ -23,11 +23,12 @@ namespace BOUDAMA
 	void EnemyBase::AppearanceRequest(void)
 	{
 		//初期位置設定
-		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359))))
+		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)))
 			* Matrix3D::GetTranslateMatrix(Vector3D(0.0f, 0.0f, 3750.0f)) * MyMath::ZERO_VECTOR_3D;
 
 		//死者蘇生
 		isAlive_ = true;
+		isCollisionEnabled_ = true;
 
 		//位置・角度設定
 		MV1SetPosition(handle_, pos_);
@@ -40,18 +41,30 @@ namespace BOUDAMA
 
 	void EnemyBase::HitCalculation(void) {
 
-		//死亡処理
-		state_ = ENEMY::STATE::KNOCK_BACK;
+		--hp_;
+
+		if (hp_ <= 0)
+		{
+			stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
+
+			velocity_ = velocity_.Inverse() * ENEMY::KNOCK_BACK_BOOST;
+
+			return;
+		}
+
+		stateMachine_->ChangeState(ENEMY_STATE::KNOCK_BACK);
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
 	}
 
-	void EnemyBase::SetKnockBack(const Vector3D& hitObjectVelocity)
+	void EnemyBase::SetCorpseState(const Vector3D& hitObjectVelocity)
 	{
 		//ぶつかった相手の速度受け取り、吹っ飛ばす気持ちよさを出すためにKNOCK_BACK_BOOSTを掛けて増大させる
 		velocity_ = hitObjectVelocity * ENEMY::KNOCK_BACK_BOOST;
 
 		state_ = ENEMY::STATE::KNOCK_BACK;
+
+		stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
 		

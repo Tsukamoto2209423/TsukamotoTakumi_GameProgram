@@ -65,7 +65,7 @@ namespace BOUDAMA
 		inline bool IsOwnerExpired(void) const noexcept { return owner_.expired(); }
 
 		//‚­‚Á‚Â‚¢‚Ä‚¢‚él(Š—LÒ)æ“¾
-		inline std::shared_ptr<Object> GetOwner(void) const noexcept { return owner_.lock(); }
+		inline const auto GetOwner(void) const noexcept { return owner_.lock(); }
 
 		//Š—LÒİ’è
 		inline void SetOwner(const std::shared_ptr<Object>& owner) { owner_ = owner; }

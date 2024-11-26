@@ -67,7 +67,7 @@ namespace BOUDAMA
 		constexpr int HARD_MAX_NUM = 10;
 
 		//移動する角度切り替え時間
-		constexpr int MOVEANGLE_CHANGE_MAX_NUM = 180;
+		constexpr int DIRECTION_CHANGE_INTERVAL = 180;
 
 		//移動する角度切り替え時間
 		constexpr int REACTION_MAX_TIME = 120;
@@ -103,7 +103,7 @@ namespace BOUDAMA
 		constexpr float CHASE_SPEED = 6.75f;
 
 		//攻撃するときの速さ
-		constexpr float ATTACK_SPEED = 8.5f;
+		constexpr float ATTACK_SPEED = 60.5f;
 
 		//最大の速さ
 		constexpr float MAX_SPEED = 30.0f;
@@ -119,6 +119,9 @@ namespace BOUDAMA
 
 		//初期基準位置
 		constexpr Vector3D INIT_POS = { 0.0f,5.0f,1450.0f };
+
+		//敵の上に出現する「！」の距離(X軸,Y軸,Z軸)
+		constexpr Vector3D ADD_EXCLAMATION_DISTANCE = { 0.0f, 75.0f, 0.0f };
 
 	}
 
@@ -136,7 +139,7 @@ namespace BOUDAMA
 
 
 		//移動する角度切り替え時間
-		constexpr int MOVEANGLE_CHANGE_MAX_NUM = 180;
+		constexpr int DIRECTION_CHANGE_INTERVAL = 180;
 
 		//移動する角度切り替え時間
 		constexpr int REACTION_MAX_TIME = 120;
@@ -180,7 +183,7 @@ namespace BOUDAMA
 
 
 		//敵を発見したときに近づく最小の範囲
-		constexpr float CHASE_MIN_RANGE = 750.0f;
+		constexpr float CHASE_MIN_RANGE = 650.0f;
 
 		//敵を発見したときに近づく最小の範囲の二乗
 		constexpr float SQUARE_CHASE_MIN_RANGE = CHASE_MIN_RANGE * CHASE_MIN_RANGE;
@@ -201,12 +204,8 @@ namespace BOUDAMA
 		//敵は〇Fごとに出現する
 		constexpr int MAX_APPEAR_TIME = 20;
 
-		//敵の上に出現する「！」の画像のパス
-		constexpr char EXCLAMATION_PATH[] = { "Data/Image/Exclamation_Mark.PNG" };
-
 		//敵の上に出現する「！」の距離(X軸,Y軸,Z軸)
 		constexpr Vector3D ADD_EXCLAMATION_DISTANCE = { 0.0f, 75.0f, 0.0f };
-
 
 		//敵一覧
 		enum class ENEMY_LIST

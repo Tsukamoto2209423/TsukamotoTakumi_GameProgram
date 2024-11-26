@@ -12,14 +12,17 @@ namespace BOUDAMA
 		int reactionTimeCount_;
 
 		//最大継続時間
-		int maxReactionTimeCount_;
+		const int maxReactionTimeCount_;
 
-		//「！」の画像ハンドル
-		int exclamationMarkHandle_;
+		//「！」の画像を表示する際の距離
+		const Vector3D exclamationMarkDistance_;
 
 	public:
-		explicit constexpr FindOut(const auto stateName, int maxTime) : EnemyState(stateName), reactionTimeCount_(0), maxReactionTimeCount_(maxTime) {}
-		explicit constexpr FindOut(const auto myState, const auto nextState, int maxTime) : EnemyState(myState, nextState), reactionTimeCount_(0), maxReactionTimeCount_(maxTime) {}
+		explicit constexpr FindOut(const auto stateName, int maxTime, Vector3D exclamationMarkDistance) :
+			EnemyState(stateName), reactionTimeCount_(0), maxReactionTimeCount_(maxTime), exclamationMarkDistance_(exclamationMarkDistance) {}
+
+		explicit constexpr FindOut(const auto myState, const auto nextState, int maxTime, Vector3D exclamationMarkDistance) :
+			EnemyState(myState, nextState), reactionTimeCount_(0), maxReactionTimeCount_(maxTime), exclamationMarkDistance_(exclamationMarkDistance) {}
 
 		~FindOut() noexcept override = default;
 

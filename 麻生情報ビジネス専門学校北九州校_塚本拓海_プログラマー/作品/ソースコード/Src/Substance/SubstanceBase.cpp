@@ -40,10 +40,8 @@ namespace BOUDAMA
 	void SubstanceBase::Step(void)
 	{
 		//‚­‚Á‚Â‚¢‚Ä‚¢‚½‚çs‚¤
-		if (!owner_.expired())
+		if (const auto& owner = GetOwner())
 		{
-			const std::shared_ptr<Object>& owner = GetOwner();
-
 			//‚­‚Á‚Â‚¢‚½‚à‚Ì‚É’Ç]
 			Matrix3D retCalcMat = Matrix3D::GetTranslateMatrix(owner->GetPos())
 				* Matrix3D::GetYawMatrix(owner->GetRotY())
@@ -77,6 +75,12 @@ namespace BOUDAMA
 		if (velocity_.SquareL2Norm() < Common::KINDA_SMALL_NUMBER)
 		{
 			velocity_ = 0.0f;
+
+			//ˆÊ’uİ’è
+			MV1SetPosition(handle_, pos_);
+			MV1SetRotationXYZ(handle_, rot_);
+
+			return;
 		}
 
 		//Œ¸‘¬ˆ—‚ğ‚·‚é

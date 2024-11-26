@@ -55,6 +55,22 @@ namespace BOUDAMA
 				//移動する角度切り替え時間初期化
 				directionChangeTimeCount_ = 0;
 			}
+
+			//プレイヤーを視界の範囲内に居ないなら関数脱出
+			if (Vector3D::Dot(owner->GetDir(), owner->GetTargetPosition()) < 0.0f)
+			{
+				return;
+			}
+
+			//プレイヤーが近くにいたら
+			if ((owner->GetTargetPosition() - owner->GetPos()).SquareL2Norm() < squareFindOutRange_)
+			{
+				//プレイヤー発見状態に移行
+				nextStateName_ = ENEMY_STATE::FIND_OUT;
+				isTransitionToNextState_ = true;
+
+				return;
+			}
 		}
 	}
 }

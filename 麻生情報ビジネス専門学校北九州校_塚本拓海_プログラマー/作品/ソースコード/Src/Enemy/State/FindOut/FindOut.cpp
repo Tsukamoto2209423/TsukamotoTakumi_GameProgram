@@ -1,5 +1,6 @@
 #include "FindOut.h"
 #include "Math/MyMath.h"
+#include "Enemy/EnemyFlyweightImage.h"
 
 namespace BOUDAMA
 {
@@ -23,6 +24,18 @@ namespace BOUDAMA
 
 			//角度切り替え設定
 			owner->RotateYaw(owner->GetDir());
+
+			//「！」の画像を表示する
+			DrawBillboard3D(owner->GetPos() + exclamationMarkDistance_, 0.5f, 0.0f, 128.0f, 0.0f, EnemyFlyweightImage::GetImageHandle(FLYWEIGHT_IMAGE::EXCLAMATION), true);
+
+
+			++reactionTimeCount_;
+
+			if (maxReactionTimeCount_ < reactionTimeCount_)
+			{
+				reactionTimeCount_ = 0;
+				nextStateName_ = ENEMY_STATE::ATTACK;
+			}
 		}
 	}
 }

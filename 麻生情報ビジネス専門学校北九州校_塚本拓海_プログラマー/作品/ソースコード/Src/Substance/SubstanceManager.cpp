@@ -103,14 +103,11 @@ namespace BOUDAMA
 	//”jŠüˆ—ŠÖ”
 	void SubstanceManager::Fin(void)
 	{
-		for (auto&& substanceItr = substances_.cbegin(); substanceItr != substances_.cend();)
+		for (const auto& substanceItr : substances_)
 		{
-			(*substanceItr)->Fin();
-			substanceItr = substances_.erase(substanceItr);
+			substanceItr->Fin();
 		}
 
-		substances_.clear();
-		substances_.shrink_to_fit();
 	}
 
 	//ˆø”‚ÌêŠ‚©‚ç”ò‚ÑU‚è‚È‚ª‚çoŒ»‚·‚éˆ—

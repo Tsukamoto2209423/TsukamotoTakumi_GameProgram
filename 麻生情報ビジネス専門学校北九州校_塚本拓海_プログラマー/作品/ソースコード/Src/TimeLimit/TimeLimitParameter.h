@@ -8,7 +8,6 @@ namespace BOUDAMA
 		//最初に設定する制限時間(ミリ秒)
 		constexpr int INIT_TIME = 91000;
 
-
 		//最初に描画する右端の数字のX軸の位置
 		constexpr int INIT_NUM_POS_X = 1252;
 

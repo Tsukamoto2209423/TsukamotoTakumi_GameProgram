@@ -13,7 +13,7 @@ namespace BOUDAMA
 		int timeCount_;
 
 		//最大ノックバック継続時間
-		int maxTimeCount_;
+		const int maxTimeCount_;
 
 	public:
 		explicit constexpr KnockBack(const auto stateName, int maxTime) : EnemyState(stateName), timeCount_(0), maxTimeCount_(maxTime) {}
@@ -28,8 +28,4 @@ namespace BOUDAMA
 		void Execute(void) override;
 	};
 
-	namespace KNOCK_BACK
-	{
-		constexpr float SPEED = 1.0f;
-	}
 }

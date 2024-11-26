@@ -3,6 +3,12 @@
 
 namespace BOUDAMA
 {
+	namespace KNOCK_BACK
+	{
+		constexpr float SPEED = 10.0f;
+		constexpr float UP_SPEED = 3.0f;
+	}
+
 	//初期化処理関数
 	void KnockBack::Enter(void)
 	{
@@ -10,6 +16,8 @@ namespace BOUDAMA
 		{
 			Vector3D knockBackDirection = owner->GetPos() - owner->GetTargetPosition();
 			owner->SetVelocity(knockBackDirection.Normalize() * KNOCK_BACK::SPEED);
+
+			owner->SetIsCollisionEnabled(false);
 		}
 
 		isTransitionToNextState_ = false;
@@ -26,15 +34,17 @@ namespace BOUDAMA
 				//初期化処理
 				timeCount_ = 0;
 
+				//追尾状態に遷移
 				nextStateName_ = ENEMY_STATE::CHASE;
 				isTransitionToNextState_ = true;
+				owner->SetIsCollisionEnabled(true);
 
 				return;
 			}
 
 			//自分の速度を位置に加算し、上に上昇させる
 			Vector3D velocity = owner->GetVelocity();
-			velocity.y += KNOCK_BACK::SPEED;
+			velocity.y += KNOCK_BACK::UP_SPEED;
 			owner->MovePos(velocity);
 
 			//ノックバック状態の時間計測

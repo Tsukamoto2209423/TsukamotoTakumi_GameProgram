@@ -164,6 +164,12 @@
     <ClCompile Include="Src\Enemy\State\FindOut\FindOut.cpp">
       <Filter>Enemy\State\FindOut</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Enemy\EnemyFlyweightImage.cpp">
+      <Filter>Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Enemy\State\Attack\Attack.cpp">
+      <Filter>Enemy\State\Attack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -291,6 +297,9 @@
     </Filter>
     <Filter Include="Enemy\State\FindOut">
       <UniqueIdentifier>{f2a000d5-a151-4252-9371-c279b983effc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\Attack">
+      <UniqueIdentifier>{3e915a26-b476-44c9-b567-06aac7a51cc8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -530,6 +539,12 @@
     </ClInclude>
     <ClInclude Include="Src\Enemy\State\FindOut\FindOut.h">
       <Filter>Enemy\State\FindOut</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\EnemyFlyweightImage.h">
+      <Filter>Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\Attack\Attack.h">
+      <Filter>Enemy\State\Attack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

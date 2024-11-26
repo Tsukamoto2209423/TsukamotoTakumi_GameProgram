@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "EnemyMonster.h"
 #include "EnemyBomber.h"
+#include "EnemyFlyweightImage.h"
 #include "Player/Player.h"
 #include "Common/Common.h"
 #include <Input/GamePad/GamePad.h>
@@ -16,7 +17,6 @@ namespace BOUDAMA
 	//コンストラクタ
 	EnemyManager::EnemyManager()
 	{
-		exclamationMarkHandle_ = 0;
 		appearCountTime_[0] = 0;
 		deathCount_ = 0;
 		feverTimeCount_ = 0;
@@ -76,7 +76,7 @@ namespace BOUDAMA
 
 
 		//最初に敵を出現させておく
-		for (int appearNum = 0; const auto& enemy : enemies_)
+		for (int appearNum = 0; const auto & enemy : enemies_)
 		{
 			enemy->AppearanceRequest();
 			++appearNum;
@@ -116,8 +116,7 @@ namespace BOUDAMA
 			MV1DeleteModel(origineHandle);
 		}
 
-		exclamationMarkHandle_ = LoadGraph(ENEMY_MANAGER::EXCLAMATION_PATH);
-
+		EnemyFlyweightImage::Load();
 	}
 
 	//敵総合処理
@@ -142,10 +141,10 @@ namespace BOUDAMA
 		{
 			enemy->Draw();
 
-			//プレイヤー発見状態なら「！」の画像を表示する
 			if (enemy->GetState() == ENEMY::STATE::FIND_OUT)
 			{
-				DrawBillboard3D(enemy->GetPos() + ENEMY_MANAGER::ADD_EXCLAMATION_DISTANCE, 0.5f, 0.0f, 128.0f, 0.0f, exclamationMarkHandle_, true);
+				//「！」の画像を表示する
+				DrawBillboard3D(enemy->GetPos() + ENEMY_MANAGER::ADD_EXCLAMATION_DISTANCE, 0.5f, 0.0f, 128.0f, 0.0f, EnemyFlyweightImage::GetImageHandle(FLYWEIGHT_IMAGE::EXCLAMATION), true);
 			}
 		}
 	}
@@ -154,21 +153,14 @@ namespace BOUDAMA
 	void EnemyManager::Fin(void)
 	{
 		//破棄処理
-		DeleteGraph(exclamationMarkHandle_);
-		exclamationMarkHandle_ = -1;
-
-		//消去処理
-		for (auto&& itr = enemies_.cbegin(); itr != enemies_.cend();)
+		for (const auto& enemyItr : enemies_)
 		{
 			//モデルデータ等消去
-			(*itr)->Fin();
-			//vectorから消去
-			itr = enemies_.erase(itr);
+			enemyItr->Fin();
 		}
 
-		//確保した記憶領域を再構築
-		enemies_.clear();
-		enemies_.shrink_to_fit();
+
+		EnemyFlyweightImage::Fin();
 	}
 
 	//出現処理を纏めた関数
@@ -192,20 +184,18 @@ namespace BOUDAMA
 			//それぞれの敵の次に出現するまでの時間を計測する
 			++appearCountTime_[kindNum];
 
-			//経過していないなら実行しない
-			if (appearCountTime_[kindNum] < ENEMY_MANAGER::APPEAR_MAX_TIME_LIST[kindNum])
+			//経過していたら実行
+			if (ENEMY_MANAGER::APPEAR_MAX_TIME_LIST[kindNum] <= appearCountTime_[kindNum])
 			{
-				//次の敵の配列ブロックの先頭位置を取得
-				enemyArrayIndex += ENEMY_MANAGER::MAX_NUM_LIST[kindNum];
+				//計測初期化
+				appearCountTime_[kindNum] = 0;
 
-				continue;
+				//経過していたら
+				AppearanceRequest(kindNum, enemyArrayIndex);
 			}
 
-			//計測初期化
-			appearCountTime_[kindNum] = 0;
-
-			//経過していたら
-			AppearanceRequest(kindNum, enemyArrayIndex);
+			//次の敵の配列ブロックの先頭位置を取得
+			enemyArrayIndex += ENEMY_MANAGER::MAX_NUM_LIST[kindNum];
 		}
 	}
 

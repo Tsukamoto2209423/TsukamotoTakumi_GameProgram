@@ -2,6 +2,7 @@
 #include "EnemyParameter.h"
 #include <Math/MyMath.h>
 #include <Matrix/Matrix3D.h>
+#include "State/RandomWalk/RandomWalk.h"
 
 namespace BOUDAMA
 {
@@ -55,10 +56,10 @@ namespace BOUDAMA
 
 		pos_ *= Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)));
 
-
-
 		stateMachine_ = std::make_unique<EnemyBase::StateMachineType>();
 
+		stateMachine_->AddState<RandomWalk>(ENEMY_STATE::RANDOM_WALK, ENEMY_STATE::FIND_OUT,
+			MONSTER::SPEED, MONSTER::MAX_SPEED, MONSTER::FIND_OUT_RANGE, MONSTER::MAX_POS_X_Z, MONSTER::DIRECTION_CHANGE_INTERVAL);
 
 		MV1SetScale(handle_, VECTOR(2.0f, 2.0f, 2.0f));
 
@@ -72,6 +73,8 @@ namespace BOUDAMA
 		{
 			return;
 		}
+
+		targetPosition_ = playerPos;
 
 		//ノックバック状態の処理
 		if (state_ == ENEMY::STATE::KNOCK_BACK)
@@ -149,7 +152,7 @@ namespace BOUDAMA
 			//移動する角度切り替え時間計測
 			++moveAngleChangeCount_;
 
-			if (moveAngleChangeCount_ >= MONSTER::MOVEANGLE_CHANGE_MAX_NUM)
+			if (moveAngleChangeCount_ >= MONSTER::DIRECTION_CHANGE_INTERVAL)
 			{
 				dir_ = dir_ * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)));
 

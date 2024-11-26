@@ -19,9 +19,6 @@ namespace BOUDAMA
 		//敵出現時間計測
 		int appearCountTime_[static_cast<int>(ENEMY_MANAGER::ENEMY_LIST::ALL_NUM)];
 
-		//「！」の画像ハンドル
-		int exclamationMarkHandle_;
-
 		//死亡数
 		int deathCount_;
 

@@ -64,6 +64,7 @@ namespace BOUDAMA
 			return;
 		}
 
+		targetPosition_ = playerPos;
 
 		if (state_ == ENEMY::STATE::KNOCK_BACK)
 		{
@@ -130,7 +131,7 @@ namespace BOUDAMA
 			//ˆÚ“®‚·‚éŠp“xØ‚è‘Ö‚¦ŽžŠÔŒv‘ª
 			++moveAngleChangeCount_;
 
-			if (moveAngleChangeCount_ >= BOMBER::MOVEANGLE_CHANGE_MAX_NUM)
+			if (moveAngleChangeCount_ >= BOMBER::DIRECTION_CHANGE_INTERVAL)
 			{
 				dir_ = dir_ * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)));
 

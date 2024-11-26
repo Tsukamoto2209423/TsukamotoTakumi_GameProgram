@@ -121,10 +121,8 @@ namespace BOUDAMA
 			//FPS計算
 			FrameRate::CalcFPS();
 #ifdef _DEBUG
-
 			//FPS表示
 			FrameRate::DrawFPS();
-
 #endif // _DEBUG
 
 			//フリップ関数（ループの終わりに１度だけ行う）

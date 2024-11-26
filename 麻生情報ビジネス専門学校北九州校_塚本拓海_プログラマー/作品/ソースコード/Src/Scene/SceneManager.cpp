@@ -85,8 +85,6 @@ namespace BOUDAMA
 	{
 		sceneObjectPointer_->Fin();
 		fade_.Fin();
-
-		sceneObjectPointer_.reset();
 	}
 
 	//ê–Êì¬ŠÖ”

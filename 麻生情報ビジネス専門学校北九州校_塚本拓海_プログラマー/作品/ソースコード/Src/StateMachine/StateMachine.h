@@ -107,6 +107,7 @@ namespace BOUDAMA
 				++index;
 			}
 
+			//‘JˆÚæ‚Ìó‘Ô‚Ì‰Šú‰»
 			stateVector_[currentStateIndex_]->Enter();
 		}
 
@@ -129,6 +130,7 @@ namespace BOUDAMA
 				++index;
 			}
 
+			//‘JˆÚæ‚Ìó‘Ô‚Ì‰Šú‰»
 			stateVector_[currentStateIndex_]->Enter();
 		}
 

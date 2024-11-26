@@ -7,6 +7,9 @@ namespace BOUDAMA
 		//待機
 		IDLE,
 
+		//ランダムウォーク
+		RANDOM_WALK,
+
 		//プレイヤー探索
 		SEARCH,
 
@@ -25,6 +28,8 @@ namespace BOUDAMA
 		//ノックバック
 		KNOCK_BACK,
 
+		//死体状態
+		CORPSE
 	};
 
 }

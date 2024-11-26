@@ -18,6 +18,9 @@ namespace BOUDAMA
 		//最大移動速度の二乗
 		float squareMaxMoveSpeed_;
 
+		//発見可能範囲の二乗
+		float squareFindOutRange_;
+
 		//移動可能な範囲
 		float maxMovementRange_;
 
@@ -25,18 +28,18 @@ namespace BOUDAMA
 		int directionChangeTimeCount_;
 
 		//方向ベクトルを変更する間隔
-		int directionChangeInterval_;
+		const int directionChangeInterval_;
 
 	public:
-		explicit constexpr RandomWalk(const auto stateName, float moveSpeed, float maxMoveSpeed,
-			float maxMovementRange, int moveAngleChangeCount_, int directionChangeInterval) :
-			EnemyState(stateName), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed * maxMoveSpeed),
-			maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
+		explicit constexpr RandomWalk(const auto stateName, float moveSpeed, float maxMoveSpeed, float FindOutRange,
+			float maxMovementRange, int directionChangeInterval) :
+			EnemyState(stateName), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed* maxMoveSpeed),
+			squareFindOutRange_(FindOutRange * FindOutRange), maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
 
-		explicit constexpr RandomWalk(const auto myState, const auto nextState, float moveSpeed, float maxMoveSpeed,
-			float maxMovementRange, int moveAngleChangeCount_, int directionChangeInterval) :
-			EnemyState(myState, nextState), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed * maxMoveSpeed), 
-			maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
+		explicit constexpr RandomWalk(const auto myState, const auto nextState, float moveSpeed, float maxMoveSpeed, float FindOutRange,
+			float maxMovementRange, int directionChangeInterval) :
+			EnemyState(myState, nextState), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed* maxMoveSpeed),
+			squareFindOutRange_(FindOutRange * FindOutRange), maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
 
 
 		~RandomWalk() noexcept override = default;

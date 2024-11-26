@@ -41,8 +41,10 @@
     <ClCompile Include="src\Enemy\Enemy.cpp" />
     <ClCompile Include="Src\Enemy\EnemyBase.cpp" />
     <ClCompile Include="Src\Enemy\EnemyBomber.cpp" />
+    <ClCompile Include="Src\Enemy\EnemyFlyweightImage.cpp" />
     <ClCompile Include="src\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Src\Enemy\EnemyMonster.cpp" />
+    <ClCompile Include="Src\Enemy\State\Attack\Attack.cpp" />
     <ClCompile Include="Src\Enemy\State\Chase\Chase.cpp" />
     <ClCompile Include="Src\Enemy\State\Corpse\Corpse.cpp" />
     <ClCompile Include="Src\Enemy\State\FindOut\FindOut.cpp" />
@@ -108,9 +110,11 @@
     <ClInclude Include="src\Enemy\Enemy.h" />
     <ClInclude Include="Src\Enemy\EnemyBase.h" />
     <ClInclude Include="Src\Enemy\EnemyBomber.h" />
+    <ClInclude Include="Src\Enemy\EnemyFlyweightImage.h" />
     <ClInclude Include="src\Enemy\EnemyManager.h" />
     <ClInclude Include="Src\Enemy\EnemyMonster.h" />
     <ClInclude Include="Src\Enemy\EnemyParameter.h" />
+    <ClInclude Include="Src\Enemy\State\Attack\Attack.h" />
     <ClInclude Include="Src\Enemy\State\Chase\Chase.h" />
     <ClInclude Include="Src\Enemy\State\Corpse\Corpse.h" />
     <ClInclude Include="Src\Enemy\State\EnemyState.h" />
@@ -174,6 +178,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -188,6 +193,7 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
+    <EnableASAN>false</EnableASAN>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">

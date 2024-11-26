@@ -54,19 +54,21 @@ namespace BOUDAMA
 
 		//狙っている物体の位置
 		Vector3D targetPosition_;
-
-		//吹っ飛ばされて消えるまでの時間計測
+		  
 		int knockBackTimeCount_;
 
 		//倒されたときにスコアに加算される点数
 		int scoreNum_;
 
-		//当たっているか判定するフラグ
-		bool isInCollision_;
+		//当たり判定有効フラグ
+		bool isCollisionEnabled_;
+
+		//無敵か？
+		bool isInvincible_;
 
 	public:
 		//コンストラクタ
-		constexpr EnemyBase() : scoreNum_(0), isInCollision_(false) {}
+		constexpr EnemyBase() : scoreNum_(0), isCollisionEnabled_(false), isInvincible_(false) {}
 
 		//デストラクタ
 		virtual ~EnemyBase() = default;
@@ -82,7 +84,7 @@ namespace BOUDAMA
 
 		virtual void HitCalculation(void) override;
 
-		virtual void SetKnockBack(const Vector3D& hitObjectVelocity);
+		virtual void SetCorpseState(const Vector3D& hitObjectVelocity);
 
 		//状態取得
 		inline ENEMY::STATE GetState(void) const { return state_; }
@@ -94,8 +96,11 @@ namespace BOUDAMA
 		//倒された時に加算される点数取得
 		inline int GetScoreNum(void) const { return scoreNum_; }
 
-		inline bool IsInCollision(void) const noexcept { return isInCollision_; }
-		inline bool SetIsInCollision(bool isInCollision) noexcept { isInCollision_ = isInCollision; }
+		inline bool IsCollisionEnabled(void) const noexcept { return isCollisionEnabled_; }
+		inline bool SetIsCollisionEnabled(bool isInCollision) noexcept { isCollisionEnabled_ = isInCollision; }
+
+		//無敵か？
+		inline bool IsInvincible(void) const noexcept { return isInvincible_; };
 
 		void SetStateMachineOwner(const auto& owner)
 		{

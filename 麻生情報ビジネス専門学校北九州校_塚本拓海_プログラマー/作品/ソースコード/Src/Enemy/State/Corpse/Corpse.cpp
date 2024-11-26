@@ -3,13 +3,19 @@
 
 namespace BOUDAMA
 {
+	namespace CORPSE
+	{
+		constexpr int MAX_CORPSE_TIME_COUNT = 60;
+		constexpr float SPEED = 8.5f;
+		constexpr float UP_SPEED = 7.5f;
+	}
+
 	//‰Šú‰»ˆ—ŠÖ”
 	void Corpse::Enter(void)
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			Vector3D knockBackDirection = owner->GetPos() - owner->GetTargetPosition();
-			owner->SetVelocity(knockBackDirection.Normalize() * CORPSE::SPEED);
+			owner->SetIsCollisionEnabled(false);
 		}
 
 		isTransitionToNextState_ = false;
@@ -33,7 +39,7 @@ namespace BOUDAMA
 
 			//Ž©•ª‚Ì‘¬“x‚ðˆÊ’u‚É‰ÁŽZ‚µAŽÎ‚ßã‚ÉˆÚ“®‚³‚¹‚é
 			Vector3D velocity = owner->GetVelocity();
-			velocity.y += CORPSE::SPEED;
+			velocity.y += CORPSE::UP_SPEED;
 			owner->MovePos(velocity);
 
 			//XŽ²‰ñ“]‚³‚¹‚é

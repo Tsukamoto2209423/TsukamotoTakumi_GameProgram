@@ -240,7 +240,7 @@ namespace BOUDAMA
 				player->AddComboNum();
 				Score::AddScore(enemy->GetScoreNum());
 
-				enemy->SetKnockBack(player->GetVelocity());
+				enemy->SetCorpseState(player->GetVelocity());
 
 				substanceManager.FlyAppearCalculation(enemy->GetPos());
 			}
@@ -351,7 +351,7 @@ namespace BOUDAMA
 
 					player->SubVelocity(enemy->GetVelocity());
 
-					enemy->SetKnockBack(substance->GetOwner()->GetVelocity());
+					enemy->SetCorpseState(substance->GetOwner()->GetVelocity());
 
 					continue;
 				}
@@ -360,7 +360,7 @@ namespace BOUDAMA
 				if (substance->IsOwnerNotInvincible())
 				{
 					player->HitCalculation();
-					enemy->SetKnockBack(-enemy->GetDir());
+					enemy->SetCorpseState(-enemy->GetDir());
 
 					continue;
 				}
@@ -370,7 +370,7 @@ namespace BOUDAMA
 				player->AddComboNum();
 				Score::AddScore(enemy->GetScoreNum());
 
-				enemy->SetKnockBack(substance->GetOwner()->GetVelocity());
+				enemy->SetCorpseState(substance->GetOwner()->GetVelocity());
 
 				substanceManager.RandomFlyAppearCalculation(enemy->GetPos());
 
@@ -384,54 +384,55 @@ namespace BOUDAMA
 	{
 		for (const auto& playerSubstance : player->GetAttachedSubstance())
 		{
-			const auto& substance = playerSubstance.lock();
-
-			for (const auto& hitSubstance : substanceManager.GetSubstance())
+			if (const auto& substance = playerSubstance.lock())
 			{
-				//同じものを比較しようとしている場合は次に行く
-				if (substance == hitSubstance)
+				for (const auto& hitSubstance : substanceManager.GetSubstance())
 				{
-					continue;
-				}
-
-				//くっついていたら飛ばす
-				if (!hitSubstance->IsOwnerExpired())
-				{
-					continue;
-				}
-
-				if (!hitSubstance->GetIsActive())
-				{
-					continue;
-				}
-
-				if (Collision::IsHitSphere(substance->GetPos(), hitSubstance->GetPos(), substance->GetRadius(), hitSubstance->GetRadius()))
-				{
-					//位置が重ならないようにする
-					Vector3D substanceToSubstanceVector = hitSubstance->GetPos() - substance->GetPos();
-					hitSubstance->SetPos(substance->GetPos() + substanceToSubstanceVector.Normalize() * (substance->GetRadius() + hitSubstance->GetRadius()));
-
-					//くっついていたら
-					if (substance->IsOwnerExpired())
+					//同じものを比較しようとしている場合は次に行く
+					if (substance == hitSubstance)
 					{
-						hitSubstance->AttachToObject(substance);
-					}
-					else
-					{
-						hitSubstance->AttachToObject(substance->GetOwner());
+						continue;
 					}
 
-					Score::AddScore(100);
+					//くっついていたら飛ばす
+					if (!hitSubstance->IsOwnerExpired())
+					{
+						continue;
+					}
+
+					if (!hitSubstance->GetIsActive())
+					{
+						continue;
+					}
+
+					if (Collision::IsHitSphere(substance->GetPos(), hitSubstance->GetPos(), substance->GetRadius(), hitSubstance->GetRadius()))
+					{
+						//位置が重ならないようにする
+						Vector3D substanceToSubstanceVector = hitSubstance->GetPos() - substance->GetPos();
+						hitSubstance->SetPos(substance->GetPos() + substanceToSubstanceVector.Normalize() * (substance->GetRadius() + hitSubstance->GetRadius()));
+
+						//くっついていたら
+						if (substance->IsOwnerExpired())
+						{
+							hitSubstance->AttachToObject(substance);
+						}
+						else
+						{
+							hitSubstance->AttachToObject(substance->GetOwner());
+						}
+
+						Score::AddScore(100);
+					}
+
+
+					if (Collision::IsHitSphere(substance->GetPos(), hitSubstance->GetPos(), 2.5f * substance->GetRadius(), hitSubstance->GetRadius()))
+					{
+						substance->ChasePosCalculation(hitSubstance->GetPos());
+
+						continue;
+					}
+
 				}
-
-
-				if (Collision::IsHitSphere(substance->GetPos(), hitSubstance->GetPos(), 2.5f * substance->GetRadius(), hitSubstance->GetRadius()))
-				{
-					substance->ChasePosCalculation(hitSubstance->GetPos());
-
-					continue;
-				}
-
 			}
 		}
 	}

@@ -13,7 +13,7 @@ namespace BOUDAMA
 		int timeCount_;
 
 		//€‘Ìó‘Ô‚Å‚Á”ò‚Î‚³‚ê‚éÅ‘åŠÔ
-		int maxTimeCount_;
+		const int maxTimeCount_;
 
 	public:
 		explicit constexpr Corpse(const auto stateName, int maxTime) : EnemyState(stateName), timeCount_(0), maxTimeCount_(maxTime) {}
@@ -28,9 +28,4 @@ namespace BOUDAMA
 		void Execute(void) override;
 	};
 
-	namespace CORPSE
-	{
-		constexpr int MAX_CORPSE_TIME_COUNT = 60;
-		constexpr float SPEED = 7.5f;
-	}
 }
