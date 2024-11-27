@@ -19,6 +19,9 @@ namespace BOUDAMA
 		//ハードモードかエンドレスモードの敵の最大数
 		constexpr int HARD_MAX_NUM = 80;
 
+		//体力
+		constexpr int HP = 3;
+
 		//半径
 		constexpr float RADIUS = 50.0f;
 
@@ -66,6 +69,9 @@ namespace BOUDAMA
 		//ハードモードかエンドレスモードの敵の最大数
 		constexpr int HARD_MAX_NUM = 10;
 
+		//体力
+		constexpr int HP = 3;
+
 		//移動する角度切り替え時間
 		constexpr int DIRECTION_CHANGE_INTERVAL = 180;
 
@@ -109,7 +115,7 @@ namespace BOUDAMA
 		constexpr float MAX_SPEED = 30.0f;
 
 		//敵を発見できる範囲
-		constexpr float FIND_OUT_RANGE = 800.0f;
+		constexpr float FIND_OUT_RANGE = 900.0f;
 
 		//敵を発見できる範囲の二乗
 		constexpr float SQUARE_FIND_OUT_RANGE = FIND_OUT_RANGE * FIND_OUT_RANGE;
@@ -203,6 +209,9 @@ namespace BOUDAMA
 
 		//敵は〇Fごとに出現する
 		constexpr int MAX_APPEAR_TIME = 20;
+
+		//X軸とZ軸で行ける最大の位置
+		constexpr float MAX_POS_X_Z = 7000.0f;
 
 		//敵の上に出現する「！」の距離(X軸,Y軸,Z軸)
 		constexpr Vector3D ADD_EXCLAMATION_DISTANCE = { 0.0f, 75.0f, 0.0f };

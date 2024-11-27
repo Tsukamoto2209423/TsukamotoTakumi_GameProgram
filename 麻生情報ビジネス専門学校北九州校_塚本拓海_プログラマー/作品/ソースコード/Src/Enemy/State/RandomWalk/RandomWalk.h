@@ -5,6 +5,13 @@
 
 namespace BOUDAMA
 {
+	namespace RANDOM_WALK
+	{
+		constexpr int DIRECTION_CHANGE_INTERVAL = 150;
+
+		constexpr float MAX_MOVEMENT_RANGE = 7000.0f;
+	}
+
 	//ランダムウォーク状態
 	class RandomWalk : public EnemyState<EnemyBase>
 	{
@@ -32,12 +39,12 @@ namespace BOUDAMA
 
 	public:
 		explicit constexpr RandomWalk(const auto stateName, float moveSpeed, float maxMoveSpeed, float FindOutRange,
-			float maxMovementRange, int directionChangeInterval) :
+			float maxMovementRange = RANDOM_WALK::MAX_MOVEMENT_RANGE, int directionChangeInterval = RANDOM_WALK::DIRECTION_CHANGE_INTERVAL) :
 			EnemyState(stateName), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed* maxMoveSpeed),
 			squareFindOutRange_(FindOutRange * FindOutRange), maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
 
 		explicit constexpr RandomWalk(const auto myState, const auto nextState, float moveSpeed, float maxMoveSpeed, float FindOutRange,
-			float maxMovementRange, int directionChangeInterval) :
+			float maxMovementRange = RANDOM_WALK::MAX_MOVEMENT_RANGE, int directionChangeInterval = RANDOM_WALK::DIRECTION_CHANGE_INTERVAL) :
 			EnemyState(myState, nextState), moveSpeed_(moveSpeed), maxMoveSpeed_(maxMoveSpeed), squareMaxMoveSpeed_(maxMoveSpeed* maxMoveSpeed),
 			squareFindOutRange_(FindOutRange * FindOutRange), maxMovementRange_(maxMovementRange), directionChangeTimeCount_(0), directionChangeInterval_(directionChangeInterval) {}
 
@@ -50,4 +57,5 @@ namespace BOUDAMA
 		//行動処理関数
 		void Execute(void) override;
 	};
+
 }

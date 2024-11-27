@@ -40,8 +40,6 @@ namespace BOUDAMA
 		//oŒ»ˆ—ŠÖ”
 		void AppearanceRequest(void) override;
 
-		//“–‚½‚è”»’èˆ—
-		void HitCalculation(void) override;
 
 	};
 }

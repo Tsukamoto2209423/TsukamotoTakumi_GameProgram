@@ -62,8 +62,6 @@ namespace BOUDAMA
 		//ぶつかった相手の速度受け取り、吹っ飛ばす気持ちよさを出すためにKNOCK_BACK_BOOSTを掛けて増大させる
 		velocity_ = hitObjectVelocity * ENEMY::KNOCK_BACK_BOOST;
 
-		state_ = ENEMY::STATE::KNOCK_BACK;
-
 		stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);

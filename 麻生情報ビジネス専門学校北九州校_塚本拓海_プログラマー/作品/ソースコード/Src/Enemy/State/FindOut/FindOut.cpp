@@ -35,6 +35,7 @@ namespace BOUDAMA
 			{
 				reactionTimeCount_ = 0;
 				nextStateName_ = ENEMY_STATE::ATTACK;
+				isTransitionToNextState_ = true;
 			}
 		}
 	}

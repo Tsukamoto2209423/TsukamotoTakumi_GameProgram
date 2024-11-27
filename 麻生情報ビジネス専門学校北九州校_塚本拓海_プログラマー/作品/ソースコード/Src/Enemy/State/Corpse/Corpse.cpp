@@ -7,7 +7,7 @@ namespace BOUDAMA
 	{
 		constexpr int MAX_CORPSE_TIME_COUNT = 60;
 		constexpr float SPEED = 8.5f;
-		constexpr float UP_SPEED = 7.5f;
+		constexpr float UP_SPEED = 19.5f;
 	}
 
 	//初期化処理関数
@@ -26,17 +26,6 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			//死体状態の処理が最大回数されていたら
-			if (CORPSE::MAX_CORPSE_TIME_COUNT < timeCount_)
-			{
-				//初期化処理
-				timeCount_ = 0;
-
-				owner->SetIsActive(false);
-
-				return;
-			}
-
 			//自分の速度を位置に加算し、斜め上に移動させる
 			Vector3D velocity = owner->GetVelocity();
 			velocity.y += CORPSE::UP_SPEED;
@@ -47,6 +36,23 @@ namespace BOUDAMA
 
 			//死体状態の時間計測
 			++timeCount_;
+
+			//死体状態の処理が最大回数されていたら
+			if (CORPSE::MAX_CORPSE_TIME_COUNT < timeCount_)
+			{
+				//初期化処理
+				timeCount_ = 0;
+
+				owner->ResetPos();
+				owner->ResetRot();
+				owner->ResetDir();
+
+				isTransitionToNextState_ = true;
+
+				owner->SetIsActive(false);
+
+				return;
+			}
 		}
 	}
 }

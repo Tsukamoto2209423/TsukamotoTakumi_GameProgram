@@ -57,7 +57,7 @@ namespace BOUDAMA
 			}
 
 			//ƒvƒŒƒCƒ„[‚ðŽ‹ŠE‚Ì”ÍˆÍ“à‚É‹‚È‚¢‚È‚çŠÖ”’Eo
-			if (Vector3D::Dot(owner->GetDir(), owner->GetTargetPosition()) < 0.0f)
+			if (Vector3D::Dot(owner->GetDir(), owner->GetTargetPosition()) < MyMath::PI_OVER_TWENTY)
 			{
 				return;
 			}

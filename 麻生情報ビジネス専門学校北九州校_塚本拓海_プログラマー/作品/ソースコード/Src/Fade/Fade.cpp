@@ -4,6 +4,8 @@
 #include "Common.h"
 #include <Math/MyMath.h>
 #include "FileLoader/CSVFileLoader.h"
+#include "Input/Input.h"
+#include <Input/InputParameter.h>
 
 namespace BOUDAMA
 {
@@ -144,7 +146,15 @@ namespace BOUDAMA
 
 			posX_ = Common::WINDOW_WIDTH + FADE::IMAGE_SIZE;
 
-			handleIndex_ = GetRand(static_cast<int>(syobonHandles_.size() - 1));
+			//ネタ画像を必ず表示させる
+			if (Input::IsKeyDown(GAME_INPUT::DEBUG))
+			{
+				handleIndex_ = static_cast<int>(syobonHandles_.size() - 1);
+			}
+			else
+			{
+				handleIndex_ = GetRand(static_cast<int>(syobonHandles_.size() - 1));
+			}
 
 			//フェード終了フラグ初期化
 			isEnd_ = false;

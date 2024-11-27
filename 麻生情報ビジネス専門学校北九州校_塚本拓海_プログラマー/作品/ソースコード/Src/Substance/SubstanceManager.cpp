@@ -37,14 +37,14 @@ namespace BOUDAMA
 			substance->Init();
 		}
 
-		for (int appearNum = 0; const auto & substance : substances_)
+		for (int appearNum = 0; const auto& substance : substances_)
 		{
 			//初期に湧く物質
 			substance->FlyAppearCalculation(SUBSTANCE::INIT_POS);
 			++appearNum;
 
 			//一定個数以上湧いたら脱出
-			if (appearNum >= ALL_SUBSTANCE::INIT_APPEAR_NUM)
+			if (ALL_SUBSTANCE::INIT_APPEAR_NUM <= appearNum)
 			{
 				break;
 			}
@@ -114,7 +114,7 @@ namespace BOUDAMA
 	void SubstanceManager::FlyAppearCalculation(const Vector3D& appearPos)
 	{
 		//まだ出現していないものだけ選ぶ
-		for (int appearNum = 0; const auto & substance : substances_)
+		for (int appearNum = 0; const auto& substance : substances_)
 		{
 			if (substance->GetIsActive())
 			{
@@ -141,7 +141,7 @@ namespace BOUDAMA
 		std::vector<int> randomNums;
 
 		//まだ出現していないものだけ選ぶ
-		for (int num = 0; const auto & substance : substances_)
+		for (int num = 0; const auto& substance : substances_)
 		{
 			if (substance->GetIsActive())
 			{
@@ -157,12 +157,17 @@ namespace BOUDAMA
 			++num;
 		}
 
+		if (randomNums.empty())
+		{
+			return;
+		}
+
 		/*
 			出現させる数を決める
 			出現できる数が、敵を倒したときに湧かせる数以上なら、敵を倒したときに湧かせる数を代入
 			敵を倒したときに湧かせる数より、出現できる数が小さかった場合、出現できる数を代入
 		*/
-		unsigned int maxAppearNum = (ALL_SUBSTANCE::MAX_APPEAR_NUM <= randomNums.back() + 1 ? ALL_SUBSTANCE::MAX_APPEAR_NUM : randomNums.back() + 1);
+		unsigned int maxAppearNum = (ALL_SUBSTANCE::MAX_APPEAR_NUM <= randomNums.back() ? ALL_SUBSTANCE::MAX_APPEAR_NUM : randomNums.back());
 
 		//後ろから範囲を縮小していくフィッシャー・イェーツのシャッフルを使う
 		for (unsigned int appearCount = 0; appearCount < maxAppearNum; ++appearCount)

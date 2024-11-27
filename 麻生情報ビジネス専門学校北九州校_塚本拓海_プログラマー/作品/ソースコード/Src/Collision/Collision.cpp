@@ -207,8 +207,8 @@ namespace BOUDAMA
 				continue;
 			}
 
-			//ƒmƒbƒNƒoƒbƒNó‘Ô‚È‚çŽŸ‚Ö
-			if (enemy->GetState() == ENEMY::STATE::KNOCK_BACK)
+			//–³Œøó‘Ô‚È‚çŽŸ‚Ö
+			if (!enemy->IsCollisionEnabled())
 			{
 				continue;
 			}
@@ -216,7 +216,7 @@ namespace BOUDAMA
 			if (Collision::IsHitSphere(player->GetPos(), enemy->GetPos(), player->GetRadius(), enemy->GetRadius()))
 			{
 				//ÚG‚µ‚½“G‚ªUŒ‚ó‘Ô‚È‚çƒvƒŒƒCƒ„[‚ð‚«”ò‚Î‚·
-				if (enemy->GetState() == ENEMY::STATE::ATTACK)
+				if (enemy->IsInvincible())
 				{
 					player->HitCalculation();
 
@@ -333,8 +333,8 @@ namespace BOUDAMA
 					continue;
 				}
 
-				//ƒmƒbƒNƒoƒbƒNó‘Ô‚È‚ç“–‚½‚è”»’è‚Ìˆ—‚µ‚È‚¢
-				if (enemy->GetState() == ENEMY::STATE::KNOCK_BACK)
+				//–³Œøó‘Ô‚È‚ç“–‚½‚è”»’è‚Ìˆ—‚µ‚È‚¢
+				if (!enemy->IsCollisionEnabled())
 				{
 					continue;
 				}
@@ -344,23 +344,23 @@ namespace BOUDAMA
 					continue;
 				}
 
-				//“G‚ªUŒ‚ó‘Ô‚È‚ç
-				if (enemy->GetState() == ENEMY::STATE::ATTACK)
+				//“G‚ª–³“Gó‘Ô‚È‚ç
+				if (enemy->IsInvincible())
 				{
 					player->HitCalculation();
 
 					player->SubVelocity(enemy->GetVelocity());
 
-					enemy->SetCorpseState(substance->GetOwner()->GetVelocity());
+					enemy->HitCalculation();
 
 					continue;
 				}
 
-				//–³“Gó‘Ô‚Å‚Í‚È‚¢ê‡
+				//ƒvƒŒƒCƒ„[‚ª–³“Gó‘Ô‚Å‚Í‚È‚¢ê‡
 				if (substance->IsOwnerNotInvincible())
 				{
 					player->HitCalculation();
-					enemy->SetCorpseState(-enemy->GetDir());
+					enemy->HitCalculation();
 
 					continue;
 				}

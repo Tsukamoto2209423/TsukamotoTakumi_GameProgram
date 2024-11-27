@@ -44,7 +44,7 @@
     <ClCompile Include="Src\Enemy\EnemyFlyweightImage.cpp" />
     <ClCompile Include="src\Enemy\EnemyManager.cpp" />
     <ClCompile Include="Src\Enemy\EnemyMonster.cpp" />
-    <ClCompile Include="Src\Enemy\State\Attack\Attack.cpp" />
+    <ClCompile Include="Src\Enemy\State\Attack\StraightAttack.cpp" />
     <ClCompile Include="Src\Enemy\State\Chase\Chase.cpp" />
     <ClCompile Include="Src\Enemy\State\Corpse\Corpse.cpp" />
     <ClCompile Include="Src\Enemy\State\FindOut\FindOut.cpp" />
@@ -114,7 +114,7 @@
     <ClInclude Include="src\Enemy\EnemyManager.h" />
     <ClInclude Include="Src\Enemy\EnemyMonster.h" />
     <ClInclude Include="Src\Enemy\EnemyParameter.h" />
-    <ClInclude Include="Src\Enemy\State\Attack\Attack.h" />
+    <ClInclude Include="Src\Enemy\State\Attack\StraightAttack.h" />
     <ClInclude Include="Src\Enemy\State\Chase\Chase.h" />
     <ClInclude Include="Src\Enemy\State\Corpse\Corpse.h" />
     <ClInclude Include="Src\Enemy\State\EnemyState.h" />

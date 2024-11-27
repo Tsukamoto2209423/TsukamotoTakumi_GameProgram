@@ -32,6 +32,9 @@ enum GAME_INPUT
 	//ターボ状態キー
 	TURBO,
 
+	//デバッグ用キー
+	DEBUG,
+
 	//総数
 	INPUT_NUM
 };

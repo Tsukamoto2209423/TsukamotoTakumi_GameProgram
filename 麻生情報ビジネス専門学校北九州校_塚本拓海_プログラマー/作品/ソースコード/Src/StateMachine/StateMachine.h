@@ -40,7 +40,7 @@ namespace BOUDAMA
 			//Œ»Ý‚Ìó‘Ô‚Ìˆ—
 			stateVector_[currentStateIndex_]->Execute();
 
-			if (stateVector_[currentStateIndex_]->CanTransitionToNextState())
+			if (stateVector_[currentStateIndex_]->IsTransitionToNextState())
 			{
 				ChangeState();
 
@@ -87,8 +87,18 @@ namespace BOUDAMA
 				if (state->GetMyState() == stateName)
 				{
 					state->SetOwner(owner);
+
+					return;
 				}
 			}
+
+#ifdef _DEBUG
+
+			std::cerr << "Debug break : Žw’è‚Ìó‘Ô‚Í’Ç‰Á‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI" << std::endl;
+			__debugbreak();
+
+#endif // _DEBUG
+
 		}
 
 		//ŽŸ‚Ìó‘Ô‚É‘JˆÚ‚·‚é
@@ -101,14 +111,23 @@ namespace BOUDAMA
 				if (state->GetMyState() == nextState)
 				{
 					currentStateIndex_ = index;
+
+					//‘JˆÚæ‚Ìó‘Ô‚Ì‰Šú‰»
+					stateVector_[currentStateIndex_]->Enter();
+
 					return;
 				}
 
 				++index;
 			}
 
-			//‘JˆÚæ‚Ìó‘Ô‚Ì‰Šú‰»
-			stateVector_[currentStateIndex_]->Enter();
+#ifdef _DEBUG
+
+			std::cerr << "Debug break : Žw’è‚Ìó‘Ô‚Í’Ç‰Á‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI" << std::endl;
+			__debugbreak();
+
+#endif // _DEBUG
+
 		}
 
 		/// <summary>
@@ -119,19 +138,27 @@ namespace BOUDAMA
 		/// </param>
 		void ChangeState(const auto changeStateName)
 		{
-			for (int index = 0; const auto& state : stateVector_)
+			for (int index = 0; const auto & state : stateVector_)
 			{
 				if (state->GetMyState() == changeStateName)
 				{
 					currentStateIndex_ = index;
+
+					//‘JˆÚæ‚Ìó‘Ô‚Ì‰Šú‰»
+					stateVector_[currentStateIndex_]->Enter();
 					return;
 				}
 
 				++index;
 			}
 
-			//‘JˆÚæ‚Ìó‘Ô‚Ì‰Šú‰»
-			stateVector_[currentStateIndex_]->Enter();
+#ifdef _DEBUG
+
+			std::cerr << "Debug break : Žw’è‚Ìó‘Ô‚Í’Ç‰Á‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI" << std::endl;
+			__debugbreak();
+
+#endif // _DEBUG
+
 		}
 
 		//‚·‚×‚Ä‚Ìó‘Ô‚ðíœ‚·‚é

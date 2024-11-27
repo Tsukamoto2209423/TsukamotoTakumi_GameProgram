@@ -8,9 +8,11 @@
 #include "Player/Player.h"
 #include <Player/PlayerParameter.h>
 #include <Matrix/Matrix3D.h>
+
 #include "State/Idle/Idle.h"
 #include "State/Chase/Chase.h"
 #include "State/KnockBack/KnockBack.h"
+#include "State/Corpse/Corpse.h"
 
 namespace BOUDAMA
 {
@@ -20,20 +22,19 @@ namespace BOUDAMA
 		//初期化
 		handle_ = -1;
 		isAlive_ = false;
-		hp_ = 3;
+		hp_ = DARUMA::HP;
 		knockBackTimeCount_ = 0;
 		scoreNum_ = DARUMA::ADD_SCORE_NUM;
 		radius_ = DARUMA::RADIUS;
-		state_ = ENEMY::STATE::SEARCH;
 		pos_ = DARUMA::INIT_POS;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
 		rot_ = MyMath::ZERO_VECTOR_3D;
 
 		stateMachine_ = std::make_unique<EnemyBase::StateMachineType>();
 
-		stateMachine_->AddState<Idle>(ENEMY_STATE::IDLE);
-		stateMachine_->AddState<Chase>(ENEMY_STATE::CHASE, 1.0f);
-		stateMachine_->AddState<KnockBack>(ENEMY_STATE::KNOCK_BACK, 60);
+		stateMachine_->AddState<Chase>(ENEMY_STATE::CHASE, DARUMA::SPEED);
+		stateMachine_->AddState<KnockBack>(ENEMY_STATE::KNOCK_BACK, ENEMY_STATE::CHASE);
+		stateMachine_->AddState<Corpse>(ENEMY_STATE::CORPSE);
 
 		stateMachine_->ChangeState(ENEMY_STATE::CHASE);
 	}
@@ -49,57 +50,16 @@ namespace BOUDAMA
 
 		targetPosition_ = playerPos;
 
-		//ノックバック状態の処理
-		if (state_ == ENEMY::STATE::KNOCK_BACK)
-		{
-			//ノックバック状態の処理が60回されていたら
-			if (knockBackTimeCount_ > 60)
-			{
-				//初期化処理
-				knockBackTimeCount_ = 0;
-				isAlive_ = false;
-				state_ = ENEMY::STATE::SEARCH;
-				pos_ = MyMath::ZERO_VECTOR_3D;
-				rot_ = MyMath::ZERO_VECTOR_3D;
-				velocity_ = MyMath::ZERO_VECTOR_3D;
-
-				return;
-			}
-
-			//自分の速度を位置に加算し、上に上昇させる
-			pos_ += velocity_;
-			pos_.y += 9.5f;
-
-			//回転させる
-			rot_.x += MyMath::INVERSE_TWO_PI;
-
-			//ノックバック状態の時間計測
-			++knockBackTimeCount_;
-
-
-			//位置・角度設定
-			MV1SetPosition(handle_, pos_);
-			MV1SetRotationXYZ(handle_, rot_);
-
-			//早期リターンする
-			return;
-		}
-
-
-		velocity_ = playerPos - pos_;
-
-		//位置加算
-		pos_ += velocity_.Normalize() * DARUMA::SPEED;
+		stateMachine_->Step();
 
 		//重力をかけても地面にめり込まなければ処理をする
-		pos_.y - DARUMA::GRAVITY > 10.0f ? pos_.y -= DARUMA::GRAVITY : pos_.y = 10.0f;
-
-		//角度θ計算
-		rot_.y = atan2f(velocity_.x, velocity_.z) - DX_PI_F;
+		pos_.y - DARUMA::GRAVITY > DARUMA::RADIUS ? pos_.y -= DARUMA::GRAVITY : pos_.y = DARUMA::RADIUS;
 
 		//位置・角度設定
 		MV1SetPosition(handle_, pos_);
 		MV1SetRotationXYZ(handle_, rot_);
+
+		return;
 
 	}
 
@@ -127,23 +87,13 @@ namespace BOUDAMA
 
 		//死者蘇生
 		isAlive_ = true;
+		isCollisionEnabled_ = true;
+
+		stateMachine_->ChangeState(ENEMY_STATE::CHASE);
 
 		//位置・角度設定
 		MV1SetPosition(handle_, pos_);
 		MV1SetRotationXYZ(handle_, rot_);
 	}
 
-	//当たり判定処理
-	void Enemy::HitCalculation(void)
-	{
-		//HPを減らす
-		--hp_;
-
-		//HPが0以下になったら
-		if (hp_ <= 0)
-		{
-			//死亡処理
-			state_ = ENEMY::STATE::KNOCK_BACK;
-		}
-	}
 }

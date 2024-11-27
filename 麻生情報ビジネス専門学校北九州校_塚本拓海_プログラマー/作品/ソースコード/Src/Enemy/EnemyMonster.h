@@ -25,7 +25,7 @@ namespace BOUDAMA
 		EnemyMonster();
 
 		//デストラクタ
-		~EnemyMonster();
+		~EnemyMonster() override;
 
 		//初期化処理関数
 		void Init(void) override;
@@ -35,9 +35,6 @@ namespace BOUDAMA
 
 		//描画処理関数
 		void Draw(void) override;
-
-		//衝突時の計算処理
-		void HitCalculation(void) override;
 
 		//出現処理関数
 		void AppearanceRequest(void) override;

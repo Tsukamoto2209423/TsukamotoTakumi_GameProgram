@@ -167,7 +167,7 @@
     <ClCompile Include="Src\Enemy\EnemyFlyweightImage.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Enemy\State\Attack\Attack.cpp">
+    <ClCompile Include="Src\Enemy\State\Attack\StraightAttack.cpp">
       <Filter>Enemy\State\Attack</Filter>
     </ClCompile>
   </ItemGroup>
@@ -543,7 +543,7 @@
     <ClInclude Include="Src\Enemy\EnemyFlyweightImage.h">
       <Filter>Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Enemy\State\Attack\Attack.h">
+    <ClInclude Include="Src\Enemy\State\Attack\StraightAttack.h">
       <Filter>Enemy\State\Attack</Filter>
     </ClInclude>
   </ItemGroup>

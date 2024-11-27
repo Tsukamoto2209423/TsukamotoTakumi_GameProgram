@@ -140,12 +140,6 @@ namespace BOUDAMA
 		for (const auto& enemy : enemies_)
 		{
 			enemy->Draw();
-
-			if (enemy->GetState() == ENEMY::STATE::FIND_OUT)
-			{
-				//「！」の画像を表示する
-				DrawBillboard3D(enemy->GetPos() + ENEMY_MANAGER::ADD_EXCLAMATION_DISTANCE, 0.5f, 0.0f, 128.0f, 0.0f, EnemyFlyweightImage::GetImageHandle(FLYWEIGHT_IMAGE::EXCLAMATION), true);
-			}
 		}
 	}
 

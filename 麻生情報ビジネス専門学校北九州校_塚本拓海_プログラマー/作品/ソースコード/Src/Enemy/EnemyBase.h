@@ -48,7 +48,7 @@ namespace BOUDAMA
 		using StateMachineType = StateMachine<ENEMY_STATE, EnemyBase>;
 
 		//状態
-		ENEMY::STATE state_;
+		//ENEMY::STATE state_;
 		//状態遷移用変数
 		std::unique_ptr<StateMachineType> stateMachine_;
 
@@ -68,7 +68,7 @@ namespace BOUDAMA
 
 	public:
 		//コンストラクタ
-		constexpr EnemyBase() : scoreNum_(0), isCollisionEnabled_(false), isInvincible_(false) {}
+		constexpr EnemyBase() : scoreNum_(0), isCollisionEnabled_(true), isInvincible_(false) {}
 
 		//デストラクタ
 		virtual ~EnemyBase() = default;
@@ -87,7 +87,7 @@ namespace BOUDAMA
 		virtual void SetCorpseState(const Vector3D& hitObjectVelocity);
 
 		//状態取得
-		inline ENEMY::STATE GetState(void) const { return state_; }
+		//inline ENEMY::STATE GetState(void) const { return state_; }
 
 		inline Vector3D GetTargetPosition(void) const noexcept { return targetPosition_; }
 
@@ -97,10 +97,11 @@ namespace BOUDAMA
 		inline int GetScoreNum(void) const { return scoreNum_; }
 
 		inline bool IsCollisionEnabled(void) const noexcept { return isCollisionEnabled_; }
-		inline bool SetIsCollisionEnabled(bool isInCollision) noexcept { isCollisionEnabled_ = isInCollision; }
+		inline void SetIsCollisionEnabled(bool isInCollision) noexcept { isCollisionEnabled_ = isInCollision; }
 
 		//無敵か？
 		inline bool IsInvincible(void) const noexcept { return isInvincible_; };
+		inline void SetIsInvincible(bool isInvincible) noexcept { isInvincible_ = isInvincible; }
 
 		void SetStateMachineOwner(const auto& owner)
 		{

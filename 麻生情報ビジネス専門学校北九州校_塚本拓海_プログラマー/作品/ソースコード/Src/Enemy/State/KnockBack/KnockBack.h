@@ -5,6 +5,11 @@
 
 namespace BOUDAMA
 {
+	namespace KNOCK_BACK
+	{
+		constexpr int MAX_KNOCK_BACK_TIME = 30;
+	}
+
 	//ノックバック状態
 	class KnockBack : public EnemyState<EnemyBase>
 	{
@@ -16,8 +21,8 @@ namespace BOUDAMA
 		const int maxTimeCount_;
 
 	public:
-		explicit constexpr KnockBack(const auto stateName, int maxTime) : EnemyState(stateName), timeCount_(0), maxTimeCount_(maxTime) {}
-		explicit constexpr KnockBack(const auto myState, const auto nextState, int maxTime) : EnemyState(myState, nextState), timeCount_(0), maxTimeCount_(maxTime) {}
+		explicit constexpr KnockBack(const auto stateName, int maxTime = KNOCK_BACK::MAX_KNOCK_BACK_TIME) : EnemyState(stateName), timeCount_(0), maxTimeCount_(maxTime) {}
+		explicit constexpr KnockBack(const auto myState, const auto nextState, int maxTime = KNOCK_BACK::MAX_KNOCK_BACK_TIME) : EnemyState(myState, nextState), timeCount_(0), maxTimeCount_(maxTime) {}
 
 		~KnockBack() noexcept override = default;
 

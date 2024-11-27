@@ -5,6 +5,11 @@
 
 namespace BOUDAMA
 {
+	namespace CORPSE
+	{
+		constexpr int MAX_TIME = 60;
+	}
+
 	//éÄëÃèÛë‘
 	class Corpse final : public EnemyState<EnemyBase>
 	{
@@ -16,8 +21,8 @@ namespace BOUDAMA
 		const int maxTimeCount_;
 
 	public:
-		explicit constexpr Corpse(const auto stateName, int maxTime) : EnemyState(stateName), timeCount_(0), maxTimeCount_(maxTime) {}
-		explicit constexpr Corpse(const auto myState, const auto nextState, int maxTime) : EnemyState(myState, nextState), timeCount_(0), maxTimeCount_(maxTime) {}
+		explicit constexpr Corpse(const auto stateName, int maxTime = CORPSE::MAX_TIME) : EnemyState(stateName), timeCount_(0), maxTimeCount_(maxTime) {}
+		explicit constexpr Corpse(const auto myState, const auto nextState, int maxTime = CORPSE::MAX_TIME) : EnemyState(myState, nextState), timeCount_(0), maxTimeCount_(maxTime) {}
 
 		~Corpse() noexcept override = default;
 
