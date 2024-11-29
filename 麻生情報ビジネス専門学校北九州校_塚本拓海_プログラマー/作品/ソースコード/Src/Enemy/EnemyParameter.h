@@ -14,7 +14,7 @@ namespace BOUDAMA
 		constexpr char PATH[] = "Data/Model/Enemy/darumaEnemy.x";
 
 		//敵の最大数
-		constexpr int MAX_NUM = 40;
+		constexpr int MAX_NUM = 0;
 
 		//ハードモードかエンドレスモードの敵の最大数
 		constexpr int HARD_MAX_NUM = 80;
@@ -64,7 +64,7 @@ namespace BOUDAMA
 		constexpr char PATH[] = "Data/Model/Enemy/MonsterEnemy.x";
 
 		//敵の最大数
-		constexpr int MAX_NUM = 5;
+		constexpr int MAX_NUM = 1;
 
 		//ハードモードかエンドレスモードの敵の最大数
 		constexpr int HARD_MAX_NUM = 10;
@@ -82,7 +82,7 @@ namespace BOUDAMA
 		constexpr int ATTACK_CHARGE_MAX_TIME = 60;
 
 		//攻撃時間の最大値
-		constexpr int ATTACK_MAX_TIME = 60;
+		constexpr int ATTACK_MAX_TIME = 120;
 
 		//〇Fごとに出現する
 		constexpr int APPEAR_MAX_TIME = 90;
@@ -103,16 +103,16 @@ namespace BOUDAMA
 		constexpr float RADIUS = 80.0f;
 
 		//速さ
-		constexpr float SPEED = 1.25f;
+		constexpr float SPEED = 2.0f;
 
 		//追いかける速さ
-		constexpr float CHASE_SPEED = 6.75f;
+		constexpr float CHASE_SPEED = 11.75f;
 
 		//攻撃するときの速さ
-		constexpr float ATTACK_SPEED = 60.5f;
+		constexpr float ATTACK_SPEED = 50.0f;
 
-		//最大の速さ
-		constexpr float MAX_SPEED = 30.0f;
+		//移動時の最大の速さ
+		constexpr float MAX_SPEED = 25.0f;
 
 		//敵を発見できる範囲
 		constexpr float FIND_OUT_RANGE = 900.0f;
@@ -124,7 +124,7 @@ namespace BOUDAMA
 		constexpr float GRAVITY = 7.5f;
 
 		//初期基準位置
-		constexpr Vector3D INIT_POS = { 0.0f,5.0f,1450.0f };
+		constexpr Vector3D INIT_POS = { 0.0f,100.0f,1450.0f };
 
 		//敵の上に出現する「！」の距離(X軸,Y軸,Z軸)
 		constexpr Vector3D ADD_EXCLAMATION_DISTANCE = { 0.0f, 75.0f, 0.0f };

@@ -60,16 +60,6 @@ public:
 		return resultMat;
 	}
 
-	
-
-	/**
-	@param	平行移動行列取得(float)
-	
-	@return	|  1  0  0  x  |
-	@return	|  0  1  0  y  |
-	@return	|  0  0  1  z  |
-	@return	|  0  0  0  1  |
-	*/
 
 	/// <summary>
 	/// 平行移動行列取得(float)
@@ -77,12 +67,10 @@ public:
 	/// <param name="movingValueX"></param>
 	/// <param name="movingValueY"></param>
 	/// <param name="movingValueZ"></param>
-	/// <returns>
-	/// |  1  0  0  x  |
-	/// |  0  1  0  y  |
-	/// |  0  0  1  z  |
-	/// |  0  0  0  1  |
-	/// </returns>
+	/// @return	|  1  0  0  x  |
+	/// @return	|  0  1  0  y  |
+	/// @return	|  0  0  1  z  |
+	/// @return	|  0  0  0  1  |
 	static Matrix3D GetTranslateMatrix(float movingValueX, float movingValueY, float movingValueZ)
 	{
 		Matrix3D resultMat = GetIdentityMatrix();
@@ -93,13 +81,13 @@ public:
 	}
 
 
-	/**
-	@param	平行移動行列取得(Vector3D)
-	@return	|  1  0  0  x  |
-	@return	|  0  1  0  y  |
-	@return	|  0  0  1  z  |
-	@return	|  0  0  0  1  |
-	*/
+	///**
+	// @param	平行移動行列取得(Vector3D)
+	// @return	|  1  0  0  x  |
+	// @return	|  0  1  0  y  |
+	// @return	|  0  0  1  z  |
+	// @return	|  0  0  0  1  |
+	//*/
 	static Matrix3D GetTranslateMatrix(const Vector3D& vec)
 	{
 		Matrix3D resultMat = GetIdentityMatrix();

@@ -45,7 +45,7 @@ namespace BOUDAMA
 
 				owner->ResetPos();
 				owner->ResetRot();
-				owner->ResetDir();
+				owner->SetDir(0.0f,0.0f,1.0f);
 
 				isTransitionToNextState_ = true;
 

@@ -42,7 +42,6 @@ namespace BOUDAMA
 		attackTimeCount_ = 0;
 		findOutReactionCount_ = 0;
 		moveAngleChangeCount_ = 0;
-		knockBackTimeCount_ = 0;
 		scoreNum_ = MONSTER::ADD_SCORE_NUM;
 		isAlive_ = false;
 		hp_ = MONSTER::HP;
@@ -115,7 +114,7 @@ namespace BOUDAMA
 	void EnemyMonster::AppearanceRequest(void)
 	{
 		//èâä˙à íuê›íË
-		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359))))
+		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)))
 			* Matrix3D::GetTranslateMatrix(MONSTER::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
 		//éÄé“ëhê∂

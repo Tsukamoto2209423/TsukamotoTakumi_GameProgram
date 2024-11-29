@@ -240,7 +240,7 @@ namespace BOUDAMA
 				player->AddComboNum();
 				Score::AddScore(enemy->GetScoreNum());
 
-				enemy->SetCorpseState(player->GetVelocity());
+				enemy->DeathCalculation(player->GetVelocity());
 
 				substanceManager.FlyAppearCalculation(enemy->GetPos());
 			}
@@ -370,7 +370,7 @@ namespace BOUDAMA
 				player->AddComboNum();
 				Score::AddScore(enemy->GetScoreNum());
 
-				enemy->SetCorpseState(substance->GetOwner()->GetVelocity());
+				enemy->DeathCalculation(substance->GetOwner()->GetVelocity());
 
 				substanceManager.RandomFlyAppearCalculation(enemy->GetPos());
 

@@ -28,7 +28,6 @@ namespace BOUDAMA
 
 		findOutReactionCount_ = 0;
 		moveAngleChangeCount_ = 0;
-		knockBackTimeCount_ = 0;
 		attackChargeCount_ = 0;
 	}
 
@@ -46,7 +45,6 @@ namespace BOUDAMA
 		isAlive_ = false;
 		hp_ = 3;
 		radius_ = BOMBER::RADIUS;
-		knockBackTimeCount_ = 0;
 		pos_ = BOMBER::INIT_POS;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
 		rot_ = MyMath::ZERO_VECTOR_3D;
@@ -54,7 +52,6 @@ namespace BOUDAMA
 
 		findOutReactionCount_ = 0;
 		moveAngleChangeCount_ = 0;
-		knockBackTimeCount_ = 0;
 		attackChargeCount_ = 0;
 
 		stateMachine_ = std::make_unique<EnemyBase::StateMachineType>();

@@ -6,16 +6,10 @@
 namespace BOUDAMA
 {
 	//コンストラクタ
-	SkyBox::SkyBox()
-	{
-		handle_ = -1;
-	}
+	SkyBox::SkyBox() : handle_(-1) {}
 
 	//デストラクタ
-	SkyBox::~SkyBox()
-	{
-
-	}
+	SkyBox::~SkyBox() {}
 
 	//初期化処理関数
 	void SkyBox::Init(void)

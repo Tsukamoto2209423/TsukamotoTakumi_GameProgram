@@ -5,7 +5,7 @@
 
 namespace BOUDAMA
 {
-	//フェードイン・フェードアウト用関数
+	//フェードイン・フェードアウト用クラス
 	class Fade
 	{
 	private:
@@ -21,8 +21,14 @@ namespace BOUDAMA
 		//画像の添え字
 		int handleIndex_;
 
+		//集中線の添え字
+		int concentrationLineIndex_;
+
 		//画像ハンドルを保存するベクター
 		std::vector<int> syobonHandles_;
+
+		//集中線のハンドルを保存するベクター
+		std::vector<int> lineHandles_;
 
 		//回転角度
 		float rotAngle_;
@@ -57,5 +63,9 @@ namespace BOUDAMA
 
 		//フェードインかフェードアウトが終わったか判定
 		bool IsEnd(void) const noexcept;
+
+	private:
+		//集中線描画
+		void DrawConcentrationLine(void);
 	};
 }

@@ -9,7 +9,7 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			owner->SetVelocity(owner->GetDir().Normalize() * MONSTER::ATTACK_SPEED);
+			owner->SetVelocity(owner->GetDir() * MONSTER::ATTACK_SPEED);
 			owner->SetIsInvincible(true);
 		}
 
@@ -26,15 +26,21 @@ namespace BOUDAMA
 			if (MyMath::Abs(owner->GetPosX()) > ENEMY_MANAGER::MAX_POS_X_Z)
 			{
 				owner->SetPosX(0.0f < owner->GetPosX() ? ENEMY_MANAGER::MAX_POS_X_Z : -ENEMY_MANAGER::MAX_POS_X_Z);
-				owner->GetDir().Inverse();
-				owner->GetVelocity().Inverse();
+				owner->SetDir(owner->GetDir().Inverse());
+				owner->SetVelocity(owner->GetVelocity().Inverse());
+				//Šp“xØ‚è‘Ö‚¦İ’è
+				owner->RotateYaw(owner->GetDir());
+
 			}
 
 			if (MyMath::Abs(owner->GetPosZ()) > ENEMY_MANAGER::MAX_POS_X_Z)
 			{
 				owner->SetPosZ(0.0f < owner->GetPosZ() ? ENEMY_MANAGER::MAX_POS_X_Z : -ENEMY_MANAGER::MAX_POS_X_Z);
-				owner->GetDir().Inverse();
-				owner->GetVelocity().Inverse();
+				owner->SetDir(owner->GetDir().Inverse());
+				owner->SetVelocity(owner->GetVelocity().Inverse());
+				//Šp“xØ‚è‘Ö‚¦İ’è
+				owner->RotateYaw(owner->GetDir());
+
 			}
 
 			//UŒ‚ŠÔŒv‘ª
@@ -42,10 +48,12 @@ namespace BOUDAMA
 
 			if (maxAttackTime_ <= attackTimeCount_)
 			{
-				nextStateName_ = ENEMY_STATE::SEARCH;
+				owner->SetVelocity(MyMath::ZERO_VECTOR_3D);
+				nextStateName_ = ENEMY_STATE::RANDOM_WALK;
 				owner->SetIsInvincible(false);
 
 				attackTimeCount_ = 0;
+				isTransitionToNextState_ = true;;
 			}
 
 		}

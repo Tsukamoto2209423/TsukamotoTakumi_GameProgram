@@ -39,25 +39,14 @@ namespace BOUDAMA
 	void EnemyBase::Step(const Vector3D& playerPos) {}
 
 
-	void EnemyBase::HitCalculation(void) {
-
-		--hp_;
-
-		if (hp_ <= 0)
-		{
-			stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
-
-			velocity_ = velocity_.Inverse() * ENEMY::KNOCK_BACK_BOOST;
-
-			return;
-		}
-
+	void EnemyBase::HitCalculation(void) 
+	{
 		stateMachine_->ChangeState(ENEMY_STATE::KNOCK_BACK);
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
 	}
 
-	void EnemyBase::SetCorpseState(const Vector3D& hitObjectVelocity)
+	void EnemyBase::DeathCalculation(const Vector3D& hitObjectVelocity)
 	{
 		//ぶつかった相手の速度受け取り、吹っ飛ばす気持ちよさを出すためにKNOCK_BACK_BOOSTを掛けて増大させる
 		velocity_ = hitObjectVelocity * ENEMY::KNOCK_BACK_BOOST;
@@ -65,6 +54,5 @@ namespace BOUDAMA
 		stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
-		
 	}
 }

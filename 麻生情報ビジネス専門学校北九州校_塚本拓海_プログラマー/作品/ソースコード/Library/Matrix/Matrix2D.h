@@ -23,13 +23,10 @@ public:
 
 
 public: // コンストラクタ
-	/*explicit constexpr Matrix2D() noexcept : m() {}
-	explicit constexpr Matrix2D(float XYZ) noexcept :
-	constexpr Matrix2D(const Matrix2D& mat) noexcept :
-	constexpr Matrix2D(const MATRIX& mat) noexcept : */
+	//explicit constexpr Matrix2D() noexcept = default;[
+
 
 public:
-
 	//零行列
 	inline static constexpr Matrix2D ZERO_MATRIX() { return { 0.0f }; }
 
@@ -44,9 +41,9 @@ public:
 	//平行移動行列(float)
 	inline static constexpr Matrix2D TRANSLATE_MATRIX(float movingValueX, float movingValueY)
 	{
-		return { 1,0,movingValueX,
-				 0,1,movingValueY,
-				 0,0,1 };
+		return { 1.0f,0.0f,movingValueX,
+				 0.0f,1.0f,movingValueY,
+				 0.0f,0.0f,1.0f };
 	}
 
 	//平行移動行列(Vector3D)

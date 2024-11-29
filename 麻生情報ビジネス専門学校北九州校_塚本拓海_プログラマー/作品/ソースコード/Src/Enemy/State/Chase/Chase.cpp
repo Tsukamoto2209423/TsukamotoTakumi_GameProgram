@@ -19,8 +19,8 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			owner->SetDir(owner->GetTargetPosition() - owner->GetPos());
-			owner->SetVelocity(owner->GetDir().Normalize() * moveSpeed_);
+			owner->SetDir((owner->GetTargetPosition() - owner->GetPos()).Normalize());
+			owner->SetVelocity(owner->GetDir() * moveSpeed_);
 
 			//Šp“xØ‚è‘Ö‚¦Ý’è
 			owner->RotateYaw(owner->GetDir());

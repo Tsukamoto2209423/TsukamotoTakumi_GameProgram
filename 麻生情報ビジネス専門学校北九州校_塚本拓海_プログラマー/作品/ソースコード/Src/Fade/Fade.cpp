@@ -21,6 +21,8 @@ namespace BOUDAMA
 
 		handleIndex_ = 0;
 
+		concentrationLineIndex_ = 0;
+
 		rotAngle_ = 0.0f;
 
 		isEnd_ = false;
@@ -53,6 +55,7 @@ namespace BOUDAMA
 	void Fade::Load(void)
 	{
 		CSV_LOADER::LoadHandle(FADE::PATH, syobonHandles_);
+		CSV_LOADER::LoadHandle(FADE::EFFECT_PATH, lineHandles_);
 	}
 
 	//XVˆ—ŠÖ”
@@ -117,6 +120,12 @@ namespace BOUDAMA
 		DrawBox(0, 0, Common::WINDOW_WIDTH, Common::WINDOW_HEIGHT, GetColor(255, 255, 255), true);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		DrawRotaGraph(posX_, Common::WINDOW_HEIGHT_HALF, 1.0f, rotAngle_, syobonHandles_[handleIndex_], true);
+		
+		//ƒlƒ^‰æ‘œ‚ª•\Ž¦‚³‚ê‚Ä‚¢‚é‚Æ‚«‚Ì‚ÝW’†ü•`‰æ
+		if (handleIndex_ == syobonHandles_.size() - 1)
+		{
+			DrawConcentrationLine();
+		}
 	}
 
 	//”jŠüˆ—ŠÖ”
@@ -196,5 +205,16 @@ namespace BOUDAMA
 	bool Fade::IsEnd(void) const noexcept
 	{
 		return isEnd_;
+	}
+
+	//W’†ü•`‰æ
+	void Fade::DrawConcentrationLine(void)
+	{
+		//W’†ü•`‰æ
+		DrawGraph(0, 0, lineHandles_[concentrationLineIndex_], true);
+
+		//W’†ü‚ÌŒJ‚è•Ô‚µˆ—
+		concentrationLineIndex_ >= FADE::CONCENTRATION_LINE_END ?
+			concentrationLineIndex_ = FADE::CONCENTRATION_LINE_1 : ++concentrationLineIndex_;
 	}
 }

@@ -33,6 +33,7 @@ namespace BOUDAMA
 
 			if (maxReactionTimeCount_ < reactionTimeCount_)
 			{
+				owner->SetDir(owner->GetDir().Normalize());
 				reactionTimeCount_ = 0;
 				nextStateName_ = ENEMY_STATE::ATTACK;
 				isTransitionToNextState_ = true;

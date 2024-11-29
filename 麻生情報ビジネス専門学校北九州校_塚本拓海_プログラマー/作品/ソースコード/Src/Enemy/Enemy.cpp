@@ -23,7 +23,6 @@ namespace BOUDAMA
 		handle_ = -1;
 		isAlive_ = false;
 		hp_ = DARUMA::HP;
-		knockBackTimeCount_ = 0;
 		scoreNum_ = DARUMA::ADD_SCORE_NUM;
 		radius_ = DARUMA::RADIUS;
 		pos_ = DARUMA::INIT_POS;
@@ -32,10 +31,12 @@ namespace BOUDAMA
 
 		stateMachine_ = std::make_unique<EnemyBase::StateMachineType>();
 
+		//ó‘Ô’Ç‰Á
 		stateMachine_->AddState<Chase>(ENEMY_STATE::CHASE, DARUMA::SPEED);
 		stateMachine_->AddState<KnockBack>(ENEMY_STATE::KNOCK_BACK, ENEMY_STATE::CHASE);
 		stateMachine_->AddState<Corpse>(ENEMY_STATE::CORPSE);
 
+		//ƒQ[ƒ€ŠJŽnŽž‚Ìó‘ÔÝ’è
 		stateMachine_->ChangeState(ENEMY_STATE::CHASE);
 	}
 

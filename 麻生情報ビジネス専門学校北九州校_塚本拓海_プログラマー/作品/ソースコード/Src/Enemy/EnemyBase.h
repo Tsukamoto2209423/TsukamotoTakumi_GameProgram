@@ -54,8 +54,6 @@ namespace BOUDAMA
 
 		//狙っている物体の位置
 		Vector3D targetPosition_;
-		  
-		int knockBackTimeCount_;
 
 		//倒されたときにスコアに加算される点数
 		int scoreNum_;
@@ -84,7 +82,7 @@ namespace BOUDAMA
 
 		virtual void HitCalculation(void) override;
 
-		virtual void SetCorpseState(const Vector3D& hitObjectVelocity);
+		virtual void DeathCalculation(const Vector3D& hitObjectVelocity);
 
 		//状態取得
 		//inline ENEMY::STATE GetState(void) const { return state_; }

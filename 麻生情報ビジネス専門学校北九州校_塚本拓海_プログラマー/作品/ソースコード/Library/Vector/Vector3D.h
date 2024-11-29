@@ -57,6 +57,8 @@ public:
 
 	inline bool operator>(const Vector3D& vec) const { return (this->x > vec.x && this->y > vec.y && this->z > vec.z); }
 
+	inline bool operator<(const Vector3D& vec) const { return (this->x < vec.x && this->y < vec.y && this->z < vec.z); }
+
 	inline bool operator>(float scale) const { return (this->x > scale && this->y > scale && this->z > scale); }
 
 	inline bool operator<(float scale) const { return (this->x < scale && this->y < scale && this->z < scale); }

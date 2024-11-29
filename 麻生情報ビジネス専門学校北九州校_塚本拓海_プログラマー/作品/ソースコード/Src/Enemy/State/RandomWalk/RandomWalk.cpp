@@ -10,8 +10,9 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			owner->SetDir(owner->GetDir().Normalize() * moveSpeed_);
+			owner->SetDir(owner->GetDir() * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))));
 			owner->SetVelocity(MyMath::ZERO_VECTOR_3D);
+			owner->RotateYaw(owner->GetDir());
 		}
 
 		isTransitionToNextState_ = false;
@@ -22,7 +23,7 @@ namespace BOUDAMA
 	{
 		if (const auto& owner = owner_.lock())
 		{
-			owner->AddVelocity(owner->GetDir());
+			owner->AddVelocity(owner->GetDir() * moveSpeed_);
 
 			//一定の速度を超えたら
 			if (owner->GetVelocity().SquareL2Norm() > squareMaxMoveSpeed_)
@@ -30,13 +31,14 @@ namespace BOUDAMA
 				owner->SetVelocity(owner->GetVelocity().Normalize() * maxMoveSpeed_);
 			}
 
-			owner->MovePos(owner->GetDir() * moveSpeed_);
+			owner->MovePos(owner->GetVelocity());
 
 			//端に行ったら反対を向く
 			if (maxMovementRange_ < MyMath::Abs(owner->GetPosX()) || maxMovementRange_ < MyMath::Abs(owner->GetPosZ()))
 			{
-				owner->GetDir().Inverse();
-				owner->GetVelocity().Inverse();
+				owner->SetDir(owner->GetDir().Inverse());
+				owner->SetVelocity(owner->GetVelocity().Inverse());
+				owner->RotateYaw(owner->GetDir());
 			}
 
 			//移動する角度切り替え時間計測
@@ -44,7 +46,7 @@ namespace BOUDAMA
 
 			if (directionChangeInterval_ <= directionChangeTimeCount_)
 			{
-				owner->SetDir(owner->GetDir() * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))));
+				owner->SetDir(Vector3D(0.0f, 0.0f, 1.0f) * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))));
 
 				//角度切り替え設定
 				owner->RotateYaw(owner->GetDir());
