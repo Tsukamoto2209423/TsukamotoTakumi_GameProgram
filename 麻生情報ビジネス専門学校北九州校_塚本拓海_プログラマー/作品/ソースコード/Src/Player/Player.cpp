@@ -25,7 +25,6 @@ namespace BOUDAMA
 		isAlive_ = true;
 		pos_ = PLAYER::INIT_POS;
 		deathTimeCount_ = 0;
-		isShadowDraw_ = false;
 	}
 
 	//デストラクタ
@@ -47,7 +46,6 @@ namespace BOUDAMA
 		rot_ = { 0.0f,0.0f,0.0f };
 		velocity_ = MyMath::ZERO_VECTOR_3D;
 		deathTimeCount_ = 0;
-		isShadowDraw_ = false;
 
 		player2dEffect_.Init();
 		player3dEffect_.Init();
@@ -108,13 +106,6 @@ namespace BOUDAMA
 
 		//生存している場合は描画
 		MV1DrawModel(handle_);
-
-		if (!isShadowDraw_)
-		{
-			isShadowDraw_ = !isShadowDraw_;
-
-			return;
-		}
 
 		player2dEffect_.Draw(hp_, velocity_);
 		player3dEffect_.Draw();

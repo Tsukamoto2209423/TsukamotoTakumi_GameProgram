@@ -29,9 +29,6 @@ namespace BOUDAMA
 		//死んだときに時間計測するときに使う変数
 		int deathTimeCount_;
 
-		//影を描画したか?
-		bool isShadowDraw_;
-
 	public:
 		//コンストラクタ
 		Player();

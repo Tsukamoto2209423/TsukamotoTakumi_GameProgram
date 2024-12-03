@@ -63,7 +63,7 @@ public:
 
 	//•ûŒüƒxƒNƒgƒ‹İ’è
 	inline void SetDir(const Vector3D& dir) { dir_ = dir; }
-	inline void SetDir(float x, float y, float z) noexcept { dir_.x += x; dir_.y += y; dir_.z += z; }
+	inline void SetDir(float x, float y, float z) noexcept { dir_.x = x; dir_.y = y; dir_.z = z; }
 
 	//‰Šú‰»
 	inline void ResetDir(void) { dir_ = { 0.0f,0.0f,0.0f }; }

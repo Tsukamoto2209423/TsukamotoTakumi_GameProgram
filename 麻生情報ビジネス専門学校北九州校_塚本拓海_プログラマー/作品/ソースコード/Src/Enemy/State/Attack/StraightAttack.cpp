@@ -23,7 +23,7 @@ namespace BOUDAMA
 		{
 			owner->MovePos(owner->GetVelocity());
 
-			if (MyMath::Abs(owner->GetPosX()) > ENEMY_MANAGER::MAX_POS_X_Z)
+			if (ENEMY_MANAGER::MAX_POS_X_Z < MyMath::Abs(owner->GetPosX()))
 			{
 				owner->SetPosX(0.0f < owner->GetPosX() ? ENEMY_MANAGER::MAX_POS_X_Z : -ENEMY_MANAGER::MAX_POS_X_Z);
 				owner->SetDir(owner->GetDir().Inverse());
@@ -33,7 +33,7 @@ namespace BOUDAMA
 
 			}
 
-			if (MyMath::Abs(owner->GetPosZ()) > ENEMY_MANAGER::MAX_POS_X_Z)
+			if (ENEMY_MANAGER::MAX_POS_X_Z < MyMath::Abs(owner->GetPosZ()))
 			{
 				owner->SetPosZ(0.0f < owner->GetPosZ() ? ENEMY_MANAGER::MAX_POS_X_Z : -ENEMY_MANAGER::MAX_POS_X_Z);
 				owner->SetDir(owner->GetDir().Inverse());
@@ -53,7 +53,7 @@ namespace BOUDAMA
 				owner->SetIsInvincible(false);
 
 				attackTimeCount_ = 0;
-				isTransitionToNextState_ = true;;
+				isTransitionToNextState_ = true;
 			}
 
 		}

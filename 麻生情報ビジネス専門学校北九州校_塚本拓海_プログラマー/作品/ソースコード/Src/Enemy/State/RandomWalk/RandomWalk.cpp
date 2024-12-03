@@ -58,8 +58,10 @@ namespace BOUDAMA
 				directionChangeTimeCount_ = 0;
 			}
 
-			//プレイヤーを視界の範囲内に居ないなら関数脱出
-			if (Vector3D::Dot(owner->GetDir(), owner->GetTargetPosition()) < MyMath::PI_OVER_TWENTY)
+			const Vector3D normalizeTargetPos = owner->GetTargetPosition().Normalize();
+
+			//プレイヤーが視界の範囲内に居ないなら関数脱出
+			if (0.0f < Vector3D::Dot(owner->GetDir(), normalizeTargetPos))
 			{
 				return;
 			}

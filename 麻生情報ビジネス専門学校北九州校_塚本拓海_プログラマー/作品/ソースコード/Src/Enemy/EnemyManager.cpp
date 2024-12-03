@@ -1,14 +1,18 @@
 #include <functional>
+
 #include "DxLib.h"
+
 #include "EnemyManager.h"
 #include "Enemy.h"
 #include "EnemyMonster.h"
 #include "EnemyBomber.h"
 #include "EnemyFlyweightImage.h"
-#include "Player/Player.h"
+
 #include "Common/Common.h"
+
 #include <Input/GamePad/GamePad.h>
 #include <Input/InputParameter.h>
+
 #include <Effekseer/Effekseer.h>
 #include <Effekseer/EffekseerParameter.h>
 
@@ -63,6 +67,8 @@ namespace BOUDAMA
 				(difficulty == SCENE::NORMAL_PLAY) ?
 				ENEMY_MANAGER::MAX_NUM_LIST[static_cast<int>(enemyKindNum)] :
 				ENEMY_MANAGER::HARD_MAX_NUM_LIST[static_cast<int>(enemyKindNum)];
+
+			enemiesMaxNum_.emplace_back(maxEnemyNum);
 
 			//記憶領域確保
 			for (int enemyIndex = 0; enemyIndex < maxEnemyNum; ++enemyIndex)
@@ -153,6 +159,8 @@ namespace BOUDAMA
 			enemyItr->Fin();
 		}
 
+		enemiesMaxNum_.clear();
+		enemiesMaxNum_.shrink_to_fit();
 
 		EnemyFlyweightImage::Fin();
 	}
@@ -189,7 +197,7 @@ namespace BOUDAMA
 			}
 
 			//次の敵の配列ブロックの先頭位置を取得
-			enemyArrayIndex += ENEMY_MANAGER::MAX_NUM_LIST[kindNum];
+			enemyArrayIndex += enemiesMaxNum_[kindNum];
 		}
 	}
 

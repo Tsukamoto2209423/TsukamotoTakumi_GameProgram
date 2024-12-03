@@ -1,6 +1,7 @@
 #include "FindOut.h"
 #include "Math/MyMath.h"
 #include "Enemy/EnemyFlyweightImage.h"
+#include "Sound/Sound.h"
 
 namespace BOUDAMA
 {
@@ -11,6 +12,8 @@ namespace BOUDAMA
 		{
 			owner->SetVelocity(MyMath::ZERO_VECTOR_3D);
 		}
+
+		SoundManager::GetInstance()->PlaySoundData(SOUND::SE::FIND_OUT, DX_PLAYTYPE_BACK);
 
 		isTransitionToNextState_ = false;
 	}

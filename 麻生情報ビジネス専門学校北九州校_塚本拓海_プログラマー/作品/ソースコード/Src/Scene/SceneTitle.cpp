@@ -357,7 +357,6 @@ namespace BOUDAMA
 
 		//BGMÄ¶
 		SoundManager::GetInstance()->StopSoundData(SOUND::BGM::TITLE);
-		SoundManager::GetInstance()->PlaySoundData(SOUND::SE::DESIDE, DX_PLAYTYPE_BACK);
 	}
 
 	//ŽŸê–Ê”»’f—pŠÖ”

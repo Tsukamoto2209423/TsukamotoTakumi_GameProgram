@@ -21,7 +21,7 @@ namespace BOUDAMA
 	//デストラクタ
 	Bullet::~Bullet(void)
 	{
-		//破棄処理
+
 	}
 
 	//行動処理関数

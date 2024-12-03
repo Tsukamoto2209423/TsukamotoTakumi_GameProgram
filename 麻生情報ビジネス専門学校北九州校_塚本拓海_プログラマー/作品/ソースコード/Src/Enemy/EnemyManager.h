@@ -16,6 +16,9 @@ namespace BOUDAMA
 		//“G‚Ì”z—ñ
 		std::vector<std::shared_ptr<EnemyBase>> enemies_;
 
+		//“G‚ÌÅ‘å”
+		std::vector<int> enemiesMaxNum_;
+
 		//“GoŒ»ŠÔŒv‘ª
 		int appearCountTime_[static_cast<int>(ENEMY_MANAGER::ENEMY_LIST::ALL_NUM)];
 

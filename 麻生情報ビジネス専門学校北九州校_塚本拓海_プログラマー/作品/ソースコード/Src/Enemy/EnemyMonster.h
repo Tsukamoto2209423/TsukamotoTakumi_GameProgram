@@ -8,17 +8,6 @@ namespace BOUDAMA
 	class EnemyMonster : public EnemyBase
 	{
 	private:
-		//移動する角度切り替え時間計測用変数
-		int moveAngleChangeCount_;
-
-		//プレイヤーを発見したときの反応時間計測用変数
-		int findOutReactionCount_;
-
-		//攻撃を開始するまでの時間計測用変数
-		int attackChargeCount_;
-
-		//攻撃時間計測用変数
-		int attackTimeCount_;
 
 	public:
 		//コンストラクタ

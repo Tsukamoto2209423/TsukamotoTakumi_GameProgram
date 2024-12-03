@@ -6,6 +6,7 @@
 #include "FileLoader/CSVFileLoader.h"
 #include "Input/Input.h"
 #include <Input/InputParameter.h>
+#include "Sound/Sound.h"
 
 namespace BOUDAMA
 {
@@ -120,7 +121,7 @@ namespace BOUDAMA
 		DrawBox(0, 0, Common::WINDOW_WIDTH, Common::WINDOW_HEIGHT, GetColor(255, 255, 255), true);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		DrawRotaGraph(posX_, Common::WINDOW_HEIGHT_HALF, 1.0f, rotAngle_, syobonHandles_[handleIndex_], true);
-		
+
 		//ネタ画像が表示されているときのみ集中線描画
 		if (handleIndex_ == syobonHandles_.size() - 1)
 		{
@@ -155,15 +156,18 @@ namespace BOUDAMA
 
 			posX_ = Common::WINDOW_WIDTH + FADE::IMAGE_SIZE;
 
-			//ネタ画像を必ず表示させる
 			if (Input::IsKeyDown(GAME_INPUT::DEBUG))
 			{
+				//ネタ画像を必ず表示させる
 				handleIndex_ = static_cast<int>(syobonHandles_.size() - 1);
 			}
 			else
 			{
 				handleIndex_ = GetRand(static_cast<int>(syobonHandles_.size() - 1));
 			}
+
+			//場面遷移時の効果音
+			SoundManager::GetInstance()->PlaySoundData(SOUND::SE::SCENE_CHANGE, DX_PLAYTYPE_BACK);
 
 			//フェード終了フラグ初期化
 			isEnd_ = false;
@@ -179,6 +183,9 @@ namespace BOUDAMA
 		{
 			alphaValue_ = 255;
 			state_ = FADE::F_OUT;
+
+			//場面遷移時の効果音
+			SoundManager::GetInstance()->PlaySoundData(SOUND::SE::SCENE_CHANGE, DX_PLAYTYPE_BACK);
 
 			//フェード終了フラグ初期化
 			isEnd_ = false;

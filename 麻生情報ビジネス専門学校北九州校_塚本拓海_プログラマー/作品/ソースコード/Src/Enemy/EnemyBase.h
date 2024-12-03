@@ -47,8 +47,6 @@ namespace BOUDAMA
 	protected:
 		using StateMachineType = StateMachine<ENEMY_STATE, EnemyBase>;
 
-		//ó‘Ô
-		//ENEMY::STATE state_;
 		//ó‘Ô‘JˆÚ—p•Ï”
 		std::unique_ptr<StateMachineType> stateMachine_;
 

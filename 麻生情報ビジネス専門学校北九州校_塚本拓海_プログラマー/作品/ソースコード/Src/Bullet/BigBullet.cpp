@@ -20,7 +20,7 @@ namespace BOUDAMA
 	//デストラクタ
 	BigBullet::~BigBullet(void)
 	{
-		//破棄処理
+
 	}
 
 	//読み込み処理関数

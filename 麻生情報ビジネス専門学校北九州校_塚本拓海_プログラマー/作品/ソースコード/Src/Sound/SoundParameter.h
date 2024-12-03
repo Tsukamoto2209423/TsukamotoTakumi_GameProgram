@@ -31,6 +31,9 @@ namespace BOUDAMA
 			//敵が死んだときの効果音
 			ENEMY_DEATH,
 
+			//敵がプレイヤーを発見したときの効果音
+			FIND_OUT,
+
 			//決定ボタンを押したときの効果音
 			DESIDE,
 
@@ -39,6 +42,9 @@ namespace BOUDAMA
 
 			//キャンセル音
 			CANCEL,
+
+			//フェードイン・フェードアウト中に鳴る効果音
+			SCENE_CHANGE,
 
 			//総数
 			NUM

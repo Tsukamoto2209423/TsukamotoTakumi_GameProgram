@@ -134,63 +134,6 @@ namespace BOUDAMA
 		return false;
 	}
 
-
-	void Collision::IsHitBulletToPlayer(std::vector<BulletBase*>& bullet, std::shared_ptr<Player>& player)
-	{
-		for (const auto& bullet : bullet)
-		{
-			if (!bullet->GetIsActive())
-			{
-				continue;
-			}
-
-			if (!player->GetIsActive())
-			{
-				continue;
-			}
-
-			if (Collision::IsHitSphere(bullet->GetPos(), player->GetPos(), bullet->GetRadius(), player->GetRadius()))
-			{
-				player->HitCalculation();
-				bullet->HitCalculation();
-			}
-
-		}
-	}
-
-	void Collision::IsHitBulletToEnemy(std::vector<BulletBase*>& bullet, std::vector<EnemyBase*>& enemy, EnemyManager& enemymanager)
-	{
-		for (const auto& bullet : bullet)
-		{
-			if (!bullet->GetIsActive())
-			{
-				continue;
-			}
-
-			for (const auto& enemy : enemy)
-			{
-				if (!enemy->GetIsActive())
-				{
-					continue;
-				}
-
-				if (Collision::IsHitSphere(bullet->GetPos(), enemy->GetPos(), bullet->GetRadius(), enemy->GetRadius()))
-				{
-					enemy->HitCalculation();
-					bullet->HitCalculation();
-
-					if (enemy->GetHP() > 0)
-					{
-						continue;
-					}
-
-					//死亡数計測
-					enemymanager.AddEnemyDeathCount();
-				}
-			}
-		}
-	}
-
 	//プレイヤーと敵の当たり判定
 	void Collision::IsHitPlayerToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager)
 	{
@@ -227,7 +170,7 @@ namespace BOUDAMA
 					continue;
 				}
 
-				if (player->GetVelocity().SquareL2Norm() < PLAYER::KILL_SPEED)
+				if (player->GetVelocity().SquareL2Norm() < PLAYER::KILL_SPEED || !player->IsInvincible())
 				{
 					player->HitCalculation();
 					enemy->HitCalculation();

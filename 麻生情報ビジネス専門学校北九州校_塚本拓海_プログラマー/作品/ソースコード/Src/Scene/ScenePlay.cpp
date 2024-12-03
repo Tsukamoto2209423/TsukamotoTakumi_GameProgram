@@ -38,6 +38,8 @@ namespace BOUDAMA
 
 		ShadowMap_DrawSetup(shadowHandle_);
 
+		player_->Draw();
+
 		field_.Draw();
 
 		sky_.Draw();
@@ -45,8 +47,6 @@ namespace BOUDAMA
 		substanceManager_.Draw();
 
 		enemyManager_.Draw();
-
-		player_->Draw();
 
 		ShadowMap_DrawEnd();
 
@@ -158,6 +158,7 @@ namespace BOUDAMA
 			return;
 		}
 
+#ifdef _DEBUG
 		//デバッグフラグが立っているなら
 		if (CameraManager::GetInstance()->GetState() == CAMERA_STATE::DEBUG)
 		{
@@ -166,6 +167,8 @@ namespace BOUDAMA
 
 			return;
 		}
+#endif // _DEBUG
+
 
 		//プレイヤーの処理
 		player_->Step();

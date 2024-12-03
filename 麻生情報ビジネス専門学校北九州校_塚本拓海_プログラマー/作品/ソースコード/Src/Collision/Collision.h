@@ -29,12 +29,6 @@ namespace BOUDAMA
 
 		static bool IsHitTriangleYZ(const Vector3D& point, const Vector3D& vertexA, const Vector3D& vertexB, const Vector3D& vertexC);;
 
-		//’e‚ÆƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è
-		static void IsHitBulletToPlayer(std::vector<BulletBase*>& bullet, std::shared_ptr<Player>& player);
-
-		//’e‚Æ“G‚Ì“–‚½‚è”»’è
-		static void IsHitBulletToEnemy(std::vector<BulletBase*>& bullet, std::vector<EnemyBase*>& enemy, EnemyManager& enemymanager);
-
 		//ƒvƒŒƒCƒ„[‚Æ“G‚Ì“–‚½‚è”»’è
 		static void IsHitPlayerToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager);
 

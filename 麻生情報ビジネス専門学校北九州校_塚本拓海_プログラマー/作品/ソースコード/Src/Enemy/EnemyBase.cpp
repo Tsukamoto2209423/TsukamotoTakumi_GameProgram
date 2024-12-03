@@ -41,6 +41,13 @@ namespace BOUDAMA
 
 	void EnemyBase::HitCalculation(void) 
 	{
+		--hp_;
+
+		if (hp_ <= 0)
+		{
+			stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
+		}
+
 		stateMachine_->ChangeState(ENEMY_STATE::KNOCK_BACK);
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);

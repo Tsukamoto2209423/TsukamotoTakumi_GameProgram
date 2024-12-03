@@ -7,6 +7,7 @@
 #include "State/Attack/StraightAttack.h"
 #include "State/KnockBack/KnockBack.h"
 #include "State/Corpse/Corpse.h"
+#include "State/Idle/Idle.h"
 
 namespace BOUDAMA
 {
@@ -15,10 +16,6 @@ namespace BOUDAMA
 	{
 		//èâä˙âª
 		handle_ = -1;
-		attackChargeCount_ = 0;
-		attackTimeCount_ = 0;
-		findOutReactionCount_ = 0;
-		moveAngleChangeCount_ = 0;
 		isAlive_ = true;
 		hp_ = MONSTER::HP;
 		radius_ = BOMBER::RADIUS;
@@ -38,10 +35,6 @@ namespace BOUDAMA
 	{
 		//èâä˙âª
 		handle_ = -1;
-		attackChargeCount_ = 0;
-		attackTimeCount_ = 0;
-		findOutReactionCount_ = 0;
-		moveAngleChangeCount_ = 0;
 		scoreNum_ = MONSTER::ADD_SCORE_NUM;
 		isAlive_ = false;
 		hp_ = MONSTER::HP;
@@ -69,7 +62,6 @@ namespace BOUDAMA
 		stateMachine_->ChangeState(ENEMY_STATE::RANDOM_WALK);
 
 		MV1SetScale(handle_, VECTOR(2.0f, 2.0f, 2.0f));
-
 	}
 
 	//çsìÆèàóùä÷êî
@@ -106,7 +98,7 @@ namespace BOUDAMA
 
 		MV1DrawModel(handle_);
 
-		DrawLine3D(pos_, pos_ + dir_.Normalize() * MONSTER::FIND_OUT_RANGE, GetColor(255, 0, 0));
+  		DrawLine3D(pos_, pos_ + dir_ * MONSTER::FIND_OUT_RANGE, GetColor(255, 0, 0));
 
 	}
 

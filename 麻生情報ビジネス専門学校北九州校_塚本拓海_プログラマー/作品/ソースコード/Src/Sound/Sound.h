@@ -51,6 +51,8 @@ namespace BOUDAMA
 
 		//BGM’â~ˆ—ŠÖ”
 		void StopSoundData(SOUND::BGM ID);
+		//Œø‰Ê‰¹’â~ˆ—ŠÖ”
+		void StopSoundData(SOUND::SE ID);
 
 		//‘S‚Ä‚Ì‰¹ƒnƒ“ƒhƒ‹‰Šú‰»
 		void Reset(void);

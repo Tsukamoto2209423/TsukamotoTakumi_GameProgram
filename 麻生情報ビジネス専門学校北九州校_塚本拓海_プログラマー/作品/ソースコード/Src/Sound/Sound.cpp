@@ -63,12 +63,6 @@ namespace BOUDAMA
 		}
 	}
 
-	//BGM’â~ˆ—ŠÖ”
-	void SoundManager::StopSoundData(SOUND::BGM ID)
-	{
-		StopSoundMem(soundHandle_[static_cast<int>(ID)]);
-	}
-
 	void SoundManager::PlaySoundData(SOUND::SE ID, int playType)
 	{
 		int soundIndex = static_cast<int>(ID);
@@ -76,8 +70,21 @@ namespace BOUDAMA
 		if (soundIndex < soundHandle_.size())
 		{
 			//‰¹Ä¶
+
 			PlaySoundMem(soundHandle_[soundIndex], playType, true);
 		}
+	}
+
+	//BGM’â~ˆ—ŠÖ”
+	void SoundManager::StopSoundData(SOUND::BGM ID)
+	{
+		StopSoundMem(soundHandle_[static_cast<int>(ID)]);
+	}
+
+	//Œø‰Ê‰¹’â~ˆ—ŠÖ”
+	void SoundManager::StopSoundData(SOUND::SE ID)
+	{
+		StopSoundMem(soundHandle_[static_cast<int>(ID)]);
 	}
 
 	//‘S‚Ä‚Ì‰¹ƒnƒ“ƒhƒ‹‰Šú‰»
