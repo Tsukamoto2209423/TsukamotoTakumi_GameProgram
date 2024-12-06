@@ -32,14 +32,20 @@ namespace BOUDAMA
 		//行動処理関数
 		void Step(void) override;
 
+		//描画処理関数
+		void Draw(void) override;
+
 		//出現処理関数
 		void AppearanceRequest(void) override;
 
 		//アイテムの効果実行
-		void EffectExecute(const std::shared_ptr<Object>& subjectObject);
+		void EffectExecute(const std::shared_ptr<Object>& targetObject);
 
 		//当たった時の処理
 		void HitCalculation(void) override;
+
+		//爆弾に火をつける
+		void IgniteBomb(void);
 
 		/// <summary>
 		/// 爆発するまでの時間計測用変数を取得
@@ -55,14 +61,16 @@ namespace BOUDAMA
 		/// <returns>
 		/// 爆発してからどのくらい時間が経っているか
 		/// </returns>
-		inline int GetExplosionTime(void) const noexcept { return countExplodeTimeLimit_; }
+		inline int GetExplosionTime(void) const noexcept { return explosionTime_; }
+
+		inline void SetOwnerPos(const Vector3D& pos) noexcept { pos_ = pos; }
 
 	private:
 		//通常状態
 		void MoveNormal(void);
 
 		//投擲状態
-		void MoveThrow(void);
+		void MoveIgnition(void);
 
 		//爆発状態
 		void MoveExplosion(void);
@@ -71,7 +79,7 @@ namespace BOUDAMA
 		const decltype(&Bomb::MoveNormal) MoveFunctionPointer[BOMB_STATE::NUM]
 		{
 			&Bomb::MoveNormal,
-			&Bomb::MoveThrow,
+			&Bomb::MoveIgnition,
 			&Bomb::MoveExplosion
 		};
 	};

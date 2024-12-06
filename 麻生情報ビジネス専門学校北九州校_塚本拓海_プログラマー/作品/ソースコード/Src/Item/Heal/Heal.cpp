@@ -9,6 +9,7 @@ namespace BOUDAMA
 	void Heal::Init(void)
 	{
 		healValue_ = HEAL::HEAL_VALUE;
+		isAlive_ = false;
 	}
 
 	void Heal::Step(void)
@@ -46,9 +47,9 @@ namespace BOUDAMA
 	}
 
 	//アイテムを使用した時の効果実行関数
-	void Heal::EffectExecute(const std::shared_ptr<Object>& subjectObject)
+	void Heal::EffectExecute(const std::shared_ptr<Object>& targetObject)
 	{
 		//HP回復
-		subjectObject->AddHP(healValue_);
+		targetObject->AddHP(healValue_);
 	}
 }

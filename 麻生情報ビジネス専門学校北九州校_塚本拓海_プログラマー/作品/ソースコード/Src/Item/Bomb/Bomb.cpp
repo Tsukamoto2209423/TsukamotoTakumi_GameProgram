@@ -1,5 +1,7 @@
 #include "Bomb.h"
 #include <Math/MyMath.h>
+#include "Effekseer/Effekseer.h"
+#include <EffekseerParameter.h>
 
 namespace BOUDAMA
 {
@@ -9,7 +11,7 @@ namespace BOUDAMA
 		//初期化
 		handle_ = -1;
 		state_ = BOMB::STATE::NORMAL;
-		isAlive_ = true;
+		isAlive_ = false;
 		hp_ = 1;
 		radius_ = BOMB::RADIUS;
 		pos_ = MyMath::ZERO_VECTOR_3D;
@@ -25,30 +27,46 @@ namespace BOUDAMA
 		(this->*MoveFunctionPointer[state_])();
 	}
 
+	//描画処理関数
+	void Bomb::Draw(void)
+	{
+		//生存している場合は描画
+		if (isAlive_ && state_ != BOMB_STATE::EXPLOSION)
+		{
+			MV1DrawModel(handle_);
+		}
+	}
+
 	//出現処理関数
 	void Bomb::AppearanceRequest(void)
 	{
 		isAlive_ = true;
-
-		if (owner_.expired())
-		{
-			pos_ = { BOMB::INIT_POS_X_Z + GetRand(BOMB::INIT_POS_XZ_RAND_MAX_NUM),
-				0.0f,
-				BOMB::INIT_POS_X_Z + GetRand(BOMB::INIT_POS_XZ_RAND_MAX_NUM) };
-		}
+		IgniteBomb();
 	}
 
 	//アイテムの効果実行
-	void Bomb::EffectExecute(const std::shared_ptr<Object>& subjectObject)
+	void Bomb::EffectExecute(const std::shared_ptr<Object>& targetObject)
 	{
-		subjectObject->SubHP(BOMB::ATTACK_POWER);
+		targetObject->SubHP(BOMB::ATTACK_POWER);
+
+		const Vector3D& myPosToTargetVector = targetObject->GetPos() - pos_;
+
+		//距離に応じて与える速度ベクトルの長さを変える
+		const Vector3D& addExplosionVelocity = (BOMB::EXPLOSION_BOOST / myPosToTargetVector.L2Norm()) * myPosToTargetVector;
+
+		targetObject->AddVelocity(addExplosionVelocity);
 	}
 
 	//当たったときの処理
 	void Bomb::HitCalculation(void)
 	{
-		state_ = BOMB::STATE::EXPLOSION;
-		isAlive_ = false;
+		state_ = BOMB_STATE::EXPLOSION;
+	}
+
+	//爆弾に火をつける
+	void Bomb::IgniteBomb(void)
+	{
+		state_ = BOMB_STATE::IGNITION;
 	}
 
 	void Bomb::MoveNormal(void)
@@ -59,6 +77,19 @@ namespace BOUDAMA
 			return;
 		}
 
+		//Y軸のぐるぐる回転する処理
+		rot_.y = rot_.y >= MyMath::TWO_PI - MyMath::PI_OVER_TWENTY ? 0.0f : rot_.y + MyMath::PI_OVER_TWENTY;
+
+		pos_ += BOMB::HOLD_UP_DISTANCE;
+
+		//座標設定
+		MV1SetPosition(handle_, pos_);
+		MV1SetRotationXYZ(handle_, rot_);
+	}
+
+	//着火して投げられたときの処理
+	void Bomb::MoveIgnition(void)
+	{
 		//爆発するまでの時間計測
 		--countExplodeTimeLimit_;
 
@@ -66,8 +97,9 @@ namespace BOUDAMA
 		if (countExplodeTimeLimit_ <= 0)
 		{
 			//その場で爆発状態に遷移
-			state_ = BOMB::STATE::EXPLOSION;
-			isAlive_ = false;
+			state_ = BOMB_STATE::EXPLOSION;
+
+			CEffekseerCtrl::Request(EFFECT::EXPLOSION, pos_, false);
 
 			countExplodeTimeLimit_ = BOMB::MAX_EXPLODE_TIME_LIMIT;
 
@@ -76,51 +108,17 @@ namespace BOUDAMA
 			return;
 		}
 
-		//誰かが自分自身を取得したときの処理
-		if (!owner_.expired())
-		{
-			const auto& owner = owner_.lock();
-
-			pos_ = owner->GetPos() + BOMB::HELD_UP_DISTANCE;
-			rot_.y = owner->GetRotY();
-
-			//座標設定
-			MV1SetPosition(handle_, pos_);
-			MV1SetRotationXYZ(handle_, rot_);
-
-			return;
-		}
-
-		//Y軸のぐるぐる回転する処理
-		rot_.y = rot_.y >= MyMath::TWO_PI - MyMath::PI_OVER_TWENTY ? 0.0f : rot_.y + MyMath::PI_OVER_TWENTY;
-
-		//座標設定
-		MV1SetPosition(handle_, pos_);
-		MV1SetRotationXYZ(handle_, rot_);
-	}
-
-	//投げられたときの処理
-	void Bomb::MoveThrow(void)
-	{
-		//爆発するまでの時間計測
-		--countExplodeTimeLimit_;
-
-		//dir_.x = -sinf(rot_.y) * BOMB::THROW_SPEED;
-		//dir_.z = -cosf(rot_.y) * BOMB::THROW_SPEED;
-
-		pos_ += dir_;
-
-		dir_ *= 0.9f;
+		pos_ += velocity_;
 
 		//重力処理
-		pos_.y - BOMB::GRAVITY > BOMB::GROUND_POS ? pos_.y -= BOMB::GRAVITY : pos_.y = BOMB::GROUND_POS;
+		pos_.y - BOMB::GRAVITY > BOMB::GROUND_POS ? pos_.y -= BOMB::GRAVITY : state_ = BOMB_STATE::EXPLOSION;
 
 
 		//画面外に出た場合、死亡判定
 		if (MyMath::Abs(pos_.x) > BOMB::MAX_POS_X_Z || MyMath::Abs(pos_.z) > BOMB::MAX_POS_X_Z)
 		{
 			isAlive_ = false;
-			dir_ = MyMath::ZERO_VECTOR_3D;
+			velocity_ = MyMath::ZERO_VECTOR_3D;
 		}
 
 		//位置・角度設定
@@ -135,9 +133,10 @@ namespace BOUDAMA
 		++explosionTime_;
 
 		//爆発時間が最大まで行ったら
-		if (explosionTime_ >= BOMB::MAX_EXPLOSION_TIME)
+		if (BOMB::MAX_EXPLOSION_TIME <= explosionTime_)
 		{
-			state_ = BOMB::STATE::NORMAL;
+			isAlive_ = false;
+			state_ = BOMB_STATE::NORMAL;
 			explosionTime_ = 0;
 			radius_ = BOMB::RADIUS;
 		}

@@ -9,22 +9,23 @@ namespace BOUDAMA
 	class StateBase
 	{
 	public:
-		using Type = Ty;
+		using KeyType = Ty;
+		using OwnerType = Owner;
 
-		explicit constexpr StateBase(const Type initState) noexcept : myStateName_(initState), nextStateName_(initState), isTransitionToNextState_(false) {};
-		explicit constexpr StateBase(const Type myState, const Type nextState) noexcept : myStateName_(myState), nextStateName_(nextState), isTransitionToNextState_(false) {};
+		explicit constexpr StateBase(const KeyType initState) noexcept : myStateName_(initState), nextStateName_(initState), isTransitionToNextState_(false) {};
+		explicit constexpr StateBase(const KeyType myState, const KeyType nextState) noexcept : myStateName_(myState), nextStateName_(nextState), isTransitionToNextState_(false) {};
 
 		virtual ~StateBase() noexcept = default;
 
 	protected:
 		//状態の所有者
-		std::weak_ptr<Owner> owner_;
+		std::weak_ptr<OwnerType> owner_;
 
 		//自分自身の状態の名前
-		Type myStateName_;
+		KeyType myStateName_;
 
 		//次に行く状態の名前
-		Type nextStateName_;
+		KeyType nextStateName_;
 
 		//次の状態に遷移するか？
 		bool isTransitionToNextState_;
@@ -49,13 +50,13 @@ namespace BOUDAMA
 		}
 
 		//自分自身のの状態を取得
-		inline Type GetMyState(void) const noexcept
+		inline KeyType GetMyState(void) const noexcept
 		{
 			return myStateName_;
 		}
 
 		//遷移先の状態を取得
-		inline Type GetNextState(void) const noexcept
+		inline KeyType GetNextState(void) const noexcept
 		{
 			return nextStateName_;
 		}

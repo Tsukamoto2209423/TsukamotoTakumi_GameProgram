@@ -24,44 +24,44 @@ public:
 	constexpr Vector3D VGet(const Vector3D& vec) { return Vector3D(this->x = vec.x, this->y = vec.y, this->z = vec.z); }
 
 	//Vector3Dの加算の定義
-	inline Vector3D operator+(const Vector3D& vec) const { return Vector3D(this->x + vec.x, this->y + vec.y, this->z + vec.z); }
+	constexpr Vector3D operator+(const Vector3D& vec) const { return Vector3D(this->x + vec.x, this->y + vec.y, this->z + vec.z); }
 
 	//Vector3Dの加算代入の定義
-	inline Vector3D operator+=(const Vector3D& vec) { return *this = *this + vec; }
+	constexpr Vector3D operator+=(const Vector3D& vec) { return *this = *this + vec; }
 
 	//Vector3Dの減算の定義
-	inline Vector3D operator-(const Vector3D& vec) const { return Vector3D(this->x - vec.x, this->y - vec.y, this->z - vec.z); }
+	constexpr Vector3D operator-(const Vector3D& vec) const { return Vector3D(this->x - vec.x, this->y - vec.y, this->z - vec.z); }
 
 	//Vector3Dの減算代入の定義
-	inline Vector3D operator-=(const Vector3D& vec) { return *this = *this - vec; }
+	constexpr Vector3D operator-=(const Vector3D& vec) { return *this = *this - vec; }
 
 	//Vector3Dのスカラー倍の定義
-	inline Vector3D operator*(int scale) const { return Vector3D(this->x * scale, this->y * scale, this->z * scale); }
+	constexpr Vector3D operator*(int scale) const { return Vector3D(this->x * scale, this->y * scale, this->z * scale); }
 
 	//Vector3Dのスカラー倍の定義
-	inline Vector3D operator*(float scale) const { return Vector3D(this->x * scale, this->y * scale, this->z * scale); }
+	constexpr Vector3D operator*(float scale) const { return Vector3D(this->x * scale, this->y * scale, this->z * scale); }
 
 	//Vector3Dのスカラー倍代入の定義(int)
-	inline Vector3D operator*=(int scale) { return *this = *this * scale; }
+	constexpr Vector3D operator*=(int scale) { return *this = *this * scale; }
 
 	//Vector3Dのスカラー倍代入の定義(float)
-	inline Vector3D operator*=(float scale) { return *this = *this * scale; }
+	constexpr Vector3D operator*=(float scale) { return *this = *this * scale; }
 
 	//Vector3Dの代入の定義
-	inline Vector3D operator=(const Vector3D& vec) { return Vector3D(this->x = vec.x, this->y = vec.y, this->z = vec.z); }
-	inline Vector3D operator=(float scale) { return Vector3D(this->x = scale, this->y = scale, this->z = scale); }
+	constexpr Vector3D& operator=(const Vector3D& vec) { this->x = vec.x; this->y = vec.y; this->z = vec.z; return *this; }
+	constexpr Vector3D& operator=(float scale) { this->x = scale; this->y = scale; this->z = scale; return *this; }
 
 	//同一ベクトル判定
-	inline bool operator==(const Vector3D& vec) const { return (this->x == vec.x && this->y == vec.y && this->z == vec.z); }
-	inline bool operator!=(const Vector3D& vec) const { return !(*this == vec); }
+	constexpr bool operator==(const Vector3D& vec) const { return (this->x == vec.x && this->y == vec.y && this->z == vec.z); }
+	constexpr bool operator!=(const Vector3D& vec) const { return !(*this == vec); }
 
-	inline bool operator>(const Vector3D& vec) const { return (this->x > vec.x && this->y > vec.y && this->z > vec.z); }
+	constexpr bool operator>(const Vector3D& vec) const { return (this->x > vec.x && this->y > vec.y && this->z > vec.z); }
 
-	inline bool operator<(const Vector3D& vec) const { return (this->x < vec.x && this->y < vec.y && this->z < vec.z); }
+	constexpr bool operator<(const Vector3D& vec) const { return (this->x < vec.x && this->y < vec.y && this->z < vec.z); }
 
-	inline bool operator>(float scale) const { return (this->x > scale && this->y > scale && this->z > scale); }
+	constexpr bool operator>(float scale) const { return (this->x > scale && this->y > scale && this->z > scale); }
 
-	inline bool operator<(float scale) const { return (this->x < scale && this->y < scale && this->z < scale); }
+	constexpr bool operator<(float scale) const { return (this->x < scale && this->y < scale && this->z < scale); }
 
 	//DXライブラリのベクトル構造体へのキャスト演算子
 	constexpr operator VECTOR() const { return VECTOR{ x,y,z }; }
@@ -69,14 +69,14 @@ public:
 public:
 
 	//始点と終点からベクトルを作成
-	static inline Vector3D Create(const Vector3D& start, const Vector3D& end)
+	static constexpr Vector3D Create(const Vector3D& start, const Vector3D& end)
 	{
 		//終点 - 始点
 		return Vector3D(end.x - start.x, end.y - start.y, end.z - start.z);
 	}
 
 	//ベクトルの大きさを取得(L2ノルム)
-	static float L2Norm(const Vector3D& vec)
+	static inline float L2Norm(const Vector3D& vec)
 	{
 		// ||vec||_2 = √(|vec.x|^2 + |vec.y|^2 + |vec.z|^2)
 		return std::sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
@@ -84,20 +84,20 @@ public:
 
 	//ベクトルの大きさを取得(L2ノルム)
 	// ||vec||_2 = √(|vec.x|^2 + |vec.y|^2 + |vec.z|^2)
-	float L2Norm() const
+	inline float L2Norm(void) const
 	{
 		return std::sqrt(this->x * this->x + this->y * this->y + this->z * this->z);
 	}
 
 	//二乗したベクトルの大きさを取得(L2ノルム)
 	//(||vec||_2)^2 = |vec.x|^2 + |vec.y|^2 + |vec.z|^2
-	float SquareL2Norm() const
+	inline float SquareL2Norm(void) const
 	{
 		return this->x * this->x + this->y * this->y + this->z * this->z;
 	}
 
 	//単位ベクトル作成
-	Vector3D Normalize(const Vector3D& vec) const
+	inline Vector3D Normalize(const Vector3D& vec) const
 	{
 		Vector3D result;
 
@@ -111,7 +111,7 @@ public:
 	}
 
 	//単位ベクトル作成
-	const Vector3D& Normalize()
+	inline Vector3D& Normalize(void)
 	{
 		//ベクトルの大きさの逆数取得
 		const float reciprocalVecNorm = 1 / this->L2Norm();
@@ -149,14 +149,14 @@ public:
 
 
 	//逆ベクトルにする
-	const Vector3D& Inverse()
+	constexpr Vector3D& Inverse(void)
 	{
 		*this *= -1;
 		return *this;
 	}
 
 	//外積
-	static inline Vector3D Cross(const Vector3D& vec1, const Vector3D& vec2)
+	static constexpr Vector3D Cross(const Vector3D& vec1, const Vector3D& vec2)
 	{
 		return { vec1.y * vec2.z - vec1.z * vec2.y,
 			vec1.z * vec2.x - vec1.x * vec2.z,

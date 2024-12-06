@@ -19,7 +19,7 @@ void InputMouse::Step(void)
 
 	//1フレーム前の位置情報を記憶
 	prePosX_ = currentPosX_;
-	prePosY_ = prePosY_;
+	prePosY_ = currentPosY_;
 
 	//現在のフレームで左クリックされているか
 	isCurrentClick_ = GetMouseInput() == MOUSE_INPUT_LEFT;

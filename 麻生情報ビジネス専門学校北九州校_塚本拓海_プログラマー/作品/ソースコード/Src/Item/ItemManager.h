@@ -5,6 +5,13 @@
 #include "ItemBase.h"
 #include "ItemParameter.h"
 
+#ifdef _DEBUG
+
+#include <iostream>
+#include <intrin.h>
+
+#endif
+
 namespace BOUDAMA
 {
 	//アイテム用管理クラス
@@ -36,9 +43,42 @@ namespace BOUDAMA
 		//破棄処理関数
 		void Fin(void);
 
-		void AppearanceRequest(const std::shared_ptr<Object>& owner, const ITEM::ITEM_LIST itemNum);
+		void AppearanceRequest(const ITEM::ITEM_LIST itemNum);
 
-		inline const std::vector<std::shared_ptr<ItemBase>>& GetItemManager() { return items_; }
+		const auto& SearchItem(const ITEM::ITEM_LIST itemNum) const
+		{
+			int vectorItemIndex = 0;
+
+			int intItemNum = static_cast<int>(itemNum);
+
+			//アイテムの位置探索
+			for (int index = 0; index < intItemNum; ++index)
+			{
+				vectorItemIndex += ITEM::ITEM_MAX_NUM_LIST[index];
+			}
+
+			int maxNum = ITEM::ITEM_MAX_NUM_LIST[intItemNum];
+
+			for (int num = 0; num < maxNum; ++num, ++vectorItemIndex)
+			{
+				if (items_[vectorItemIndex]->GetIsActive())
+				{
+					continue;
+				}
+
+				return items_[vectorItemIndex];
+			}
+
+#ifdef _DEBUG
+			std::cerr << "Debug break : アイテムを見つけられませんでした！" << std::endl;
+			__debugbreak();
+#endif // _DEBUG
+
+			return *items_.begin();
+		}
+
+
+		inline const std::vector<std::shared_ptr<ItemBase>>& GetItem() { return items_; }
 
 	};
 }

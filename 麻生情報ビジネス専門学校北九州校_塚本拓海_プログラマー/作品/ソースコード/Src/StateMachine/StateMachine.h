@@ -52,8 +52,8 @@ namespace BOUDAMA
 		}
 
 		//ó‘Ô‚ğV‚µ‚­ì¬‚·‚é
-		template<class StateElement, class StateNumber, class... Args>
-		void AddState(const StateNumber num, Args&&... args)
+		template<class StateElement, class StateType, class... Args>
+		void AddState(const StateType num, Args&&... args)
 		{
 #ifdef _DEBUG
 			//Šù‚É’Ç‰Á‚³‚ê‚Ä‚¢‚é‚È‚ç–ß‚é

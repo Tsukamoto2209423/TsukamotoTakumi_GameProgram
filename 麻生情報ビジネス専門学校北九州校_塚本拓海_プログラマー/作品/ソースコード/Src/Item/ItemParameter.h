@@ -10,13 +10,13 @@ namespace BOUDAMA
 		constexpr char PATH[] = "Data/Model/Bomb/Beta_Bomb.x";
 
 		//持たれたときに上に移動させる値
-		constexpr Vector3D HELD_UP_DISTANCE = { 0.0f,50.0f,0.0f };
+		constexpr Vector3D HOLD_UP_DISTANCE = { 0.0f,55.0f,0.0f };
 
 		//地面の位置
 		constexpr float GROUND_POS = 20.5f;
 
 		//重力
-		constexpr float GRAVITY = 5.75f;
+		constexpr float GRAVITY = 9.75f;
 
 		//投擲の速さ
 		constexpr float THROW_SPEED = 20.0f;
@@ -27,6 +27,10 @@ namespace BOUDAMA
 		//爆発の炎の半径
 		constexpr float EXPLODE_RADIUS = 300.0f;
 
+		//爆発したときに与える速さのブースト
+		constexpr float EXPLOSION_BOOST = 25.0f;
+
+
 		//初期基準位置
 		constexpr float INIT_POS_X_Z = -1000.0f;
 
@@ -34,7 +38,7 @@ namespace BOUDAMA
 		constexpr float MAX_POS_X_Z = 7000.0f;
 
 		//攻撃力
-		constexpr int ATTACK_POWER = 5;
+		constexpr int ATTACK_POWER = 4;
 
 		//ランダムで配置するときに初期基準位置に足す最大値
 		constexpr int INIT_POS_XZ_RAND_MAX_NUM = 2 * static_cast<int>(-INIT_POS_X_Z);
@@ -43,7 +47,7 @@ namespace BOUDAMA
 		constexpr int MAX_NUM = 3;
 
 		//爆発するまでの制限時間
-		constexpr int MAX_EXPLODE_TIME_LIMIT = 600;
+		constexpr int MAX_EXPLODE_TIME_LIMIT = 300;
 
 		//爆発している時間
 		constexpr int MAX_EXPLOSION_TIME = 90;
@@ -51,7 +55,7 @@ namespace BOUDAMA
 		enum STATE
 		{
 			NORMAL,
-			THROW,
+			IGNITION,
 			EXPLOSION,
 
 			NUM
@@ -93,16 +97,16 @@ namespace BOUDAMA
 		{
 			BOMB,
 
-			HEAL,
-
-			ALL_NUM
+			HEAL
 		};
 
 
-		constexpr int ITEM_MAX_NUM_LIST[static_cast<int>(ITEM_LIST::ALL_NUM)] =
+		constexpr int ITEM_MAX_NUM_LIST[] =
 		{
 			BOMB::MAX_NUM,
 			HEAL::MAX_NUM
 		};
 	}
+
+	using ITEM_LIST = ITEM::ITEM_LIST;
 }

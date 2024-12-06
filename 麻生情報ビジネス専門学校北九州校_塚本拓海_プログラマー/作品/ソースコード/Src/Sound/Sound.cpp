@@ -70,7 +70,6 @@ namespace BOUDAMA
 		if (soundIndex < soundHandle_.size())
 		{
 			//‰¹Ä¶
-
 			PlaySoundMem(soundHandle_[soundIndex], playType, true);
 		}
 	}

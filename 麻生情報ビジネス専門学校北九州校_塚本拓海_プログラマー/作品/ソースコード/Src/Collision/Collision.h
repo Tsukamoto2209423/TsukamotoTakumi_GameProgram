@@ -12,36 +12,37 @@
 
 namespace BOUDAMA
 {
-	class Collision final
+	namespace Collision
 	{
-	public:
 		//引数の数値を中心とした正方形の当たり判定関数
-		static bool IsHitSquare(const Vector3D& vec1, const Vector3D& vec2, float vec1radius, float vec2radius);
+		bool IsHitSquare(const Vector3D& vec1, const Vector3D& vec2, float vec1radius, float vec2radius);
 
 		//引数の数値を中心とした円の当たり判定
-		static bool IsHitCircle(const Vector3D& vec1, const Vector3D& vec2, float vec1radius, float vec2radius);
+		bool IsHitCircle(const Vector3D& vec1, const Vector3D& vec2, float vec1radius, float vec2radius);
 
-		static bool IsHitSphere(const Vector3D& vec1, const Vector3D& vec2, float vec1radius, float vec2radius);
+		bool IsHitSphere(const Vector3D& vec1, const Vector3D& vec2, float vec1radius, float vec2radius);
 
-		static bool IsHitTriangleXY(const Vector3D& point, const Vector3D& vertexA, const Vector3D& vertexB, const Vector3D& vertexC);
+		bool IsHitTriangleXY(const Vector3D& point, const Vector3D& vertexA, const Vector3D& vertexB, const Vector3D& vertexC);
 
-		static bool IsHitTriangleXZ(const Vector3D& point, const Vector3D& vertexA, const Vector3D& vertexB, const Vector3D& vertexC);
+		bool IsHitTriangleXZ(const Vector3D& point, const Vector3D& vertexA, const Vector3D& vertexB, const Vector3D& vertexC);
 
-		static bool IsHitTriangleYZ(const Vector3D& point, const Vector3D& vertexA, const Vector3D& vertexB, const Vector3D& vertexC);;
+		bool IsHitTriangleYZ(const Vector3D& point, const Vector3D& vertexA, const Vector3D& vertexB, const Vector3D& vertexC);;
 
 		//プレイヤーと敵の当たり判定
-		static void IsHitPlayerToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager);
+		void IsHitPlayerToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager);
 
 		//物質と敵の当たり判定
-		static void IsHitSubstanceToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager);
+		void IsHitSubstanceToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager);
 
 		//アイテムと敵の当たり判定
-		static void IsHitItemToPlayer(std::vector<ItemBase*>& item, std::vector<Player*>& player);
+		void IsHitItemToPlayer(ItemManager& itemManager, const std::shared_ptr<Player>& player);
+
+		void IsHitItemToEnemy(ItemManager& itemManager, EnemyManager& enemyManager);
 
 		//プレイヤーと物質の当たり判定
-		static void IsHitPlayerToSubstance(const std::shared_ptr<Player>& player, SubstanceManager& substanceManager);
+		void IsHitPlayerToSubstance(const std::shared_ptr<Player>& player, SubstanceManager& substanceManager);
 
 		//物質同士の当たり判定
-		static void IsHitSubstanceToSubstance(const std::shared_ptr<Player>& player, SubstanceManager& substanceManager);
+		void IsHitSubstanceToSubstance(const std::shared_ptr<Player>& player, SubstanceManager& substanceManager);
 	};
 }

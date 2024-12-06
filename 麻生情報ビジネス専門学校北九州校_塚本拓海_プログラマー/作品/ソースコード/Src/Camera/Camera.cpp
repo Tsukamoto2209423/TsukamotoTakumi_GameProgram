@@ -102,7 +102,7 @@ namespace BOUDAMA
 		{
 			rot_.x -= CAMERA::ROT_UP_DOWN_SPEED;
 
-			// rot_の上下の角度θの定義域は　(π/2) + π/100 <= θ <= (π/2) - π/100
+			// rot_の上下の角度θの定義域は　0 <= θ <= (π/2) - π/100
 			if (rot_.x < 0.0f)
 			{
 				rot_.x = 0.0f;
@@ -148,31 +148,32 @@ namespace BOUDAMA
 		}
 
 		//ゲームパッドのRスティック取得
-		const Vector3D GamePadRStick = InputGamePad::GetRStickVector().Normalize();
+		const Vector3D GamePadRStick = InputGamePad::GetRStickVector();
 
 		if (MyMath::Abs(GamePadRStick.x) > Common::KINDA_SMALL_NUMBER || MyMath::Abs(GamePadRStick.y) > Common::KINDA_SMALL_NUMBER)
 		{
 			rot_ += GamePadRStick * CAMERA::GAMEPAD_ROT_COEFFICIENT;
 		}
-
-		const Vector3D MouseMoveValue(InputMouse::GetMoveValueX(), InputMouse::GetMoveValueY(), 0.0f);
+		
+		//マウス視点操作
+		const Vector3D MouseMoveValue(InputMouse::GetMoveValueVertical(), InputMouse::GetMoveValueHorizontal(), 0.0f);
 
 		if (MyMath::Abs(MouseMoveValue.x) > Common::KINDA_SMALL_NUMBER || MyMath::Abs(MouseMoveValue.y) > Common::KINDA_SMALL_NUMBER)
 		{
-			rot_ += MouseMoveValue * 0.01f;
+			rot_ += MouseMoveValue * CAMERA::MOUSE_SENSITIVITY;
 		}
 
 
-		//rot_.x < (-π/2) + (π/100)
-		if (rot_.x < -MyMath::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED)
+		//rot_.x < 0
+		if (rot_.x < 0.0f)
 		{
-			rot_.x = -MyMath::HALF_PI + CAMERA::ROT_UP_DOWN_SPEED;
+			rot_.x = 0.0f;
 		}
 
-		//rot_.x > (π/2) - (π/100)
-		if (rot_.x > MyMath::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED)
+		//rot_.x > π/2
+		if (rot_.x >= MyMath::HALF_PI)
 		{
-			rot_.x = MyMath::HALF_PI - CAMERA::ROT_UP_DOWN_SPEED;
+			rot_.x = MyMath::HALF_PI - MyMath::INVERSE_TWO_PI;
 		}
 
 		//rot_.y < -π/2
@@ -200,12 +201,9 @@ namespace BOUDAMA
 		pos_ = RetCameraMat * target_;
 
 		//カメラ向いている方向計算
-		dir_ = Matrix3D::GetTranslateMatrix(dir_)
-			* Matrix3D::GetYawMatrix(rot_.y)
-			* Matrix3D::GetPitchMatrix(-dir_.x) * dir_;
+		dir_ = target_ - pos_;
 
 		//カメラ位置設定
 		SetCameraPositionAndTargetAndUpVec(pos_, target_, up_);
-
 	}
 }

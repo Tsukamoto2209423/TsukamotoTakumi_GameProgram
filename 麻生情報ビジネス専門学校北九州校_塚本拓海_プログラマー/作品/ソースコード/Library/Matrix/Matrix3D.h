@@ -278,7 +278,7 @@ public:
 	}
 
 	//Vector3DとMatrix3Dの積の定義
-	inline Vector3D operator*=(const Vector3D& vec)
+	constexpr Vector3D operator*=(const Vector3D& vec)
 	{
 		return Vector3D((vec.x * m[0]) + (vec.y * m[1]) + (vec.z * m[2]) + m[3],
 			(vec.x * m[4]) + (vec.y * m[5]) + (vec.z * m[6]) + m[7],
@@ -318,26 +318,26 @@ public:
 	}
 
 	//Matrix3Dのスカラー倍代入の定義(int)
-	inline Matrix3D operator*= (int iNum)
+	constexpr Matrix3D& operator*= (int iNum)
 	{
 		return *this = *this * iNum;
 	}
 
 	//Matrix3Dのスカラー倍代入の定義(float)
-	inline Matrix3D operator*= (float fNum)
+	constexpr Matrix3D& operator*= (float fNum)
 	{
 		return *this = *this * fNum;
 	}
 
 	//Matrix3Dの乗法代入の定義(Matrix3D)
 	//行列同士の積は非可換である
-	inline Matrix3D operator*= (const Matrix3D& mat)
+	constexpr Matrix3D& operator*= (const Matrix3D& mat)
 	{
 		return *this = *this * mat;
 	}
 
 	//Matrix3Dの代入の定義
-	inline Matrix3D operator= (const Matrix3D& mat)
+	constexpr Matrix3D& operator=(const Matrix3D& mat)
 	{
 		//各成分を代入
 		m[0] = mat.m[0];	m[1] = mat.m[1];	m[2] = mat.m[2];	m[3] = mat.m[3];

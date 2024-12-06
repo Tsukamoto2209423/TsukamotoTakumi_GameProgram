@@ -44,6 +44,9 @@ namespace BOUDAMA
 		//ゲームパッドでカメラを回転させるときにかける補正係数
 		constexpr float GAMEPAD_ROT_COEFFICIENT = 0.04f;
 
+		//マウスでカメラを回転させるときにかける補正係数
+		constexpr float MOUSE_SENSITIVITY = 0.01f;
+
 		//プレイヤーに近づくことができる最小の直線距離
 		constexpr float MIN_DISTANCE = 300.0f;
 

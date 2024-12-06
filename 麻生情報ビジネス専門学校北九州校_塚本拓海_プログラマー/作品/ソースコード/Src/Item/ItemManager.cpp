@@ -2,6 +2,7 @@
 #include "ItemParameter.h"
 #include "Item/Bomb/Bomb.h"
 
+
 namespace BOUDAMA
 {
 	//コンストラクタ
@@ -21,7 +22,8 @@ namespace BOUDAMA
 	{
 		for (int index = 0; index < BOMB::MAX_NUM; ++index)
 		{
-			items_.emplace_back(std::make_shared<Bomb>());
+			const auto& item = items_.emplace_back(std::make_shared<Bomb>());
+			item->Init();
 		}
 	}
 
@@ -70,20 +72,17 @@ namespace BOUDAMA
 	}
 
 	//出現処理
-	void ItemManager::AppearanceRequest(const std::shared_ptr<Object>& owner, const ITEM::ITEM_LIST itemNum)
+	void ItemManager::AppearanceRequest(const ITEM::ITEM_LIST itemNum)
 	{
-		int sumItemPos = 0;
+		int vectorItemIndex = 0;
 
 		int intItemNum = static_cast<int>(itemNum);
 
 		//アイテムの位置探索
 		for (int index = 0; index < intItemNum; ++index)
 		{
-			sumItemPos += ITEM::ITEM_MAX_NUM_LIST[index];
+			vectorItemIndex += ITEM::ITEM_MAX_NUM_LIST[index];
 		}
-
-		//アイテムの位置設定
-		auto&& itemBeginPos = items_.begin() + sumItemPos;
 
 		//アイテムの出現最大数取得
 		const int maxNum = ITEM::ITEM_MAX_NUM_LIST[intItemNum];
@@ -92,22 +91,23 @@ namespace BOUDAMA
 		for (int count = 0; count < maxNum; ++count)
 		{
 			//既に出現しているなら実行しない
-			if ((*itemBeginPos)->GetIsActive())
+			if (items_[vectorItemIndex]->GetIsActive())
 			{
-				++itemBeginPos;
+				++vectorItemIndex;
 				continue;
 			}
 
-			if (owner)
-			{
-				//所有者設定
-				(*itemBeginPos)->SetOwner(owner);
-				(*itemBeginPos)->SetPos(owner->GetPos());
-			}
+			//if (owner)
+			//{
+			//	//所有者設定
+			//	items_[vectorItemIndex]->SetOwner(owner);
+			//	items_[vectorItemIndex]->SetPos(owner->GetPos());
+			//}
 
-			(*itemBeginPos)->AppearanceRequest();
+			items_[vectorItemIndex]->AppearanceRequest();
 
 			return;
 		}
 	}
+
 }

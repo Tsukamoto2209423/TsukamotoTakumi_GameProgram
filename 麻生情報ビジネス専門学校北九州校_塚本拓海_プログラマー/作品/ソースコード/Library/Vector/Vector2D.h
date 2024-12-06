@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DxLib.h"
-#include <math.h>
+#include <cmath>
 
 //二次元の実数上のベクトルクラス
 class Vector2D
@@ -70,10 +70,24 @@ public:
 	}
 
 	//L2ノルム
-	float VecL2Norm(const Vector2D& vec)
+	inline float VecL2Norm(const Vector2D& vec)
 	{
 		// ||vec||_2 = √(|vec.x|^2 + |vec.y|^2)
-		return sqrtf(vec.x * vec.x + vec.y * vec.y);
+		return std::sqrt(vec.x * vec.x + vec.y * vec.y);
+	}
+
+	//ベクトルの大きさを取得(L2ノルム)
+	// ||vec||_2 = √(|vec.x|^2 + |vec.y|^2)
+	inline float L2Norm() const
+	{
+		return std::sqrt(this->x * this->x + this->y * this->y);
+	}
+
+	//二乗したベクトルの大きさを取得(L2ノルム)
+	//(||vec||_2)^2 = |vec.x|^2 + |vec.y|^2
+	inline float SquareL2Norm() const
+	{
+		return this->x * this->x + this->y * this->y;
 	}
 
 	//単位ベクトル作成
@@ -89,6 +103,18 @@ public:
 		result.y = vec.y / vec_norm;
 
 		return result;
+	}
+
+	//単位ベクトル作成
+	const Vector2D& Normalize()
+	{
+		//ベクトルの大きさの逆数取得
+		const float reciprocalVecNorm = 1 / this->L2Norm();
+
+		//各成分にスカラー倍して正規化
+		*this *= reciprocalVecNorm;
+
+		return *this;
 	}
 
 	//単位ベクトルを作成しスカラー倍

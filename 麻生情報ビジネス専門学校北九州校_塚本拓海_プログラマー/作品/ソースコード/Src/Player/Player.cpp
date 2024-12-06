@@ -112,7 +112,6 @@ namespace BOUDAMA
 
 		//ƒRƒ“ƒ{•\¦‚·‚é
 		combo_.Draw();
-
 	}
 
 	//”jŠüˆ—ŠÖ”

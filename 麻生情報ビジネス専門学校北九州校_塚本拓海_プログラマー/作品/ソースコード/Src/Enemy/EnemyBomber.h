@@ -1,7 +1,9 @@
 #pragma once
 
 #include "EnemyBase.h"
+#include "EnemyParameter.h"
 #include "Item/Bomb/Bomb.h"
+#include "Math/MyMath.h"
 
 namespace BOUDAMA
 {
@@ -10,23 +12,22 @@ namespace BOUDAMA
 	{
 	private:
 		//参照する爆弾
-		std::weak_ptr<Bomb> bomb_;
+		std::shared_ptr<ItemBase> bomb_;
 
-		//移動する角度切り替え時間計測
-		int moveAngleChangeCount_;
+		//爆弾を投げた時のスタン時間
+		int bombThrowStunTime_;
 
-		//プレイヤーを発見したときの反応時間計測用変数
-		int findOutReactionCount_;
-
-		//攻撃溜め
-		int attackChargeCount_;
+		//漂う動きを使用するときに使う角度θ,(float型の変数だがfloatは「漂う」という意味)
+		float floatMotionTheta_;
 
 	public:
 		//コンストラクタ
-		EnemyBomber();
+		constexpr EnemyBomber() : bombThrowStunTime_(0), floatMotionTheta_(0.0f) {}
 
+		EnemyBomber(const auto& bomb) : bomb_(bomb), bombThrowStunTime_(0), floatMotionTheta_(0.0f) {}
+		
 		//デストラクタ
-		~EnemyBomber();
+		~EnemyBomber() override {}
 
 		//初期化処理関数
 		void Init(void) override;
@@ -39,7 +40,6 @@ namespace BOUDAMA
 
 		//出現処理関数
 		void AppearanceRequest(void) override;
-
 
 	};
 }

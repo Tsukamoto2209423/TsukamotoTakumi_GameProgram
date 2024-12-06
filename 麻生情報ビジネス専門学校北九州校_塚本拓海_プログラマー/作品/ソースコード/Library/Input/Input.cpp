@@ -31,7 +31,7 @@ void Input::Init(void)
 	button_.emplace_back(XINPUT_BUTTON_DPAD_LEFT);
 	button_.emplace_back(XINPUT_BUTTON_DPAD_RIGHT);
 	button_.emplace_back(XINPUT_BUTTON_B);
-	button_.emplace_back(XINPUT_BUTTON_B);
+	button_.emplace_back(XINPUT_BUTTON_Y);
 }
 
 //入力処理関数
@@ -42,6 +42,10 @@ void Input::Step(void)
 
 	//ゲームパッド入力更新処理
 	InputGamePad::Step();
+
+	//マウス入力更新処理
+	InputMouse::Step();
+
 }
 
 //今、押下されたか

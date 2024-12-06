@@ -23,6 +23,6 @@ namespace BOUDAMA
 		void AppearanceRequest(void) override;
 
 		//アイテムを使用した時の効果実行関数
-		void EffectExecute(const std::shared_ptr<Object>& subjectObject) override;
+		void EffectExecute(const std::shared_ptr<Object>& targetObject) override;
 	};
 }

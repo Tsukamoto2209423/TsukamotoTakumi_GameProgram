@@ -39,7 +39,7 @@ namespace BOUDAMA
 		~EnemyManager();
 
 		//‰Šú‰»ˆ—ŠÖ”
-		void Init(const SCENE difficulty);
+		void Init(const SCENE difficulty, const ItemManager& itemManager);
 
 		//“Ç‚İ‚İˆ—ŠÖ”
 		void Load(const SCENE difficulty);

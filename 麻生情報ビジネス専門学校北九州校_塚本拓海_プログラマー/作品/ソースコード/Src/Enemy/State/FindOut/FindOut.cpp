@@ -38,7 +38,6 @@ namespace BOUDAMA
 			{
 				owner->SetDir(owner->GetDir().Normalize());
 				reactionTimeCount_ = 0;
-				nextStateName_ = ENEMY_STATE::ATTACK;
 				isTransitionToNextState_ = true;
 			}
 		}

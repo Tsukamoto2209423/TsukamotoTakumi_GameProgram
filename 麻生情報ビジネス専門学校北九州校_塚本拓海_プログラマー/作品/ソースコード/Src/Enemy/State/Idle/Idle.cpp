@@ -17,6 +17,18 @@ namespace BOUDAMA
 	//s“®ˆ—ŠÖ”
 	void Idle::Execute(void)
 	{
-		//‰½‚à‚µ‚È‚¢
+		//-1‚Ìê‡‚ÍA‚±‚êˆÈã‰½‚à‚µ‚È‚¢Š®‘S‚É’â~‚³‚¹‚Ä‚¢‚éó‘Ô
+		if(maxIdleTime_ == -1)
+		{
+			//‰½‚à‚µ‚È‚¢
+			return;
+		}
+
+		++idleTimeCount_;
+
+		if (maxIdleTime_ <= idleTimeCount_)
+		{
+			isTransitionToNextState_ = true;
+		}
 	}
 }

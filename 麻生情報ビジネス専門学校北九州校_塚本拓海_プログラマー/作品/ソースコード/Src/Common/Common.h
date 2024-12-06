@@ -30,6 +30,6 @@ namespace Common
 	//ウィンドウの半分の縦幅
 	constexpr float WINDOW_HEIGHT_HALF_F = 360.0f;
 
-	//小さい数
+	//ほぼゼロと見做せる誤差の許容範囲 (0.0001)
 	constexpr float KINDA_SMALL_NUMBER = 1.e-4f;
 };

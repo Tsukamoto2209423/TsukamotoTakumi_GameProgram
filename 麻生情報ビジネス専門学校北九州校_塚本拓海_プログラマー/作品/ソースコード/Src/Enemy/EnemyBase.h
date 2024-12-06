@@ -44,9 +44,10 @@ namespace BOUDAMA
 	//全ての敵の基底クラス
 	class EnemyBase : public Object
 	{
-	protected:
+	public:
 		using StateMachineType = StateMachine<ENEMY_STATE, EnemyBase>;
 
+	protected:
 		//状態遷移用変数
 		std::unique_ptr<StateMachineType> stateMachine_;
 
@@ -82,8 +83,6 @@ namespace BOUDAMA
 
 		virtual void DeathCalculation(const Vector3D& hitObjectVelocity);
 
-		//状態取得
-		//inline ENEMY::STATE GetState(void) const { return state_; }
 
 		inline Vector3D GetTargetPosition(void) const noexcept { return targetPosition_; }
 

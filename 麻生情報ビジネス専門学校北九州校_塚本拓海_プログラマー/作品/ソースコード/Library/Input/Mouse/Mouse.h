@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Vector/Vector2D.h>
+#include "Common/Common.h"
 
 //マウス入力用クラス
 class InputMouse
@@ -44,11 +45,14 @@ public:
 	static inline bool IsClickRelease(void) { return !isCurrentClick_ && isPreClick_; }
 
 	//マウスを移動させた値を取得
-	static inline Vector2D GetMoveValue(void) { return Vector2D(static_cast<float>(currentPosX_ - prePosX_), static_cast<float>(currentPosY_ - prePosY_)); }
+	static inline Vector2D GetMoveValue(void) 
+	{ 
+		return Vector2D(GetMoveValueHorizontal(), GetMoveValueVertical());
+	}
 
 	//マウスを横方向に移動させた値を取得
-	static inline float GetMoveValueX(void) { return static_cast<float>(currentPosX_ - prePosX_); }
-
+	static inline float GetMoveValueHorizontal(void) { return static_cast<float>(currentPosX_ - prePosX_); }
+	
 	//マウスを縦方向に移動させた値を取得
-	static inline float GetMoveValueY(void) { return static_cast<float>(currentPosY_ - prePosY_); }
+	static inline float GetMoveValueVertical(void) { return static_cast<float>(currentPosY_ - prePosY_); }
 };

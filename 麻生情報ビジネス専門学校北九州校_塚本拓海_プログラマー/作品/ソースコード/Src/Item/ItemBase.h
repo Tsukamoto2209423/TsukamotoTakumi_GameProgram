@@ -31,7 +31,7 @@ namespace BOUDAMA
 		virtual void AppearanceRequest(void) = 0;
 
 		//アイテムの効果実行
-		virtual void EffectExecute(const std::shared_ptr<Object>& subjectObject) = 0;
+		virtual void EffectExecute(const std::shared_ptr<Object>& targetObject) = 0;
 
 		//所有者取得
 		inline std::weak_ptr<Object> GetOwner(void) const { return owner_; }

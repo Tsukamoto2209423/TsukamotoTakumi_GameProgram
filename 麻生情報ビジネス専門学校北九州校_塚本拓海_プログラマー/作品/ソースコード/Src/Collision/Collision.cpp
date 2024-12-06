@@ -191,27 +191,49 @@ namespace BOUDAMA
 
 	}
 
-	void Collision::IsHitItemToPlayer(std::vector<ItemBase*>& item, std::vector<Player*>& player)
+	void Collision::IsHitItemToPlayer(ItemManager& itemManager, const std::shared_ptr<Player>& player)
 	{
-		for (const auto& item : item)
+		for (const auto& item : itemManager.GetItem())
 		{
 			if (!item->GetIsActive())
 			{
 				continue;
 			}
 
-			for (const auto& player : player)
+			if (!player->GetIsActive())
 			{
-				if (!player->GetIsActive())
+				continue;
+			}
+
+			if (Collision::IsHitSphere(item->GetPos(), player->GetPos(), item->GetRadius(), player->GetRadius()))
+			{
+				item->HitCalculation();
+				item->EffectExecute(player);
+			}
+		}
+	}
+
+	void Collision::IsHitItemToEnemy(ItemManager& itemManager, EnemyManager& enemyManager)
+	{
+		for (const auto& item : itemManager.GetItem())
+		{
+			if (!item->GetIsActive())
+			{
+				continue;
+			}
+
+			for (const auto& enemy : enemyManager.GetEnemy())
+			{
+				if (!enemy->GetIsActive())
 				{
 					continue;
 				}
 
-				if (Collision::IsHitSphere(item->GetPos(), player->GetPos(), item->GetRadius(), player->GetRadius()))
+				if (Collision::IsHitSphere(item->GetPos(), enemy->GetPos(), item->GetRadius(), enemy->GetRadius()))
 				{
 					item->HitCalculation();
+					item->EffectExecute(enemy);
 				}
-
 			}
 		}
 	}

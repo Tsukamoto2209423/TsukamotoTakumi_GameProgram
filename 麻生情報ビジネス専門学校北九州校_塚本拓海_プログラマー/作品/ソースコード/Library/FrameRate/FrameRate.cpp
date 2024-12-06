@@ -62,6 +62,6 @@ void FrameRate::CalcFPS()
 //FPS表示 (デバック用)
 void FrameRate::DrawFPS()
 {
-	unsigned int color = GetColor(255, 30, 30);
+	unsigned int color = GetColor(255, 0, 0);
 	DrawFormatString(1175, 700, color, "FPS[%.2f]", fps_);
 }

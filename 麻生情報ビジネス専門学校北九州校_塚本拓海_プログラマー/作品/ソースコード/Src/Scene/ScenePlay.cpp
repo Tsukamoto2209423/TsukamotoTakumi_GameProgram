@@ -48,6 +48,8 @@ namespace BOUDAMA
 
 		enemyManager_.Draw();
 
+		itemManager_.Draw();
+
 		ShadowMap_DrawEnd();
 
 		//‰e‚Ì•`‰æI—¹-------------------
@@ -60,6 +62,8 @@ namespace BOUDAMA
 		field_.Draw();
 
 		sky_.Draw();
+
+		itemManager_.Draw();
 
 		substanceManager_.Draw();
 
@@ -93,7 +97,9 @@ namespace BOUDAMA
 		player_ = std::make_shared<Player>();
 		player_->Init();
 
-		enemyManager_.Init(playDifficulty_);
+		itemManager_.Init();
+
+		enemyManager_.Init(playDifficulty_, itemManager_);
 
 		field_.Init();
 
@@ -131,6 +137,8 @@ namespace BOUDAMA
 	void ScenePlay::Load(void)
 	{
 		player_->Load();
+
+		itemManager_.Load();
 
 		enemyManager_.Load(playDifficulty_);
 
@@ -183,6 +191,8 @@ namespace BOUDAMA
 
 		substanceManager_.Step();
 
+		itemManager_.Step();
+
 		sky_.Step();
 
 		timeLimit_.Step();
@@ -202,6 +212,8 @@ namespace BOUDAMA
 		field_.Fin();
 
 		substanceManager_.Fin();
+
+		itemManager_.Fin();
 
 		sky_.Fin();
 

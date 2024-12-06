@@ -34,7 +34,7 @@ namespace BOUDAMA
 	}
 
 	//“Gî•ñ‰Šú‰»
-	void EnemyManager::Init(const SCENE difficulty)
+	void EnemyManager::Init(const SCENE difficulty, const ItemManager& itemManager)
 	{
 		for (auto& countTime : appearCountTime_)
 		{
@@ -55,9 +55,10 @@ namespace BOUDAMA
 			[]() { return std::make_shared<Enemy>(); },
 			//‡‚ÌŠÛ‚¢‰ö•¨Œ^‚Ì“G
 			[]() { return std::make_shared<EnemyMonster>(); },
-			//lŒ^‚Ì”š’e‚ğ“Š‚°‚é“G
-			[]() { return std::make_shared<EnemyBomber>(); },
+			//‚¨‰»‚¯‚Ì”š’e‚ğ“Š‚°‚é“G
+			[&]() { return std::make_shared<EnemyBomber>(itemManager.SearchItem(ITEM::ITEM_LIST::BOMB)); },
 		};
+
 
 		//‚»‚ê‚¼‚ê‚Ì“G‚ÌÅ‘å”•ªA—ÌˆæŠm•Û‚·‚é
 		for (const auto enemyKindNum : ENEMY_MANAGER::ENEMY_LIST())
@@ -82,7 +83,7 @@ namespace BOUDAMA
 
 
 		//Å‰‚É“G‚ğoŒ»‚³‚¹‚Ä‚¨‚­
-		for (int appearNum = 0; const auto & enemy : enemies_)
+		for (int appearNum = 0; const auto& enemy : enemies_)
 		{
 			enemy->AppearanceRequest();
 			++appearNum;
