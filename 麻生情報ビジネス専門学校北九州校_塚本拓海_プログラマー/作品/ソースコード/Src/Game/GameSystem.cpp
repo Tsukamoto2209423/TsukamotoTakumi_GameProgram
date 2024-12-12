@@ -4,6 +4,7 @@
 #include "FrameRate/FrameRate.h"
 #include "Camera/CameraManager.h"
 #include <Effekseer/Effekseer.h>
+#include "Effekseer/EffekseerParameter.h"
 #include <Math/MyMath.h>
 #include <Sound/Sound.h>
 #include <Input/Input.h>
@@ -57,7 +58,7 @@ namespace BOUDAMA
 		sceneManager_.Init();
 
 		//エフェクト初期化
-		CEffekseerCtrl::Init(10, 6000);
+		CEffekseerCtrl::Init(EFFECT::ALL_NUM, 5000);
 		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/HitEffect.efk"));
 		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/EnemySpawn.efk"));
 		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/PlayerDeath.efk"));

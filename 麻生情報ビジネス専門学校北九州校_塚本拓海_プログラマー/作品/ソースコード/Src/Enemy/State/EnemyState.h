@@ -13,7 +13,7 @@ namespace BOUDAMA
 		explicit constexpr EnemyState(const auto stateName) noexcept : StateBase<ENEMY_STATE, StateTransitionableEnemy>(stateName) {}
 		explicit constexpr EnemyState(const auto myState, const auto nextState) noexcept : StateBase<ENEMY_STATE, StateTransitionableEnemy>(myState, nextState) {}
 
-		virtual ~EnemyState() noexcept = default;
+		virtual ~EnemyState() noexcept override = default;
 
 		//‚»‚Ìó‘Ô‚É“ü‚Á‚½uŠÔ‚É‚¾‚¯Às‚·‚éŠÖ”
 		virtual void Enter(void) override = 0;

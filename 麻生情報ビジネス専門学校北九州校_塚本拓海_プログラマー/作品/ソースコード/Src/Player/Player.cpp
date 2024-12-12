@@ -92,7 +92,6 @@ namespace BOUDAMA
 		player2dEffect_.Step();
 		player3dEffect_.Step();
 		combo_.Step();
-
 	}
 
 	//描画処理関数
@@ -151,11 +150,7 @@ namespace BOUDAMA
 	//当たり判定処理
 	void Player::HitCalculation(void)
 	{
-		//HP減算
-		--hp_;
-
-		player3dEffect_.EffectRequest(EFFECT_HANDLE::DAMAGE_INDEX, pos_, rot_.y);
-		player2dEffect_.EffectRequest();
+		SubHP();
 
 		//死亡処理
 		if (hp_ <= 0)
@@ -217,7 +212,7 @@ namespace BOUDAMA
 			if (MyMath::Abs(velocity_.x) < PLAYER::MAX_SPEED && MyMath::Abs(velocity_.z) < PLAYER::MAX_SPEED)
 			{
 				//カメラの角度に合わせて方向ベクトルをY軸周りに回転
-				dir_ = dir_ * Matrix3D::GetYawMatrix(CameraManager::GetPlayCamera()->GetRotY());
+				dir_ = dir_ * Matrix3D::GetYawMatrix(CameraManager::GetInstance()->GetPlayCamera()->GetRotY());
 
 				//入力した値を単位ベクトルにしてプレイヤーの速さでスカラー倍し加算
 				velocity_ += dir_.Normalize() * PLAYER::SPEED;
@@ -290,7 +285,7 @@ namespace BOUDAMA
 	{
 		//カメラの角度に合わせて方向ベクトルを決める
 		dir_.z += PLAYER::TURBO_CHARGE_POWER;
-		velocity_ = Matrix3D::GetYawMatrix(CameraManager::GetPlayCamera()->GetRotY()) * dir_;
+		velocity_ = Matrix3D::GetYawMatrix(CameraManager::GetInstance()->GetPlayCamera()->GetRotY()) * dir_;
 
 		//プレイヤーの速度ベクトルの角度を計算し、プレイヤーが向く角度を決める
 		rot_.y = atan2f(-velocity_.x, -velocity_.z);

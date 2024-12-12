@@ -9,11 +9,11 @@ namespace BOUDAMA
 	class ItemBase : public Object
 	{
 	protected:
-		std::weak_ptr<Object> owner_;
+		bool playerOnlyEffect_;
 
 	public:
 		//コンストラクタ
-		ItemBase() {}
+		ItemBase() : playerOnlyEffect_(false) {}
 
 		//デストラクタ
 		virtual ~ItemBase() = default;
@@ -33,11 +33,7 @@ namespace BOUDAMA
 		//アイテムの効果実行
 		virtual void EffectExecute(const std::shared_ptr<Object>& targetObject) = 0;
 
-		//所有者取得
-		inline std::weak_ptr<Object> GetOwner(void) const { return owner_; }
-
-		//所有者設定
-		inline void SetOwner(const std::shared_ptr<Object>& owner) { owner_ = owner; }
-
+		//プレイヤーのみ効果を受けられるアイテムか？
+		bool IsPlayerOnlyEffect(void) const { return playerOnlyEffect_; }
 	};
 }

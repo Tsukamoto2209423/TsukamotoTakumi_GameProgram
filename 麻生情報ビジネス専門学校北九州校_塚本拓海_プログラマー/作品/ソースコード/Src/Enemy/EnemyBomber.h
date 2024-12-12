@@ -17,7 +17,7 @@ namespace BOUDAMA
 		//爆弾を投げた時のスタン時間
 		int bombThrowStunTime_;
 
-		//漂う動きを使用するときに使う角度θ,(float型の変数だがfloatは「漂う」という意味)
+		//漂う(float)動きを使用するときに使う角度θ
 		float floatMotionTheta_;
 
 	public:

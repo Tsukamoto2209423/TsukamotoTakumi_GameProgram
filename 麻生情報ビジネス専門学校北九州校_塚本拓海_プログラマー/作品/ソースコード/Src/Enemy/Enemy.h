@@ -12,7 +12,7 @@ namespace BOUDAMA
 
 	public:
 		//コンストラクタ
-		explicit constexpr Enemy(void) {}
+		constexpr Enemy(void) {}
 
 		//デストラクタ
 		~Enemy() override {}

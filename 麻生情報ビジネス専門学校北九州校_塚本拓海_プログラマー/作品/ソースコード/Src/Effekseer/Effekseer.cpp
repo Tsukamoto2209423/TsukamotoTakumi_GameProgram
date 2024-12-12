@@ -189,7 +189,7 @@ void	CEffekseerCtrl::Init(int effNum, int particleNum)
 		::Effekseer::Matrix44().LookAtLH(::Effekseer::Vector3D(0.0f, 0.0f, -20.0f), ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f), ::Effekseer::Vector3D(0.0f, 1.0f, 0.0f)));
 
 	// 個別エフェクトのメモリ確保
-	m_eff = std::make_unique<CEffekseer[]>(effNum);
+	m_eff = std::make_shared<CEffekseer[]>(effNum);
 	m_allNum = effNum;
 
 	// 初期化
@@ -453,7 +453,10 @@ void	CEffekseerCtrl::Draw(void)
 //---------------------------------
 int	CEffekseerCtrl::Request(int ID, VECTOR pos, bool isLoop)
 {
-	if (!m_eff) return -1;
+	if (m_eff == nullptr)
+	{
+		return -1;
+	}
 
 	for (int i = 0; i < m_allNum; i++)
 	{
@@ -569,7 +572,7 @@ void	CEffekseerCtrl::DeviceLostFunction(void* data)
 	if (m_renderer9 != NULL) m_renderer9->OnLostDevice();
 
 	// 読み込んだエフェクトのリソースは全て破棄する
-	if (m_eff != NULL)
+	if (m_eff != nullptr)
 	{
 		for (int i = 0; i < m_allNum; i++)
 		{
@@ -598,7 +601,7 @@ void	CEffekseerCtrl::DeviceRestoreFunction(void* data)
 	}
 
 	// エフェクトのリソースを再読み込みする
-	if (m_eff != NULL)
+	if (m_eff != nullptr)
 	{
 		for (int i = 0; i < m_allNum; i++)
 		{

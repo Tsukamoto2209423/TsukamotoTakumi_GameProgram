@@ -66,6 +66,7 @@ namespace BOUDAMA
 					continue;
 				}
 
+
 				return items_[vectorItemIndex];
 			}
 

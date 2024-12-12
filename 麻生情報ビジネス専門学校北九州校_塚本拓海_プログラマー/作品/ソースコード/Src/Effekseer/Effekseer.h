@@ -29,7 +29,7 @@ class CEffekseer;
 //		こっち使って
 class CEffekseerCtrl {
 protected:
-	static inline std::unique_ptr<CEffekseer[]> m_eff;				// エフェクト単品管理クラス
+	static inline std::shared_ptr<CEffekseer[]> m_eff;				// エフェクト単品管理クラス
 	static inline std::vector<::Effekseer::EffectRef>	m_effect;		// エフェクトクラス
 	static inline ::Effekseer::ManagerRef				m_manager;		// エフェクトマネージャ
 	static inline ::EffekseerRendererDX9::RendererRef	m_renderer9;	// レンダラー(DirectX9用)

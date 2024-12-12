@@ -9,7 +9,6 @@ namespace BOUDAMA
 		PLAYER_DEATH,
 		CHARGE,
 		EXPLOSION,
-		ACCELERATOR,
 
 		ALL_NUM
 	};

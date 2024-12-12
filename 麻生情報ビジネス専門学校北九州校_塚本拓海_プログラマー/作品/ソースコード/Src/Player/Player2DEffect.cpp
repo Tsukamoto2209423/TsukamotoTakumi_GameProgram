@@ -12,7 +12,7 @@ namespace BOUDAMA
 	void Player2DEffect::Init(void)
 	{
 		concentrationLineIndex_ = IMAGE::CONCENTRATION_LINE_1;
-		damageEffectAlpha_ = 0;
+		effectAlpha_ = 0;
 	}
 
 	//読み込み処理関数
@@ -24,9 +24,9 @@ namespace BOUDAMA
 	//行動処理関数
 	void Player2DEffect::Step(void)
 	{
-		if (damageEffectAlpha_ > 0)
+		if (effectAlpha_ > 0)
 		{
-			damageEffectAlpha_ -= 3;
+			effectAlpha_ -= 3;
 		}
 	}
 
@@ -53,10 +53,10 @@ namespace BOUDAMA
 		}
 
 		//ダメージを受けた時のエフェクト描画
-		if (damageEffectAlpha_ > 0)
+		if (effectAlpha_ > 0)
 		{
-			SetDrawBlendMode(DX_BLENDMODE_ALPHA, damageEffectAlpha_);
-			DrawGraph(0, 0, handles_[IMAGE::DAMAGE], true);
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, effectAlpha_);
+			DrawGraph(0, 0, handles_[effectState_], true);
 			SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 		}
 	}
@@ -64,14 +64,16 @@ namespace BOUDAMA
 	//破棄処理関数
 	void Player2DEffect::Fin(void)
 	{
-		for (auto&& image : handles_)
+		for (const auto& image : handles_)
 		{
 			DeleteGraph(image);
 		}
 	}
 
-	void Player2DEffect::EffectRequest(void)
+	void Player2DEffect::EffectRequest(const PLAYER_EFFECT::IMAGE requestNum)
 	{
-		damageEffectAlpha_ = 255;
+		effectAlpha_ = 255;
+
+		effectState_ = requestNum;
 	}
 }

@@ -14,7 +14,6 @@ namespace BOUDAMA
 	//コンストラクタ
 	SceneManager::SceneManager(void)
 	{
-		sceneObjectPointer_ = nullptr;
 		currentSceneState_ = SCENE_STATE::INIT;
 	}
 

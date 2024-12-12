@@ -28,8 +28,6 @@ namespace BOUDAMA
 		rot_ = MyMath::ZERO_VECTOR_3D;
 		dir_ = { 0.0f,0.0f,1.0f };
 
-		rot_.y = std::atan2(-dir_.x, -dir_.z);
-
 		bombThrowStunTime_ = 0;
 
 		stateMachine_ = std::make_unique<EnemyBase::StateMachineType>();
@@ -37,7 +35,7 @@ namespace BOUDAMA
 		stateMachine_->AddState<RandomWalk>(ENEMY_STATE::RANDOM_WALK, ENEMY_STATE::FIND_OUT, BOMBER::SPEED, BOMBER::MAX_SPEED, BOMBER::FIND_OUT_RANGE);
 		stateMachine_->AddState<FindOut>(ENEMY_STATE::FIND_OUT, ENEMY_STATE::CHASE, BOMBER::REACTION_MAX_TIME);
 		stateMachine_->AddState<Chase>(ENEMY_STATE::CHASE, ENEMY_STATE::IDLE, BOMBER::CHASE_SPEED);
-		stateMachine_->AddState<Idle>(ENEMY_STATE::IDLE, ENEMY_STATE::RANDOM_WALK, BOMBER::REACTION_MAX_TIME);
+		stateMachine_->AddState<Idle>(ENEMY_STATE::IDLE, ENEMY_STATE::RANDOM_WALK, BOMBER::ATTACK_STUN_TIME);
 		stateMachine_->AddState<KnockBack>(ENEMY_STATE::KNOCK_BACK, ENEMY_STATE::RANDOM_WALK);
 		stateMachine_->AddState<Corpse>(ENEMY_STATE::CORPSE);
 
@@ -60,6 +58,11 @@ namespace BOUDAMA
 		targetPosition_ = playerPos;
 
 		stateMachine_->Step();
+		
+		if(BOMBER::CHASE_MIN_RANGE <= pos_.y)
+		{
+			pos_.y -= BOMBER::GRAVITY;
+		}
 
 		if (pos_.y <= BOMBER::GROUND_POS_Y)
 		{
@@ -68,11 +71,19 @@ namespace BOUDAMA
 
 		floatMotionTheta_ < MyMath::TWO_PI ? floatMotionTheta_ += MyMath::INVERSE_TWO_PI : floatMotionTheta_ = 0.0f;
 
-		pos_.y += 2.0f * std::sin(floatMotionTheta_);
+		pos_.y += BOMBER::FLOAT_MOTION_BOOST * std::sin(floatMotionTheta_);
 
 		if (0 < bombThrowStunTime_)
 		{
-			bombThrowStunTime_ <= 600 ? ++bombThrowStunTime_ : bombThrowStunTime_ = 0;
+			if (bombThrowStunTime_ <= BOMBER::ATTACK_STUN_TIME)
+			{
+				++bombThrowStunTime_;
+			}
+			else
+			{
+				bombThrowStunTime_ = 0;
+				bomb_->SetIsActive(true);
+			}
 
 			//位置・角度設定
 			MV1SetPosition(handle_, pos_);
@@ -81,21 +92,22 @@ namespace BOUDAMA
 			return;
 		}
 		
+
 		bomb_->SetPos(pos_ + BOMB::HOLD_UP_DISTANCE);
 		
 		Vector3D myPosToTargetPos = targetPosition_ - pos_;
 
-		if (myPosToTargetPos.SquareL2Norm() <= BOMBER::SQUARE_FIND_OUT_RANGE && Vector3D::Dot(dir_, myPosToTargetPos.Normalize()) > 0.0f)
+		if (myPosToTargetPos.SquareL2Norm() <= BOMBER::SQUARE_CHASE_MIN_RANGE && 0.0f < Vector3D::Dot(dir_, myPosToTargetPos.Normalize()) )
 		{
-			Vector3D throwVelocity = myPosToTargetPos.Normalize() * 100.0f;
-			throwVelocity.y = BOMBER::SPEED;
+			Vector3D throwVelocity = myPosToTargetPos * BOMB::THROW_SPEED;
+			throwVelocity.y = BOMB::THROW_SPEED;
 
 			bomb_->SetVelocity(throwVelocity);
 			bomb_->AppearanceRequest();
 
 			++bombThrowStunTime_;
 
-			stateMachine_->ChangeState(ENEMY_STATE::IDLE);
+			stateMachine_->ChangeState(ENEMY_STATE::FIND_OUT);
 		}
 
 		//位置・角度設定
@@ -130,8 +142,12 @@ namespace BOUDAMA
 
 		//死者蘇生
 		isAlive_ = true;
+		isCollisionEnabled_ = true;
+
+		stateMachine_->ChangeState(ENEMY_STATE::RANDOM_WALK);
 
 		bomb_->SetIsActive(true);
+		bomb_->SetPos(pos_ + BOMB::HOLD_UP_DISTANCE);
 
 		//位置・角度設定
 		MV1SetPosition(handle_, pos_);

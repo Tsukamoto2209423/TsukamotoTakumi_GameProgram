@@ -33,7 +33,7 @@ namespace BOUDAMA
 			isAlive_(false)  {}
 
 		//デストラクタ
-		virtual ~Object() {}
+		virtual ~Object() = default;
 
 		//初期化処理関数
 		virtual void Init(void);
@@ -59,10 +59,10 @@ namespace BOUDAMA
 
 
 		//HP加算
-		inline void AddHP(int addNum) { hp_ += addNum; }
+		inline virtual void AddHP(int addNum) { hp_ += addNum; }
 
 		//HP減算
-		inline void SubHP(int subNum) { hp_ -= subNum; }
+		inline virtual void SubHP(int subNum) { hp_ -= subNum; }
 
 		//HP取得
 		inline int GetHP(void) const noexcept { return hp_; }

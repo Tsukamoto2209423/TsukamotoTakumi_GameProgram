@@ -34,6 +34,14 @@ public:
 
 	//Vector3Dの減算代入の定義
 	constexpr Vector3D operator-=(const Vector3D& vec) { return *this = *this - vec; }
+	
+	//外積の定義
+	constexpr Vector3D operator*(const Vector3D& vec)
+	{
+		return { this->y * vec.z - this->z * vec.y,
+			this->z * vec.x - this->x * vec.z,
+			this->x * vec.y - this->y * vec.x };
+	}
 
 	//Vector3Dのスカラー倍の定義
 	constexpr Vector3D operator*(int scale) const { return Vector3D(this->x * scale, this->y * scale, this->z * scale); }

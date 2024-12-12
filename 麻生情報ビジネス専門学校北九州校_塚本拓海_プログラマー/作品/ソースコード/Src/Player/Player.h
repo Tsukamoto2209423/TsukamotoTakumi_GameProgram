@@ -54,15 +54,6 @@ namespace BOUDAMA
 		//当たり判定処理
 		void HitCalculation(void) override;
 
-		//移動計算処理
-		void MoveCalculation(void);
-
-		//回転計算処理
-		void RotateCalculation(void);
-
-		//ターボを溜める
-		void TurboCharge(void);
-
 		//死亡イベント
 		void DeathEvent(void);
 
@@ -72,6 +63,17 @@ namespace BOUDAMA
 		//無敵かどうか
 		bool IsInvincible(void);
 
+	private:
+		//移動計算処理
+		void MoveCalculation(void);
+
+		//回転計算処理
+		void RotateCalculation(void);
+
+		//ターボを溜める
+		void TurboCharge(void);
+
+	public:
 		//くっついた物質取得
 		inline std::vector<std::weak_ptr<SubstanceBase>>& GetAttachedSubstance(void) { return attachedSubstances_; }
 
@@ -80,5 +82,24 @@ namespace BOUDAMA
 
 		//コンボ追加
 		inline void AddComboNum(void) { combo_.AddComboNum(); }
+
+		//HP加算
+		inline void AddHP(int addNum = 1) override
+		{
+			hp_ += addNum;
+
+			player2dEffect_.EffectRequest(PLAYER_EFFECT::HEAL);
+		}
+
+		//HP減算
+		inline void SubHP(int subNum = 1) override
+		{
+			//HP減算
+			hp_ -= subNum;
+
+			player3dEffect_.EffectRequest(EFFECT_HANDLE::DAMAGE_INDEX, pos_, rot_.y);
+			player2dEffect_.EffectRequest(PLAYER_EFFECT::DAMAGE);
+
+		}
 	};
 }

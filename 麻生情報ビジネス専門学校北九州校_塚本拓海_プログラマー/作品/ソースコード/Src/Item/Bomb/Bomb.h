@@ -45,7 +45,7 @@ namespace BOUDAMA
 		void HitCalculation(void) override;
 
 		//”š’e‚É‰Î‚ğ‚Â‚¯‚é
-		void IgniteBomb(void);
+		void Ignite(void);
 
 		/// <summary>
 		/// ”š”­‚·‚é‚Ü‚Å‚ÌŠÔŒv‘ª—p•Ï”‚ğæ“¾
@@ -63,14 +63,15 @@ namespace BOUDAMA
 		/// </returns>
 		inline int GetExplosionTime(void) const noexcept { return explosionTime_; }
 
-		inline void SetOwnerPos(const Vector3D& pos) noexcept { pos_ = pos; }
-
 	private:
 		//’Êíó‘Ô
 		void MoveNormal(void);
 
 		//“Š±ó‘Ô
 		void MoveIgnition(void);
+
+		//”š”­‚ª‹N‚±‚Á‚½uŠÔ‚Ìó‘Ô
+		void MoveTrigger(void);
 
 		//”š”­ó‘Ô
 		void MoveExplosion(void);
@@ -80,6 +81,7 @@ namespace BOUDAMA
 		{
 			&Bomb::MoveNormal,
 			&Bomb::MoveIgnition,
+			&Bomb::MoveTrigger,
 			&Bomb::MoveExplosion
 		};
 	};

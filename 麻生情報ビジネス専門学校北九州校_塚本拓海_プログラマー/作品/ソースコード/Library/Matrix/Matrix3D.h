@@ -347,6 +347,11 @@ public:
 
 		return *this;
 	}
+
+	constexpr float& operator[](int index)
+	{
+		return m[index];
+	}
 };
 
 //Vector3D‚ÆMatrix3D‚ÌÏ‚Ì’è‹`

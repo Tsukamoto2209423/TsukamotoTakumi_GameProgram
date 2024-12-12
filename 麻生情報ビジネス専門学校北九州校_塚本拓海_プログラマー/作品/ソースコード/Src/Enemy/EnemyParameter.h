@@ -14,8 +14,7 @@ namespace BOUDAMA
 		constexpr char PATH[] = "Data/Model/Enemy/darumaEnemy.x";
 
 		//敵の最大数
-		//constexpr int MAX_NUM = 40;
-		constexpr int MAX_NUM = 0;
+		constexpr int MAX_NUM = 40;
 
 		//ハードモードかエンドレスモードの敵の最大数
 		constexpr int HARD_MAX_NUM = 80;
@@ -64,9 +63,9 @@ namespace BOUDAMA
 		//敵のパス
 		constexpr char PATH[] = "Data/Model/Enemy/MonsterEnemy.x";
 
+
 		//敵の最大数
-		//constexpr int MAX_NUM = 5;
-		constexpr int MAX_NUM = 0;
+		constexpr int MAX_NUM = 5;
 
 		//ハードモードかエンドレスモードの敵の最大数
 		constexpr int HARD_MAX_NUM = 10;
@@ -86,11 +85,16 @@ namespace BOUDAMA
 		//攻撃時間の最大値
 		constexpr int ATTACK_MAX_TIME = 120;
 
+		//攻撃後の硬直時間
+		constexpr int ATTACK_STUN_TIME = 60;
+
 		//〇Fごとに出現する
 		constexpr int APPEAR_MAX_TIME = 90;
 
+
 		//倒されたときにスコアに加算される点数
 		constexpr unsigned int ADD_SCORE_NUM = 500;
+
 
 		//X軸とZ軸で行ける最大の位置
 		constexpr float MAX_POS_X_Z = 7000.0f;
@@ -125,6 +129,7 @@ namespace BOUDAMA
 		//重力
 		constexpr float GRAVITY = 7.5f;
 
+
 		//初期基準位置
 		constexpr Vector3D INIT_POS = { 0.0f,100.0f,1450.0f };
 
@@ -153,8 +158,8 @@ namespace BOUDAMA
 		constexpr int REACTION_MAX_TIME = 120;
 
 
-		//攻撃溜め最大時間
-		constexpr int ATTACK_CHARGE_MAX_TIME = 90;
+		//攻撃後の硬直時間
+		constexpr int ATTACK_STUN_TIME = 550;
 
 		//〇Fごとに出現する
 		constexpr int APPEAR_MAX_TIME = 90;
@@ -176,16 +181,22 @@ namespace BOUDAMA
 		constexpr float MAX_POS_X_Z = 7000.0f;
 
 		//1フレームで移動する速さ
-		constexpr float SPEED = 1.25f;
+		constexpr float SPEED = 1.75f;
 
 		//最大の速さ
-		constexpr float MAX_SPEED = 5.0f;
+		constexpr float MAX_SPEED = 10.5f;
 
 		//追いかける速さ
-		constexpr float CHASE_SPEED = 3.75f;
+		constexpr float CHASE_SPEED = 7.5f;
+		
+		//漂う動きをさせるために正弦波にかける係数
+		constexpr float FLOAT_MOTION_BOOST = 3.5f;
 
 		//地面に着地したときの位置
 		constexpr float GROUND_POS_Y = 100.0f;
+
+		//重力
+		constexpr float GRAVITY = 1.5f;
 
 		//半径
 		constexpr float RADIUS = 50.0f;
@@ -199,7 +210,7 @@ namespace BOUDAMA
 
 
 		//敵を発見したときに近づく最小の範囲
-		constexpr float CHASE_MIN_RANGE = 650.0f;
+		constexpr float CHASE_MIN_RANGE = 655.0f;
 
 		//敵を発見したときに近づく最小の範囲の二乗
 		constexpr float SQUARE_CHASE_MIN_RANGE = CHASE_MIN_RANGE * CHASE_MIN_RANGE;

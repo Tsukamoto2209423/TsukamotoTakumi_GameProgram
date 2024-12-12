@@ -52,7 +52,7 @@ namespace BOUDAMA
 		Vector3D vecBP = point - vertexB; vecBP.z = 0.0f;
 		Vector3D vecCP = point - vertexC; vecCP.z = 0.0f;
 
-		// 対応するベクトルどうして外積を計算する
+		// 対応するベクトルどうしで外積を計算する
 		Vector3D vecABAP = Vector3D::Cross(vecAB, vecAP);
 		Vector3D vecBCBP = Vector3D::Cross(vecBC, vecBP);
 		Vector3D vecCACP = Vector3D::Cross(vecCA, vecCP);
@@ -217,7 +217,7 @@ namespace BOUDAMA
 	{
 		for (const auto& item : itemManager.GetItem())
 		{
-			if (!item->GetIsActive())
+			if (!item->GetIsActive() || item->IsPlayerOnlyEffect())
 			{
 				continue;
 			}
@@ -275,7 +275,7 @@ namespace BOUDAMA
 		}
 	}
 
-	void Collision::IsHitSubstanceToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager)
+	void Collision::IsHitSubstanceToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager,ItemManager& itemManager)
 	{
 		for (const auto& substance : substanceManager.GetSubstance())
 		{
@@ -338,6 +338,11 @@ namespace BOUDAMA
 				enemy->DeathCalculation(substance->GetOwner()->GetVelocity());
 
 				substanceManager.RandomFlyAppearCalculation(enemy->GetPos());
+
+				if (GetRand(100) == 0)
+				{
+					itemManager.AppearanceRequest(ITEM_LIST::HEAL);
+				}
 
 				return;
 

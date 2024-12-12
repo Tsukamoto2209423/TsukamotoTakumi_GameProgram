@@ -15,6 +15,6 @@ namespace BOUDAMA
 	{
 	public:
 		//ˆêŠ‡“–‚½‚è”»’è
-		static void CheckHitAll(const std::shared_ptr<Player>& player, EnemyManager& enemymanager, ItemManager& itemManager, SubstanceManager& substanceManager);
+		static void CheckHitAll(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, ItemManager& itemManager, SubstanceManager& substanceManager);
 	};
 }

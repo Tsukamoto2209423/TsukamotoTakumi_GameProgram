@@ -32,7 +32,7 @@ namespace BOUDAMA
 		void IsHitPlayerToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager);
 
 		//•¨Ž¿‚Æ“G‚Ì“–‚½‚è”»’è
-		void IsHitSubstanceToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager);
+		void IsHitSubstanceToEnemy(const std::shared_ptr<Player>& player, EnemyManager& enemyManager, SubstanceManager& substanceManager, ItemManager& itemManager);
 
 		//ƒAƒCƒeƒ€‚Æ“G‚Ì“–‚½‚è”»’è
 		void IsHitItemToPlayer(ItemManager& itemManager, const std::shared_ptr<Player>& player);

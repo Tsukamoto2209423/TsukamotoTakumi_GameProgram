@@ -1,6 +1,7 @@
 #include "ItemManager.h"
 #include "ItemParameter.h"
 #include "Item/Bomb/Bomb.h"
+#include "Heal/Heal.h"
 
 
 namespace BOUDAMA
@@ -25,19 +26,40 @@ namespace BOUDAMA
 			const auto& item = items_.emplace_back(std::make_shared<Bomb>());
 			item->Init();
 		}
+
+		for (int index = 0; index < HEAL::MAX_NUM; ++index)
+		{
+			const auto& item = items_.emplace_back(std::make_shared<Heal>());
+			item->Init();
+		}
 	}
 
 	//ì«Ç›çûÇ›èàóùä÷êî
 	void ItemManager::Load(void)
 	{
-		const int origineHandle = MV1LoadModel(BOMB::PATH);
+		int itemIndex = 0;
 
-		for (const auto& item : items_)
+		const int origineBombHandle = MV1LoadModel(BOMB::PATH);
+
+		for (int index = 0; index < BOMB::MAX_NUM; ++index)
 		{
-			item->Load(origineHandle);
+			items_[index]->Load(origineBombHandle);
+
+			++itemIndex;
 		}
 
-		MV1DeleteModel(origineHandle);
+		MV1DeleteModel(origineBombHandle);
+
+		const int origineHealHandle = MV1LoadModel(HEAL::PATH);
+
+		for (int index = 0; index < HEAL::MAX_NUM; ++index)
+		{
+			items_[index]->Load(origineHealHandle);
+
+			++itemIndex;
+		}
+
+		MV1DeleteModel(origineHealHandle);
 	}
 
 	//çsìÆèàóùä÷êî
@@ -97,12 +119,6 @@ namespace BOUDAMA
 				continue;
 			}
 
-			//if (owner)
-			//{
-			//	//èäóLé“ê›íË
-			//	items_[vectorItemIndex]->SetOwner(owner);
-			//	items_[vectorItemIndex]->SetPos(owner->GetPos());
-			//}
 
 			items_[vectorItemIndex]->AppearanceRequest();
 

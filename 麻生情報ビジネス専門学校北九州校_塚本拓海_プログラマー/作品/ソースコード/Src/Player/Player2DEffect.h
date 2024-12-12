@@ -28,6 +28,9 @@ namespace BOUDAMA
 			//ダメージを受けたときに画面に表示するダメージエフェクト画像
 			DAMAGE,
 
+			//回復したときに画面に表示するエフェクト画像
+			HEAL,
+
 			//画像の総数
 			ALL_NUM
 		};
@@ -54,12 +57,15 @@ namespace BOUDAMA
 		//今描画している集中線の番号
 		int concentrationLineIndex_;
 
-		//ダメージ画像のα値
-		int damageEffectAlpha_;
+		//画像の透過度(α値)
+		int effectAlpha_;
+
+		//効果画像の種類
+		PLAYER_EFFECT::IMAGE effectState_;
 
 	public:
 		//コンストラクタ
-		Player2DEffect() : concentrationLineIndex_(0), damageEffectAlpha_(0) {};
+		Player2DEffect() : concentrationLineIndex_(0), effectAlpha_(0) {};
 
 		//デストラクタ	
 		~Player2DEffect() {};
@@ -79,7 +85,7 @@ namespace BOUDAMA
 		//破棄処理関数
 		void Fin(void);
 
-		void EffectRequest(void);
+		void EffectRequest(const PLAYER_EFFECT::IMAGE requestNum);
 
 	};
 }

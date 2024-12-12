@@ -10,7 +10,7 @@ namespace BOUDAMA
 	{
 		//初期化
 		handle_ = -1;
-		state_ = BOMB::STATE::NORMAL;
+		state_ = BOMB_STATE::NORMAL;
 		isAlive_ = false;
 		hp_ = 1;
 		radius_ = BOMB::RADIUS;
@@ -19,6 +19,8 @@ namespace BOUDAMA
 		rot_ = MyMath::ZERO_VECTOR_3D;
 
 		countExplodeTimeLimit_ = BOMB::MAX_EXPLODE_TIME_LIMIT;
+
+		playerOnlyEffect_ = false;
 	}
 
 	//行動処理関数
@@ -35,13 +37,14 @@ namespace BOUDAMA
 		{
 			MV1DrawModel(handle_);
 		}
+			DrawSphere3D(pos_, radius_, 16, GetColor(255, 0, 0), GetColor(255, 255, 0), false);
 	}
 
 	//出現処理関数
 	void Bomb::AppearanceRequest(void)
 	{
 		isAlive_ = true;
-		IgniteBomb();
+		Ignite();
 	}
 
 	//アイテムの効果実行
@@ -55,16 +58,23 @@ namespace BOUDAMA
 		const Vector3D& addExplosionVelocity = (BOMB::EXPLOSION_BOOST / myPosToTargetVector.L2Norm()) * myPosToTargetVector;
 
 		targetObject->AddVelocity(addExplosionVelocity);
+
+		targetObject->HitCalculation();
+
+		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, targetObject->GetPos(), false);
 	}
 
 	//当たったときの処理
 	void Bomb::HitCalculation(void)
 	{
-		state_ = BOMB_STATE::EXPLOSION;
+		if (state_ != BOMB_STATE::EXPLOSION)
+		{
+			MoveTrigger();
+		}
 	}
 
 	//爆弾に火をつける
-	void Bomb::IgniteBomb(void)
+	void Bomb::Ignite(void)
 	{
 		state_ = BOMB_STATE::IGNITION;
 	}
@@ -79,8 +89,6 @@ namespace BOUDAMA
 
 		//Y軸のぐるぐる回転する処理
 		rot_.y = rot_.y >= MyMath::TWO_PI - MyMath::PI_OVER_TWENTY ? 0.0f : rot_.y + MyMath::PI_OVER_TWENTY;
-
-		pos_ += BOMB::HOLD_UP_DISTANCE;
 
 		//座標設定
 		MV1SetPosition(handle_, pos_);
@@ -97,9 +105,7 @@ namespace BOUDAMA
 		if (countExplodeTimeLimit_ <= 0)
 		{
 			//その場で爆発状態に遷移
-			state_ = BOMB_STATE::EXPLOSION;
-
-			CEffekseerCtrl::Request(EFFECT::EXPLOSION, pos_, false);
+			state_ = BOMB_STATE::TRIGGER;
 
 			countExplodeTimeLimit_ = BOMB::MAX_EXPLODE_TIME_LIMIT;
 
@@ -110,9 +116,14 @@ namespace BOUDAMA
 
 		pos_ += velocity_;
 
-		//重力処理
-		pos_.y - BOMB::GRAVITY > BOMB::GROUND_POS ? pos_.y -= BOMB::GRAVITY : state_ = BOMB_STATE::EXPLOSION;
+		velocity_.y -= BOMB::GRAVITY;
 
+		//重力処理
+		if (pos_.y <= BOMB::GROUND_POS)
+		{
+			pos_.y = BOMB::GROUND_POS;
+			velocity_ = MyMath::ZERO_VECTOR_3D;
+		}
 
 		//画面外に出た場合、死亡判定
 		if (MyMath::Abs(pos_.x) > BOMB::MAX_POS_X_Z || MyMath::Abs(pos_.z) > BOMB::MAX_POS_X_Z)
@@ -124,6 +135,14 @@ namespace BOUDAMA
 		//位置・角度設定
 		MV1SetPosition(handle_, pos_);
 		MV1SetRotationXYZ(handle_, rot_);
+	}
+
+	//爆発が起こった瞬間の状態
+	void Bomb::MoveTrigger(void)
+	{
+		state_ = BOMB_STATE::EXPLOSION;
+		CEffekseerCtrl::Request(EFFECT::EXPLOSION, pos_, false);
+		radius_ = BOMB::EXPLODE_RADIUS;
 	}
 
 	//爆発しているときの処理
