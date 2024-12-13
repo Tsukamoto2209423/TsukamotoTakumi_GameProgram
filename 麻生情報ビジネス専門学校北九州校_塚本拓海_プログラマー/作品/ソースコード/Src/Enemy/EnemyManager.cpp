@@ -41,6 +41,8 @@ namespace BOUDAMA
 			countTime = 0;
 		}
 
+		deathCount_ = 0;
+
 		feverTimeCount_ = 0;
 
 		isFeverTime_ = false;
@@ -74,13 +76,16 @@ namespace BOUDAMA
 			//‹L‰¯—ÌˆæŠm•Û
 			for (int enemyIndex = 0; enemyIndex < maxEnemyNum; ++enemyIndex)
 			{
-				const auto& enemy = enemies_.emplace_back(enemyList[static_cast<int>(enemyKindNum)]());
-				//‰Šú‰»
-				enemy->Init();
-				enemy->SetStateMachineOwner(enemy);
+				enemies_.emplace_back(enemyList[static_cast<int>(enemyKindNum)]());
 			}
 		}
 
+		//‰Šú‰»
+		for (const auto& enemy : enemies_)
+		{
+			enemy->Init();
+			enemy->SetStateMachineOwner(enemy);
+		}
 
 		//Å‰‚É“G‚ğoŒ»‚³‚¹‚Ä‚¨‚­
 		for (int appearNum = 0; const auto& enemy : enemies_)
@@ -148,6 +153,12 @@ namespace BOUDAMA
 		{
 			enemy->Draw();
 		}
+
+		if (isFeverTime_)
+		{
+			unsigned int color = GetColor(255, 0, 0);
+			DrawFormatString(275, 300, color, "%d : FEVERTIME", deathCount_);
+		}
 	}
 
 	//“Gî•ñ”jŠü
@@ -172,6 +183,14 @@ namespace BOUDAMA
 		if (isFeverTime_)
 		{
 			AppearanceRequest();
+
+			++feverTimeCount_;
+
+			if (ENEMY_MANAGER::MAX_FEVER_TIME <= feverTimeCount_)
+			{
+				isFeverTime_ = false;
+				feverTimeCount_ = 0;
+			}
 
 			return;
 		}

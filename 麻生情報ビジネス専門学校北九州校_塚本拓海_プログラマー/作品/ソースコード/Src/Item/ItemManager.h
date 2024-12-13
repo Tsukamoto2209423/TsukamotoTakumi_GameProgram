@@ -66,6 +66,7 @@ namespace BOUDAMA
 					continue;
 				}
 
+				items_[vectorItemIndex]->SetIsActive(true);
 
 				return items_[vectorItemIndex];
 			}

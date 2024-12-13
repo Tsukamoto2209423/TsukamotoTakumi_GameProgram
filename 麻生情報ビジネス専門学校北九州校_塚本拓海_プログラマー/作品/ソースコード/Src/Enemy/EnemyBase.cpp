@@ -23,8 +23,8 @@ namespace BOUDAMA
 	void EnemyBase::AppearanceRequest(void)
 	{
 		//‰ŠúˆÊ’uİ’è
-		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359)))
-			* Matrix3D::GetTranslateMatrix(Vector3D(0.0f, 0.0f, 3750.0f)) * MyMath::ZERO_VECTOR_3D;
+		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))) *
+			Matrix3D::GetTranslateMatrix(Vector3D(0.0f, 0.0f, 3750.0f)) * MyMath::ZERO_VECTOR_3D;
 
 		//€Ò‘h¶
 		isAlive_ = true;

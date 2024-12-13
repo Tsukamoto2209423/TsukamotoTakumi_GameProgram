@@ -48,4 +48,17 @@ namespace BOUDAMA
 		isAlive_ = false;
 		velocity_ = MyMath::ZERO_VECTOR_3D;
 	}
+
+	//“–‚½‚è”»’èˆ—
+	void Object::HitCalculation(int damage)
+	{
+		hp_ -= damage;
+
+		if (hp_ <= 0)
+		{
+			//€–Sˆ—
+			isAlive_ = false;
+			velocity_ = MyMath::ZERO_VECTOR_3D;
+		}
+	}
 }

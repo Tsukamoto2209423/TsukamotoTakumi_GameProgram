@@ -43,8 +43,8 @@ namespace BOUDAMA
 		//ランダムで配置するときに初期基準位置に足す最大値
 		constexpr int INIT_POS_XZ_RAND_MAX_NUM = 2 * static_cast<int>(-INIT_POS_X_Z);
 
-		//同時に出現できる最大値
-		constexpr int MAX_NUM = 1;
+		//同時に出現できる最大数
+		constexpr int MAX_NUM = 5;
 
 		//爆発するまでの制限時間
 		constexpr int MAX_EXPLODE_TIME_LIMIT = 300;

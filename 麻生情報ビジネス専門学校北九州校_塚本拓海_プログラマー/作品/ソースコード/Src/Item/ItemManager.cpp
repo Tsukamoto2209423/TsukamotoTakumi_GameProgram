@@ -120,6 +120,7 @@ namespace BOUDAMA
 			}
 
 
+
 			items_[vectorItemIndex]->AppearanceRequest();
 
 			return;

@@ -145,10 +145,10 @@ namespace BOUDAMA
 		constexpr char PATH[] = "Data/Model/Enemy/BomberEnemy.x";
 
 		//敵の最大数
-		constexpr int MAX_NUM = 1;
+		constexpr int MAX_NUM = 3;
 
 		//ハードモードかエンドレスモードの敵の最大数
-		constexpr int HARD_MAX_NUM = 1;
+		constexpr int HARD_MAX_NUM = 5;
 
 
 		//移動する角度切り替え時間
@@ -203,14 +203,14 @@ namespace BOUDAMA
 
 
 		//敵を発見できる範囲
-		constexpr float FIND_OUT_RANGE = 850.0f;
+		constexpr float FIND_OUT_RANGE = 1050.0f;
 
 		//敵を発見できる範囲の二乗
 		constexpr float SQUARE_FIND_OUT_RANGE = FIND_OUT_RANGE * FIND_OUT_RANGE;
 
 
 		//敵を発見したときに近づく最小の範囲
-		constexpr float CHASE_MIN_RANGE = 655.0f;
+		constexpr float CHASE_MIN_RANGE = 950.0f;
 
 		//敵を発見したときに近づく最小の範囲の二乗
 		constexpr float SQUARE_CHASE_MIN_RANGE = CHASE_MIN_RANGE * CHASE_MIN_RANGE;
@@ -230,6 +230,9 @@ namespace BOUDAMA
 
 		//敵は〇Fごとに出現する
 		constexpr int APPEAR_TIME_INTERVAL = 20;
+
+		//フィーバータイムの最大時間
+		constexpr int MAX_FEVER_TIME = 600;
 
 		//X軸とZ軸で行ける最大の位置
 		constexpr float MAX_POS_X_Z = 7000.0f;

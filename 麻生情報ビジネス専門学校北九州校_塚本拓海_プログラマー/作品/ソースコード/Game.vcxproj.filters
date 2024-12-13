@@ -29,9 +29,6 @@
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Enemy\Enemy.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="src\Scene\SceneClear.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -89,17 +86,11 @@
     <ClCompile Include="Src\Substance\SubstanceBase.cpp">
       <Filter>Substance</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Enemy\EnemyMonster.cpp">
-      <Filter>Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Src\Substance\BigSubstance.cpp">
       <Filter>Substance</Filter>
     </ClCompile>
     <ClCompile Include="Src\Score\Score.cpp">
       <Filter>Score</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\Enemy\EnemyBomber.cpp">
-      <Filter>Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Src\Camera\DebugCamera.cpp">
       <Filter>Camera</Filter>
@@ -169,6 +160,15 @@
     </ClCompile>
     <ClCompile Include="Src\Enemy\State\Attack\StraightAttack.cpp">
       <Filter>Enemy\State\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Enemy\Enemy.cpp">
+      <Filter>Enemy\Daruma</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Enemy\EnemyMonster.cpp">
+      <Filter>Enemy\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Enemy\EnemyBomber.cpp">
+      <Filter>Enemy\Bomber</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +301,15 @@
     <Filter Include="Enemy\State\Attack">
       <UniqueIdentifier>{3e915a26-b476-44c9-b567-06aac7a51cc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enemy\Daruma">
+      <UniqueIdentifier>{c3bb0107-7186-4621-8b29-6805c2ddf773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\Monster">
+      <UniqueIdentifier>{3453542e-0c48-49a8-9561-cbfdb504c25f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\Bomber">
+      <UniqueIdentifier>{12533bf8-18a7-49c5-8671-4dca3e797488}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Player\Player.h">
@@ -332,9 +341,6 @@
     </ClInclude>
     <ClInclude Include="src\Game\GameSystem.h">
       <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Enemy\Enemy.h">
-      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\Scene\SceneClear.h">
       <Filter>Scene</Filter>
@@ -432,14 +438,8 @@
     <ClInclude Include="Src\Substance\SubstanceBase.h">
       <Filter>Substance</Filter>
     </ClInclude>
-    <ClInclude Include="Src\Enemy\EnemyMonster.h">
-      <Filter>Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Src\Substance\BigSubstance.h">
       <Filter>Substance</Filter>
-    </ClInclude>
-    <ClInclude Include="Src\Enemy\EnemyBomber.h">
-      <Filter>Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Src\Camera\DebugCamera.h">
       <Filter>Camera</Filter>
@@ -545,6 +545,15 @@
     </ClInclude>
     <ClInclude Include="Src\Enemy\State\Attack\StraightAttack.h">
       <Filter>Enemy\State\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemy\Enemy.h">
+      <Filter>Enemy\Daruma</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\EnemyMonster.h">
+      <Filter>Enemy\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\EnemyBomber.h">
+      <Filter>Enemy\Bomber</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

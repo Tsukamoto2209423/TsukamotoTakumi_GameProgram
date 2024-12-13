@@ -4,6 +4,57 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <sstream>
+
+/// <summary>
+/// 引数のpathの各種パラメータをまとめてあるCSVファイルを読み込み、そのデータを返す
+/// </summary>
+/// <param name="path">：読み込むCSVファイルへのパス</param>
+/// <param name="rowNum">：読み込む行（縦方向）</param>
+/// <param name="columnNum">：読み込みはじめる最初の列（横方向）</param>
+/// <returns> 指定列番目のデータ </returns>
+decltype(auto) LoadParameterData(const char* path, int rowNum, int columnNum)
+{
+	//CSVファイルを開く
+	std::ifstream file(path);
+
+	//行データ
+	std::string line;
+
+	//取得したセルのデータ
+	std::string num;
+
+	//データ一覧
+	std::vector<int> data;
+
+	int rowCount = 1;
+
+	int columnCount = 1;
+
+	//1行ずつ読み込む
+	while (std::getline(file, line))
+	{
+		if(rowNum == rowCount)
+		{
+			std::stringstream lineStream(line);
+
+			//右に1セルずつ読み込む
+			while (std::getline(lineStream, num))
+			{
+				if (columnNum <= columnCount)
+				{
+					data.emplace_back(std::stoi(num));
+				}
+
+				++columnCount;
+			}
+
+			break;
+		}
+	}
+
+	return data;
+}
 
 /// <summary>
 /// 引数のpathCSVファイルを読み込み、ハンドルをdataに入れる
@@ -53,7 +104,7 @@ void CSV_LOADER::LoadHandle(const char* path, int* data)
 
 
 /// <summary>
-/// 引数のpathCSVファイルを読み込み、ハンドルをdataに入れる
+/// 引数のpathCSVファイルを読み込み、音ハンドルをdataに入れる
 /// </summary>
 /// <param name="path">：読み込むCSVファイルへのパス</param>
 /// <param name="data">：読み込んだ音データハンドルを格納する配列</param>

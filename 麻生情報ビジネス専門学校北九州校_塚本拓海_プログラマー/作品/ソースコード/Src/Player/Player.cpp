@@ -8,10 +8,10 @@
 #include "Player/PlayerParameter.h"
 #include <Matrix/Matrix3D.h>
 #include <Camera/Camera.h>
-#include <Effekseer/Effekseer.h>
 #include <Camera/CameraManager.h>
 #include "Sound/Sound.h"
 #include <Input/Input.h>
+#include <Effekseer/Effekseer.h>
 #include <Effekseer/EffekseerParameter.h>
 
 namespace BOUDAMA
@@ -156,9 +156,6 @@ namespace BOUDAMA
 		if (hp_ <= 0)
 		{
 			DeathEvent();
-
-			//Ž€–S‰¹
-			SoundManager::GetInstance()->PlaySoundData(SOUND::SE::PLAYER_DEATH, DX_PLAYTYPE_BACK);
 
 			return;
 		}
@@ -309,6 +306,7 @@ namespace BOUDAMA
 
 		CEffekseerCtrl::Request(EFFECT_CALL[EFFECT_HANDLE::DEATH_INDEX], pos_, false);
 
+		//Ž€–S‰¹
 		SoundManager::GetInstance()->PlaySoundData(SOUND::SE::PLAYER_DEATH, DX_PLAYTYPE_BACK);
 	}
 

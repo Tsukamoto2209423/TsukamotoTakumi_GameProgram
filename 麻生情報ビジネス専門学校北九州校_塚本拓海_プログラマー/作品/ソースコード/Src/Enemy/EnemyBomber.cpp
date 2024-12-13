@@ -41,6 +41,8 @@ namespace BOUDAMA
 
 		stateMachine_->ChangeState(ENEMY_STATE::RANDOM_WALK);
 
+		bomb_->SetIsActive(false);
+
 		//ˆÊ’uEŠp“xİ’è
 		MV1SetPosition(handle_, pos_);
 		MV1SetRotationXYZ(handle_, rot_);

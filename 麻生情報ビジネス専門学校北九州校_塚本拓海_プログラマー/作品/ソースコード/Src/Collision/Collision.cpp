@@ -184,6 +184,12 @@ namespace BOUDAMA
 				Score::AddScore(enemy->GetScoreNum());
 
 				enemy->DeathCalculation(player->GetVelocity());
+				enemyManager.AddEnemyDeathCount();
+
+				if (50 % enemyManager.GetEnemyDeathCount() == 0)
+				{
+					enemyManager.FeverTime();
+				}
 
 				substanceManager.FlyAppearCalculation(enemy->GetPos());
 			}

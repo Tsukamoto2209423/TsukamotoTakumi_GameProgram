@@ -151,8 +151,6 @@ namespace BOUDAMA
 		SoundManager::GetInstance()->Fin();
 		SoundManager::GetInstance()->DeleteInstance();
 
-		InitGraph();
-
 		//DXƒ‰ƒCƒuƒ‰ƒŠ‚ÌI—¹ˆ—
 		//ÅŒã‚É‚P‰ñ‚¾‚¯‚â‚éˆ—‚ğ‚±‚±‚É‘‚­
 		DxLib_End();

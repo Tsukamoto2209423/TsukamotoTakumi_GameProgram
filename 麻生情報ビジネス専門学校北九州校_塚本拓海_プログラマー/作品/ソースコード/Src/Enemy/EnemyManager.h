@@ -60,6 +60,8 @@ namespace BOUDAMA
 
 		inline void AddEnemyDeathCount(void) { ++deathCount_; }
 
+		inline void FeverTime(void) { isFeverTime_ = true; }
+
 	private:
 		template<class EnemyType, class... Args>
 		void CreateEnemy(Args... args)

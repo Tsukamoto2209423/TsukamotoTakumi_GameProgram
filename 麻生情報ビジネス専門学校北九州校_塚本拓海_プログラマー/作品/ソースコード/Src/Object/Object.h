@@ -50,8 +50,11 @@ namespace BOUDAMA
 		//破棄処理関数
 		virtual void Fin(void);
 
-		//当たり判定処理
+		//衝突時の計算処理
 		virtual void HitCalculation(void);
+
+		//衝突時の計算処理
+		virtual void HitCalculation(int damage);
 
 	public:
 		//ハンドル取得

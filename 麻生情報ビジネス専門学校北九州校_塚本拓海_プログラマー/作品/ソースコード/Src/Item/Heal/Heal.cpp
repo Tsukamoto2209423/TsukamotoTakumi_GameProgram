@@ -52,8 +52,6 @@ namespace BOUDAMA
 		{
 			MV1DrawModel(handle_);
 		}
-
-		DrawSphere3D(pos_, radius_, 16, GetColor(0, 255, 0), GetColor(0, 255, 255), false);
 	}
 
 	//oŒ»ˆ—ŠÖ”
