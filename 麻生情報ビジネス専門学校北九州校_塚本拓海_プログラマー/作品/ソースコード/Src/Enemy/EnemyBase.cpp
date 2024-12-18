@@ -3,6 +3,7 @@
 #include <Matrix/Matrix3D.h>
 #include <Math/MyMath.h>
 #include <EffekseerParameter.h>
+#include <Score/Score.h>
 
 namespace BOUDAMA
 {
@@ -46,9 +47,29 @@ namespace BOUDAMA
 		if (hp_ <= 0)
 		{
 			stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
+			Score::AddScore(scoreNum_);
+		}
+		else
+		{
+			stateMachine_->ChangeState(ENEMY_STATE::KNOCK_BACK);
 		}
 
-		stateMachine_->ChangeState(ENEMY_STATE::KNOCK_BACK);
+		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
+	}
+	
+	void EnemyBase::HitCalculation(int damage) 
+	{
+		hp_ -= damage;
+
+		if (hp_ <= 0)
+		{
+			stateMachine_->ChangeState(ENEMY_STATE::CORPSE);
+			Score::AddScore(scoreNum_);
+		}
+		else
+		{
+			stateMachine_->ChangeState(ENEMY_STATE::KNOCK_BACK);
+		}
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_, false);
 	}

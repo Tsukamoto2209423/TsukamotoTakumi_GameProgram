@@ -12,6 +12,7 @@ namespace BOUDAMA
 		{
 			owner->SetDir(owner->GetDir() * Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(GetRand(359))));
 			owner->SetVelocity(MyMath::ZERO_VECTOR_3D);
+			owner->SetRot(MyMath::ZERO_VECTOR_3D);
 			owner->RotateYaw(owner->GetDir());
 		}
 

@@ -20,7 +20,7 @@ namespace BOUDAMA
 		constexpr int INIT_POS_Y = 460;
 
 		//•`‰æ‚·‚é‰æ‘œ‚ğ‘å‚«‚­‚·‚éƒRƒ“ƒ{”
-		constexpr int ADD_SCALE_COMBO_NUM = 20;
+		constexpr int ADD_SCALE_COMBO_NUM = 50;
 
 		//Å‰‚Ì‰æ‘œ”{—¦
 		constexpr float INIT_SCALE = 0.75f;

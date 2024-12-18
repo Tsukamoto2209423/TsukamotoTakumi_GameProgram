@@ -13,16 +13,17 @@ namespace BOUDAMA
 	{
 		CHARGE_INDEX,
 		DAMAGE_INDEX,
-		DEATH_INDEX
+		DEATH_INDEX,
+		HEAL_INDEX
 	};
 
 	//エフェクト自体を保存している配列の添え字を呼び出す時に使う番号
-	constexpr int  EFFECT_CALL[] =
+	constexpr int EFFECT_CALL[] =
 	{
 		EFFECT::CHARGE,
 		EFFECT::HIT_EFFECT,
-
-		EFFECT::PLAYER_DEATH,
+		EFFECT::RED_DISSOLVE,
+		EFFECT::PLAYER_HEAL
 	};
 
 
@@ -35,7 +36,7 @@ namespace BOUDAMA
 
 	public:
 		//コンストラクタ
-		Player3DEffect() {};
+		constexpr Player3DEffect() {};
 
 		//デストラクタ
 		~Player3DEffect() {};

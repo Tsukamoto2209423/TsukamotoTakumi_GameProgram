@@ -22,10 +22,6 @@ public:
 	float m[ROW_MAX_NUM_2D][COLUMN_MAX_NUM_2D];
 
 
-public: // コンストラクタ
-	//explicit constexpr Matrix2D() noexcept = default;[
-
-
 public:
 	//零行列
 	inline static constexpr Matrix2D ZERO_MATRIX() { return { 0.0f }; }

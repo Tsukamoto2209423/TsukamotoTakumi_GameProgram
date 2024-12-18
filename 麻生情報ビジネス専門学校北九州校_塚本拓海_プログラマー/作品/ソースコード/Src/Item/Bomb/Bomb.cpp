@@ -32,12 +32,15 @@ namespace BOUDAMA
 	//描画処理関数
 	void Bomb::Draw(void)
 	{
-		//生存している場合は描画
-		if (isAlive_ && state_ != BOMB_STATE::EXPLOSION)
+		if (!isAlive_ || state_ == BOMB_STATE::EXPLOSION)
 		{
-			MV1DrawModel(handle_);
+			return;
 		}
+
+		//生存している場合は描画
+		MV1DrawModel(handle_);
 	}
+
 
 	//出現処理関数
 	void Bomb::AppearanceRequest(void)
@@ -49,8 +52,6 @@ namespace BOUDAMA
 	//アイテムの効果実行
 	void Bomb::EffectExecute(const std::shared_ptr<Object>& targetObject)
 	{
-		targetObject->SubHP(BOMB::ATTACK_POWER);
-
 		const Vector3D& myPosToTargetVector = targetObject->GetPos() - pos_;
 
 		//距離に応じて与える速度ベクトルの長さを変える
@@ -58,7 +59,7 @@ namespace BOUDAMA
 
 		targetObject->AddVelocity(addExplosionVelocity);
 
-		targetObject->HitCalculation();
+		targetObject->HitCalculation(BOMB::ATTACK_POWER);
 
 		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, targetObject->GetPos(), false);
 	}
@@ -99,6 +100,13 @@ namespace BOUDAMA
 	{
 		//爆発するまでの時間計測
 		--countExplodeTimeLimit_;
+
+		if (countExplodeTimeLimit_ == BOMB::WARNING_BLINK_TIME)
+		{
+			//爆発警告点滅
+			int handle = CEffekseerCtrl::Request(EFFECT::RED_DISSOLVE, pos_, false);
+			CEffekseerCtrl::SetScale(handle, VECTOR(1.55f, 1.55f, 1.55f));
+		}
 
 		//爆発までのカウントダウンが0になったら
 		if (countExplodeTimeLimit_ <= 0)

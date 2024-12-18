@@ -24,10 +24,13 @@ namespace BOUDAMA
 		constexpr float POS_Z_DISTANCE = -450.0f;
 
 		//カメラ移動速度
-		constexpr float SPEED = 3.5f;
+		constexpr float SPEED = 15.0f;
+		
+		//上下方向のカメラ移動速度
+		constexpr float UP_DOWN_SPEED = 10.0f;
 
 		//高速カメラ移動速度
-		constexpr float FAST_SPEED = 14.5f;
+		constexpr float FAST_SPEED = 25.5f;
 
 		//カメラ左右回転速度
 		constexpr float ROT_RIGHT_LEFT_SPEED = MyMath::PI / 30.0f;

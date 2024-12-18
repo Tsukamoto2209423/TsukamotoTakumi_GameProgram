@@ -363,10 +363,10 @@ constexpr Vector3D operator*(const Vector3D& vec, const Matrix3D& mat)
 }
 
 //Vector3DÇ∆Matrix3DÇÃêœÇÃíËã`
-constexpr Vector3D operator*=(const Vector3D& vec, const Matrix3D& mat)
+constexpr Vector3D operator*=(Vector3D& vec, const Matrix3D& mat)
 {
-	return Vector3D((vec.x * mat.m[0]) + (vec.y * mat.m[1]) + (vec.z * mat.m[2]) + mat.m[3],
+	return vec = { (vec.x * mat.m[0]) + (vec.y * mat.m[1]) + (vec.z * mat.m[2]) + mat.m[3],
 		(vec.x * mat.m[4]) + (vec.y * mat.m[5]) + (vec.z * mat.m[6]) + mat.m[7],
-		(vec.x * mat.m[8]) + (vec.y * mat.m[9]) + (vec.z * mat.m[10]) + mat.m[11]);
+		(vec.x * mat.m[8]) + (vec.y * mat.m[9]) + (vec.z * mat.m[10]) + mat.m[11] };
 }
 

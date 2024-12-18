@@ -65,7 +65,7 @@ namespace BOUDAMA
 
 	public:
 		//コンストラクタ
-		Player2DEffect() : concentrationLineIndex_(0), effectAlpha_(0) {};
+		constexpr Player2DEffect() : concentrationLineIndex_(0), effectAlpha_(0), effectState_() {};
 
 		//デストラクタ	
 		~Player2DEffect() {};

@@ -170,6 +170,9 @@
     <ClCompile Include="Src\Enemy\EnemyBomber.cpp">
       <Filter>Enemy\Bomber</Filter>
     </ClCompile>
+    <ClCompile Include="Src\Enemy\State\RunAway\RunAway.cpp">
+      <Filter>Enemy\State\RunAway</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Player">
@@ -309,6 +312,9 @@
     </Filter>
     <Filter Include="Enemy\Bomber">
       <UniqueIdentifier>{12533bf8-18a7-49c5-8671-4dca3e797488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Enemy\State\RunAway">
+      <UniqueIdentifier>{9893d67e-67dd-45d2-a173-5d14a8e1699a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -554,6 +560,9 @@
     </ClInclude>
     <ClInclude Include="Src\Enemy\EnemyBomber.h">
       <Filter>Enemy\Bomber</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Enemy\State\RunAway\RunAway.h">
+      <Filter>Enemy\State\RunAway</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

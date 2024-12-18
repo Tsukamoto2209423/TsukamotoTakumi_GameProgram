@@ -53,6 +53,9 @@ namespace BOUDAMA
 
 		//“–‚½‚è”»’èˆ—
 		void HitCalculation(void) override;
+		
+		//“–‚½‚è”»’èˆ—
+		void HitCalculation(int damage) override;
 
 		//€–SƒCƒxƒ“ƒg
 		void DeathEvent(void);
@@ -89,6 +92,7 @@ namespace BOUDAMA
 			hp_ += addNum;
 
 			player2dEffect_.EffectRequest(PLAYER_EFFECT::HEAL);
+			player3dEffect_.EffectRequest(EFFECT_HANDLE::HEAL_INDEX, pos_, rot_.y);
 		}
 
 		//HPŒ¸Z
@@ -97,8 +101,8 @@ namespace BOUDAMA
 			//HPŒ¸Z
 			hp_ -= subNum;
 
-			player3dEffect_.EffectRequest(EFFECT_HANDLE::DAMAGE_INDEX, pos_, rot_.y);
 			player2dEffect_.EffectRequest(PLAYER_EFFECT::DAMAGE);
+			player3dEffect_.EffectRequest(EFFECT_HANDLE::DAMAGE_INDEX, pos_, rot_.y);
 
 		}
 	};

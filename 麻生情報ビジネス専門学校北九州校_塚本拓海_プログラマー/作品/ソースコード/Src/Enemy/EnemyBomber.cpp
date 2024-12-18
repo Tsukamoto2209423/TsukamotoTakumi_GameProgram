@@ -12,6 +12,7 @@
 #include "State/KnockBack/KnockBack.h"
 #include "State/Corpse/Corpse.h"
 #include "State/Idle/Idle.h"
+#include "State/RunAway/RunAway.h"
 
 namespace BOUDAMA
 {
@@ -28,13 +29,15 @@ namespace BOUDAMA
 		rot_ = MyMath::ZERO_VECTOR_3D;
 		dir_ = { 0.0f,0.0f,1.0f };
 
+		scoreNum_ = BOMBER::ADD_SCORE_NUM;
+
 		bombThrowStunTime_ = 0;
 
 		stateMachine_ = std::make_unique<EnemyBase::StateMachineType>();
 
 		stateMachine_->AddState<RandomWalk>(ENEMY_STATE::RANDOM_WALK, ENEMY_STATE::FIND_OUT, BOMBER::SPEED, BOMBER::MAX_SPEED, BOMBER::FIND_OUT_RANGE);
-		stateMachine_->AddState<FindOut>(ENEMY_STATE::FIND_OUT, ENEMY_STATE::CHASE, BOMBER::REACTION_MAX_TIME);
-		stateMachine_->AddState<Chase>(ENEMY_STATE::CHASE, ENEMY_STATE::IDLE, BOMBER::CHASE_SPEED);
+		stateMachine_->AddState<FindOut>(ENEMY_STATE::FIND_OUT, ENEMY_STATE::RUN_AWAY, BOMBER::REACTION_MAX_TIME);
+		stateMachine_->AddState<RunAway>(ENEMY_STATE::RUN_AWAY, ENEMY_STATE::IDLE, BOMBER::RUN_AWAY_SPEED);
 		stateMachine_->AddState<Idle>(ENEMY_STATE::IDLE, ENEMY_STATE::RANDOM_WALK, BOMBER::ATTACK_STUN_TIME);
 		stateMachine_->AddState<KnockBack>(ENEMY_STATE::KNOCK_BACK, ENEMY_STATE::RANDOM_WALK);
 		stateMachine_->AddState<Corpse>(ENEMY_STATE::CORPSE);
@@ -141,6 +144,10 @@ namespace BOUDAMA
 
 		//äpìxèâä˙âª
 		rot_ = MyMath::ZERO_VECTOR_3D;
+
+		//ë¨ìxèâä˙âª
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+
 
 		//éÄé“ëhê∂
 		isAlive_ = true;

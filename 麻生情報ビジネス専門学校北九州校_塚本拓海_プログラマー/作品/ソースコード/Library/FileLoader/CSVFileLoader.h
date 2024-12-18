@@ -6,7 +6,7 @@
 namespace CSV_LOADER
 {
 	/// <summary>
-	/// 引数のpathの各種パラメータをまとめてあるCSVファイルを読み込み、そのデータを返す
+	/// 引数のpathの各種パラメータをまとめてあるCSVファイルのrowNum行目だけ読み込み、そのデータを返す
 	/// </summary>
 	/// <param name="path">：読み込むCSVファイルへのパス</param>
 	/// <param name="rowNum">：読み込む行（縦方向）</param>

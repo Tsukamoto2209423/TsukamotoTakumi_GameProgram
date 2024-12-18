@@ -5,12 +5,6 @@
 #include "ItemBase.h"
 #include "ItemParameter.h"
 
-#ifdef _DEBUG
-
-#include <iostream>
-#include <intrin.h>
-
-#endif
 
 namespace BOUDAMA
 {
@@ -45,40 +39,7 @@ namespace BOUDAMA
 
 		void AppearanceRequest(const ITEM::ITEM_LIST itemNum);
 
-		const auto& SearchItem(const ITEM::ITEM_LIST itemNum) const
-		{
-			int vectorItemIndex = 0;
-
-			int intItemNum = static_cast<int>(itemNum);
-
-			//アイテムの位置探索
-			for (int index = 0; index < intItemNum; ++index)
-			{
-				vectorItemIndex += ITEM::ITEM_MAX_NUM_LIST[index];
-			}
-
-			int maxNum = ITEM::ITEM_MAX_NUM_LIST[intItemNum];
-
-			for (int num = 0; num < maxNum; ++num, ++vectorItemIndex)
-			{
-				if (items_[vectorItemIndex]->GetIsActive())
-				{
-					continue;
-				}
-
-				items_[vectorItemIndex]->SetIsActive(true);
-
-				return items_[vectorItemIndex];
-			}
-
-#ifdef _DEBUG
-			std::cerr << "Debug break : アイテムを見つけられませんでした！" << std::endl;
-			__debugbreak();
-#endif // _DEBUG
-
-			return *items_.begin();
-		}
-
+		const std::shared_ptr<ItemBase>& SearchItem(const ITEM::ITEM_LIST itemNum) const;
 
 		inline const std::vector<std::shared_ptr<ItemBase>>& GetItem() { return items_; }
 

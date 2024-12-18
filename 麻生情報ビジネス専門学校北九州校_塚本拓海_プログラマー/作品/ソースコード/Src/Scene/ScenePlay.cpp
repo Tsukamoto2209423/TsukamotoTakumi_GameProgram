@@ -170,8 +170,9 @@ namespace BOUDAMA
 		//デバッグフラグが立っているなら
 		if (CameraManager::GetInstance()->GetState() == CAMERA_STATE::DEBUG)
 		{
-			CameraManager::GetInstance()->GetDebugCamera()->Step(player_->GetPos());
-			CameraManager::GetInstance()->GetDebugCamera()->UpDate();
+			//カメラの処理
+			CameraManager::GetInstance()->Step(player_->GetPos());
+			CameraManager::GetInstance()->UpDate();
 
 			return;
 		}

@@ -5,6 +5,9 @@
 #include <Item/ItemParameter.h>
 #include <Math/MyMath.h>
 
+#include "Effekseer/Effekseer.h"
+#include "Effekseer/EffekseerParameter.h"
+
 namespace BOUDAMA
 {
 	void Heal::Init(void)
@@ -38,6 +41,11 @@ namespace BOUDAMA
 		floatMotionTheta_ < MyMath::TWO_PI ? floatMotionTheta_ += MyMath::INVERSE_TWO_PI : floatMotionTheta_ = 0.0f;
 
 		pos_.y += HEAL::FLOAT_MOTION_BOOST * std::sin(floatMotionTheta_);
+
+		Vector3D effectPos = pos_;
+		effectPos.y -= HEAL::RADIUS;
+
+		CEffekseerCtrl::Request(EFFECT::GLEAM_EFFECT, effectPos, false);
 
 		//À•WÝ’è
 		MV1SetPosition(handle_, pos_);

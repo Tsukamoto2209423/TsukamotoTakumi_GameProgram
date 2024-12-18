@@ -19,6 +19,9 @@ namespace BOUDAMA
 		//ƒvƒŒƒCƒ„[’ÇÕ
 		CHASE,
 
+		//“¦‘–’†
+		RUN_AWAY,
+
 		//UŒ‚—­‚ß
 		CHARGE,
 

@@ -81,22 +81,24 @@ namespace BOUDAMA
 
 		virtual void HitCalculation(void) override;
 
+		virtual void HitCalculation(int damege) override;
+
 		virtual void DeathCalculation(const Vector3D& hitObjectVelocity);
 
 
-		inline Vector3D GetTargetPosition(void) const noexcept { return targetPosition_; }
+		constexpr Vector3D GetTargetPosition(void) const noexcept { return targetPosition_; }
 
-		inline void SetTargetPosition(const Vector3D& targetPos) noexcept { targetPosition_ = targetPos; }
+		constexpr void SetTargetPosition(const Vector3D& targetPos) noexcept { targetPosition_ = targetPos; }
 
 		//ì|Ç≥ÇÍÇΩéûÇ…â¡éZÇ≥ÇÍÇÈì_êîéÊìæ
-		inline int GetScoreNum(void) const { return scoreNum_; }
+		constexpr int GetScoreNum(void) const { return scoreNum_; }
 
-		inline bool IsCollisionEnabled(void) const noexcept { return isCollisionEnabled_; }
-		inline void SetIsCollisionEnabled(bool isInCollision) noexcept { isCollisionEnabled_ = isInCollision; }
+		constexpr bool IsCollisionEnabled(void) const noexcept { return isCollisionEnabled_; }
+		constexpr void SetIsCollisionEnabled(bool isInCollision) noexcept { isCollisionEnabled_ = isInCollision; }
 
 		//ñ≥ìGÇ©ÅH
-		inline bool IsInvincible(void) const noexcept { return isInvincible_; };
-		inline void SetIsInvincible(bool isInvincible) noexcept { isInvincible_ = isInvincible; }
+		constexpr bool IsInvincible(void) const noexcept { return isInvincible_; };
+		constexpr void SetIsInvincible(bool isInvincible) noexcept { isInvincible_ = isInvincible; }
 
 		void SetStateMachineOwner(const auto& owner)
 		{

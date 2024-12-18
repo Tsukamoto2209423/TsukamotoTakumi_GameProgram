@@ -29,7 +29,7 @@ class CEffekseer;
 //		こっち使って
 class CEffekseerCtrl {
 protected:
-	static inline std::shared_ptr<CEffekseer[]> m_eff;				// エフェクト単品管理クラス
+	static inline std::shared_ptr<CEffekseer[]>			m_eff;			// エフェクト単品管理クラス
 	static inline std::vector<::Effekseer::EffectRef>	m_effect;		// エフェクトクラス
 	static inline ::Effekseer::ManagerRef				m_manager;		// エフェクトマネージャ
 	static inline ::EffekseerRendererDX9::RendererRef	m_renderer9;	// レンダラー(DirectX9用)
@@ -144,25 +144,25 @@ public:
 	//	座標設定
 	inline void	SetTrans(VECTOR pos) { pos_ = pos; }
 	//	座標取得
-	inline VECTOR	GetTrans(void) { return pos_; }
+	inline VECTOR	GetTrans(void) const { return pos_; }
 	//	拡大縮小率設定
 	inline void	SetScale(VECTOR scale) { m_scale = scale; }
 	//	拡大縮小率取得
-	inline VECTOR	GetScale(void) { return m_scale; }
+	inline VECTOR	GetScale(void) const { return m_scale; }
 	//	角度設定
 	inline void	SetRot(VECTOR rot) { rot_ = rot; }
 	//	角度取得
-	inline VECTOR	GetRot(void) { return rot_; }
+	inline VECTOR	GetRot(void) const { return rot_; }
 	//	エフェクトハンドル設定
 	inline void	SetHndl(int hndl) { m_hndl = hndl; }
 	//	エフェクトハンドル取得
-	inline int	GetHndl(void) { return m_hndl; }
+	inline int	GetHndl(void) const { return m_hndl; }
 	//	エフェクトID設定
 	inline void	SetID(int ID) { m_ID = ID; }
 	//	エフェクトID取得
-	inline int	GetID(void) { return m_ID; }
+	inline int	GetID(void) const { return m_ID; }
 	//	ループ情報設定
 	inline void	SetLoop(bool isLoop) { m_isLoop = isLoop; }
 	//	ループ情報取得
-	inline bool	IsLoop(void) { return m_isLoop; }
+	inline bool	IsLoop(void) const { return m_isLoop; }
 };

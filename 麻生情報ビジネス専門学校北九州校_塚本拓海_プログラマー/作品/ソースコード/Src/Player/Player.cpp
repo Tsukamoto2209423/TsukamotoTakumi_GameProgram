@@ -92,6 +92,14 @@ namespace BOUDAMA
 		player2dEffect_.Step();
 		player3dEffect_.Step();
 		combo_.Step();
+
+
+
+		if (Input::IsKeyPush(GAME_INPUT::ENTER))
+		{
+			player2dEffect_.EffectRequest(PLAYER_EFFECT::HEAL);
+			player3dEffect_.EffectRequest(EFFECT_HANDLE::HEAL_INDEX, pos_, rot_.y);
+		}
 	}
 
 	//描画処理関数
@@ -168,6 +176,28 @@ namespace BOUDAMA
 		SoundManager::GetInstance()->PlaySoundData(SOUND::SE::DAMAGE, DX_PLAYTYPE_BACK);
 
 	}
+	
+	//当たり判定処理
+	void Player::HitCalculation(int damage)
+	{
+		SubHP(damage);
+
+		//死亡処理
+		if (hp_ <= 0)
+		{
+			DeathEvent();
+
+			return;
+		}
+
+		//エフェクトと音
+		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_ + PLAYER::EFFECT_POS, false);
+		CEffekseerCtrl::Request(EFFECT::HIT_EFFECT, pos_ - PLAYER::EFFECT_POS, false);
+
+		//ダメージを受けた音
+		SoundManager::GetInstance()->PlaySoundData(SOUND::SE::DAMAGE, DX_PLAYTYPE_BACK);
+
+	}
 
 	//移動計算処理
 	void Player::MoveCalculation(void)
@@ -209,7 +239,7 @@ namespace BOUDAMA
 			if (MyMath::Abs(velocity_.x) < PLAYER::MAX_SPEED && MyMath::Abs(velocity_.z) < PLAYER::MAX_SPEED)
 			{
 				//カメラの角度に合わせて方向ベクトルをY軸周りに回転
-				dir_ = dir_ * Matrix3D::GetYawMatrix(CameraManager::GetInstance()->GetPlayCamera()->GetRotY());
+				dir_ *= Matrix3D::GetYawMatrix(CameraManager::GetInstance()->GetPlayCamera()->GetRotY());
 
 				//入力した値を単位ベクトルにしてプレイヤーの速さでスカラー倍し加算
 				velocity_ += dir_.Normalize() * PLAYER::SPEED;
@@ -217,7 +247,7 @@ namespace BOUDAMA
 			}
 
 			//プレイヤーの速度ベクトルの角度を計算し、プレイヤーが向く角度を決める
-			rot_.y = atan2f(-velocity_.x, -velocity_.z);
+			RotateYaw(velocity_);
 		}
 
 		//摩擦力計算
@@ -251,6 +281,7 @@ namespace BOUDAMA
 		if (pos_.y < PLAYER::GROUND_POS_Y)
 		{
 			pos_.y = PLAYER::GROUND_POS_Y;
+			velocity_.y = 0.0f;
 		}
 
 		//ステージの端から出ないようにする
@@ -285,7 +316,8 @@ namespace BOUDAMA
 		velocity_ = Matrix3D::GetYawMatrix(CameraManager::GetInstance()->GetPlayCamera()->GetRotY()) * dir_;
 
 		//プレイヤーの速度ベクトルの角度を計算し、プレイヤーが向く角度を決める
-		rot_.y = atan2f(-velocity_.x, -velocity_.z);
+		RotateYaw(velocity_);
+		
 
 		//転がっている時の角度計算
 		RotateCalculation();
@@ -307,7 +339,7 @@ namespace BOUDAMA
 		CEffekseerCtrl::Request(EFFECT_CALL[EFFECT_HANDLE::DEATH_INDEX], pos_, false);
 
 		//死亡音
-		SoundManager::GetInstance()->PlaySoundData(SOUND::SE::PLAYER_DEATH, DX_PLAYTYPE_BACK);
+		SoundManager::GetInstance()->PlaySoundData(SOUND::SE::RED_DISSOLVE, DX_PLAYTYPE_BACK);
 	}
 
 
@@ -315,7 +347,7 @@ namespace BOUDAMA
 	{
 		++deathTimeCount_;
 
-		return deathTimeCount_ > PLAYER::DEATH_EFFECT_TIME;
+		return  PLAYER::DEATH_EFFECT_TIME < deathTimeCount_;
 	}
 
 	//無敵かどうか

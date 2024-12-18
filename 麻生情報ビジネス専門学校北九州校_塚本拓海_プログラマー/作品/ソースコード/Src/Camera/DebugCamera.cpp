@@ -1,21 +1,23 @@
 #include "DebugCamera.h"
 #include "Camera.h"
+#include <Input/Mouse/Mouse.h>
 #include "Input/KeyBoard/InputKeyBoard.h"
 #include "Math/MyMath.h"
 #include "Matrix/Matrix3D.h"
+#include <Common.h>
 
 namespace BOUDAMA
 {
 	//カメラ初期化関数
 	void DebugCamera::Init(void)
 	{
-		// カメラの設定
-		SetCameraNearFar(1.0f, 27000.0f);
+		//// カメラの設定
+		//SetCameraNearFar(1.0f, 27000.0f);
 
-		SetupCamera_Perspective(MyMath::PI_OVER_THREE);
+		//SetupCamera_Perspective(MyMath::PI_OVER_THREE);
 
 		pos_ = { 0.0f, CAMERA::POS_Y_DISTANCE, CAMERA::POS_Z_DISTANCE };		//カメラ位置
-		target_ = { 0.0f, 100.0f, 0.0f };										//注視点
+		target_ = { 0.0f, 0.0f, 0.0f };										//注視点
 		up_ = { 0.0f, 1.0f, 0.0f };												//上方向
 		rot_ = { MyMath::PI_OVER_SIX, 0.0f, 0.0f };							//カメラ角度
 
@@ -33,81 +35,52 @@ namespace BOUDAMA
 
 		//左シフトキーを押していると加速
 		float speed = InputKeyBoard::IsKeyDown(KEY::L_SHIFT) ? CAMERA::FAST_SPEED : CAMERA::SPEED;
-		Vector3D cameraSpeed = { speed * sinf(rot_.y),0.0f,speed * cosf(rot_.y) };
+		Vector3D cameraSpeed = dir_ * speed;
+		cameraSpeed.y = 0.0f;
 
 		//上昇
 		if (InputKeyBoard::IsKeyDown(KEY::Q))
 		{
-			pos_.y -= speed;
-			target_.y -= speed;
+			target_.y -= CAMERA::UP_DOWN_SPEED;
 		}
 
 		//下降
 		if (InputKeyBoard::IsKeyDown(KEY::E))
 		{
-			pos_.y += speed;
-			target_.y += speed;
+			target_.y += CAMERA::UP_DOWN_SPEED;
 		}
 
 		//前移動
 		if (InputKeyBoard::IsKeyDown(KEY::W))
 		{
-			pos_ = pos_ + cameraSpeed;
-			target_ = target_ + cameraSpeed;
+			target_ += cameraSpeed;
 		}
 		//後移動
 		if (InputKeyBoard::IsKeyDown(KEY::S))
 		{
-			pos_ = pos_ - cameraSpeed;
-			target_ = target_ - cameraSpeed;
+			target_ -= cameraSpeed;
 		}
 
 		//左シフトキーを押していると加速
 		//左右に水平移動するので π/2 足す
 		float left_right_speed = InputKeyBoard::IsKeyDown(KEY::L_SHIFT) ? CAMERA::FAST_SPEED : CAMERA::SPEED;
-		Vector3D left_right_cameraSpeed = { left_right_speed * sinf(rot_.y + MyMath::HALF_PI),0.0f,left_right_speed * cosf(rot_.y + MyMath::HALF_PI) };
+		Vector3D left_right_cameraSpeed = dir_ * Matrix3D::GetYawMatrix( MyMath::HALF_PI) * speed;
+		left_right_cameraSpeed.y = 0.0f;
 
 		//左移動
 		if (InputKeyBoard::IsKeyDown(KEY::A))
 		{
 			//差なので左に移動
-			pos_ -= left_right_cameraSpeed;
 			target_ -= left_right_cameraSpeed;
 		}
 		//右移動
 		if (InputKeyBoard::IsKeyDown(KEY::D))
 		{
 			//和なので右に移動
-			pos_ += left_right_cameraSpeed;
 			target_ += left_right_cameraSpeed;
 		}
 
 
-		// 右回転
-		if (InputKeyBoard::IsKeyDown(KEY::RIGHT))
-		{
-			rot_.y += CAMERA::ROT_RIGHT_LEFT_SPEED;
-
-			// rot_の左右の角度θの定義域は -2π < θ <= 2π
-			if (rot_.y <= -DX_PI_F)
-			{
-				rot_.y = 0.0f;
-			}
-
-		}
-
-		// 左回転
-		if (InputKeyBoard::IsKeyDown(KEY::LEFT))
-		{
-			rot_.y -= CAMERA::ROT_RIGHT_LEFT_SPEED;
-
-			// rot_の左右の角度θの定義域は -2π <= θ < 2π
-			if (rot_.y >= DX_PI_F)
-			{
-				rot_.y = 0.0f;
-			}
-
-		}
 
 		//上回転
 		if (InputKeyBoard::IsKeyDown(KEY::UP))
@@ -134,13 +107,6 @@ namespace BOUDAMA
 		if (InputKeyBoard::IsKeyDown(KEY::RIGHT))
 		{
 			rot_.y += CAMERA::ROT_RIGHT_LEFT_SPEED;
-
-			// rot_の左右の角度θの定義域は -2π < θ <= 2π
-			if (rot_.y <= -MyMath::PI)
-			{
-				rot_.y = 0.0f;
-			}
-
 		}
 
 		// 左回転
@@ -148,12 +114,38 @@ namespace BOUDAMA
 		{
 			rot_.y -= CAMERA::ROT_RIGHT_LEFT_SPEED;
 
-			// rot_の左右の角度θの定義域は -2π <= θ < 2π
-			if (rot_.y >= MyMath::PI)
-			{
-				rot_.y = 0.0f;
-			}
+		}
 
+		//マウス視点操作
+		const Vector3D MouseMoveValue(InputMouse::GetMoveValueVertical(), InputMouse::GetMoveValueHorizontal(), 0.0f);
+
+		if (MyMath::Abs(MouseMoveValue.x) > Common::KINDA_SMALL_NUMBER || MyMath::Abs(MouseMoveValue.y) > Common::KINDA_SMALL_NUMBER)
+		{
+			rot_ += MouseMoveValue * CAMERA::MOUSE_SENSITIVITY;
+		}
+
+		//rot_.x < 0
+		if (rot_.x < 0.0f)
+		{
+			rot_.x = 0.0f;
+		}
+
+		//rot_.x > π/2
+		if (rot_.x >= MyMath::HALF_PI)
+		{
+			rot_.x = MyMath::HALF_PI - MyMath::INVERSE_TWO_PI;
+		}
+
+		//rot_.y < -π/2
+		if (rot_.y < -MyMath::PI)
+		{
+			rot_.y = MyMath::PI;
+		}
+
+		//rot_.y > π/2
+		if (rot_.y > MyMath::PI)
+		{
+			rot_.y = -MyMath::PI;
 		}
 	}
 
@@ -164,12 +156,13 @@ namespace BOUDAMA
 		Matrix3D RetCameraMat = Matrix3D::GetTranslateMatrix(target_)
 			* Matrix3D::GetYawMatrix(rot_.y)
 			* Matrix3D::GetPitchMatrix(rot_.x)
-			* Matrix3D::GetTranslateMatrix(-target_);
+			* Matrix3D::GetTranslateMatrix(-target_.x, -target_.y, -target_.z - 1.0f);
 
 		pos_ = RetCameraMat * target_;
 
-		//方向ベクトル設定
-		dir_ = Matrix3D::GetYawMatrix(rot_.y) * dir_;
+
+		//カメラ向いている方向計算
+		dir_ = (target_ - pos_).Normalize();
 
 		//カメラ位置設定
 		SetCameraPositionAndTargetAndUpVec(pos_, target_, up_);

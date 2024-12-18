@@ -86,6 +86,13 @@ namespace BOUDAMA
 		pos_ = Matrix3D::GetYawMatrix(MyMath::DegreesToRadian(static_cast<float>(GetRand(359)))) *
 			Matrix3D::GetTranslateMatrix(DARUMA::INIT_POS) * MyMath::ZERO_VECTOR_3D;
 
+		//Šp“x‰Šú‰»
+		rot_ = MyMath::ZERO_VECTOR_3D;
+
+		//‘¬“x‰Šú‰»
+		velocity_ = MyMath::ZERO_VECTOR_3D;
+
+
 		//€Ò‘h¶
 		isAlive_ = true;
 		isCollisionEnabled_ = true;

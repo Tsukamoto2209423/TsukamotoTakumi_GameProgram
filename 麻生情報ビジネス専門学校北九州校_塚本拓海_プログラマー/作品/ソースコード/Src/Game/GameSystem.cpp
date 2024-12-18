@@ -61,10 +61,13 @@ namespace BOUDAMA
 		CEffekseerCtrl::Init(EFFECT::ALL_NUM, 5000);
 		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/HitEffect.efk"));
 		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/EnemySpawn.efk"));
-		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/PlayerDeath.efk"));
+		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/RedDissolve.efk"));
+		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/Heal.efk"));
 		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/Accelerator.efk"));
 		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/Explosion.efk"));
+		CEffekseerCtrl::SetEffectLoadID(CEffekseerCtrl::LoadData("Data/Effect/GleamEffect.efk"));
 
+		
 		CEffekseerCtrl::SetProjectionMtx(MyMath::PI_OVER_THREE, 16.0f / 9.0f, 1.0f, 27000.0f);
 
 		//âπèÓïÒèâä˙âª

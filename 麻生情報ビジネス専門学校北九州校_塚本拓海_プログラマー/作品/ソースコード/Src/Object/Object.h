@@ -58,27 +58,27 @@ namespace BOUDAMA
 
 	public:
 		//ハンドル取得
-		inline int GetHandle(void) const noexcept { return handle_; }
+		constexpr int GetHandle(void) const noexcept { return handle_; }
 
 
 		//HP加算
-		inline virtual void AddHP(int addNum) { hp_ += addNum; }
+		virtual constexpr void AddHP(int addNum) { hp_ += addNum; }
 
 		//HP減算
-		inline virtual void SubHP(int subNum) { hp_ -= subNum; }
+		virtual constexpr void SubHP(int subNum) { hp_ -= subNum; }
 
 		//HP取得
-		inline int GetHP(void) const noexcept { return hp_; }
+		constexpr int GetHP(void) const noexcept { return hp_; }
 
 		//HP設定
-		inline void SetHP(int HP) { hp_ = HP; }
+		constexpr void SetHP(int HP) { hp_ = HP; }
 
 
 		//半径取得
-		inline float GetRadius(void) const noexcept { return radius_; }
+		constexpr float GetRadius(void) const noexcept { return radius_; }
 
 		//半径設定
-		inline void SetRadius(float radius) { radius_ = radius; }
+		constexpr void SetRadius(float radius) { radius_ = radius; }
 
 
 		/// <summary>
@@ -88,43 +88,43 @@ namespace BOUDAMA
 		/// true : 生存している
 		/// false : 生存していない
 		/// </returns>
-		inline bool GetIsActive(void) const noexcept { return isAlive_; }
+		constexpr bool GetIsActive(void) const noexcept { return isAlive_; }
 
 		//生存判定設定
-		inline void SetIsActive(bool authenticity) { isAlive_ = authenticity; }
+		constexpr void SetIsActive(bool authenticity) { isAlive_ = authenticity; }
 
 
 		//速度ベクトル取得
-		inline Vector3D GetVelocity(void) const noexcept { return velocity_; }
+		constexpr Vector3D GetVelocity(void) const noexcept { return velocity_; }
 
 		//速度ベクトル設定
-		inline void SetVelocity(const Vector3D& velocity) { velocity_ = velocity; }
+		constexpr void SetVelocity(const Vector3D& velocity) { velocity_ = velocity; }
 
 		//速度ベクトル加算
-		inline void AddVelocity(const Vector3D& addVelocity) { velocity_ += addVelocity; }
+		constexpr void AddVelocity(const Vector3D& addVelocity) { velocity_ += addVelocity; }
 
 		//速度ベクトル減算
-		inline void SubVelocity(const Vector3D& subVelocity) { velocity_ -= subVelocity; }
+		constexpr void SubVelocity(const Vector3D& subVelocity) { velocity_ -= subVelocity; }
 
 
 		//X軸取得
-		inline float GetVelocityX(void) const noexcept { return velocity_.x; }
+		constexpr float GetVelocityX(void) const noexcept { return velocity_.x; }
 
 		//X軸設定
-		inline void SetVelocityX(float x) { velocity_.x = x; }
+		constexpr void SetVelocityX(float x) { velocity_.x = x; }
 
 
 		//Y軸取得
-		inline float GetVelocityY(void) const noexcept { return velocity_.y; }
+		constexpr float GetVelocityY(void) const noexcept { return velocity_.y; }
 
 		//Y軸設定
-		inline void SetVelocityY(float y) { velocity_.y = y; }
+		constexpr void SetVelocityY(float y) { velocity_.y = y; }
 
 
 		//Z軸取得
-		inline float GetVelocityZ(void) const noexcept { return velocity_.z; }
+		constexpr float GetVelocityZ(void) const noexcept { return velocity_.z; }
 
 		//Z軸設定
-		inline void SetVelocityZ(float z) { velocity_.z = z; }
+		constexpr void SetVelocityZ(float z) { velocity_.z = z; }
 	};
 }

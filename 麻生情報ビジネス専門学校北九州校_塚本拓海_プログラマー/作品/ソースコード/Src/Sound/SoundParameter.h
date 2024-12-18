@@ -26,7 +26,7 @@ namespace BOUDAMA
 			DAMAGE,
 
 			//ƒvƒŒƒCƒ„[‚ªŽ€‚ñ‚¾‚Æ‚«‚ÌŒø‰Ê‰¹
-			PLAYER_DEATH,
+			RED_DISSOLVE,
 
 			//“G‚ªŽ€‚ñ‚¾‚Æ‚«‚ÌŒø‰Ê‰¹
 			ENEMY_DEATH,

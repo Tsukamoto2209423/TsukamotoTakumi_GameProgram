@@ -136,8 +136,6 @@ namespace BOUDAMA
 	//ランダムに物質を抽選して引数の場所から飛び散りながら出現する処理
 	void SubstanceManager::RandomFlyAppearCalculation(const Vector3D& appearPos)
 	{
-		std::vector<std::weak_ptr<SubstanceBase>> appearSubstances;
-
 		std::vector<int> randomNums;
 
 		//まだ出現していないものだけ選ぶ
@@ -147,9 +145,6 @@ namespace BOUDAMA
 			{
 				continue;
 			}
-
-			//要素追加
-			appearSubstances.emplace_back(substance);
 
 			//添え字保存
 			randomNums.emplace_back(num);
@@ -176,7 +171,7 @@ namespace BOUDAMA
 			int appearIndex = GetRand((maxAppearNum - 1) - appearCount);
 
 			//出現処理
-			appearSubstances[appearIndex].lock()->FlyAppearCalculation(appearPos);
+			substances_[randomNums[appearIndex]]->FlyAppearCalculation(appearPos);
 
 			//値交換処理
 			const int tempNum = randomNums[appearIndex];

@@ -142,7 +142,6 @@ namespace BOUDAMA
 
 		//oŒ»ˆ—ŒvŽZ
 		AppearanceCountProcess();
-
 	}
 
 	//“G‘‡•`‰æ
@@ -152,12 +151,6 @@ namespace BOUDAMA
 		for (const auto& enemy : enemies_)
 		{
 			enemy->Draw();
-		}
-
-		if (isFeverTime_)
-		{
-			unsigned int color = GetColor(255, 0, 0);
-			DrawFormatString(275, 300, color, "%d : FEVERTIME", deathCount_);
 		}
 	}
 

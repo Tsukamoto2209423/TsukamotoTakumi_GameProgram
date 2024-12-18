@@ -47,55 +47,35 @@ namespace BOUDAMA
 			//カメラが離れられる最大の距離にする
 			distanceToPlayer_ = CAMERA::MAX_DISTANCE;
 
-			// 左回転
-			if (InputKeyBoard::IsKeyDown(KEY::LEFT))
-			{
-				rot_.y -= CAMERA::ROT_RIGHT_LEFT_SPEED;
-
-				// rot_の左右の角度θの定義域は -π < θ <= π
-				if (rot_.y < -MyMath::PI)
-				{
-					rot_.y = MyMath::PI;
-				}
-
-			}
-
-			// 右回転
-			if (InputKeyBoard::IsKeyDown(KEY::RIGHT))
-			{
-				rot_.y += CAMERA::ROT_RIGHT_LEFT_SPEED;
-
-				// rot_の左右の角度θの定義域は -π <= θ < π
-				if (rot_.y > MyMath::PI)
-				{
-					rot_.y = -MyMath::PI;
-				}
-
-			}
-
-			return;
 		}
+		else
+		{
+			//プレイヤーの位置からカメラの位置までのベクトル作成
+			dir_ = playerPos - pos_;
 
-		//プレイヤーの位置からカメラの位置までのベクトル作成
-		dir_ = playerPos - pos_;
+			//ベクトルの長さ取得
+			distanceToPlayer_ = dir_.L2Norm();
 
-		//ベクトルの長さ取得
-		distanceToPlayer_ = dir_.L2Norm();
 
-		//カメラが近づける最小の距離以上離れているなら
-		distanceToPlayer_ >= CAMERA::MIN_DISTANCE ?
+			//カメラがこれ以上近づけない距離よりも近い場合
+			if (distanceToPlayer_ - CAMERA::SPEED <= CAMERA::MIN_DISTANCE)
+			{
+				// カメラが近づける距離まで遠ざける
+				distanceToPlayer_ = CAMERA::MIN_DISTANCE;
 
-			//カメラが離れられる最大の距離以上離れていたら
-			(distanceToPlayer_ >= CAMERA::MAX_DISTANCE ?
-
+			}
+			//カメラがこれ以上離れられない距離を超えた場合
+			else if (distanceToPlayer_ >= CAMERA::MAX_DISTANCE)
+			{
 				//カメラが離れられる最大の距離にする
-				distanceToPlayer_ = CAMERA::MAX_DISTANCE
-
-				//短ければ追いかける
-				: distanceToPlayer_ -= CAMERA::SPEED)
-
-			//カメラが近づける最小の距離にする
-			: distanceToPlayer_ = CAMERA::MIN_DISTANCE;
+				distanceToPlayer_ = CAMERA::MAX_DISTANCE;
+			}
+			else
+			{
+				//どれにも当てはまらない場合追いかける
+				distanceToPlayer_ -= CAMERA::SPEED;
+			}
+		}
 
 		//自分から見て下方向に回転
 		if (InputKeyBoard::IsKeyDown(KEY::UP))

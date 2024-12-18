@@ -9,6 +9,7 @@ namespace BOUDAMA
 		if (const auto& owner = owner_.lock())
 		{
 			owner->SetVelocity(MyMath::ZERO_VECTOR_3D);
+			owner->SetRot(MyMath::ZERO_VECTOR_3D);
 		}
 
 		isTransitionToNextState_ = false;

@@ -7,13 +7,13 @@
 #include <sstream>
 
 /// <summary>
-/// 引数のpathの各種パラメータをまとめてあるCSVファイルを読み込み、そのデータを返す
+/// 引数のpathの各種パラメータをまとめてあるCSVファイルのrowNum行目だけを読み込み、そのデータを返す
 /// </summary>
 /// <param name="path">：読み込むCSVファイルへのパス</param>
 /// <param name="rowNum">：読み込む行（縦方向）</param>
 /// <param name="columnNum">：読み込みはじめる最初の列（横方向）</param>
 /// <returns> 指定列番目のデータ </returns>
-decltype(auto) LoadParameterData(const char* path, int rowNum, int columnNum)
+decltype(auto) CSV_LOADER::LoadParameterData(const char* path, int rowNum, int columnNum)
 {
 	//CSVファイルを開く
 	std::ifstream file(path);

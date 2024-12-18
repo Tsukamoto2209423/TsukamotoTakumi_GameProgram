@@ -38,7 +38,7 @@ namespace BOUDAMA
 		constexpr float MAX_POS_X_Z = 7000.0f;
 
 		//攻撃力
-		constexpr int ATTACK_POWER = 4;
+		constexpr int ATTACK_POWER = 5;
 
 		//ランダムで配置するときに初期基準位置に足す最大値
 		constexpr int INIT_POS_XZ_RAND_MAX_NUM = 2 * static_cast<int>(-INIT_POS_X_Z);
@@ -46,11 +46,14 @@ namespace BOUDAMA
 		//同時に出現できる最大数
 		constexpr int MAX_NUM = 5;
 
-		//爆発するまでの制限時間
-		constexpr int MAX_EXPLODE_TIME_LIMIT = 300;
+		//爆発するまでの時間
+		constexpr int MAX_EXPLODE_TIME_LIMIT = 200;
 
 		//爆発している時間
-		constexpr int MAX_EXPLOSION_TIME = 90;
+		constexpr int MAX_EXPLOSION_TIME = 75;
+
+		//爆発警告点滅
+		constexpr int WARNING_BLINK_TIME = 80;
 
 		enum STATE
 		{

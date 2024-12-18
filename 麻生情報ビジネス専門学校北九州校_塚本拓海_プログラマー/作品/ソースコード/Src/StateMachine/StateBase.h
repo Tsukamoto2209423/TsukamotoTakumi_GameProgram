@@ -44,19 +44,19 @@ namespace BOUDAMA
 		/// true : Ÿ‚Ìó‘Ô‚É‘JˆÚ‚·‚é
 		/// false : Œ»İ‚Ìó‘Ô‚ğˆÛ‚·‚é
 		/// </returns>
-		inline bool IsTransitionToNextState(void) const noexcept
+		constexpr bool IsTransitionToNextState(void) const noexcept
 		{
 			return isTransitionToNextState_;
 		}
 
 		//©•ª©g‚Ì‚Ìó‘Ô‚ğæ“¾
-		inline KeyType GetMyState(void) const noexcept
+		constexpr KeyType GetMyState(void) const noexcept
 		{
 			return myStateName_;
 		}
 
 		//‘JˆÚæ‚Ìó‘Ô‚ğæ“¾
-		inline KeyType GetNextState(void) const noexcept
+		constexpr KeyType GetNextState(void) const noexcept
 		{
 			return nextStateName_;
 		}

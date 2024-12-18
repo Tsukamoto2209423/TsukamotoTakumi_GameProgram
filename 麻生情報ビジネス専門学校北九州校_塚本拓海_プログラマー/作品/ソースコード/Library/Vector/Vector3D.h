@@ -61,7 +61,7 @@ public:
 
 	//“¯ˆêƒxƒNƒgƒ‹”»’è
 	constexpr bool operator==(const Vector3D& vec) const { return (this->x == vec.x && this->y == vec.y && this->z == vec.z); }
-	constexpr bool operator!=(const Vector3D& vec) const { return !(*this == vec); }
+	constexpr bool operator!=(const Vector3D& vec) const { return (this->x != vec.x && this->y != vec.y && this->z != vec.z); }
 
 	constexpr bool operator>(const Vector3D& vec) const { return (this->x > vec.x && this->y > vec.y && this->z > vec.z); }
 

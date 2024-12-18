@@ -29,7 +29,7 @@ namespace BOUDAMA
 		constexpr float SPEED = 7.5f;
 
 		//重力
-		constexpr float GRAVITY = 5.5f;
+		constexpr float GRAVITY = 4.5f;
 
 		//初期位置
 		constexpr Vector3D INIT_POS = { 0.0f,100.0f,3750.0f };
@@ -159,7 +159,7 @@ namespace BOUDAMA
 
 
 		//攻撃後の硬直時間
-		constexpr int ATTACK_STUN_TIME = 550;
+		constexpr int ATTACK_STUN_TIME = 210;
 
 		//〇Fごとに出現する
 		constexpr int APPEAR_MAX_TIME = 90;
@@ -169,7 +169,7 @@ namespace BOUDAMA
 
 
 		//倒されたときにスコアに加算される点数
-		constexpr unsigned int ADD_SCORE_NUM = 550;
+		constexpr unsigned int ADD_SCORE_NUM = 1000;
 
 		//初期位置
 		constexpr Vector3D INIT_POS = { 0.0f,150.0f,3150.0f };
@@ -184,10 +184,10 @@ namespace BOUDAMA
 		constexpr float SPEED = 1.75f;
 
 		//最大の速さ
-		constexpr float MAX_SPEED = 10.5f;
+		constexpr float MAX_SPEED = 11.5f;
 
 		//追いかける速さ
-		constexpr float CHASE_SPEED = 7.5f;
+		constexpr float RUN_AWAY_SPEED = 10.5f;
 		
 		//漂う動きをさせるために正弦波にかける係数
 		constexpr float FLOAT_MOTION_BOOST = 3.5f;
@@ -203,7 +203,7 @@ namespace BOUDAMA
 
 
 		//敵を発見できる範囲
-		constexpr float FIND_OUT_RANGE = 1050.0f;
+		constexpr float FIND_OUT_RANGE = 1250.0f;
 
 		//敵を発見できる範囲の二乗
 		constexpr float SQUARE_FIND_OUT_RANGE = FIND_OUT_RANGE * FIND_OUT_RANGE;
@@ -217,12 +217,8 @@ namespace BOUDAMA
 
 	}
 
-	/*
-		敵管理クラスの情報
-		これより下に
-		namespace 〇〇(敵の情報)
-		を書くとエラーが起こるので追加しない
-	*/
+	
+	//敵管理クラスの情報
 	namespace ENEMY_MANAGER
 	{
 		//ゲーム開始時に湧かせる数
@@ -232,7 +228,7 @@ namespace BOUDAMA
 		constexpr int APPEAR_TIME_INTERVAL = 20;
 
 		//フィーバータイムの最大時間
-		constexpr int MAX_FEVER_TIME = 600;
+		constexpr int MAX_FEVER_TIME = 1200;
 
 		//X軸とZ軸で行ける最大の位置
 		constexpr float MAX_POS_X_Z = 7000.0f;

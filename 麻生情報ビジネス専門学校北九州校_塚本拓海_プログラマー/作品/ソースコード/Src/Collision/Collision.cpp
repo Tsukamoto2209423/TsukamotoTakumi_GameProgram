@@ -30,8 +30,7 @@ namespace BOUDAMA
 		// 2“_ŠÔ‚ðˆø‚«ŽZ‚·‚é
 		Vector3D dist = vec1 - vec2;
 		// 2“_ŠÔ‚Ì‹——£‚Ì2æ‚ðŒvŽZ‚·‚é
-		float length = (dist.x * dist.x) + (dist.y * dist.y)
-			+ (dist.z * dist.z);
+		float length = (dist.x * dist.x) + (dist.y * dist.y) + (dist.z * dist.z);
 		// “ñ‚Â‚Ì‹…‚Ì”¼Œa‚ð‘«‚µ‚Ä2æ‚·‚é
 		float radius = (vec1radius + vec2radius) * (vec1radius + vec2radius);
 
@@ -186,7 +185,7 @@ namespace BOUDAMA
 				enemy->DeathCalculation(player->GetVelocity());
 				enemyManager.AddEnemyDeathCount();
 
-				if (50 % enemyManager.GetEnemyDeathCount() == 0)
+				if (COMBO::ADD_SCALE_COMBO_NUM <= enemyManager.GetEnemyDeathCount() && (enemyManager.GetEnemyDeathCount() % COMBO::ADD_SCALE_COMBO_NUM == 0) )
 				{
 					enemyManager.FeverTime();
 				}
@@ -342,10 +341,17 @@ namespace BOUDAMA
 				Score::AddScore(enemy->GetScoreNum());
 
 				enemy->DeathCalculation(substance->GetOwner()->GetVelocity());
+				enemyManager.AddEnemyDeathCount();
+
+				if (COMBO::ADD_SCALE_COMBO_NUM <= enemyManager.GetEnemyDeathCount() && (enemyManager.GetEnemyDeathCount() % COMBO::ADD_SCALE_COMBO_NUM == 0))
+				{
+					enemyManager.FeverTime();
+				}
+
 
 				substanceManager.RandomFlyAppearCalculation(enemy->GetPos());
 
-				if (GetRand(100) == 0)
+				if (GetRand(20) == 0)
 				{
 					itemManager.AppearanceRequest(ITEM_LIST::HEAL);
 				}
