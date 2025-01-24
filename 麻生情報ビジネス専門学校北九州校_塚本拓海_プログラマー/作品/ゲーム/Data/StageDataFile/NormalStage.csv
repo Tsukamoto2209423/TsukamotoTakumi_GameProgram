@@ -1,3 +1,0 @@
-敵の名前,敵のモデルのパス,最大出現数,出現間隔
-ダルマ,Data/Model/Enemy/beta_Enemy.x,40,30
-モンスター,Data/Model/Enemy/MonsterEnemy.x,5,90
