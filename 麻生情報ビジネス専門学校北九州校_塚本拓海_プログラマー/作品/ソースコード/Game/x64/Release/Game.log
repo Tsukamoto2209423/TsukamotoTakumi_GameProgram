@@ -1,0 +1,20 @@
+﻿  Collision.cpp
+  CollisionManager.cpp
+  Camera.cpp
+  EnemyBomber.cpp
+  Player2DEffect.cpp
+  Player3DEffect.cpp
+  SubstanceBase.cpp
+  Enemy.cpp
+  EnemyManager.cpp
+  Main.cpp
+  Player.cpp
+  SceneManager.cpp
+  ScenePlay.cpp
+  SceneTitle.cpp
+  コード生成しています。
+  2 of 1910 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  コード生成が終了しました。
+  Game.vcxproj -> C:\Users\Neutr\OneDrive\ドキュメント\GitHub\Tsukamoto_Takumi_Program\Project\x64\Release\Game.exe

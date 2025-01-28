@@ -1,0 +1,14 @@
+
+
+"Data/Image/Title/MainTitle.png"		メインタイトルロゴ
+"Data/Image/Title/MainTitleEnter.png"		"エンターを押すとスタート"
+
+"Data/Image/Title/PlainBG.png"			背景画像
+
+"Data/Image/Title/GameStart.png"		ゲームスタート
+"Data/Image/Title/HowToPlay.png"		あそびかた
+
+"Data/Image/Title/ExplainImage.png"		説明画像１枚目
+"Data/Image/Title/ExplainImage2.png"		説明画像２枚目
+"Data/Image/Title/ExplainImage3.png"		説明画像３枚目
+"Data/Image/Title/ExplainImage4.png"		説明画像４枚目
